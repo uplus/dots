@@ -1,16 +1,16 @@
 set cpo&vim
 
 "Copy, Cut, Paste
-vnoremap <C-C> y
-vnoremap <C-X> x
 nnoremap <C-C> yy
 nnoremap <C-X> dd
 nnoremap <C-V> P
 inoremap <C-C> <C-O>yy
 inoremap <C-X> <C-O>dd
 inoremap <C-V> <C-O>P
+vnoremap <C-C> y
+vnoremap <C-X> x
 
-"Undo and Redo "なくすか
+"Undo and Redo "
 inoremap <C-R> <C-O><C-R>
 inoremap <C-T> <C-O>u
 
@@ -26,16 +26,21 @@ inoremap <F3> <C-O>:%s//g<LEFT><LEFT>
 nnoremap <F3> :%s//g<LEFT><LEFT>
 vnoremap <F3> %s//g<LEFT><LEFT>
 
-"visual mode;Mac only?
-nnoremap <C-@>v <S-V>
-inoremap <C-@>v <C-O><S-V>
+"visual mode
+nnoremap <C-{> <S-V>
+inoremap <C-{> <C-O><S-V>
 
-"move from{ to} #recursion call "}はタグジャンプ
-imap <silent> <F4> <C-O>%
-map <silent> <F4> %
-
-"Escape  もっと重要なのにする
+"もっと重要なのにする
 "inoremap <C-SPACE> <ESC>
+
+"######Ctrl+M family######
+
+"from { to } 
+nnoremap <C-M>@ %
+inoremap <C-@>@ <C-O>%
+inoremap <C-@>} <End><CR>
+nnoremap <C-@> <ESC>
+inoremap <C-@> <ESC>
 
 "######Ctrl+W family######
 "NERDTree
@@ -55,6 +60,7 @@ inoremap <C-W>q <C-O>:bdelete<CR>
 "C-W shortcut
 inoremap <C-W> <C-O><C-W>
 
+"#########################
 "######Ctrl+S family######
 "Quit vim
 nnoremap <C-S>q	:q<CR>
@@ -72,15 +78,23 @@ inoremap <C-S>z <ESC>:wq<CR>
 noremap  <silent> <C-S>s :update<CR>
 inoremap <silent> <C-S>s <C-O>:update<CR>
 
-"Save	need #stty -ixon -ixoff
+"Save single C-S version
 noremap  <silent> <C-S> :update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
 "move
+nnoremap <C-j> <Down>
+nnoremap <C-k> <UP>
+
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+inoremap <C-u> <C-O><C-u>
+inoremap <C-n> <C-O><C-d>
 
-nnoremap <C-j> <Down>
-nnoremap <C-k> <UP>
+inoremap <C-F> <Home>
+inoremap <C-G> <End>
+
+"For undo separate
+inoremap <CR> <CR><ESC>i
