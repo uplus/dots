@@ -54,9 +54,6 @@ set wildmenu wildmode=list:full
 "#yank to clipboard
 set clipboard=unnamed,autoselect
 
-"#Select methods
-"source ~/.vim/select-ms.vim
-
 "#Keymap
 source ~/.vim/keymap.vim
 
@@ -65,5 +62,3 @@ source ~/.vim/neobundle.vim
 
 "#run easy
 source ~/.vim/easy-run.vim
-
-source ~/.vim/mac.vim

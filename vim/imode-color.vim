@@ -1,6 +1,6 @@
 	"-------------------------------------------"
 	"When insert mode, change status line's color
-	"-------------------------------------------"
+	"------------------------------------------"
 let g:hi_insert = 'highlight StatusLine guifg=blue guibg=darkyellow gui=none ctermfg=green ctermbg=blue  cterm=none'
 
 if has('syntax')

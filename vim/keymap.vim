@@ -3,20 +3,9 @@
 set cpo&vim
 
 "C-O使えば多くのキーマップが不要になるような・・・
-"
 "Ctrl-MはなぜかReturnとかぶる
-
-"Copy, Cut, Paste
-nnoremap <C-C> yy
-nnoremap <C-X> dd
-nnoremap <C-V> P
-inoremap <C-C> <C-O>yy
-inoremap <C-X> <C-O>dd
-inoremap <C-V> <C-O>P
-
-"Undo and Redo "
-inoremap <C-R> <C-O><C-R>
-inoremap <C-T> <C-O>u
+"Ctrl-[はESCとして使われるからマップできない
+"insert-mode でのESPのマッピングは良くない
 
 "replace
 inoremap <F3> <C-O>:%s//g<LEFT><LEFT>
@@ -27,23 +16,34 @@ vnoremap <F3> %s//g<LEFT><LEFT>
 nnoremap p P
 nnoremap P p
 
+"ins)C-O rでredo 位置文字置き換えは使わない
+nnoremap r <C-R>
 "C-Vがredoに取られてる  insertからのvisualはC-Oと組み合わせて使う
 nnoremap t <C-V>
 
+"apply speed up
+nnoremap u u
+vnoremap d d
+vnoremap y y
+
 "For undo separate
-inoremap <CR> <CR><ESC>i
+inoremap <silent> <CR> <CR><ESC>i
+
+"標準のだとstatus-line colorが変わらない
+inoremap <C-C> <ESC>
+
+nnoremap <BS> X
+nnoremap <Del> x
+vnoremap <BS> d
 
 "もっと重要なのにする C-Oがいいかも
 "inoremap <C-SPACE> <ESC>
 
-"######Ctrl+@ family######
-
-inoremap <C-@>] <End><CR>
-
 "from { to } 
-nnoremap <C-@>@ %
-inoremap <C-@>@ <C-O>%
+nnoremap <C-@> %
+inoremap <C-@> <C-O>%
 
+"######Ctrl+@ family######
 
 "######Ctrl+W family######
 "NERDTree
@@ -87,6 +87,7 @@ inoremap <silent> <C-S> <C-O>:update<CR>
 "######move######
 nnoremap <C-j> <Down>
 nnoremap <C-k> <UP>
+behave mswin
 
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -95,6 +96,38 @@ inoremap <C-l> <Right>
 inoremap <C-u> <C-O><C-u>
 inoremap <C-n> <C-O><C-d>
 
-inoremap <C-F> <Home>
-inoremap <C-G> <End>
+inoremap <C-f> <Home>
+inoremap <C-g> <End>
+
+vnoremap <UP> k
+vnoremap <DOWN> j
+vnoremap <LEFT> h
+vnoremap <RIGHT> l
+
+vnoremap <C-j> k
+vnoremap <C-k> j
+vnoremap <C-h> h
+vnoremap <C-l> l
+vnoremap <C-u> <C-u>
+vnoremap <C-n> <C-O><C-d>
+
+
+"###########
+"Trash
+
+"Copy, Cut, Paste
+"C-Oがあればいらない
+"nnoremap <C-C> yy
+"nnoremap <C-X> dd
+"nnoremap <C-V> P
+"inoremap <C-C> <C-O>yy
+"inoremap <C-X> <C-O>dd
+"inoremap <C-V> <C-O>P
+
+"Undo and Redo "
+"inoremap <C-T> <C-O>u
+"inoremap <C-R> <C-O><C-R>
+
+"ins)C-F<CR> で十分
+"inoremap <C-@>] <End><CR>
 
