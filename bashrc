@@ -43,23 +43,23 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+		# We have color support; assume it's compliant with Ecma-48
+		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+		# a case would tend to support setf rather than setaf.)
+		color_prompt=yes
     else
-	color_prompt=
+		color_prompt=
     fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -102,17 +102,7 @@ export PATH=$PATH:~/bin:/Users/uplus/Library/Haskell/bin:
 
 #Ctrl-S need this codes
 stty -ixon -ixoff
-
-alias ls='ls  --color'
-alias grep='grep --color'
-alias fgrep='fgrep --color'
-alias egrep='egrep --color'
-
-# some more ls aliases
-alias l='ls -CF'
-alias la='ls -A'
-alias ll='ls -l'
-alias lla='ls -lA'
+xmodmap ~/.xmodmap
 
 function pushdls(){
 	\pushd "$@"
@@ -140,8 +130,11 @@ function mkdircd(){
 }
 
 function addalias(){
-	echo $#
-	[ $# == 2 ] echo "alias $1='$2'" >> ~/.bash_aliases
+	if [ $# -ge 2 ]; then # #? >= 2
+		NAME=$1
+		shift
+		echo "alias $NAME='$*'" >> ~/.bash_aliases
+	fi
 }
 
 alias pushd="pushdls"

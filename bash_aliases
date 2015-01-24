@@ -1,13 +1,24 @@
 alias envlang="env | egrep --color=never 'LANG|LC'"
 alias apt-search='apt-cache pkgnames | egrep'
 
+alias ls='ls  --color'
+alias grep='grep --color'
+alias fgrep='fgrep --color'
+alias egrep='egrep --color'
+
+# some more ls aliases
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -l'
+alias lla='ls -lA'
+
 alias findr="find / -name"
 alias findh="find ~/ -name"
 alias findc="find . -name"
 
 alias vi='vim'
-alias vibash='vim ~/.bashrc'
-alias vialias='vim ~/.bash_aliases'
+alias vibash="vim + ~/.bashrc"
+alias vialias="vim + ~/.bash_aliases"
 
 alias clang='clang -Wall -W -lm -std=gnu99'
 alias clang++='clang++ -Wall -W -std=c++1z'
@@ -27,3 +38,5 @@ alias sln='ln -s'
 alias mv='mv -iv'
 alias cp='cp -iv'
 alias rm='rm -iv'
+
+alias echo?='echo $?'

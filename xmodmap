@@ -1,0 +1,4 @@
+keycode  66 = Control_L NoSymbol Control_L
+keycode 100 = Zenkaku_Hankaku NoSymbol Zenkaku_Hankaku
+keycode 102 = Escape NoSymbol Escape
+
