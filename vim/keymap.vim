@@ -1,24 +1,36 @@
 "C-O is god!
-
 set cpo&vim
 
-"C-O使えば多くのキーマップが不要になるような・・・
+"c-o使えば多くのキーマップが不要になるような・・・
 "Ctrl-MはなぜかReturnとかぶる
 "Ctrl-[はESCとして使われるからマップできない
-"insert-mode でのESPのマッピングは良くない
+"insert-mode でのESCのマッピングは良くない
+
+"ins)C-a,x inc,dec
+"ins)C-d, <BS>
+"ins)C-e, <Del>
+"from { to }
 
 "replace
+"バリエーションを増やす？
 inoremap <F3> <C-O>:%s//g<LEFT><LEFT>
 nnoremap <F3> :%s//g<LEFT><LEFT>
 vnoremap <F3> %s//g<LEFT><LEFT>
 
-"line selectの方が使うこと多いしvisualは短形で同じ事ができる
+"イメージにあうようにする
 nnoremap p P
 nnoremap P p
 
-"ins)C-O rでredo 位置文字置き換えは使わない
+"line selectの方が使うこと多いしvisualは短形で同じ事ができる
+nnoremap v V
+nnoremap V v
+
+"all select ins)C-O からは使えない
+nnoremap a ggVG
+
+"ins)C-O rでredo
 nnoremap r <C-R>
-"C-Vがredoに取られてる  insertからのvisualはC-Oと組み合わせて使う
+" insertからのvisualはC-Oと組み合わせて使う
 nnoremap t <C-V>
 
 "apply speed up
@@ -87,7 +99,8 @@ inoremap <silent> <C-S> <C-O>:update<CR>
 "######move######
 nnoremap <C-j> <Down>
 nnoremap <C-k> <UP>
-behave mswin
+nnoremap <C-h> <Left>
+nnoremap <C-l> <Right>
 
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
@@ -103,7 +116,6 @@ vnoremap <UP> k
 vnoremap <DOWN> j
 vnoremap <LEFT> h
 vnoremap <RIGHT> l
-
 vnoremap <C-j> k
 vnoremap <C-k> j
 vnoremap <C-h> h
