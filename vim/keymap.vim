@@ -1,4 +1,10 @@
+"C-O is god!
+
 set cpo&vim
+
+"C-O使えば多くのキーマップが不要になるような・・・
+"
+"Ctrl-MはなぜかReturnとかぶる
 
 "Copy, Cut, Paste
 nnoremap <C-C> yy
@@ -7,40 +13,37 @@ nnoremap <C-V> P
 inoremap <C-C> <C-O>yy
 inoremap <C-X> <C-O>dd
 inoremap <C-V> <C-O>P
-vnoremap <C-C> y
-vnoremap <C-X> x
 
 "Undo and Redo "
 inoremap <C-R> <C-O><C-R>
 inoremap <C-T> <C-O>u
-
-" backspace in Visual mode deletes selection
-vnoremap <BS> d
-inoremap <C-Z>z	<C-O><C-Z>
-
-nnoremap <F2> /
-inoremap <F2> <C-O>/
 
 "replace
 inoremap <F3> <C-O>:%s//g<LEFT><LEFT>
 nnoremap <F3> :%s//g<LEFT><LEFT>
 vnoremap <F3> %s//g<LEFT><LEFT>
 
-"visual mode
-nnoremap <C-{> <S-V>
-inoremap <C-{> <C-O><S-V>
+"line selectの方が使うこと多いしvisualは短形で同じ事ができる
+nnoremap p P
+nnoremap P p
 
-"もっと重要なのにする
+"C-Vがredoに取られてる  insertからのvisualはC-Oと組み合わせて使う
+nnoremap t <C-V>
+
+"For undo separate
+inoremap <CR> <CR><ESC>i
+
+"もっと重要なのにする C-Oがいいかも
 "inoremap <C-SPACE> <ESC>
 
-"######Ctrl+M family######
+"######Ctrl+@ family######
+
+inoremap <C-@>] <End><CR>
 
 "from { to } 
-nnoremap <C-M>@ %
+nnoremap <C-@>@ %
 inoremap <C-@>@ <C-O>%
-inoremap <C-@>} <End><CR>
-nnoremap <C-@> <ESC>
-inoremap <C-@> <ESC>
+
 
 "######Ctrl+W family######
 "NERDTree
@@ -60,7 +63,6 @@ inoremap <C-W>q <C-O>:bdelete<CR>
 "C-W shortcut
 inoremap <C-W> <C-O><C-W>
 
-"#########################
 "######Ctrl+S family######
 "Quit vim
 nnoremap <C-S>q	:q<CR>
@@ -82,7 +84,7 @@ inoremap <silent> <C-S>s <C-O>:update<CR>
 noremap  <silent> <C-S> :update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
-"move
+"######move######
 nnoremap <C-j> <Down>
 nnoremap <C-k> <UP>
 
@@ -96,5 +98,3 @@ inoremap <C-n> <C-O><C-d>
 inoremap <C-F> <Home>
 inoremap <C-G> <End>
 
-"For undo separate
-inoremap <CR> <CR><ESC>i
