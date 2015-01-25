@@ -25,8 +25,6 @@ nnoremap P p
 nnoremap v V
 nnoremap V v
 
-"all select ins)C-O からは使えない
-nnoremap a ggVG
 
 "ins)C-O rでredo
 nnoremap r <C-R>
@@ -39,7 +37,8 @@ vnoremap d d
 vnoremap y y
 
 "For undo separate
-inoremap <silent> <CR> <CR><ESC>i
+"auto-indent smart-indentが崩れる
+"inoremap <silent> <CR> <CR><ESC>i
 
 "標準のだとstatus-line colorが変わらない
 inoremap <C-C> <ESC>

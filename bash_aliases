@@ -1,10 +1,11 @@
 alias envlang="env | egrep --color=never 'LANG|LC'"
 alias apt-search='apt-cache pkgnames | egrep'
+alias echo?='echo $?'
 
 alias ls='ls  --color'
-alias grep='grep --color'
-alias fgrep='fgrep --color'
+alias grep='egrep --color'
 alias egrep='egrep --color'
+alias fgrep='fgrep --color'
 
 # some more ls aliases
 alias l='ls -CF'
@@ -39,4 +40,8 @@ alias mv='mv -iv'
 alias cp='cp -iv'
 alias rm='rm -iv'
 
-alias echo?='echo $?'
+alias shutdown='sudo shutdown'
+alias poweroff='sudo poweroff'
+alias reboot='sudo reboot'
+alias apt-get='sudo apt-get'
+alias mount='sudo mount'

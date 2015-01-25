@@ -99,10 +99,10 @@ fi
 
 ############################NEW#################################
 export PATH=$PATH:~/bin:/Users/uplus/Library/Haskell/bin:
+xmodmap ~/.xmodmap
 
 #Ctrl-S need this codes
 stty -ixon -ixoff
-xmodmap ~/.xmodmap
 
 function pushdls(){
 	\pushd "$@"
