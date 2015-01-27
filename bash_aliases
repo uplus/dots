@@ -38,7 +38,7 @@ alias gdb='gdb -q'
 alias sln='ln -s'
 alias mv='mv -iv'
 alias cp='cp -iv'
-alias rm='rm -iv'
+alias rm='rm -v'
 
 alias shutdown='sudo shutdown'
 alias poweroff='sudo poweroff'

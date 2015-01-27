@@ -30,6 +30,8 @@ nnoremap V v
 nnoremap r <C-R>
 " insertからのvisualはC-Oと組み合わせて使う
 nnoremap t <C-V>
+" 0 == ^ - == $
+nnoremap - $
 
 "apply speed up
 nnoremap u u
