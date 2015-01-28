@@ -143,6 +143,7 @@ function gitdot(){
 	popd
 }
 
+
 alias pushd="pushdls"
 alias popd="popdls"
 alias cd="cdls"
