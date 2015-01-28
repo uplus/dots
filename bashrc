@@ -142,9 +142,9 @@ function gitdot(){
 	git $*
 	popd
 }
-	
 
 alias pushd="pushdls"
+
 alias popd="popdls"
 alias cd="cdls"
 alias cda="cdlsa"
