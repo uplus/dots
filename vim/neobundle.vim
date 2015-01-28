@@ -20,6 +20,8 @@ NeoBundle 'tomtom/tcomment_vim'
 "The hard to read than I though
 "NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'scrooloose/syntastic'
+let g:syntastic_cpp_compiler = 'clang++-3.5'
+let g:syntastic_cpp_compiler_options = '-std=c++1z -W -Wall'
 
 NeoBundle 'Shougo/neosnippet.vim'
 "NeoBundle 'Shougo/neocomplcache'
