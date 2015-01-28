@@ -137,6 +137,13 @@ function addalias(){
 	fi
 }
 
+function gitdot(){
+	pushd ~/.dotfiles/
+	git $*
+	popd
+}
+	
+
 alias pushd="pushdls"
 alias popd="popdls"
 alias cd="cdls"
