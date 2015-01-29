@@ -137,7 +137,6 @@ function addalias(){
 	fi
 }
 
-alias gitdot='git -C ~/.dotfiles'
 alias pushd="pushdls"
 alias popd="popdls"
 alias cd="cdls"

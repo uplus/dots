@@ -47,3 +47,5 @@ alias poweroff='sudo poweroff'
 alias reboot='sudo reboot'
 alias apt-get='sudo apt-get'
 alias mount='sudo mount'
+alias dotgit='git -C ~/.dotfiles'
+
