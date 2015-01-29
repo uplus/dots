@@ -21,24 +21,26 @@ alias vi='vim'
 alias vibash="vim + ~/.bashrc"
 alias vialias="vim + ~/.bash_aliases"
 
-alias clang='clang -Wall -W -lm -std=gnu99'
-alias clang++='clang++ -Wall -W -std=c++1z'
+export CLANG_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable'
+alias clang="clang $CLANG_WALL_OPT -lm -std=gnu99"
+alias clang++="clang++ $CLANG_WALL_OPT -std=c++1z"
 
 alias irb='irb --simple-prompt'
 alias pry='pry --simple-prompt'
 
-alias objdump='objdump -M intel'
-alias gcc='gcc -O0 -std=gnu99 -fno-stack-protector'
-alias gccg='gcc -O0 -g -std=gnu99 -fno-stack-protector'
-alias gcc32='gcc -O0 -m32 -std=gnu99 -fno-stack-protector'
-alias gccg32='gcc -O0 -g -m32 -std=gnu99 -fno-stack-protector'
-alias gdba='gdb -q a.out'
+export GCC_OPT="-std=gnu99 -O0 -fno-stack-protector $CLANG_WALL_OPT"
+alias gcc="\gcc $GCC_OPT" 
+alias gccg="\gcc -g $GCC_OPT"
+alias gcc32="\gcc -m32 $GCC_OPT"
+alias gccg32="\gcc -g -m32 $GCC_OPT"
 alias gdb='gdb -q'
+alias gdba='gdb -q a.out'
+alias objdump='objdump -M intel'
 
 alias sln='ln -s'
 alias mv='mv -iv'
 alias cp='cp -iv'
-alias rm='rm -v'
+alias rm='rm -iv'
 
 alias shutdown='sudo shutdown'
 alias poweroff='sudo poweroff'
