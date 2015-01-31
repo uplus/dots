@@ -21,7 +21,9 @@ NeoBundle 'tomtom/tcomment_vim'
 "NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_cpp_compiler = 'clang++-3.5'
-let g:syntastic_cpp_compiler_options = '-std=c++1z -W -Wall'
+let g:syntastic_cpp_compiler_options = $CLANG_WALL_OPT . ' -std=c++1z '
+"-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable'
+
 
 NeoBundle 'Shougo/neosnippet.vim'
 "NeoBundle 'Shougo/neocomplcache'

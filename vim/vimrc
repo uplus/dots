@@ -11,20 +11,15 @@ filetype plugin on
 	"-------------"
 syntax enable
 set number
-set tabstop=4
+set tabstop=2
 set laststatus=2
-set background=dark
 set hidden "When I have not saved file, can open new file
 set term=gnome-256color
 colorscheme railscasts
 
-"#When insert mode, change status line's color
-source ~/.vim/imode-color.vim
-
-set backspace=start,eol,indent
 set virtualedit=onemore
-set whichwrap=b,s,[,],,~
-set whichwrap+=<,>,[,]
+set backspace=start,eol,indent
+set whichwrap=b,s,[,],<,>,~
 "set list
 "set listchars=tab:>\ 
 "set iminsert=2 "when out the insert mode, IME off
@@ -32,16 +27,13 @@ set whichwrap+=<,>,[,]
 	"-------------"
 	"Input support"
 	"-------------"
+set clipboard=unnamed,autoselect
 	
-	"Indent
-"set cindent
 set autoindent
 set smartindent
 
-	"Complete
-set completeopt=menu
-
-" Show (partial) command in status line.
+"Complete
+set completeopt=menu	" Show (partial) command in status line.
 set showcmd
 
 " Show matching brackets.
@@ -51,14 +43,12 @@ set shiftwidth=4
 set incsearch
 set wildmenu wildmode=list:full
 
-"#yank to clipboard
-set clipboard=unnamed,autoselect
 
+"#When insert mode, change status line's color
+source ~/.vim/imode-color.vim
 "#Keymap
 source ~/.vim/keymap.vim
-
 "#Neobundle
 source ~/.vim/neobundle.vim
-
 "#run easy
 source ~/.vim/easy-run.vim

@@ -2,10 +2,12 @@
 set cpo&vim
 
 "c-o使えば多くのキーマップが不要になるような・・・
-"Ctrl-MはなぜかReturnとかぶる
-"Ctrl-[はESCとして使われるからマップできない
+"Ctrl-M は<CR>
+"Ctrl-[ は<ESC>
+"Ctrl-i は<TAB>
 "insert-mode でのESCのマッピングは良くない
 
+"提案
 "ins)C-a,x inc,dec
 "ins)C-d, <BS>
 "ins)C-e, <Del>
@@ -17,21 +19,19 @@ inoremap <F3> <C-O>:%s//g<LEFT><LEFT>
 nnoremap <F3> :%s//g<LEFT><LEFT>
 vnoremap <F3> %s//g<LEFT><LEFT>
 
-"イメージにあうようにする
+"イメージにあうようにする p 前の行, P後の行
 nnoremap p P
 nnoremap P p
 
-"line selectの方が使うこと多いしvisualは短形で同じ事ができる
+"line selectの方が使うこと多いし、visualは短形で同じ事ができる
 nnoremap v V
 nnoremap V v
-
+nnoremap t <C-V>
 
 "ins)C-O rでredo
 nnoremap r <C-R>
-" insertからのvisualはC-Oと組み合わせて使う
-nnoremap t <C-V>
-" 0 == ^ - == $
-nnoremap - $
+"complite
+inoremap <C-U> <C-y>
 
 "apply speed up
 nnoremap u u
@@ -45,8 +45,8 @@ vnoremap y y
 "標準のだとstatus-line colorが変わらない
 inoremap <C-C> <ESC>
 
-nnoremap <BS> X
-nnoremap <Del> x
+"nnoremap <BS> X
+"nnoremap <Del> x
 vnoremap <BS> d
 
 "もっと重要なのにする C-Oがいいかも
@@ -98,6 +98,8 @@ noremap  <silent> <C-S> :update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
 "######move######
+"結論　ページ単位の移動とかはノーマルモードからする
+
 nnoremap <C-j> <Down>
 nnoremap <C-k> <UP>
 nnoremap <C-h> <Left>
@@ -107,9 +109,6 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-inoremap <C-u> <C-O><C-u>
-inoremap <C-n> <C-O><C-d>
-
 inoremap <C-f> <Home>
 inoremap <C-g> <End>
 
@@ -121,26 +120,11 @@ vnoremap <C-j> k
 vnoremap <C-k> j
 vnoremap <C-h> h
 vnoremap <C-l> l
-vnoremap <C-u> <C-u>
-vnoremap <C-n> <C-O><C-d>
+vnoremap <C-f> 0
+vnoremap <C-g> $
 
-
-"###########
-"Trash
-
-"Copy, Cut, Paste
-"C-Oがあればいらない
-"nnoremap <C-C> yy
-"nnoremap <C-X> dd
-"nnoremap <C-V> P
-"inoremap <C-C> <C-O>yy
-"inoremap <C-X> <C-O>dd
-"inoremap <C-V> <C-O>P
-
-"Undo and Redo "
-"inoremap <C-T> <C-O>u
-"inoremap <C-R> <C-O><C-R>
-
-"ins)C-F<CR> で十分
-"inoremap <C-@>] <End><CR>
+"######Trash######
+"すでに前の行の先頭　にマップされている
+" 0 == ^ - == $
+"nnoremap - $
 
