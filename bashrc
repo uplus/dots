@@ -98,8 +98,15 @@ fi
 
 
 ############################NEW#################################
-export PATH=$PATH:~/bin:/Users/uplus/Library/Haskell/bin:
-xmodmap ~/.xmodmap
+export PATH=$PATH:~/bin:
+
+if [ -f $HOME/.xmodmap ]; then
+	xmodmap ~/.xmodmap
+fi
+
+if [ -f $HOME/.bash_completion ]; then
+	source $HOME/.bash_completion
+fi
 
 #Ctrl-S need this codes
 stty -ixon -ixoff
@@ -129,6 +136,13 @@ function mkdircd(){
 	[ $? == 0 ] && cd ${!#}
 }
 
+alias pushd="pushdls"
+alias popd="popdls"
+alias cd="cdls"
+alias cda="cdlsa"
+alias mkdir="mkdircd"
+
+#Need restart the bash to apply
 function addalias(){
 	if [ $# -ge 2 ]; then # #? >= 2
 		NAME=$1
@@ -137,8 +151,14 @@ function addalias(){
 	fi
 }
 
-alias pushd="pushdls"
-alias popd="popdls"
-alias cd="cdls"
-alias cda="cdlsa"
-alias mkdir="mkdircd"
+function tmpalias(){
+	if [ $# -ge 2 ]; then # #? >= 2
+		NAME=$1
+		shift
+		echo "alias $NAME='$*'" >> ~/.tmp_aliases
+	fi
+}
+
+if [ -f ~/.tmp_aliases ]; then
+    source ~/.tmp_aliases
+fi

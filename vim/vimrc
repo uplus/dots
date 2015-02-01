@@ -1,3 +1,9 @@
+"自動インデントで何も入力しないとインデントがなくなるのを何とかする
+"Quickfixを使えるようにする
+"よく意味の覚えていないオプションを正確に理解する
+"visualモードでの:normalのショートカットを探す、または作る
+"cindentに切り替えるモード、cppindentなるものも見つけた。
+
 set nocompatible
 set cpo&vim
 set enc=utf-8
@@ -11,7 +17,7 @@ filetype plugin on
 	"-------------"
 syntax enable
 set number
-set tabstop=2
+set tabstop=4
 set laststatus=2
 set hidden "When I have not saved file, can open new file
 set term=gnome-256color
@@ -36,6 +42,7 @@ set smartindent
 set completeopt=menu	" Show (partial) command in status line.
 set showcmd
 
+"ここらへんの意味がわからない
 " Show matching brackets.
 set showmatch
 set matchtime=1

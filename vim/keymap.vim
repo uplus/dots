@@ -25,8 +25,8 @@ nnoremap P p
 
 "line selectの方が使うこと多いし、visualは短形で同じ事ができる
 nnoremap v V
-nnoremap V v
-nnoremap t <C-V>
+"nnoremap V v
+nnoremap V <C-V>
 
 "ins)C-O rでredo
 nnoremap r <C-R>
@@ -45,6 +45,7 @@ vnoremap y y
 "標準のだとstatus-line colorが変わらない
 inoremap <C-C> <ESC>
 
+"インサートから使うなら元のほうが使いやすい
 "nnoremap <BS> X
 "nnoremap <Del> x
 vnoremap <BS> d
