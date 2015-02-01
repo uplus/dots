@@ -2,6 +2,8 @@
 set cpo&vim
 
 "c-o使えば多くのキーマップが不要になるような・・・
+"ESCが重いのはカーソルキーのせいかもしれない それとDelete
+"noremal のsシリーズは使わないから開いている
 "Ctrl-M は<CR>
 "Ctrl-[ は<ESC>
 "Ctrl-i は<TAB>
@@ -15,54 +17,57 @@ set cpo&vim
 
 "replace
 "バリエーションを増やす？
-inoremap <F3> <C-O>:%s//g<LEFT><LEFT>
-nnoremap <F3> :%s//g<LEFT><LEFT>
-vnoremap <F3> %s//g<LEFT><LEFT>
+inoremap <F3> <C-O>:%s//<LEFT>
+nnoremap <F3> :%s//<LEFT>
+vnoremap <F3> :s/\%V/<LEFT>
+inoremap <F4> <C-O>:%s//g<LEFT><LEFT>
+nnoremap <F4> :%s//g<LEFT><LEFT>
+vnoremap <F4> :s/\%V/g<LEFT><LEFT>
+
 
 "イメージにあうようにする p 前の行, P後の行
 nnoremap p P
 nnoremap P p
 
 "line selectの方が使うこと多いし、visualは短形で同じ事ができる
+"短形選択はShiftよりもCtrlの方がやりやすい
 nnoremap v V
-"nnoremap V v
-nnoremap V <C-V>
+nnoremap V v
+vnoremap <BS> d
 
 "ins)C-O rでredo
 nnoremap r <C-R>
 "complite
-inoremap <C-U> <C-y>
+inoremap <C-U> <C-Y>
 
 "apply speed up
 nnoremap u u
 vnoremap d d
 vnoremap y y
+"標準のだとstatus-line色が変わらない
+"nnoremap <C-C> <ESC>
+"inoremap <C-C> <ESC>
+"vnoremap <C-C> <ESC>
 
-"For undo separate
-"auto-indent smart-indentが崩れる
-"inoremap <silent> <CR> <CR><ESC>i
-
-"標準のだとstatus-line colorが変わらない
-inoremap <C-C> <ESC>
-
-"インサートから使うなら元のほうが使いやすい
-"nnoremap <BS> X
-"nnoremap <Del> x
-vnoremap <BS> d
 
 "もっと重要なのにする C-Oがいいかも
+"	C-SPACEもあるしな
 "inoremap <C-SPACE> <ESC>
 
-"from { to } 
-nnoremap <C-@> %
-inoremap <C-@> <C-O>%
-
 "######Ctrl+@ family######
+"from { to } 
+"nnoremap <C-@> %
+"inoremap <C-@> <C-O>%
+
 
 "######Ctrl+W family######
 "NERDTree
-nnoremap <C-W>e :NERDTree<CR>
-inoremap <C-W>e <ESC>:NERDTree<CR>
+nnoremap <C-W>e :NERDTreeToggle<CR>
+inoremap <C-W>e <ESC>:NERDTreeToggle<CR>
+
+"Window control
+nnoremap <C-W>q :bdelete<CR>
+inoremap <C-W>q <C-O>:bdelete<CR>
 
 "Tab control
 nnoremap <C-W>d gt
@@ -70,9 +75,26 @@ nnoremap <C-W>n gT
 inoremap <C-W>d <C-O>gt
 inoremap <C-W>n <C-O>gT
 
-"Window control
-nnoremap <C-W>q :bdelete<CR>
-inoremap <C-W>q <C-O>:bdelete<CR>
+if exists('g:submode_always_show_submode')
+call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
+call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
+call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
+call submode#enter_with('winsize', 'n', '', '<C-w>-', '<C-w>-')
+call submode#map('winsize', 'n', '', '>', '<C-w>>')
+call submode#map('winsize', 'n', '', '<', '<C-w><')
+call submode#map('winsize', 'n', '', '+', '<C-w>+')
+call submode#map('winsize', 'n', '', '-', '<C-w>-')
+
+call submode#enter_with('winsize', 'i', '', '<C-w>>', '<C-O><C-w>>')
+call submode#enter_with('winsize', 'i', '', '<C-w><', '<C-O><C-w><')
+call submode#enter_with('winsize', 'i', '', '<C-w>+', '<C-O><C-w>+')
+call submode#enter_with('winsize', 'i', '', '<C-w>-', '<C-O><C-w>-')
+call submode#map('winsize', 'i', '', '>', '<C-O><C-w>>')
+call submode#map('winsize', 'i', '', '<', '<C-O><C-w><')
+call submode#map('winsize', 'i', '', '+', '<C-O><C-w>+')
+call submode#map('winsize', 'i', '', '-', '<C-O><C-w>-')
+endif
+
 
 "C-W shortcut
 inoremap <C-W> <C-O><C-W>
@@ -117,8 +139,8 @@ vnoremap <UP> k
 vnoremap <DOWN> j
 vnoremap <LEFT> h
 vnoremap <RIGHT> l
-vnoremap <C-j> k
-vnoremap <C-k> j
+vnoremap <C-j> j
+vnoremap <C-k> k
 vnoremap <C-h> h
 vnoremap <C-l> l
 vnoremap <C-f> 0

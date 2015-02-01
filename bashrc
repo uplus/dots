@@ -97,8 +97,11 @@ if ! shopt -oq posix; then
 fi
 
 
-############################NEW#################################
+######NEW######NEW######NEW######NEW######NEW######NEW######NEW########
 export PATH=$PATH:~/bin:
+
+#Ctrl-S need this codes
+stty -ixon -ixoff
 
 if [ -f $HOME/.xmodmap ]; then
 	xmodmap ~/.xmodmap
@@ -108,8 +111,6 @@ if [ -f $HOME/.bash_completion ]; then
 	source $HOME/.bash_completion
 fi
 
-#Ctrl-S need this codes
-stty -ixon -ixoff
 
 function pushdls(){
 	\pushd "$@"

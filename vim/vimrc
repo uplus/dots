@@ -3,6 +3,8 @@
 "よく意味の覚えていないオプションを正確に理解する
 "visualモードでの:normalのショートカットを探す、または作る
 "cindentに切り替えるモード、cppindentなるものも見つけた。
+"タブ移動をdじゃなくてuに変える
+"NERDTreeのEnterとかの動作を変える
 
 set nocompatible
 set cpo&vim
@@ -15,13 +17,15 @@ filetype plugin on
 	"-------------"
 	"Look and feel"
 	"-------------"
+set term=gnome-256color
 syntax enable
+colorscheme railscasts
+
 set number
 set tabstop=4
 set laststatus=2
 set hidden "When I have not saved file, can open new file
-set term=gnome-256color
-colorscheme railscasts
+set timeoutlen=500
 
 set virtualedit=onemore
 set backspace=start,eol,indent
@@ -33,8 +37,8 @@ set whichwrap=b,s,[,],<,>,~
 	"-------------"
 	"Input support"
 	"-------------"
-set clipboard=unnamed,autoselect
-	
+set clipboard+=unnamed,autoselect
+
 set autoindent
 set smartindent
 
@@ -51,11 +55,15 @@ set incsearch
 set wildmenu wildmode=list:full
 
 
-"#When insert mode, change status line's color
-source ~/.vim/imode-color.vim
-"#Keymap
-source ~/.vim/keymap.vim
 "#Neobundle
 source ~/.vim/neobundle.vim
+
 "#run easy
 source ~/.vim/easy-run.vim
+
+"#When insert mode, change status line's color
+source ~/.vim/imode-color.vim
+
+"#Keymap
+source ~/.vim/keymap.vim
+
