@@ -49,3 +49,4 @@ alias apt-get='sudo apt-get'
 alias mount='sudo mount'
 alias dotgit='git -C ~/.dotfiles'
 
+alias vim.defo='\vim -u NONE -N'

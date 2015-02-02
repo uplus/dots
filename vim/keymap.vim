@@ -35,24 +35,30 @@ nnoremap v V
 nnoremap V v
 vnoremap <BS> d
 
+cnoremap Q q!
+cnoremap W! w !sudo tee % > /dev/null
+
 "ins)C-O rでredo
 nnoremap r <C-R>
 "complite
 inoremap <C-U> <C-Y>
 
-"apply speed up
+"@@@###buffer###@@@
+nnoremap bb :b#<CR>
+nnoremap bp :bp<CR>
+nnoremap bn :bn<CR>
+nnoremap bd :bd<CR>
+cnoremap bb b#
+
+"@@@###apply speed up###@@@
 nnoremap u u
+inoremap <C-C> <ESC>
 vnoremap d d
 vnoremap y y
-"標準のだとstatus-line色が変わらない
-"nnoremap <C-C> <ESC>
-"inoremap <C-C> <ESC>
-"vnoremap <C-C> <ESC>
+vnoremap > >
+vnoremap < <
+vnoremap = =
 
-
-"もっと重要なのにする C-Oがいいかも
-"	C-SPACEもあるしな
-"inoremap <C-SPACE> <ESC>
 
 "######Ctrl+@ family######
 "from { to } 
@@ -62,20 +68,24 @@ vnoremap y y
 
 "######Ctrl+W family######
 "NERDTree
-nnoremap <C-W>e :NERDTreeToggle<CR>
-inoremap <C-W>e <ESC>:NERDTreeToggle<CR>
+"nnoremap <silent> <C-W>e :NERDTree<CR>
+"inoremap <silent> <C-W>e <ESC>:NERDTree<CR>
+nnoremap <silent> <C-W>e :NERDTreeToggle<CR>
+inoremap <silent> <C-W>e <ESC>:NERDTreeToggle<CR>
 
 "Window control
 nnoremap <C-W>q :bdelete<CR>
 inoremap <C-W>q <C-O>:bdelete<CR>
 
 "Tab control
-nnoremap <C-W>d gt
+nnoremap <C-W>p gt
 nnoremap <C-W>n gT
-inoremap <C-W>d <C-O>gt
+inoremap <C-W>p <C-O>gt
 inoremap <C-W>n <C-O>gT
 
-if exists('g:submode_always_show_submode')
+"C-W shortcut
+inoremap <C-W> <C-O><C-W>
+
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
 call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
 call submode#enter_with('winsize', 'n', '', '<C-w>+', '<C-w>+')
@@ -93,16 +103,11 @@ call submode#map('winsize', 'i', '', '>', '<C-O><C-w>>')
 call submode#map('winsize', 'i', '', '<', '<C-O><C-w><')
 call submode#map('winsize', 'i', '', '+', '<C-O><C-w>+')
 call submode#map('winsize', 'i', '', '-', '<C-O><C-w>-')
-endif
-
-
-"C-W shortcut
-inoremap <C-W> <C-O><C-W>
 
 "######Ctrl+S family######
 "Quit vim
-nnoremap <C-S>q	:q<CR>
-inoremap <C-S>q	 <ESC>:q<CR>
+nnoremap <C-S>q	:bd<CR>
+inoremap <C-S>q	 <ESC>:bd<CR>
 
 "exit
 nnoremap <C-S>e :q!<CR>
@@ -120,7 +125,7 @@ inoremap <silent> <C-S>s <C-O>:update<CR>
 noremap  <silent> <C-S> :update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
-"######move######
+"######Move######
 "結論　ページ単位の移動とかはノーマルモードからする
 
 nnoremap <C-j> <Down>
@@ -145,6 +150,7 @@ vnoremap <C-h> h
 vnoremap <C-l> l
 vnoremap <C-f> 0
 vnoremap <C-g> $
+
 
 "######Trash######
 "すでに前の行の先頭　にマップされている

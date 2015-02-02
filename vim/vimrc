@@ -8,37 +8,34 @@
 
 set nocompatible
 set cpo&vim
-set enc=utf-8
-set mouse=a
-
 filetype plugin indent on
 filetype plugin on
-
-	"-------------"
-	"Look and feel"
-	"-------------"
-set term=gnome-256color
 syntax enable
-colorscheme railscasts
 
+set enc=utf-8
+set mouse=a
 set number
-set tabstop=4
 set laststatus=2
-set hidden "When I have not saved file, can open new file
-set timeoutlen=500
+set hidden				"When I have not saved file, can open new file
+set timeout
+set ttimeout			"なくても同じ?
+set timeoutlen=2500
+set ttimeoutlen=100		"よくわかんないけどこれでESCの色適用が遅いのが解決した
 
+set nottybuiltin		" termの探索順序を 外部->組み込み にする
+colorscheme railscasts-yuuto	"内部でtermの設定もしている
+
+set clipboard=unnamedplus	"この形なら動作した
 set virtualedit=onemore
 set backspace=start,eol,indent
 set whichwrap=b,s,[,],<,>,~
-"set list
-"set listchars=tab:>\ 
-"set iminsert=2 "when out the insert mode, IME off
+
 
 	"-------------"
 	"Input support"
 	"-------------"
-set clipboard+=unnamed,autoselect
-
+set tabstop=4
+set shiftwidth=4
 set autoindent
 set smartindent
 
@@ -50,11 +47,18 @@ set showcmd
 " Show matching brackets.
 set showmatch
 set matchtime=1
-set shiftwidth=4
 set incsearch
 set wildmenu wildmode=list:full
 
+"タブや改行を表示する
+autocmd FileType ruby set list
+set listchars=tab:__
+highlight SpecialKey ctermfg=161 ctermbg=234  
 
+
+	"=============="
+	"   Dark vim   "
+	"=============="
 "#Neobundle
 source ~/.vim/neobundle.vim
 
@@ -66,4 +70,25 @@ source ~/.vim/imode-color.vim
 
 "#Keymap
 source ~/.vim/keymap.vim
+
+
+
+"######################
+"######################
+	"------------"
+	"    Keep    "
+	"------------"
+"set term=gnome-256color
+"set term=xterm-256color	"execute in the railscasts-yuuto
+
+"set term=screen-256color	"あってもなくても動作は変わらなかった
+"set term=screen-256color-bce
+	"set <xHome>=OH
+	"set <xEnd>=OF
+
+"set listchars=tab:\ \	"としたら空白になった
+
+	"-------------"
+	"    Trash    "
+	"-------------"
 

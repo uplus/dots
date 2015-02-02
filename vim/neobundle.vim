@@ -13,8 +13,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 
-"NeoBundle 'kana/vim-submode'
-
+NeoBundle 'kana/vim-submode'
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tomtom/tcomment_vim'
@@ -47,10 +46,11 @@ let g:syntastic_cpp_compiler_options = $CLANG_WALL_OPT . ' -std=c++1z '
 "autocmd bufenter * if (winnr("$") == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
 "
 "0ならそのまま開いとく, 1なら閉じる
-"let g:NERDTreeQuitOnOpen=0	//defo 0
-"let g:NERDTreeShowHidden=0	//defo 0
-"let g:NERDTreeWinSize=31	//defo 31
-""
+"let g:NERDTreeQuitOnOpen=0	"//defo 0
+"let g:NERDTreeShowHidden=0	"//defo 0
+let g:NERDTreeWinSize=26	"//defo 31
+
+
 let g:quickrun_config = {
 			\'_' : { "outputter/buffer/split" : ":botright" }
 			\}
