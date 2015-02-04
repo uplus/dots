@@ -128,24 +128,29 @@ inoremap <silent> <C-S> <C-O>:update<CR>
 "######Move######
 "結論　ページ単位の移動とかはノーマルモードからする
 
-nnoremap <C-j> <Down>
-nnoremap <C-k> <UP>
+
+nnoremap <UP> gk
+nnoremap <DOWN> gj
+nnoremap <C-j> gj
+nnoremap <C-k> gk
 nnoremap <C-h> <Left>
 nnoremap <C-l> <Right>
 
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
+inoremap <UP> <C-O>gk
+inoremap <DOWN> <C-O>gj
+inoremap <C-j> <C-O>gj
+inoremap <C-k> <C-O>gk
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 inoremap <C-f> <Home>
 inoremap <C-g> <End>
 
-vnoremap <UP> k
-vnoremap <DOWN> j
+vnoremap <UP> gk
+vnoremap <DOWN> gj
 vnoremap <LEFT> h
 vnoremap <RIGHT> l
-vnoremap <C-j> j
-vnoremap <C-k> k
+vnoremap <C-j> gj
+vnoremap <C-k> gk
 vnoremap <C-h> h
 vnoremap <C-l> l
 vnoremap <C-f> 0

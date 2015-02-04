@@ -10,25 +10,39 @@ set nocompatible
 set cpo&vim
 filetype plugin indent on
 filetype plugin on
+
+	"------------"
+	"    Look    "
+	"------------"
 syntax enable
-
 set enc=utf-8
-set mouse=a
 set number
+set cursorline
+set showmatch			" Show matching brackets.
 set laststatus=2
-set hidden				"When I have not saved file, can open new file
-set timeout
-set ttimeout			"なくても同じ?
-set timeoutlen=2500
-set ttimeoutlen=100		"よくわかんないけどこれでESCの色適用が遅いのが解決した
-
+set cmdheight=2
 set nottybuiltin		" termの探索順序を 外部->組み込み にする
 colorscheme railscasts-yuuto	"内部でtermの設定もしている
 
+"Display Tab 
+autocmd FileType ruby set list
+set listchars=tab:__
+highlight SpecialKey ctermfg=161 ctermbg=234  
+
+	"----------"
+	"  Action  "
+	"----------"
+set timeout
+set ttimeout			" なくても同じ
+set timeoutlen=2500
+set ttimeoutlen=100		" よくわかんないけどこれでESCの色適用が遅いのが解決した
+
+set mouse=a
+set hidden				" When I have not saved file, can open new file
 set clipboard=unnamedplus	"この形なら動作した
-set virtualedit=onemore
 set backspace=start,eol,indent
 set whichwrap=b,s,[,],<,>,~
+"set virtualedit=onemore
 
 
 	"-------------"
@@ -44,16 +58,14 @@ set completeopt=menu	" Show (partial) command in status line.
 set showcmd
 
 "ここらへんの意味がわからない
-" Show matching brackets.
-set showmatch
 set matchtime=1
-set incsearch
-set wildmenu wildmode=list:full
 
-"タブや改行を表示する
-autocmd FileType ruby set list
-set listchars=tab:__
-highlight SpecialKey ctermfg=161 ctermbg=234  
+set incsearch		"リアルタイム検索みたいなもの
+set hlsearch		"検索候補をハイライト	:noh でハイライトを消す
+
+set wildmenu wildmode=list:full		"cmodeでの補完
+
+
 
 
 	"=============="

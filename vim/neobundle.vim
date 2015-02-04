@@ -12,7 +12,6 @@ endif
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
-
 NeoBundle 'kana/vim-submode'
 
 NeoBundle 'Shougo/unite.vim'
@@ -23,7 +22,7 @@ NeoBundle 'tomtom/tcomment_vim'
 "NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'Shougo/vimproc'
 
-NeoBundle 'Shougo/neosnippet.vim'
+"NeoBundle 'Shougo/neosnippet.vim'
 "NeoBundle 'Shougo/neocomplcache'
 "NeoBundle 'Shougo/neocomplcache-rsense'
 
