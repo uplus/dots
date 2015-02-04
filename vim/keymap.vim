@@ -105,29 +105,32 @@ call submode#map('winsize', 'i', '', '+', '<C-O><C-w>+')
 call submode#map('winsize', 'i', '', '-', '<C-O><C-w>-')
 
 "######Ctrl+S family######
-"Quit vim
-nnoremap <C-S>q	:bd<CR>
-inoremap <C-S>q	 <ESC>:bd<CR>
+" quit vim
+nnoremap <C-S>q	:q<CR>
+inoremap <C-S>q	<ESC>:q<CR>
 
-"exit
+" buffer delete
+nnoremap <C-S>d	:bd<CR>
+inoremap <C-S>d	<ESC>:bd<CR>
+
+" exit
 nnoremap <C-S>e :q!<CR>
 inoremap <C-S>e <ESC>:q!<CR>
 
-"save and quit
+" save and quit
 nnoremap <C-S>z :wq<CR>
 inoremap <C-S>z <ESC>:wq<CR>
 
-"Save	need #stty -ixon -ixoff
+" Save need #stty -ixon -ixoff
 noremap  <silent> <C-S>s :update<CR>
 inoremap <silent> <C-S>s <C-O>:update<CR>
 
-"Save single C-S version
+" Save single C-S version
 noremap  <silent> <C-S> :update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
 "######Move######
 "結論　ページ単位の移動とかはノーマルモードからする
-
 
 nnoremap <UP> gk
 nnoremap <DOWN> gj
