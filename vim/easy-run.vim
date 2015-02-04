@@ -16,4 +16,6 @@ autocmd FileType c,cpp,ruby autocmd VimEnter * MakefileCP
 autocmd FileType c,cpp,ruby autocmd VimLeavePre * call system("rm makefile")
 
 autocmd FileType ruby set tabstop=2
+autocmd FileType ruby set softtabstop=2
 autocmd FileType ruby set shiftwidth=2
+
