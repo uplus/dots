@@ -1,0 +1,6 @@
+__memo () {
+	COMPREPLY=(`compgen -W "$(memo -l)" $2`)
+}
+
+
+complete -F __memo memo
