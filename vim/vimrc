@@ -47,7 +47,8 @@ set wildmenu wildmode=list:full		"cmodeでの補完
 set incsearch		"リアルタイム検索みたいなもの
 set hlsearch		"検索候補をハイライト	:noh でハイライトを消す
 
-set scrolloff=4
+
+set scrolloff=10
 "set confirm	"未保存のファイルがあるときは終了前に確認
 "set autoread	"外部でファイルが変更された時読みなおす
 "set wrapscan	"最後尾まで検索を終えたら次の検索で先頭に戻る

@@ -58,3 +58,5 @@ alias apt='sudo apt'
 alias mount='sudo mount'
 alias dotgit='git -C ~/.dotfiles'
 
+# New aliases
+alias visjis='vi -c ":e ++enc=cp932"'

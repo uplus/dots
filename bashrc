@@ -141,6 +141,8 @@ alias pushd="pushdls"
 alias popd="popdls"
 alias cd="cdls"
 alias cda="cdlsa"
+alias ccd="cd .."
+alias cdd="cd -"
 alias mkdir="mkdircd"
 
 #Need restart the bash to apply
@@ -149,6 +151,8 @@ function addalias(){
 		NAME=$1
 		shift
 		echo "alias $NAME='$*'" >> ~/.bash_aliases
+	else
+		echo "syntax error" > /dev/stderr
 	fi
 }
 
@@ -157,6 +161,8 @@ function tmpalias(){
 		NAME=$1
 		shift
 		echo "alias $NAME='$*'" >> ~/.tmp_aliases
+	else
+		echo "syntax error" > /dev/stderr
 	fi
 }
 
