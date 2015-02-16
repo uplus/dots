@@ -132,6 +132,10 @@ function cdlsa (){
 	[ $? == 0 ] && ls -A
 }
 
+function cdc(){
+	cd $HOME/$1
+}
+
 function mkdircd(){
 	\mkdir "$@"
 	[ $? == 0 ] && cd ${!#}

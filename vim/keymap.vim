@@ -1,8 +1,8 @@
 "C-O is god!
 set cpo&vim
 
-"c-o使えば多くのキーマップが不要になるような・・・
 "ESCが重いのはカーソルキーのせいかもしれない それとDelete
+"commandモードでのマップは文字入力に影響がある
 "noremal のsシリーズは使わないから開いている
 "Ctrl-M は<CR>
 "Ctrl-[ は<ESC>
@@ -35,20 +35,22 @@ nnoremap v V
 nnoremap V v
 vnoremap <BS> d
 
-cnoremap Q q!
-cnoremap W! w !sudo tee % > /dev/null
+command WQ w !sudo tee % > /dev/null
 
 "ins)C-O rでredo
 nnoremap r <C-R>
 "complite
-inoremap <C-U> <C-Y>
+"inoremap <C-U> <C-Y>
 
 "@@@###buffer###@@@
 nnoremap bb :b#<CR>
 nnoremap bp :bp<CR>
 nnoremap bn :bn<CR>
 nnoremap bd :bd<CR>
-cnoremap bb b#
+
+" これをマップすると:bのときの動作が重く感じる(感じるだけ)
+"cnoremap bb b#
+
 
 "@@@###apply speed up###@@@
 nnoremap u u
@@ -136,15 +138,15 @@ nnoremap <UP> gk
 nnoremap <DOWN> gj
 nnoremap <C-j> gj
 nnoremap <C-k> gk
-nnoremap <C-h> <Left>
-nnoremap <C-l> <Right>
+nnoremap <C-h> h
+nnoremap <C-l> l
 
 inoremap <UP> <C-O>gk
 inoremap <DOWN> <C-O>gj
 inoremap <C-j> <C-O>gj
 inoremap <C-k> <C-O>gk
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+inoremap <C-h> <C-O>h
+inoremap <C-l> <C-O>l
 inoremap <C-f> <Home>
 inoremap <C-g> <End>
 

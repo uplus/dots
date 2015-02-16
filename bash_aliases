@@ -18,14 +18,14 @@ alias findc="find . -name"
 alias vi='vim'
 alias vibash="vim + ~/.bashrc"
 alias vialias="vim + ~/.bash_aliases"
-alias vim.defo='\vim -u NONE -N'
+alias vim.simp='\vim -u NONE -N'
 
 # Unique aliases
 alias envlang="env | egrep --color=never 'LANG|LC'"
 alias echo?='echo $?'
 alias sln='ln -s'
 alias apt-search='apt-cache pkgnames | egrep'
-alias apt-upgrade='sudo apt update;sudo apt upgrade'
+alias apt-upgrade='apt update;apt upgrade'
 
 # Clang aliases
 export CLANG_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable'
