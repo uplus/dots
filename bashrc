@@ -147,7 +147,7 @@ alias cd="cdls"
 alias cda="cdlsa"
 alias ccd="cd .."
 alias cdd="cd -"
-alias mkdir="mkdircd"
+#alias mkdir="mkdircd"
 
 #Need restart the bash to apply
 function addalias(){

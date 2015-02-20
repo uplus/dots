@@ -29,10 +29,10 @@ alias apt-upgrade='apt update;apt upgrade'
 
 # Clang aliases
 export CLANG_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable'
-alias clang="clang $CLANG_WALL_OPT -lm -std=gnu99"
+alias clang="clang $CLANG_WALL_OPT -lm -std=c11"
 alias clang++="clang++ $CLANG_WALL_OPT -std=c++1z"
 
-export GCC_OPT="-std=gnu99 -O0 -fno-stack-protector $CLANG_WALL_OPT"
+export GCC_OPT="-std=c11 -lm -O0 -fno-stack-protector $CLANG_WALL_OPT"
 alias gcc="\gcc $GCC_OPT" 
 alias gccg="\gcc -g $GCC_OPT"
 alias gcc32="\gcc -m32 $GCC_OPT"

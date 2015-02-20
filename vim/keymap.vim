@@ -26,8 +26,8 @@ vnoremap <F4> :s/\%V/g<LEFT><LEFT>
 
 
 "イメージにあうようにする p 前の行, P後の行
-nnoremap p P
-nnoremap P p
+"nnoremap p P
+"nnoremap P p
 
 "line selectの方が使うこと多いし、visualは短形で同じ事ができる
 "短形選択はShiftよりもCtrlの方がやりやすい
@@ -53,6 +53,7 @@ nnoremap bd :bd<CR>
 
 
 "@@@###apply speed up###@@@
+"いらないかも
 nnoremap u u
 inoremap <C-C> <ESC>
 vnoremap d d
