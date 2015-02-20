@@ -8,6 +8,7 @@ set cpo&vim
 "Ctrl-[ は<ESC>
 "Ctrl-i は<TAB>
 "insert-mode でのESCのマッピングは良くない
+"nnoremap) <Space>...
 
 "提案
 "ins)C-a,x inc,dec

@@ -23,11 +23,14 @@ NeoBundle 'kana/vim-smartinput'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'Rip-Rip/clang_complete'
 
 NeoBundle 'Shougo/neocomplete'
-"NeoBundle 'Shougo/neosnippet.vim'
-"NeoBundle 'Shougo/neocomplcache-rsense'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Rip-Rip/clang_complete',  {'autoload' :{'filetype': ['c','cpp']}}
+
+"includeをファイル先頭に追加
+NeoBundle 'osyo-manga/vim-stargate', {'autoload' :{'filetype': ['c','cpp']}}
+
 
 
 call neobundle#end()
@@ -42,11 +45,10 @@ call neobundle#end()
 "let g:NERDTreeShowHidden=0	"//defo 0
 let g:NERDTreeWinSize=26	"//defo 31
 
-"let g:quickrun_config = { '_' : { "outputter/buffer/split" : ":botright" } }
 
 " syntastic
 let g:syntastic_cpp_compiler = 'clang++-3.5'
-let g:syntastic_cpp_compiler_options = $CLANG_WALL_OPT . ' -std=c++1z '
+let g:syntastic_cpp_compiler_options = $CPP_COMP_OPT
 
 " Complete
 	" menu		候補が2つ以上あるときメニューを表示する
@@ -90,6 +92,22 @@ let g:clang_use_library			= 1
 let g:clang_library_path  =  '/usr/lib/llvm-3.5/lib'
 " specify compiler options
 let g:clang_user_options  =  '-std=c++1z -stdlib=libc++'
+
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+
+" vimprocを使用して非同期実行し、結果をquickfixに出力する
+let g:quickrun_config._ = {
+			\ 'outputter'	: 'quickfix',
+			\ 'runner'		: 'vimproc'
+			\}
+
+let g:quickrun_config.cpp = {
+			\ 'command' : 'clang++3.5',
+			\ 'cmdopt'  : $CPP_COMP_OPT
+			\}
+
+"??
+"let g:quickrun_config = { '_' : { "outputter/buffer/split" : ":botright" } }
 
 " UP DOWNで保管しないようにする
 " C-Hが上書きされるのを何とかする

@@ -28,11 +28,14 @@ alias apt-search='apt-cache pkgnames | egrep'
 alias apt-upgrade='apt update;apt upgrade'
 
 # Clang aliases
-export CLANG_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable'
-alias clang="clang $CLANG_WALL_OPT -lm -std=c11"
-alias clang++="clang++ $CLANG_WALL_OPT -std=c++1z"
+export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable'
+export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
+export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
 
-export GCC_OPT="-std=c11 -lm -O0 -fno-stack-protector $CLANG_WALL_OPT"
+alias clang="clang $C_COMP_OPT"
+alias clang++="clang++ $CPP_COMP_OPT"
+
+export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector" 
 alias gcc="\gcc $GCC_OPT" 
 alias gccg="\gcc -g $GCC_OPT"
 alias gcc32="\gcc -m32 $GCC_OPT"
