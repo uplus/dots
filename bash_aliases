@@ -28,7 +28,7 @@ alias apt-search='apt-cache pkgnames | egrep'
 alias apt-upgrade='apt update;apt upgrade'
 
 # Clang aliases
-export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable'
+export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value'
 export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
 export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
 

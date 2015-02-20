@@ -1,7 +1,8 @@
 " UP DOWNで保管しないようにする
 " C-Hが上書きされるのを何とかする
 ";とか押した時整形されるようにする
-
+"syntasticをquickfixに出す
+"	保存した時に随時更新されるようにする
 	"------------------" 
 	"Neobundle Settings"
 	"------------------"
@@ -23,19 +24,21 @@ NeoBundle 'tomtom/tcomment_vim'
 
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
+NeoBundle 'tpope/vim-surround'			" 囲んでるものに対しての処理
+NeoBundle 'vim-scripts/YankRing.vim'	" histry of the yank and paste
 
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'osyo-mange/unite-quickfix'	" uniteにquickfixを出力
+NeoBundle 'osyo-mange/shabadou.vim'		" 汎用的なquickrun-hook
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Rip-Rip/clang_complete',  {'autoload' :{'filetype': ['c','cpp']}}
+NeoBundleLazy 'Rip-Rip/clang_complete',  {'autoload' :{'filetype' :['c','cpp']}}
 
 "includeをファイル先頭に追加
-NeoBundle 'osyo-manga/vim-stargate', {'autoload' :{'filetype': ['c','cpp']}}
-
-
+NeoBundleLazy 'osyo-manga/vim-stargate', {'autoload' :{'filetype' :['c','cpp']}}
 
 call neobundle#end()
 
@@ -51,8 +54,11 @@ let g:NERDTreeWinSize=26	"//defo 31
 
 
 " syntastic
-let g:syntastic_cpp_compiler = 'clang++-3.5'
+let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = $CPP_COMP_OPT
+"let g:syntastic_always_populate_loc_list=1
+let g:syntastic_check_on_open=1
+
 
 " Complete
 	" menu		候補が2つ以上あるときメニューを表示する
@@ -64,6 +70,7 @@ hi Pmenu	ctermbg=0
 hi Pmenu	ctermbg=242
 hi PmenuSel ctermbg=6	ctermfg=40
 "hi PmenuSel ctermbg=70 ctermfg=129
+
 
 set path+=/usr/include/c++/4.9.1
 
@@ -90,31 +97,32 @@ let g:clang_complete_auto		= 0
 let g:clang_periodic_quickfix	= 0
 let g:clang_complete_copen		= 1
 let g:clang_use_library			= 1
-
-
-" this need to be updated on llvm update
 let g:clang_library_path  =  '/usr/lib/llvm-3.5/lib'
-" specify compiler options
 let g:clang_user_options  =  '-std=c++1z -stdlib=libc++'
 
-let g:quickrun_config = get(g:, 'quickrun_config', {})
 
+
+" ###Quickrun
+let g:quickrun_config = get(g:, 'quickrun_config', {})
 " vimprocを使用して非同期実行し、結果をquickfixに出力する
-"let g:quickrun_config._ = {
-			"\ 'outputter'	: 'quickfix',
-			"\ 'runner'		: 'vimshell',
-			"\ 'outputter/buffer/split'	: ':botright',
-			"\ 'outputter/buffer/close_on_empty' : 1
-			"\}
+let g:quickrun_config._ = {
+			\ 'outputter/buffer/split'	: ':botright 8sp',
+			\ 'runner'		: 'vimproc',
+			\ 'runner/vimproc/updatetime' : 40,
+			\ 'outputter' : 'multi:buffer:quickfix',
+			\ 'hook/time/enable' : 1,
+			\ 'outputter/buffer/close_on_empty' : 1
+			\}
 
 let g:quickrun_config.cpp = {
 			\ 'command' : '/usr/bin/clang++',
 			\ 'cmdopt'  : $CPP_COMP_OPT
 			\}
 
-"??
-"let g:quickrun_config = { '_' : { "outputter/buffer/split" : ":botright" } }
-
+let g:quickrun_config.c = {
+			\ 'command' : '/usr/bin/clang',
+			\ 'cmdopt'  : $C_COMP_OPT
+			\}
 
 "Reauired
 filetype plugin indent on
