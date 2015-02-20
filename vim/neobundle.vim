@@ -1,3 +1,7 @@
+" UP DOWNで保管しないようにする
+" C-Hが上書きされるのを何とかする
+";とか押した時整形されるようにする
+
 	"------------------" 
 	"Neobundle Settings"
 	"------------------"
@@ -96,21 +100,21 @@ let g:clang_user_options  =  '-std=c++1z -stdlib=libc++'
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 
 " vimprocを使用して非同期実行し、結果をquickfixに出力する
-let g:quickrun_config._ = {
-			\ 'outputter'	: 'quickfix',
-			\ 'runner'		: 'vimproc'
-			\}
+"let g:quickrun_config._ = {
+			"\ 'outputter'	: 'quickfix',
+			"\ 'runner'		: 'vimshell',
+			"\ 'outputter/buffer/split'	: ':botright',
+			"\ 'outputter/buffer/close_on_empty' : 1
+			"\}
 
 let g:quickrun_config.cpp = {
-			\ 'command' : 'clang++3.5',
+			\ 'command' : '/usr/bin/clang++',
 			\ 'cmdopt'  : $CPP_COMP_OPT
 			\}
 
 "??
 "let g:quickrun_config = { '_' : { "outputter/buffer/split" : ":botright" } }
 
-" UP DOWNで保管しないようにする
-" C-Hが上書きされるのを何とかする
 
 "Reauired
 filetype plugin indent on

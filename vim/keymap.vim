@@ -44,10 +44,10 @@ nnoremap r <C-R>
 "inoremap <C-U> <C-Y>
 
 "@@@###buffer###@@@
-nnoremap bb :b#<CR>
-nnoremap bp :bp<CR>
-nnoremap bn :bn<CR>
-nnoremap bd :bd<CR>
+"nnoremap bb :b#<CR>
+"nnoremap bp :bp<CR>
+"nnoremap bn :bn<CR>
+"nnoremap bd :bd<CR>
 
 " これをマップすると:bのときの動作が重く感じる(感じるだけ)
 "cnoremap bb b#
