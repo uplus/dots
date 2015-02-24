@@ -8,8 +8,10 @@ set cpo&vim
 "Ctrl-[ は<ESC>
 "Ctrl-i は<TAB>
 "insert-mode でのESCのマッピングは良くない
-"nnoremap) <Space>...
+"nmap) Q 元はexモードだけど使わないから変える
 ":Errors :nohのマップ
+
+"Normal modeは <Space> m(prefixに) 適しているらしい
 
 "提案
 "ins)C-d, <BS>
@@ -25,17 +27,14 @@ inoremap <F4> <C-O>:%s//g<LEFT><LEFT>
 nnoremap <F4> :%s//g<LEFT><LEFT>
 vnoremap <F4> :s/\%V/g<LEFT><LEFT>
 
-
-"イメージにあうようにする p 前の行, P後の行
-"nnoremap p P
-"nnoremap P p
-
 "line selectの方が使うこと多いし、visualは短形で同じ事ができる
 nnoremap v V
 nnoremap V v
 vnoremap <BS> d
 
-command WQ w !sudo tee % > /dev/null
+" ex mode はいらない
+nnoremap Q <Nop>
+command WriteSudo w !sudo tee % > /dev/null
 
 "ins)C-O rでredo
 nnoremap r <C-R>
@@ -151,6 +150,11 @@ nnoremap <C-j> gj
 nnoremap <C-k> gk
 nnoremap <C-h> h
 nnoremap <C-l> l
+nnoremap k gk
+nnoremap j gj
+nnoremap gk k
+nnoremap gj j
+
 
 inoremap <UP> <C-O>gk
 inoremap <DOWN> <C-O>gj

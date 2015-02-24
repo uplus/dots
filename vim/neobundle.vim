@@ -21,11 +21,12 @@ NeoBundle 'kana/vim-submode'			" vimに独自のモードを作成できる
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'LeafCage/yankround.vim'		" round the yank history Side effect less than YankRing
+"NeoBundle 'kien/ctrlp.vim'				" Unite的な?
 
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'tpope/vim-surround'			" 囲んでるものに対しての処理
-NeoBundle 'vim-scripts/YankRing.vim'	" histry of the yank and paste
 
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
@@ -124,11 +125,12 @@ let g:quickrun_config.c = {
 			\ 'cmdopt'  : $C_COMP_OPT
 			\}
 
-
-let g:yankring_max_history=30
-let g:yankring_ignore_duplicate=1
-let g:yankring_max_display=30
-let g:yankring_history_dir="~/.vim/tmp/"
+"Delete 副作用が強いらしい
+"NeoBundle 'vim-scripts/YankRing.vim'	" history of the yank and paste
+"let g:yankring_max_history=30
+"let g:yankring_ignore_duplicate=1
+"let g:yankring_max_display=30
+"let g:yankring_history_dir="~/.vim/tmp/"
 
 "Reauired
 filetype plugin indent on
