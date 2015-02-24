@@ -3,44 +3,33 @@ set cpo&vim
 
 "ESCが重いのはカーソルキーのせいかもしれない それとDelete
 "commandモードでのマップは文字入力に影響がある
-"noremal のsシリーズは使わないから開いている
 "Ctrl-M は<CR>
 "Ctrl-[ は<ESC>
 "Ctrl-i は<TAB>
 "insert-mode でのESCのマッピングは良くない
-"nmap) Q 元はexモードだけど使わないから変える
+"Normal modeは <Space>
 ":Errors :nohのマップ
+" inoremap <C-Space>を　状況によって <C-Y>に割り当てる
+"nnoremap <Space>h.. をundo履歴とかyank履歴とかにわりあてる
 
-"Normal modeは <Space> m(prefixに) 適しているらしい
 
-"提案
-"ins)C-d, <BS>
-"ins)C-e, <Del>
-"from { to }
-
-"replace
-"バリエーションを増やす？
-inoremap <F3> <C-O>:%s//<LEFT>
-nnoremap <F3> :%s//<LEFT>
-vnoremap <F3> :s/\%V/<LEFT>
-inoremap <F4> <C-O>:%s//g<LEFT><LEFT>
-nnoremap <F4> :%s//g<LEFT><LEFT>
-vnoremap <F4> :s/\%V/g<LEFT><LEFT>
 
 "line selectの方が使うこと多いし、visualは短形で同じ事ができる
 nnoremap v V
 nnoremap V v
-vnoremap <BS> d
 
 " ex mode はいらない
 nnoremap Q <Nop>
 command WriteSudo w !sudo tee % > /dev/null
+vnoremap <BS> d
 
 "ins)C-O rでredo
 nnoremap r <C-R>
+nnoremap <C-R> r
 "complite
 "inoremap <C-U> <C-Y>
 
+"Spaceとつなげれば平気 
 "@@@###buffer###@@@
 "nnoremap bb :b#<CR>
 "nnoremap bp :bp<CR>
@@ -67,13 +56,31 @@ vnoremap = =
 "nnoremap <C-@> %
 "inoremap <C-@> <C-O>%
 
+"######<Space> family######
+" 現在の位置に空行を挿入
+nnoremap <silent> <Space><CR> <S-O><ESC>
+nnoremap <Space>n :noh<CR>
+
+"gシリーズはいらないかも cもgも自分でつければ平気
+nnoremap <Space>ss :OverCommandLine<CR>%s/
+nnoremap <Space>sg :OverCommandLine<CR>%s//g<LEFT><LEFT>
+nnoremap <Space>ws :OverCommandLine<CR>%s/<C-r><C-w>/
+nnoremap <Space>wg :OverCommandLine<CR>%s/<C-r><C-w>//g<LEFT><LEFT>
+
+vnoremap <Space>ss :OverCommandLine<CR>%s/\%V
+vnoremap <Space>sg :OverCommandLine<CR>%s/\%V/g<LEFT><LEFT>
+vnoremap <Space>ws :OverCommandLine<CR>%s/\%V<C-r><C-w>/
+vnoremap <Space>wg :OverCommandLine<CR>%s/\%V<C-r><C-w>//g<LEFT><LEFT>
+
+
+nnoremap <silent> <Space> <Nop>
+vnoremap <silent> <Space> <Nop>
+
 
 "######Ctrl+W family######
 "NERDTree
 nnoremap <silent> <C-W>e :NERDTree<CR>
 inoremap <silent> <C-W>e <ESC>:NERDTree<CR>
-"nnoremap <silent> <C-W>e :NERDTreeToggle<CR>
-"inoremap <silent> <C-W>e <ESC>:NERDTreeToggle<CR>
 
 "Window control
 nnoremap <C-W>q :bdelete<CR>
@@ -155,7 +162,6 @@ nnoremap j gj
 nnoremap gk k
 nnoremap gj j
 
-
 inoremap <UP> <C-O>gk
 inoremap <DOWN> <C-O>gj
 inoremap <C-j> <C-O>gj
@@ -175,10 +181,15 @@ vnoremap <C-h> h
 vnoremap <C-l> l
 vnoremap <C-f> 0
 vnoremap <C-g> $
-
+vnoremap k gk
+vnoremap j gj
+vnoremap gk k
+vnoremap gj j
 
 "######Trash######
 "すでに前の行の先頭　にマップされている
 " 0 == ^ - == $
 "nnoremap - $
 
+"なんかいろいろすごいけど・・・
+"cnoreabb <silent><expr>s getcmdtype()==':' && getcmdline()=~'^s' ? 'OverCommandLine<CR><C-u>%s/<C-r>=get([], getchar(0), '')<CR>' : 's'

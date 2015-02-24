@@ -18,12 +18,14 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-submode'			" vimに独自のモードを作成できる
+NeoBundle 'osyo-manga/vim-over'			" タブ補完が効く置き換えモード
+
 
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'LeafCage/yankround.vim'		" round the yank history Side effect less than YankRing
-"NeoBundle 'kien/ctrlp.vim'				" Unite的な?
+NeoBundle 'LeafCage/yankround.vim'		" round the yank history 
+NeoBundle 'osyo-manga/vim-anzu'			" show search point to command line
 
+NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'tpope/vim-surround'			" 囲んでるものに対しての処理
@@ -31,8 +33,8 @@ NeoBundle 'tpope/vim-surround'			" 囲んでるものに対しての処理
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'osyo-mange/unite-quickfix'	" uniteにquickfixを出力
-NeoBundle 'osyo-mange/shabadou.vim'		" 汎用的なquickrun-hook
+NeoBundle 'osyo-manga/unite-quickfix'	" uniteにquickfixを出力
+NeoBundle 'osyo-manga/shabadou.vim'		" 汎用的なquickrun-hook
 
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet.vim'
@@ -42,12 +44,19 @@ NeoBundleLazy 'Rip-Rip/clang_complete',  {'autoload' :{'filetype' :['c','cpp']}}
 NeoBundleLazy 'osyo-manga/vim-stargate', {'autoload' :{'filetype' :['c','cpp']}}
 
 call neobundle#end()
+" n や N の代わりに使用します。
+"nmap n <Plug>(anzu-n)
+"nmap N <Plug>(anzu-N)
+"nmap * <Plug>(anzu-star)
+"nmap # <Plug>(anzu-sharp)
+"set statusline=%{anzu#search_status()}
 
-" NERDTree
-"他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
-""How can I close vim if the only window left open is a NERDTree?
-"autocmd bufenter * if (winnr("$") == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
-"
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+
 "0ならそのまま開いとく, 1なら閉じる
 "let g:NERDTreeQuitOnOpen=0	"//defo 0
 "let g:NERDTreeShowHidden=0	"//defo 0
@@ -125,12 +134,32 @@ let g:quickrun_config.c = {
 			\ 'cmdopt'  : $C_COMP_OPT
 			\}
 
-"Delete 副作用が強いらしい
-"NeoBundle 'vim-scripts/YankRing.vim'	" history of the yank and paste
-"let g:yankring_max_history=30
-"let g:yankring_ignore_duplicate=1
-"let g:yankring_max_display=30
-"let g:yankring_history_dir="~/.vim/tmp/"
+" yankround 
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+
+" yankround
+" round対象のうちはハイライトする
+let g:yankround_use_region_hl = 0
+let g:yankround_max_history = 50
+let g:yankround_dir = "~/.vim/tmp/"
+
+let g:over#command_line#enable_move_cursor = 1
+let g:over_command_line_prompt = "> "
+
+""履歴一覧(kien/ctrlp.vim)
+"nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
+
+" ###自己管理の外部プラグイン
+"検索で補完を効かせる　	アクセス制限がなくなるかも
+" source ~/.vim/self/SearchComplete.vim "すっげーチカチカするしいまいち使いづらい
+
 
 "Reauired
 filetype plugin indent on
