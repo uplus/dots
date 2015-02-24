@@ -71,10 +71,10 @@ vnoremap = =
 
 "######Ctrl+W family######
 "NERDTree
-"nnoremap <silent> <C-W>e :NERDTree<CR>
-"inoremap <silent> <C-W>e <ESC>:NERDTree<CR>
-nnoremap <silent> <C-W>e :NERDTreeToggle<CR>
-inoremap <silent> <C-W>e <ESC>:NERDTreeToggle<CR>
+nnoremap <silent> <C-W>e :NERDTree<CR>
+inoremap <silent> <C-W>e <ESC>:NERDTree<CR>
+"nnoremap <silent> <C-W>e :NERDTreeToggle<CR>
+"inoremap <silent> <C-W>e <ESC>:NERDTreeToggle<CR>
 
 "Window control
 nnoremap <C-W>q :bdelete<CR>

@@ -50,7 +50,7 @@ alias pry='pry --simple-prompt'
 # to safely used.
 alias mv='mv -iv'
 alias cp='cp -iv'
-alias rm='rm -iv'
+alias rm='rm -v'
 
 # not require sudo
 alias shutdown='sudo shutdown'
@@ -63,3 +63,6 @@ alias dotgit='git -C ~/.dotfiles'
 
 # New aliases
 alias visjis='vi -c ":e ++enc=cp932"'
+alias gi='gvim'
+alias pcd='pushd'
+alias cdp='popd'

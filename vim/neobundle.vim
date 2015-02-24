@@ -124,6 +124,12 @@ let g:quickrun_config.c = {
 			\ 'cmdopt'  : $C_COMP_OPT
 			\}
 
+
+let g:yankring_max_history=30
+let g:yankring_ignore_duplicate=1
+let g:yankring_max_display=30
+let g:yankring_history_dir="~/.vim/tmp/"
+
 "Reauired
 filetype plugin indent on
 if !exists('loaded_matchit')

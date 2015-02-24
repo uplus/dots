@@ -98,7 +98,7 @@ fi
 
 
 ######NEW######NEW######NEW######NEW######NEW######NEW######NEW########
-export PATH=$PATH:~/bin:
+export PATH=$PATH:~/bin
 
 #Ctrl-S need this codes
 stty -ixon -ixoff
@@ -145,8 +145,8 @@ alias pushd="pushdls"
 alias popd="popdls"
 alias cd="cdls"
 alias cda="cdlsa"
-alias ccd="cd .."
-alias cdd="cd -"
+alias ccd="cdls .."
+alias cdd="cdls -"
 #alias mkdir="mkdircd"
 
 #Need restart the bash to apply

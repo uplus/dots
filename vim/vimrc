@@ -46,7 +46,7 @@ set incsearch			"リアルタイム検索みたいなもの
 set hlsearch			"検索候補をハイライト	:noh でハイライトを消す
 
 set nobackup
-set viminfo+=n~/.vim/\~info.txt
+set viminfo+=n~/.vim/tmp/info.txt
 
 set scrolloff=10
 set wrapscan	"最後尾まで検索を終えたら次の検索で先頭に戻る
