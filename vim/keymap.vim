@@ -67,10 +67,10 @@ nnoremap <Space>sg :OverCommandLine<CR>%s//g<LEFT><LEFT>
 nnoremap <Space>ws :OverCommandLine<CR>%s/<C-r><C-w>/
 nnoremap <Space>wg :OverCommandLine<CR>%s/<C-r><C-w>//g<LEFT><LEFT>
 
-vnoremap <Space>ss :OverCommandLine<CR>%s/\%V
-vnoremap <Space>sg :OverCommandLine<CR>%s/\%V/g<LEFT><LEFT>
-vnoremap <Space>ws :OverCommandLine<CR>%s/\%V<C-r><C-w>/
-vnoremap <Space>wg :OverCommandLine<CR>%s/\%V<C-r><C-w>//g<LEFT><LEFT>
+vnoremap <Space>ss :OverCommandLine<CR>s/\%V
+vnoremap <Space>sg :OverCommandLine<CR>s/\%V/g<LEFT><LEFT>
+vnoremap <Space>ws :OverCommandLine<CR>s/\%V<C-r><C-w>/
+vnoremap <Space>wg :OverCommandLine<CR>s/\%V<C-r><C-w>//g<LEFT><LEFT>
 
 
 nnoremap <silent> <Space> <Nop>

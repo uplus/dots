@@ -8,12 +8,16 @@ linux*)
 	alias fgrep='fgrep --color'
 	;;
 darwin*)
-	alias l='ls -F'
-	alias la='ls -A'
-	alias ll='ls -l'
-	alias lla='ls -lA'
+	alias ls='ls  -G'
+	alias grep='egrep -G'
+	alias egrep='egrep -G'
 	;;
 esac
+
+alias l='ls -F'
+alias la='ls -A'
+alias ll='ls -l'
+alias lla='ls -lA'
 
 # find aliases
 alias findr="find / -name"
