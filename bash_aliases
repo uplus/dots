@@ -1,14 +1,19 @@
+#!/bin/bash
 # to color output
-alias ls='ls  --color'
-alias grep='egrep --color'
-alias egrep='egrep --color'
-alias fgrep='fgrep --color'
-
-# some more ls aliases
-alias l='ls -F'
-alias la='ls -A'
-alias ll='ls -l'
-alias lla='ls -lA'
+case $OSTYPE in
+linux*)
+	alias ls='ls  --color'
+	alias grep='egrep --color'
+	alias egrep='egrep --color'
+	alias fgrep='fgrep --color'
+	;;
+darwin*)
+	alias l='ls -F'
+	alias la='ls -A'
+	alias ll='ls -l'
+	alias lla='ls -lA'
+	;;
+esac
 
 # find aliases
 alias findr="find / -name"
