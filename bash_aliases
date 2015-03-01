@@ -25,15 +25,15 @@ alias findh="find ~/ -name"
 alias findc="find . -name"
 
 alias vi='vim'
-alias vibash="vim + ~/.bashrc"
-alias vialias="vim + ~/.bash_aliases"
+alias vibash="vim ~/.bashrc"
+alias vialias="vim ~/.bash_aliases"
 alias vim.simp='\vim -u NONE -N'
 
 # Unique aliases
 alias envlang="env | egrep --color=never 'LANG|LC'"
 alias echo?='echo $?'
 alias sln='ln -s'
-alias apt-search='apt-cache pkgnames | egrep'
+alias apt-search='\apt-cache search --names-only'
 alias apt-upgrade='apt update;apt upgrade'
 
 # Clang aliases
@@ -68,10 +68,13 @@ alias reboot='sudo reboot'
 alias apt-get='sudo apt-get'
 alias apt='sudo apt'
 alias mount='sudo mount'
-alias dotgit='git -C ~/.dotfiles'
 
 # New aliases
+alias dotgit='git -C ~/.dotfiles'
+#alias vimgit='git -C ~/.vim'
 alias visjis='vi -c ":e ++enc=cp932"'
 alias gi='gvim'
 alias pcd='pushd'
 alias cdp='popd'
+alias twme='tw `tw -user:default`'
+alias dirsize='du -csh'
