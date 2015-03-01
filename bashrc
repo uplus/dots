@@ -98,7 +98,9 @@ fi
 
 
 ######NEW######NEW######NEW######NEW######NEW######NEW######NEW########
-export PATH=$PATH:~/bin
+export PATH="./:$HOME/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 #Ctrl-S need this codes
 stty -ixon -ixoff

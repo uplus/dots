@@ -59,7 +59,7 @@ vnoremap = =
 "######<Space> family######
 " 現在の位置に空行を挿入
 nnoremap <silent> <Space><CR> <S-O><ESC>
-nnoremap <Space>n :noh<CR>
+nnoremap <silent> <Space>n :noh<CR>
 
 "gシリーズはいらないかも cもgも自分でつければ平気
 nnoremap <Space>ss :OverCommandLine<CR>%s/
@@ -72,6 +72,15 @@ vnoremap <Space>sg :OverCommandLine<CR>s/\%V/g<LEFT><LEFT>
 vnoremap <Space>ws :OverCommandLine<CR>s/\%V<C-r><C-w>/
 vnoremap <Space>wg :OverCommandLine<CR>s/\%V<C-r><C-w>//g<LEFT><LEFT>
 
+nnoremap <Space>j <C-D>
+nnoremap <Space>k <C-U>
+nnoremap <Space>h 0
+nnoremap <Space>l $
+
+vnoremap <Space>j <C-D>
+vnoremap <Space>k <C-U>
+vnoremap <Space>h 0
+vnoremap <Space>l $
 
 nnoremap <silent> <Space> <Nop>
 vnoremap <silent> <Space> <Nop>
