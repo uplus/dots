@@ -149,7 +149,6 @@ alias cd="cdls"
 alias cda="cdlsa"
 alias ccd="cdls .."
 alias cdd="cdls -"
-#alias mkdir="mkdircd"
 
 #Need restart the bash to apply
 function addalias(){
@@ -170,27 +169,6 @@ function tmpalias(){
 	else
 		echo "syntax error" > /dev/stderr
 	fi
-}
-
-
-# できたけどlsとかは\lsとしたほうが良い
-# mvとか使う時もaliasの効果とかないから意図しない動作をよく起こす
-# 普通にforでやったほうが楽かも
-function listdo(){
-	ruby -e "arg = '$*'.split
-	if arg.size < 3
-		puts 'taranai'
-		exit
-	end
-	
-	command = arg.shift
-	target  = arg.pop
-	
-	arg.each do |elem|
-		exec_str = command + ' ' + elem + ' ' + target
-		system(exec_str)
-	end
-	"
 }
 
 
