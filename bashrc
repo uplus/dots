@@ -171,7 +171,18 @@ function tmpalias(){
 	fi
 }
 
+function cdh(){
+	if [ $# -eq 0 ]; then
+		cdls $HOME
+	else
+		cdls $HOME/$1
+	fi
+}
 
-if [ -f ~/.tmp_aliases ]; then
-    source ~/.tmp_aliases
-fi
+function cdr(){
+	if [ $# -eq 0 ]; then
+		cdls /
+	else
+		cdls /$1
+	fi
+}

@@ -71,8 +71,8 @@ alias mount='sudo mount'
 
 # New aliases
 alias dotgit='git -C ~/.dotfiles'
-#alias vimgit='git -C ~/.vim'
-alias visjis='vi -c ":e ++enc=cp932"'
+alias vimgit='git -C ~/.vim'
+alias vi.sjis='vi -c ":e ++enc=cp932"'
 alias gi='gvim'
 alias cdpu='pushd'
 alias cdpo='popd'

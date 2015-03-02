@@ -1,6 +1,16 @@
-__memo () {
-	COMPREPLY=(`compgen -W "$(memo -l)" $2`)
+#!/bin/bash
+if [ -f $HOME/code/ruby/memo/completion_memo.sh ];then
+	source $HOME/code/ruby/memo/completion_memo.sh
+fi
+
+__cdh(){
+	CDPATH=$HOME
+	_cd "cd"
 }
+complete -o nospace -F __cdh cdh
 
-
-complete -F __memo memo
+__cdr(){
+	CDPATH="/"
+	_cd "cd"
+}
+complete -o nospace -F __cdr cdr
