@@ -113,43 +113,6 @@ if [ -f $HOME/.bash_completion ]; then
 	source $HOME/.bash_completion
 fi
 
-
-function pushdls(){
-	\pushd "$@"
-	[ $? == 0 ] && ls
-}
-
-function popdls(){
-	\popd "$@"
-	[ $? == 0 ] && ls
-}
-
-function cdls (){ 
-	\cd "$@" 
-	[ $? == 0 ] && ls
-}
-
-function cdlsa (){
-	\cd "$@"
-	[ $? == 0 ] && ls -A
-}
-
-function cdc(){
-	cd $HOME/$1
-}
-
-function mkdircd(){
-	\mkdir "$@"
-	[ $? == 0 ] && cd ${!#}
-}
-
-alias pushd="pushdls"
-alias popd="popdls"
-alias cd="cdls"
-alias cda="cdlsa"
-alias ccd="cdls .."
-alias cdd="cdls -"
-
 #Need restart the bash to apply
 function addalias(){
 	if [ $# -ge 2 ]; then # #? >= 2
@@ -168,22 +131,6 @@ function tmpalias(){
 		echo "alias $NAME='$*'" >> ~/.tmp_aliases
 	else
 		echo "syntax error" > /dev/stderr
-	fi
-}
-
-function cdh(){
-	if [ $# -eq 0 ]; then
-		cdls $HOME
-	else
-		cdls $HOME/$1
-	fi
-}
-
-function cdr(){
-	if [ $# -eq 0 ]; then
-		cdls /
-	else
-		cdls /$1
 	fi
 }
 

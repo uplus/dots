@@ -19,6 +19,58 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lla='ls -lA'
 
+function pushdls(){
+	\pushd "$@"
+	[ $? == 0 ] && ls
+}
+
+function popdls(){
+	\popd "$@"
+	[ $? == 0 ] && ls
+}
+
+function cdls (){ 
+	\cd "$@" 
+	[ $? == 0 ] && ls
+}
+
+function cdlsa (){
+	\cd "$@"
+	[ $? == 0 ] && ls -A
+}
+
+function cdc(){
+	cd $HOME/$1
+}
+
+function mkdircd(){
+	\mkdir "$@"
+	[ $? == 0 ] && cd ${!#}
+}
+
+function cdh(){
+	if [ $# -eq 0 ]; then
+		cdls $HOME
+	else
+		cdls $HOME/$1
+	fi
+}
+
+function cdr(){
+	if [ $# -eq 0 ]; then
+		cdls /
+	else
+		cdls /$1
+	fi
+}
+
+alias pushd="pushdls"
+alias popd="popdls"
+alias cd="cdls"
+alias cda="cdlsa"
+alias ccd="cdls .."
+alias cdd="cdls -"
+
 # find aliases
 alias findr="find / -name"
 alias findh="find ~/ -name"
@@ -68,6 +120,8 @@ alias reboot='sudo reboot'
 alias apt-get='sudo apt-get'
 alias apt='sudo apt'
 alias mount='sudo mount'
+
+
 
 # New aliases
 alias dotgit='git -C ~/.dotfiles'
