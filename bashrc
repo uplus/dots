@@ -118,7 +118,7 @@ fi
 
 #Need restart the bash to apply
 function addalias(){
-	if [ $# -ge 2 ]; then # #? >= 2
+	if [ $# -ge 2 ]; then # $? >= 2
 		NAME=$1
 		shift
 		echo "alias $NAME='$*'" >> ~/.bash_aliases
@@ -137,3 +137,4 @@ function tmpalias(){
 	fi
 }
 
+#
