@@ -105,7 +105,7 @@ eval "$(rbenv init -)"
 #Ctrl-S need this codes
 stty -ixon -ixoff
 
-if [ -f $HOME/.xmodmap ]; then
+if [ -n "$WINDOWID" -a -f $HOME/.xmodmap ]; then
 	xmodmap ~/.xmodmap
 fi
 
