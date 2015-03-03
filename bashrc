@@ -102,6 +102,9 @@ export PATH="./:$HOME/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+#cdを省略できる
+shopt -s autocd
+
 #Ctrl-S need this codes
 stty -ixon -ixoff
 
@@ -134,4 +137,3 @@ function tmpalias(){
 	fi
 }
 
-shopt -s autocd
