@@ -3,9 +3,9 @@
 case $OSTYPE in
 linux*)
 	alias ls='ls  --color'
-	alias grep='egrep --color'
-	alias egrep='egrep --color'
-	alias fgrep='fgrep --color'
+	alias grep='\egrep --color'
+	alias egrep='\egrep --color'
+	alias fgrep='\fgrep --color'
 	;;
 darwin*)
 	alias ls='ls  -G'
@@ -34,7 +34,7 @@ alias envlang="env | egrep --color=never 'LANG|LC'"
 alias echo?='echo $?'
 alias sln='ln -s'
 alias apt-search='\apt-cache search --names-only'
-alias apt-upgrade='apt update;apt upgrade'
+alias apt-upgrade='apt update;echo "##Upgrade start";apt upgrade'
 
 # Clang aliases
 export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value'

@@ -186,3 +186,5 @@ function cdr(){
 		cdls /$1
 	fi
 }
+
+shopt -s autocd
