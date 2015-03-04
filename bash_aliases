@@ -86,7 +86,7 @@ alias envlang="env | egrep --color=never 'LANG|LC'"
 alias echo?='echo $?'
 alias sln='ln -s'
 alias apt-search='\apt-cache search --names-only'
-alias apt-upgrade='apt update;echo "##Upgrade start";apt upgrade'
+alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
 
 # Clang aliases
 export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value'
@@ -122,6 +122,12 @@ alias apt='sudo apt'
 alias mount='sudo mount'
 
 
+function hm(){
+	[ -z $1 ] && return 1
+	local comdname=$1
+	shift
+	$comdname --help | more $*
+}
 
 # New aliases
 alias dotgit='git -C ~/.dotfiles'
@@ -132,3 +138,4 @@ alias cdpu='pushd'
 alias cdpo='popd'
 alias twme='tw `tw -user:default`'
 alias dirsize='du -csh'
+alias resh='exec $SHELL'
