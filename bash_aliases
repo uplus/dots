@@ -122,11 +122,9 @@ alias apt='sudo apt'
 alias mount='sudo mount'
 
 
-function hm(){
+function hv(){
 	[ -z $1 ] && return 1
-	local comdname=$1
-	shift
-	$comdname --help | more $*
+	$1 --help | view -
 }
 
 # New aliases
@@ -139,3 +137,4 @@ alias cdpo='popd'
 alias twme='tw `tw -user:default`'
 alias dirsize='du -csh'
 alias resh='exec $SHELL'
+alias be='bundle exec'

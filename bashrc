@@ -98,9 +98,11 @@ fi
 
 
 ######NEW######NEW######NEW######NEW######NEW######NEW######NEW########
-export PATH="./:$HOME/bin:$PATH"
+# Order is important
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export PATH="./:./bundle_bin:$HOME/bin:$PATH"
+
 
 #cdを省略できる
 shopt -s autocd
