@@ -10,13 +10,13 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+# HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
+HISTSIZE=2000
 HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
@@ -56,12 +56,16 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\$ '
-else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
+case $OSTYPE in
+linux*)
+    if [ "$color_prompt" = yes ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\$ '
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    fi
+    unset color_prompt force_color_prompt
+    ;;
+esac
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
