@@ -121,7 +121,7 @@ stty -ixon -ixoff
 shopt -s autocd
 
 function ls_after_cd(){
-  [[ -n $JUST_BEFORE_PWD ]] && [[ $JUST_BEFORE_PWD != $PWD ]] && \ls --color
+  [[ -n $JUST_BEFORE_PWD ]] && [[ $JUST_BEFORE_PWD != $PWD ]] && ls
   JUST_BEFORE_PWD=$PWD
 }
 
