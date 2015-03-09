@@ -19,30 +19,6 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lla='ls -lA'
 
-function pushdls(){
-	\pushd "$@"
-	[ $? == 0 ] && ls
-}
-
-function popdls(){
-	\popd "$@"
-	[ $? == 0 ] && ls
-}
-
-function cdls (){ 
-	\cd "$@" 
-	[ $? == 0 ] && ls
-}
-
-function cdlsa (){
-	\cd "$@"
-	[ $? == 0 ] && ls -A
-}
-
-function cdc(){
-	cd $HOME/$1
-}
-
 function mkdircd(){
 	\mkdir "$@"
 	[ $? == 0 ] && cd ${!#}
@@ -64,12 +40,10 @@ function cdr(){
 	fi
 }
 
-alias pushd="pushdls"
-alias popd="popdls"
-alias cd="cdls"
-alias cda="cdlsa"
-alias ccd="cdls .."
-alias cdd="cdls -"
+alias ccd="cd .."
+alias cdd="cd -"
+alias cdpu='pushd'
+alias cdpo='popd'
 
 # find aliases
 alias findr="find / -name"
@@ -80,6 +54,8 @@ alias vi='vim'
 alias vibash="vim ~/.bashrc"
 alias vialias="vim ~/.bash_aliases"
 alias vim.simp='\vim -u NONE -N'
+alias vi.sjis='vi -c ":e ++enc=cp932"'
+alias gv='gvim'
 
 # Unique aliases
 alias envlang="env | egrep --color=never 'LANG|LC'"
@@ -121,19 +97,14 @@ alias apt-get='sudo apt-get'
 alias apt='sudo apt'
 alias mount='sudo mount'
 
-
 function hv(){
 	[ -z $1 ] && return 1
-	$1 --help | view -
+	$1 --help 2>&1 | view -
 }
 
 # New aliases
 alias dotgit='git -C ~/.dotfiles'
 alias vimgit='git -C ~/.vim'
-alias vi.sjis='vi -c ":e ++enc=cp932"'
-alias gv='gvim'
-alias cdpu='pushd'
-alias cdpo='popd'
 alias twme='tw `tw -user:default`'
 alias dirsize='du -csh'
 alias resh='exec $SHELL -l'

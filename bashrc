@@ -80,14 +80,6 @@ esac
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -107,9 +99,25 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="./:./bundle_bin:$HOME/bin:$PATH"
 
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
 
 #cdを省略できる
 shopt -s autocd
+
+function ls_after_cd(){
+  [[ -n $JUST_BEFORE_PWD ]] && [[ $JUST_BEFORE_PWD != $PWD ]] && ls
+  JUST_BEFORE_PWD=$PWD
+}
+
+function share_history(){
+  history -a
+  history -c
+  history -r
+}
+
+export PROMPT_COMMAND="ls_after_cd; share_history; $PROMPT_COMMAND" 
 
 #Ctrl-S need this codes
 stty -ixon -ixoff
@@ -142,4 +150,3 @@ function tmpalias(){
 		echo "syntax error" > /dev/stderr
 	fi
 }
-
