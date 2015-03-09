@@ -10,7 +10,7 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-# HISTCONTROL=ignoreboth
+# HISTCONTROL=ignoreboth:ignorespace
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -25,7 +25,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -103,11 +103,22 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
+if [ -f $HOME/.bash_completion ]; then
+	source $HOME/.bash_completion
+fi
+
+if [ -n "$WINDOWID" -a -f $HOME/.xmodmap ]; then
+	xmodmap ~/.xmodmap
+fi
+
+#Ctrl-S need this codes
+stty -ixon -ixoff
+
 #cdを省略できる
 shopt -s autocd
 
 function ls_after_cd(){
-  [[ -n $JUST_BEFORE_PWD ]] && [[ $JUST_BEFORE_PWD != $PWD ]] && ls
+  [[ -n $JUST_BEFORE_PWD ]] && [[ $JUST_BEFORE_PWD != $PWD ]] && \ls --color
   JUST_BEFORE_PWD=$PWD
 }
 
@@ -118,14 +129,6 @@ function share_history(){
 }
 
 export PROMPT_COMMAND="ls_after_cd; share_history; $PROMPT_COMMAND" 
-
-#Ctrl-S need this codes
-stty -ixon -ixoff
-
-
-if [ -f $HOME/.bash_completion ]; then
-	source $HOME/.bash_completion
-fi
 
 #Need restart the bash to apply
 function addalias(){
