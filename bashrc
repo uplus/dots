@@ -58,13 +58,16 @@ fi
 
 case $OSTYPE in
 linux*)
-    if [ "$color_prompt" = yes ]; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\$ '
-    else
-        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    fi
-    unset color_prompt force_color_prompt
-    ;;
+  if [ "$color_prompt" = yes ]; then
+      PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\$ '
+  else
+      PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  fi
+  unset color_prompt force_color_prompt
+  ;;
+darwin*)
+  source /etc/bashrc
+  ;;
 esac
 
 # If this is an xterm set the title to user@host:dir
