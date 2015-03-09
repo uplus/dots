@@ -122,9 +122,6 @@ export PROMPT_COMMAND="ls_after_cd; share_history; $PROMPT_COMMAND"
 #Ctrl-S need this codes
 stty -ixon -ixoff
 
-if [ -n "$WINDOWID" -a -f $HOME/.xmodmap ]; then
-	xmodmap ~/.xmodmap
-fi
 
 if [ -f $HOME/.bash_completion ]; then
 	source $HOME/.bash_completion

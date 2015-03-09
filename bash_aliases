@@ -11,6 +11,7 @@ darwin*)
 	alias ls='ls  -G'
 	alias grep='egrep -G'
 	alias egrep='egrep -G'
+	alias fgrep='\fgrep --color'
 	;;
 esac
 
