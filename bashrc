@@ -134,7 +134,7 @@ function share_history(){
 export PROMPT_COMMAND="ls_after_cd; share_history; $PROMPT_COMMAND" 
 
 #Need restart the bash to apply
-function addalias(){
+addalias(){
 	if [ $# -ge 2 ]; then # $? >= 2
 		NAME=$1
 		shift
@@ -144,12 +144,18 @@ function addalias(){
 	fi
 }
 
-function tmpalias(){
-	if [ $# -ge 2 ]; then # #? >= 2
-		NAME=$1
-		shift
-		echo "alias $NAME='$*'" >> ~/.tmp_aliases
-	else
-		echo "syntax error" > /dev/stderr
-	fi
+tmpalias(){
+  if [ $# -ge 2 ]; then # #? >= 2
+    NAME=$1
+    shift
+    echo "alias $NAME='$*'" >> ~/.tmp_aliases
+  else
+    echo "syntax error" > /dev/stderr
+  fi
+}
+
+gor(){
+  while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
+    cd ..
+  done
 }
