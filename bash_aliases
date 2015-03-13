@@ -27,17 +27,17 @@ function mkdircd(){
 
 function cdh(){
 	if [ $# -eq 0 ]; then
-		cdls $HOME
+		cd $HOME
 	else
-		cdls $HOME/$1
+		cd $HOME/$1
 	fi
 }
 
 function cdr(){
 	if [ $# -eq 0 ]; then
-		cdls /
+		cd /
 	else
-		cdls /$1
+		cd /$1
 	fi
 }
 
