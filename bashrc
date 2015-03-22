@@ -59,7 +59,7 @@ fi
 case $OSTYPE in
 linux*)
   if [ "$color_prompt" = yes ]; then
-      PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
   else
       PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
   fi
@@ -159,3 +159,4 @@ gor(){
     cd ..
   done
 }
+
