@@ -131,7 +131,7 @@ function share_history(){
   history -r
 }
 
-export PROMPT_COMMAND="ls_after_cd; share_history; $PROMPT_COMMAND" 
+export PROMPT_COMMAND="ls_after_cd; share_history;"
 
 #Need restart the bash to apply
 addalias(){
