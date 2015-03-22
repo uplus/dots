@@ -102,6 +102,12 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="./:./bundle_bin:$HOME/bin:$PATH"
 
+# git-completion系
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
+
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
@@ -160,3 +166,20 @@ gor(){
   done
 }
 
+gsh(){
+  #opt parse
+  OPT=$*
+
+  while :; do
+    echo -ne "\033[31m$(__git_ps1)\033[00m "
+    read cmd
+    if [[ -z $cmd ]]; then
+      git $OPT status
+    elif [[ "exit" = $cmd ]]; then
+      break
+    else
+      git $OPT $cmd
+    fi
+
+  done
+}
