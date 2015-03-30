@@ -7,10 +7,10 @@ __cdh(){
 	CDPATH=$HOME
 	_cd "cd"
 }
-complete -o nospace -F __cdh cdh
+complete -o nospace -F __ch ch
 
 __cdr(){
 	CDPATH="/"
 	_cd "cd"
 }
-complete -o nospace -F __cdr cdr
+complete -o nospace -F __cr cr

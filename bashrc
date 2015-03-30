@@ -59,7 +59,7 @@ fi
 case $OSTYPE in
 linux*)
   if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[2;36m\]\u@\[\e[00m\]\[\e[01;34m\]\w\[\e[00m\]\[\e[31m\]$(__git_ps1)\[\e[00m\]\$ '
   else
       PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
   fi
@@ -137,18 +137,8 @@ function share_history(){
   history -r
 }
 
-export PROMPT_COMMAND="ls_after_cd; share_history;"
+export PROMPT_COMMAND="ls_after_cd; share_history;$PROMPT_COMMAND"
 
-#Need restart the bash to apply
-addalias(){
-	if [ $# -ge 2 ]; then # $? >= 2
-		NAME=$1
-		shift
-		echo "alias $NAME='$*'" >> ~/.bash_aliases
-	else
-		echo "syntax error" > /dev/stderr
-	fi
-}
 
 tmpalias(){
   if [ $# -ge 2 ]; then # #? >= 2

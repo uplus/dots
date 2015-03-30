@@ -20,12 +20,11 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lla='ls -lA'
 
-function mkdircd(){
-	\mkdir "$@"
-	[ $? == 0 ] && cd ${!#}
+function mcdir(){
+	mkdir $* && cd ${!#}
 }
 
-function cdh(){
+function ch(){
 	if [ $# -eq 0 ]; then
 		cd $HOME
 	else
@@ -33,7 +32,7 @@ function cdh(){
 	fi
 }
 
-function cdr(){
+function cr(){
 	if [ $# -eq 0 ]; then
 		cd /
 	else
@@ -97,6 +96,7 @@ alias reboot='sudo reboot'
 alias apt-get='sudo apt-get'
 alias apt='sudo apt'
 alias mount='sudo mount'
+alias visudo='sudo visudo'
 
 function hv(){
 	[ -z $1 ] && return 1
@@ -110,5 +110,6 @@ alias twme='tw `tw -user:default`'
 alias dirsize='du -csh'
 alias resh='exec $SHELL -l'
 alias be='bundle exec'
-alias gs='git status'
+alias gs='git status --short'
 alias gd='git diff'
+alias gl='git log --oneline'
