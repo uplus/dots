@@ -10,6 +10,8 @@ darwin*)
 	;;
 esac
 
+exists_source $HOME/.zsh_aliases
+
 # Prompt
 autoload -Uz promptinit
 promptinit
@@ -52,19 +54,18 @@ RPROMPT='`rprompt-git-current-branch`'
 setopt sharehistory hist_ignore_space hist_reduce_blanks
 setopt no_hist_ignore_all_dups  #過去の履歴と重複しても削除しない
 setopt extended_history         #履歴に時刻を刻む
-
 HISTSIZE=3000
 SAVEHIST=3000
-HISTFILE=~/.zsh_history
+HISTFILE=~/.zsh/zsh_history
 
 # Use emacs keybindings even if our EDITOR is set to vi
-# -v にすればvimモードになる、すごい笑える
+# -v にするとすごい笑える
 bindkey -e
 
 # Use modern completion system
 autoload -Uz compinit
 compinit
-fpath=($HOME/.zsh-completions/src $fpath)
+fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
 setopt auto_cd
 function chpwd(){ ls }
@@ -109,16 +110,12 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 
-if [ -f $HOME/.zsh_aliases ]; then
-    source $HOME/.zsh_aliases
-fi
 
-if [ -f $HOME/.zsh_completion ]; then
-	source $HOME/.zsh_completion
-fi
+exists_source $HOME/.zsh_completion
+exists_source $HOME/.zsh_antigen
 
 # Functions
-gor(){
+function gor(){
   while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
     cd ..
   done
@@ -128,7 +125,7 @@ gor(){
 #マッチした部分のon/off
 #特定ディレクトリの無視、検索条件指定
 #errorの表示 on/off
-findstr(){
+function findstr(){
   if [ $# -lt 2 ];then
     echo "missing argument" 1>&2
     return 1

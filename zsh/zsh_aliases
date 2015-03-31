@@ -67,6 +67,52 @@ alias apt='sudo apt'
 alias mount='sudo mount'
 alias visudo='sudo visudo'
 
+# Suffix
+alias -s py='python'
+alias -s rb='ruby'
+alias -s php='php -f'
+alias -s {gif,jpg,jpeg,png,bmp}='display'
+alias -s {html,htm}='opera-beta'
+function runcpp(){ clang++ $1 -o ${1%.*} && ./${1%.*} }
+alias -s cpp='runcpp'
+function runc(){ clang $1 -o ${1%.*} && ./${1%.*} }
+alias -s c='runc'
+
+# Global
+typeset -A abbreviations
+abbreviations=(
+    "G"   "| grep"
+    "L"   "| less"
+    "H"   "| head"
+    "M"   "| more"
+    "X"   "| xargs"
+    "T"   "| tail"
+    "C"   "| cat"
+    "W"   "| wc"
+    "A"   "| awk"
+    "S"   "| sed"
+    "N"   "> /dev/null"
+    "E"   "2> /dev/null"
+    "Q"   "> /dev/null 2>&1"
+    "B"   "> /dev/null 2>&1 &"
+)
+
+magic-abbrev-expand() {
+    local MATCH
+    LBUFFER=${LBUFFER%%(#m)[-_a-zA-Z0-9]#}
+    LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
+    zle self-insert
+}
+
+function no-magic-abbrev-expand() {
+    LBUFFER+=' '
+}
+
+zle -N magic-abbrev-expand
+zle -N no-magic-abbrev-expand
+bindkey " " magic-abbrev-expand
+bindkey "^x " no-magic-abbrev-expand
+
 # New and other aliases
 alias twme='tw `tw -user:default`'
 alias be='bundle exec'
