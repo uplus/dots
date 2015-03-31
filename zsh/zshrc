@@ -1,0 +1,170 @@
+#!/usr/bin/zsh
+# login interactiveで実行される
+
+case $OSTYPE in
+linux*)
+  exists_source "$HOME/.zshrc.linux"
+	;;
+darwin*)
+  exists_source "$HOME/.zshrc.darwin"
+	;;
+esac
+
+# Prompt
+autoload -Uz promptinit
+promptinit
+setopt prompt_subst
+export PROMPT="%B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
+
+#git リポジトリの状態を表示する
+autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
+function rprompt-git-current-branch {
+  local name st color gitdir action
+  [[ "$PWD" =~ '/\.git(/.*)?$' ]] && return
+
+  name=`git rev-parse --abbrev-ref=loose HEAD 2> /dev/null`
+  [[ -z $name ]] && return
+
+  gitdir=`git rev-parse --git-dir 2> /dev/null`
+  action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
+
+	if [[ -e "$gitdir/rprompt-nostatus" ]]; then
+		echo "$name$action "
+		return
+	fi
+
+  st=`git status 2> /dev/null`
+  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+    color=%F{green}
+  elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+    color=%F{yellow}
+  elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+    color=%B%F{red}
+  else
+    color=%F{red}
+  fi
+
+  echo "[$color$name$action%f%b]"
+}
+RPROMPT='`rprompt-git-current-branch`'
+
+# Historyh
+setopt sharehistory hist_ignore_space hist_reduce_blanks
+setopt no_hist_ignore_all_dups  #過去の履歴と重複しても削除しない
+setopt extended_history         #履歴に時刻を刻む
+
+HISTSIZE=3000
+SAVEHIST=3000
+HISTFILE=~/.zsh_history
+
+# Use emacs keybindings even if our EDITOR is set to vi
+# -v にすればvimモードになる、すごい笑える
+bindkey -e
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+fpath=($HOME/.zsh-completions/src $fpath)
+
+setopt auto_cd
+function chpwd(){ ls }
+setopt no_beep no_list_beep
+setopt auto_list                  #補完リスト有効
+setopt list_packed                #補完リストをなるべく少ない量に
+setopt pushd_to_home              #pushdを引数無しで実行した時ホームに移動する
+setopt interactive_comments       #コマンドラインでもコメントを使えるようにする
+setopt transient_rprompt          #コマンド実行時にRPROMPTを消す
+setopt auto_resume                #サスペンド中のコマンドと同じものを実行したらリジュームする
+setopt extended_glob              #拡張グロッビング ~ で否定が使える
+setopt always_last_prompt         #補完で行を移動しない
+setopt dot_glob
+setopt brace_ccl
+setopt zle
+setopt no_correct no_correct_all  #コマンド実行時のスペルチェック無効
+setopt no_flow_control            # C-s, C-qを無効にする。
+setopt no_clobber                 # リダイレクトで上書きする事を許可しない。
+setopt no_tify                    #バックグラウンドジョブが終了したら知らせる
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*:default' menu select=2    #補完候補を色付けする
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+
+#コマンドラインをEDITORで編集して実行できる
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+
+if [ -f $HOME/.zsh_aliases ]; then
+    source $HOME/.zsh_aliases
+fi
+
+if [ -f $HOME/.zsh_completion ]; then
+	source $HOME/.zsh_completion
+fi
+
+# Functions
+gor(){
+  while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
+    cd ..
+  done
+}
+
+#rubyとかで作りなおしたほうがいいかも
+#マッチした部分のon/off
+#特定ディレクトリの無視、検索条件指定
+#errorの表示 on/off
+findstr(){
+  if [ $# -lt 2 ];then
+    echo "missing argument" 1>&2
+    return 1
+  fi
+  
+  local location=$1
+  shift
+
+  while [ $# -gt 1 ]; do
+    local opt="$opt $1"
+    shift
+  done
+
+  local str=$1
+  
+  echo "location: $location"
+  echo "opt: $opt"
+  echo "str: $str"
+  
+  find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
+}
+
+function mcdir(){ mkdir $* && cd ${!#} }
+
+function ch(){
+	if [ $# -eq 0 ]; then
+		cd $HOME
+	else
+		cd $HOME/$1
+	fi
+}
+
+function cr(){
+	if [ $# -eq 0 ]; then
+		cd /
+	else
+		cd /$1
+	fi
+}

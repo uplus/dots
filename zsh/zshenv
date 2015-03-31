@@ -1,0 +1,25 @@
+#!/usr/bin/zsh
+#login interactive scriptの全てから参照される
+export EDITOR=vim
+export WORDCHARS='*?-[]~\!#%^(){}<>|`@#%^*()+:?'
+export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value'
+export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
+export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
+export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector" 
+
+# Order is important
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="./:./bundle_bin:$HOME/bin:$PATH"
+
+function exists_source(){
+  if [[ -f "$1" ]]; then
+    source $1
+  fi
+}
+
+if [ -n "$WINDOWID" -a -f $HOME/.xmodmap ]; then
+	xmodmap ~/.xmodmap
+fi
+
+stty -ixon -ixoff #これがないと何故かvimでC-Sが使えない

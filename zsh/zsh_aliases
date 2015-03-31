@@ -1,0 +1,72 @@
+#!/usr/bin/zsh
+alias l='ls -F'
+alias la='ls -A'
+alias ll='ls -l'
+alias lla='ls -lA'
+
+alias ccd="cd .."
+alias cdd="cd -"
+alias pu='pushd'
+alias po='popd'
+
+# Find 
+alias findr="find / -name"
+alias findh="find ~/ -name"
+alias findc="find . -name"
+
+# Vim
+alias vi='vim'
+alias vizsh="vim ~/.zshrc"
+alias vialias="vim ~/.zsh_aliases"
+alias vim.simp='\vim -u NONE -N'
+alias vi.sjis='vi -c ":e ++enc=cp932"'
+alias gv='gvim'
+
+# Git 
+alias dotgit='git -C ~/.dotfiles'
+alias vimgit='git -C ~/.vim'
+alias gs='git status --short'
+alias gd='git diff'
+alias gl='git log --oneline'
+
+# Unique 
+alias envlang="env | egrep --color=never 'LANG|LC'"
+alias sln='ln -s'
+alias apt-search='\apt-cache search --names-only'
+alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
+alias dirsize='du -csh'
+alias resh='exec $SHELL -l'
+alias history-all="history -E 1"
+
+# Clang 
+alias clang="clang $C_COMP_OPT"
+alias clang++="clang++ $CPP_COMP_OPT"
+
+alias gcc="\gcc $GCC_OPT" 
+alias gccg="\gcc -g $GCC_OPT"
+alias gcc32="\gcc -m32 $GCC_OPT"
+alias gccg32="\gcc -g -m32 $GCC_OPT"
+alias gdb='gdb -q'
+alias gdba='gdb -q a.out'
+alias objdump='objdump -M intel'
+
+alias irb='irb --simple-prompt'
+alias pry='pry --simple-prompt'
+
+# to safely used.
+alias mv='mv -iv'
+alias cp='cp -iv'
+alias rm='rm -v'
+
+# not require sudo
+alias shutdown='sudo shutdown'
+alias poweroff='sudo poweroff'
+alias reboot='sudo reboot'
+alias apt-get='sudo apt-get'
+alias apt='sudo apt'
+alias mount='sudo mount'
+alias visudo='sudo visudo'
+
+# New and other aliases
+alias twme='tw `tw -user:default`'
+alias be='bundle exec'
