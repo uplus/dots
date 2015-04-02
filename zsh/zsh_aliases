@@ -29,7 +29,7 @@ alias gs='git status --short'
 alias gd='git diff'
 alias gl='git log --oneline'
 
-# Unique 
+# utilities
 alias envlang="env | egrep --color=never 'LANG|LC'"
 alias sln='ln -s'
 alias apt-search='\apt-cache search --names-only'
@@ -37,6 +37,7 @@ alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
 alias dirsize='du -csh'
 alias resh='exec $SHELL -l'
 alias history-all="history -E 1"
+alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 
 # Clang 
 alias clang="clang $C_COMP_OPT"
