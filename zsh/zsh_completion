@@ -1,0 +1,15 @@
+#!/bin/zsh
+source $HOME/code/ruby/memo/memo_completion.zsh
+
+#cdの補完関数を利用して保管する
+_ch(){
+  CDPATH=$HOME
+  _cd "cd"
+}
+compdef _ch ch
+
+_cr(){
+  CDPATH="/"
+  _cd "cd"
+}
+compdef _cr cr
