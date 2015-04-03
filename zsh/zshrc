@@ -164,3 +164,31 @@ function cr(){
 		cd /$1
 	fi
 }
+
+function rbenv-upgrade(){
+  local rbenv_dir i
+  local -a plugin_dirs
+
+  rbenv_dir=`find $HOME/ -name \.rbenv 2> /dev/null`
+  if [[ -z $rbenv_dir ]]; then
+    echo "rbenv not found" 1>&2
+    return
+  fi
+  echo "enter $rbenv_dir"
+  pushd $rbenv_dir > /dev/null
+  echo "git pull"
+  git pull
+
+  echo "\nenter $rbenv_dir/plugins"
+  cd plugins > /dev/null
+  plugin_dirs=(`find ./ -name .git`)
+  
+  for i in $plugin_dirs; do
+    i=`dirname $i`
+    cmd="git -C $i pull"
+    echo "\n$cmd"
+    git -C $i pull
+  done
+
+  popd > /dev/null
+}
