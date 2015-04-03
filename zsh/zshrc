@@ -62,9 +62,10 @@ HISTFILE=~/.zsh/zsh_history
 bindkey -e
 
 # Use modern completion system
+exists_source $HOME/.zsh_completion           #requrie before autoload
+fpath=($HOME/.zsh/zsh-completions/src $HOME/.zsh/completions $fpath)
 autoload -Uz compinit
 compinit
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
 setopt auto_cd
 function chpwd(){ ls }
@@ -109,7 +110,6 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 
-exists_source $HOME/.zsh_completion
 exists_source $HOME/.zsh_antigen
 exists_source $HOME/.zsh_aliases
 
