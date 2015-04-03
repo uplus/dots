@@ -147,7 +147,7 @@ function findstr(){
   find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
 }
 
-function mcdir(){ mkdir $* && cd ${!#} }
+function mcdir(){ mkdir "$*"; cd "${@:$#}" }
 
 function ch(){
 	if [ $# -eq 0 ]; then
@@ -192,3 +192,5 @@ function rbenv-upgrade(){
 
   popd > /dev/null
 }
+
+
