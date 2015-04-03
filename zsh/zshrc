@@ -10,7 +10,6 @@ darwin*)
 	;;
 esac
 
-exists_source $HOME/.zsh_aliases
 
 # Prompt
 autoload -Uz promptinit
@@ -110,11 +109,11 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 
-
 exists_source $HOME/.zsh_completion
 exists_source $HOME/.zsh_antigen
+exists_source $HOME/.zsh_aliases
 
-# Functions
+## Functions
 function gor(){
   while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
     cd ..

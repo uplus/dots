@@ -80,7 +80,7 @@ function runc(){ clang $1 -o ${1%.*} && ./${1%.*} }
 alias -s c='runc'
 
 # Global
-typeset -A abbreviations
+typeset -Ag abbreviations #連想配列をグローバルで宣言 gつけないとエラー
 abbreviations=(
     "G"   "| grep"
     "L"   "| less"
@@ -105,10 +105,9 @@ magic-abbrev-expand() {
     zle self-insert
 }
 
-function no-magic-abbrev-expand() {
+no-magic-abbrev-expand() {
     LBUFFER+=' '
 }
-
 zle -N magic-abbrev-expand
 zle -N no-magic-abbrev-expand
 bindkey " " magic-abbrev-expand
