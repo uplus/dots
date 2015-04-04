@@ -1,4 +1,6 @@
-source $HOME/.zsh/antigen/antigen.zsh
+exists_source $HOME/.zsh/antigen/antigen.zsh
 
-antigen-bundle git
-antigen-bundle zsh-users/zsh-syntax-highlighting
+if [[ $? == 1 ]]; then
+  antigen-bundle git
+  antigen-bundle zsh-users/zsh-syntax-highlighting
+fi
