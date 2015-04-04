@@ -1,5 +1,5 @@
 #!/bin/zsh
-source $HOME/code/ruby/memo/memo_completion.zsh
+exists_source $HOME/code/ruby/memo/memo_completion.zsh
 
 #cdの補完関数を利用して保管する
 _ch(){
