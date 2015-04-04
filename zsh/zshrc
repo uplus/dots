@@ -62,10 +62,10 @@ HISTFILE=~/.zsh/zsh_history
 bindkey -e
 
 # Use modern completion system
-exists_source $HOME/.zsh_completion           #requrie before autoload
-fpath=($HOME/.zsh/zsh-completions/src $HOME/.zsh/completions $fpath)
 autoload -Uz compinit
 compinit
+exists_source $HOME/.zsh_completion           #requrie just after compinit?
+fpath=($HOME/.zsh/zsh-completions/src $HOME/.zsh/completions $fpath)
 
 setopt auto_cd
 function chpwd(){ ls }
