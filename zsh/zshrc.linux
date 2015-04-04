@@ -1,3 +1,4 @@
+eval "$(dircolors -b)"
 alias ls='ls  --color'
 alias grep='\egrep --color'
 alias egrep='\egrep --color'
