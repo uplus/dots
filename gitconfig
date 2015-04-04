@@ -1,0 +1,18 @@
+[user]
+	email = uplus.e10@gmail.com
+	name = YuutoIto
+[core]
+	editor = vim
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[push]
+	default = current
+[merge]
+	tool = vimdiff
+[alias]
+  s = status
+  d = diff
+  comv = commit -v
+  today = log --oneline --since='16 hour ago'
