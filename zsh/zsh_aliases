@@ -3,6 +3,7 @@ alias l='ls -F'
 alias la='ls -A'
 alias ll='ls -l'
 alias lla='ls -lA'
+alias here='ls -ld $PWD'
 
 alias ccd="cd .."
 alias cdd="cd -"
