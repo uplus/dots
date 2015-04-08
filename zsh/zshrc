@@ -68,7 +68,6 @@ exists_source $HOME/.zsh_completion           #requrie just after compinit?
 fpath=($HOME/.zsh/zsh-completions/src $HOME/.zsh/completions $fpath)
 
 setopt auto_cd
-function chpwd(){ ls }
 setopt no_beep no_list_beep
 setopt auto_list                  #補完リスト有効
 setopt list_packed                #補完リストをなるべく少ない量に
@@ -113,6 +112,12 @@ exists_source $HOME/.zsh_antigen
 exists_source $HOME/.zsh_aliases
 
 ## Functions
+export BEFORE_DIR=$PWD
+function precmd(){
+  [[ -n $BEFORE_DIR ]] && [[ $BEFORE_DIR != $PWD ]] && ls
+  BEFORE_DIR=$PWD
+}
+
 function gor(){
   while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
     cd ..
