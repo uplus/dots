@@ -9,7 +9,7 @@ export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector"
 
 # Order is important
 export PATH="$HOME/.rbenv/bin:$PATH"
-which rbenv > /dev/null 2>&1
+which rbenv > /dev/null
 [[ $? -eq 0 ]] && eval "$(rbenv init -)"
 export PATH="./:./bundle_bin:$HOME/bin:$PATH"
 
