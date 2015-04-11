@@ -29,7 +29,7 @@ alias vimgit='git -C ~/.vim'
 alias gs='git s'
 alias gst='git st'
 alias gd='git d'
-alias gl='git log --oneline'
+alias gl='git l'
 alias glo='git log'
 alias gsh='git sh'
 

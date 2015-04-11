@@ -13,5 +13,6 @@
   s   = status --short --branch
   st  = status
   d   = diff --color-words
+  l   = log --oneline -10
   comv = commit -v
   today = log --oneline --since='16 hour ago'
