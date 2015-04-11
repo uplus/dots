@@ -27,8 +27,11 @@ alias gv='gvim'
 alias dotgit='git -C ~/.dotfiles'
 alias vimgit='git -C ~/.vim'
 alias gs='git status --short'
+alias gst='git status'
 alias gd='git diff'
 alias gl='git log --oneline'
+alias glo='git log'
+alias gsh='git shell'
 
 # utilities
 alias envlang="env | egrep --color=never 'LANG|LC'"
@@ -39,6 +42,10 @@ alias dirsize='du -csh'
 alias resh='exec $SHELL -l'
 alias history-all="history -E 1"
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
+function binfo(){
+  $1 --version
+  where $1
+}
 
 # Clang 
 alias clang="clang $C_COMP_OPT"
