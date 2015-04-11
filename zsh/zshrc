@@ -47,7 +47,7 @@ function rprompt-git-current-branch {
 
   echo "[$color$name$action%f%b]"
 }
-RPROMPT='`rprompt-git-current-branch`'
+RPROMPT='`rprompt-git-current-branch`[$?]'
 
 # Historyh
 setopt sharehistory hist_ignore_space hist_reduce_blanks
