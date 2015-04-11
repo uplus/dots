@@ -14,5 +14,6 @@
   st  = status
   d   = diff --color-words
   l   = log --oneline -10
+  lo  = log --stat --decorate --find-renames
   comv = commit -v
   today = log --oneline --since='16 hour ago'
