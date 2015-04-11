@@ -81,9 +81,9 @@ alias -s rb='ruby'
 alias -s php='php -f'
 alias -s {gif,jpg,jpeg,png,bmp}='display'
 alias -s {html,htm}='opera-beta'
-function runcpp(){ clang++ $1 -o ${1%.*} && ./${1%.*} }
+function runcpp { clang++ $1 -o ${1%.*} && ./${1%.*} }
 alias -s cpp='runcpp'
-function runc(){ clang $1 -o ${1%.*} && ./${1%.*} }
+function runc { clang $1 -o ${1%.*} && ./${1%.*} }
 alias -s c='runc'
 
 alias -g G='| grep'

@@ -119,12 +119,12 @@ exists_source $HOME/.zsh_aliases
 
 ## Functions
 export BEFORE_DIR=$PWD
-function precmd(){
+function precmd {
   [[ -n $BEFORE_DIR ]] && [[ $BEFORE_DIR != $PWD ]] && ls
   BEFORE_DIR=$PWD
 }
 
-function gor(){
+function gor {
   while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
     cd ..
   done
@@ -134,7 +134,7 @@ function gor(){
 #マッチした部分のon/off
 #特定ディレクトリの無視、検索条件指定
 #errorの表示 on/off
-function findstr(){
+function findstr {
   if [ $# -lt 2 ];then
     echo "missing argument" 1>&2
     return 1
@@ -157,12 +157,12 @@ function findstr(){
   find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
 }
 
-function mcdir(){
+function mcdir {
   mkdir $@
   cd "${@:$#}" 
 }
 
-function ch(){
+function ch {
 	if [ $# -eq 0 ]; then
 		cd $HOME
 	else
@@ -170,7 +170,7 @@ function ch(){
 	fi
 }
 
-function cr(){
+function cr {
 	if [ $# -eq 0 ]; then
 		cd /
 	else
@@ -178,7 +178,7 @@ function cr(){
 	fi
 }
 
-function rbenv-upgrade(){
+function rbenv-upgrade {
   local rbenv_dir i
   local -a plugin_dirs
 
@@ -206,7 +206,7 @@ function rbenv-upgrade(){
   popd > /dev/null
 }
 
-function ermdir(){
+function ermdir {
   if [[ $# -ne 1 ]]; then
     echo "operand not found" 2> /dev/null
     return 1
@@ -215,7 +215,7 @@ function ermdir(){
   rmdir -p $1/**/ 2> /dev/null
 }
 
-function binfo(){
+function binfo {
   $1 --version
   where $1
 }
