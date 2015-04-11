@@ -47,11 +47,16 @@ function rprompt-git-current-branch {
 
   echo "[$color$name$action%f%b]"
 }
-RPROMPT='`rprompt-git-current-branch`[$?]'
+
+function rprompt-return-value {
+  echo "%(?,,<%F{red}%?%f>)"
+}
+
+RPROMPT='$(rprompt-git-current-branch)$(rprompt-return-value)'
 
 # Historyh
 setopt sharehistory hist_ignore_space
-setopt nohist_reduce_blanks
+setopt no_hist_reduce_blanks
 setopt no_hist_ignore_all_dups  #過去の履歴と重複しても削除しない
 setopt extended_history         #履歴に時刻を刻む
 HISTSIZE=3000
