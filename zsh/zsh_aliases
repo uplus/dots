@@ -31,7 +31,7 @@ alias gst='git status'
 alias gd='git diff'
 alias gl='git log --oneline'
 alias glo='git log'
-alias gsh='git shell'
+alias gsh='git sh'
 
 # utilities
 alias envlang="env | egrep --color=never 'LANG|LC'"
