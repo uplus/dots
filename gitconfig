@@ -4,15 +4,14 @@
 [core]
 	editor = vim
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+	ui = true
 [push]
 	default = current
 [merge]
 	tool = vimdiff
 [alias]
-  s = status
-  d = diff
+  s   = status --short --branch
+  st  = status
+  d   = diff --color-words
   comv = commit -v
   today = log --oneline --since='16 hour ago'
