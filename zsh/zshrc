@@ -214,3 +214,26 @@ function ermdir(){
 
   rmdir -p $1/**/ 2> /dev/null
 }
+
+function binfo(){
+  $1 --version
+  where $1
+}
+
+function colors {
+  echo
+  for c in {000..255}; do
+    echo -n "\e[38;5;${c}m $c"
+    [ $(($c%16)) -eq 15 ] && echo
+  done
+  echo
+}
+
+function colorsv {
+  echo
+  for c in {016..255}; do
+    echo -n "\e[38;5;${c}m $c"
+    [ $(($((c-16))%6)) -eq 5 ] && echo
+  done
+  echo
+}
