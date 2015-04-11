@@ -46,6 +46,8 @@ function binfo(){
   $1 --version
   where $1
 }
+alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
+
 
 # Clang 
 alias clang="clang $C_COMP_OPT"
