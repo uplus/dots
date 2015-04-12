@@ -2,7 +2,9 @@
 alias l='ls -F'
 alias la='ls -A'
 alias ll='ls -l'
+alias li='ls -i'
 alias lla='ls -lA'
+alias lli='ls -li'
 alias here='ls -ld $PWD'
 
 alias ccd="cd .."
