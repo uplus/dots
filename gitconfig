@@ -17,3 +17,4 @@
   lo  = log --stat --decorate --find-renames
   comv = commit -v
   today = log --oneline --since='16 hour ago'
+  fix   = commit --amend
