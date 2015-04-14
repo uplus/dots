@@ -15,6 +15,8 @@
   d   = diff --color-words
   l   = log --oneline -10
   lo  = log --stat --decorate --find-renames
+  co  = commit
   comv = commit -v
+  ch  = checkout
   today = log --oneline --since='16 hour ago'
   fix   = commit --amend
