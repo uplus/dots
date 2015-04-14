@@ -21,7 +21,7 @@ function exists_source(){
   fi
 }
 
-if [ -n "$WINDOWID" -a -f $HOME/.xmodmap ]; then
+if [ -n "${WINDOWID-}" -a -f $HOME/.xmodmap ]; then
 	xmodmap ~/.xmodmap
 fi
 
