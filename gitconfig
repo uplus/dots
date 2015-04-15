@@ -20,3 +20,4 @@
   ch  = checkout
   today = log --oneline --since='16 hour ago'
   fix   = commit --amend
+  eda   = branch -a
