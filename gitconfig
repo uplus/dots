@@ -21,3 +21,5 @@
   today = log --oneline --since='16 hour ago'
   fix   = commit --amend
   eda   = branch -a
+  aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'
+
