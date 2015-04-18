@@ -12,7 +12,7 @@ alias cdd="cd -"
 alias pu='pushd'
 alias po='popd'
 
-# Find 
+# Find
 alias findr="find / -name"
 alias findh="find ~/ -name"
 alias findc="find . -name"
@@ -25,7 +25,7 @@ alias vim.simp='\vim -u NONE -N'
 alias vi.sjis='vi -c ":e ++enc=cp932"'
 alias gv='gvim'
 
-# Git 
+# Git
 alias dotgit='git -C ~/.dotfiles'
 alias vimgit='git -C ~/.vim'
 alias gs='git s'
@@ -38,7 +38,6 @@ alias gsh='git sh'
 
 # utilities
 alias envlang="env | egrep --color=never 'LANG|LC'"
-alias sln='ln -s'
 alias apt-search='\apt-cache search --names-only'
 alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
 alias dirsize='du -csh'
@@ -49,11 +48,11 @@ alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:spac
 
 
 
-# Clang 
+# Clang
 alias clang="clang $C_COMP_OPT"
 alias clang++="clang++ $CPP_COMP_OPT"
 
-alias gcc="\gcc $GCC_OPT" 
+alias gcc="\gcc $GCC_OPT"
 alias gccg="\gcc -g $GCC_OPT"
 alias gcc32="\gcc -m32 $GCC_OPT"
 alias gccg32="\gcc -g -m32 $GCC_OPT"

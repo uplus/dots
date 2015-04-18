@@ -139,7 +139,7 @@ function findstr {
     echo "missing argument" 1>&2
     return 1
   fi
-  
+
   local location=$1
   shift
 
@@ -149,17 +149,17 @@ function findstr {
   done
 
   local str=$1
-  
+
   echo "location: $location"
   echo "opt: $opt"
   echo "str: $str"
-  
+
   find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
 }
 
 function mcdir {
   mkdir $@
-  cd "${@:$#}" 
+  cd "${@:$#}"
 }
 
 function ch {
@@ -195,7 +195,7 @@ function rbenv-upgrade {
   echo "\nenter $rbenv_dir/plugins"
   cd plugins > /dev/null
   plugin_dirs=(`find ./ -name .git`)
-  
+
   for i in $plugin_dirs; do
     i=`dirname $i`
     cmd="git -C $i pull"
@@ -221,6 +221,7 @@ function binfo {
 }
 
 function colors {
+  local c
   echo
   for c in {000..255}; do
     echo -n "\e[38;5;${c}m $c"
@@ -230,6 +231,7 @@ function colors {
 }
 
 function colorsv {
+  local c
   echo
   for c in {016..255}; do
     echo -n "\e[38;5;${c}m $c"
