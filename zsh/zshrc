@@ -237,3 +237,5 @@ function colorsv {
   done
   echo
 }
+
+function dcho { eval "echo \$$1" }
