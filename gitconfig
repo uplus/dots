@@ -12,7 +12,8 @@
 [alias]
   s   = status --short --branch
   st  = status
-  d   = diff --color-words
+  d   = diff
+  dw  = diff --color-words
   l   = log --oneline -10
   lo  = log --stat --decorate --find-renames
   co  = commit
