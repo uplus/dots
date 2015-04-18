@@ -14,45 +14,40 @@ esac
 # Prompt
 autoload -Uz promptinit
 promptinit
-setopt prompt_subst
-export PROMPT="%B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
+setopt prompt_subst   #プロンプト定義で置き換えを使用する
 
 #git リポジトリの状態を表示する
-autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
-function rprompt-git-current-branch {
-  local name st color gitdir action
+function rprompt-git {
+  local name st color
   [[ "$PWD" =~ '/\.git(/.*)?$' ]] && return
 
-  name=`git rev-parse --abbrev-ref=loose HEAD 2> /dev/null`
+  name=`git symbolic-ref --short HEAD 2> /dev/null`
   [[ -z $name ]] && return
 
-  gitdir=`git rev-parse --git-dir 2> /dev/null`
-  action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
-
-	if [[ -e "$gitdir/rprompt-nostatus" ]]; then
-		echo "$name$action "
-		return
-	fi
-
-  st=`git status 2> /dev/null`
-  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-    color=%F{green}
-  elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+  st=`git status --short 2> /dev/null`
+  if [[ -n `echo "$st" | grep "^??"` ]]; then
     color=%F{yellow}
-  elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-    color=%B%F{red}
-  else
+  elif [[ -n `echo "$st" | grep '^.M'` ]]; then
     color=%F{red}
+  else
+    color=%F{green}
   fi
 
-  echo "[$color$name$action%f%b]"
+  echo "[$color$name%f%b]"
 }
 
-function rprompt-return-value {
-  echo "%(?,,<%F{red}%?%f>)"
+function prompt-return-value {
+  echo "%(?,,%F{red} %?%f)"
 }
 
-RPROMPT='$(rprompt-git-current-branch)$(rprompt-return-value)'
+function prompt-ssh {
+  if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]]; then
+    echo "%F{magenta}($HOST)%f"
+  fi
+}
+
+export PROMPT="%B%F{cyan}%(4~|...|)%3~%b$(prompt-return-value)%F{white} %# %f%k"
+export RPROMPT='$(rprompt-git)$(prompt-ssh)'
 
 # Historyh
 setopt sharehistory hist_ignore_space
@@ -241,3 +236,15 @@ function colorsv {
 }
 
 function dcho { eval "echo \$$1" }
+
+function sln {
+  local orig sour dir file
+  if [[ $# < 2 ]]; then
+    echo "usage: sln source target"
+    return 1
+  else
+    sour=`realpath -s $1`
+    targ=`realpath -s $2`
+    ln -svi $sour $targ
+  fi
+}
