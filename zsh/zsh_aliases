@@ -43,7 +43,7 @@ alias apt-search='\apt-cache search --names-only'
 alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
 alias dirsize='du -csh'
 alias resh='exec $SHELL -l'
-alias history-all="history -E 1"
+alias histories="history -E 1"
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
 
