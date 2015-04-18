@@ -1,11 +1,12 @@
 #!/usr/bin/zsh
 #login interactive scriptの全てから参照される
+typeset -U path PATH  #unique属性を付加
 export EDITOR=vim
 export WORDCHARS='*?-[]~\!#%^(){}<>|`@#%^*()+:?'
 export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value'
 export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
 export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
-export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector" 
+export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector"
 
 # Order is important
 export PATH="$HOME/.rbenv/bin:$PATH"
