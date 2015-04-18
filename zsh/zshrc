@@ -41,7 +41,7 @@ function prompt-return-value {
 }
 
 function prompt-ssh {
-  if [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]]; then
+  if [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]; then
     echo "%F{magenta}($HOST)%f"
   fi
 }
