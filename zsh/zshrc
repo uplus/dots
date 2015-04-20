@@ -54,8 +54,8 @@ setopt sharehistory hist_ignore_space
 setopt no_hist_reduce_blanks
 setopt no_hist_ignore_all_dups  #過去の履歴と重複しても削除しない
 setopt extended_history         #履歴に時刻を刻む
-HISTSIZE=3000
-SAVEHIST=3000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zsh/zsh_history
 
 # Use emacs keybindings even if our EDITOR is set to vi
