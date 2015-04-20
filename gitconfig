@@ -18,10 +18,11 @@
   lo  = log --stat --decorate --find-renames
   ch  = checkout
   co  = commit
-  coam = commit -am
-  comv = commit -v
+  coam  = commit -am
+  coa   = commit -a
+  cov   = commit -v
+  coav  = commit -av
   today = log --oneline --since='16 hour ago'
   fix   = commit --amend
   eda   = branch -a
   aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'
-
