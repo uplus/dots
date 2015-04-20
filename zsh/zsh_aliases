@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 alias l='ls -F'
 alias la='ls -A'
 alias ll='ls -l'
@@ -7,7 +7,7 @@ alias lla='ls -lA'
 alias lli='ls -li'
 alias here='ls -ld $PWD'
 
-alias ccd="cd .."
+function ccd { cd ../${1:-} }
 alias cdd="cd -"
 alias pu='pushd'
 alias po='popd'
@@ -21,7 +21,7 @@ alias findc="find . -name"
 alias vi='vim'
 alias vizsh="vim ~/.zshrc"
 alias vialias="vim ~/.zsh_aliases"
-alias vim.simp='\vim -u NONE -N'
+alias vi.simp='\vim -u NONE -N'
 alias vi.sjis='vi -c ":e ++enc=cp932"'
 alias gv='gvim'
 
@@ -45,8 +45,6 @@ alias resh='exec $SHELL -l'
 alias histories="history -E 1"
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
-
-
 
 # Clang
 alias clang="clang $C_COMP_OPT"
