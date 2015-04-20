@@ -249,6 +249,6 @@ function sln {
   fi
 }
 
-function binln {
-  sln $1 $HOME/bin/${1%.*}
-}
+function binln { sln $1 $HOME/bin/${1%.*} }
+
+function wcjp { grep -v "#" $1 | wc -m }
