@@ -74,7 +74,7 @@ setopt auto_list                  #補完リスト有効
 setopt list_packed                #補完リストをなるべく少ない量に
 setopt pushd_to_home              #pushdを引数無しで実行した時ホームに移動する
 setopt interactive_comments       #コマンドラインでもコメントを使えるようにする
-setopt transient_rprompt          #コマンド実行時にRPROMPTを消す
+unsetopt transient_rprompt        #コマンド実行時にRPROMPTを
 setopt auto_resume                #サスペンド中のコマンドと同じものを実行したらリジュームする
 setopt extended_glob              #拡張グロッビング ~ で否定が使える
 setopt always_last_prompt         #補完で行を移動しない
@@ -83,7 +83,7 @@ setopt brace_ccl
 setopt zle
 setopt no_correct no_correct_all  #コマンド実行時のスペルチェック無効
 setopt no_flow_control            # C-s, C-qを無効にする。
-setopt no_clobber                 # リダイレクトで上書きする事を許可しない。
+setopt clobber                    # リダイレクトで上書きする事を許可
 setopt no_tify                    #バックグラウンドジョブが終了したら知らせる
 
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -104,10 +104,12 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
-#コマンドラインをEDITORで編集して実行できる
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
+
+# keymap
+bindkey "^[[Z" reverse-menu-complete
 
 exists_source $HOME/.zsh_antigen
 exists_source $HOME/.zsh_aliases
