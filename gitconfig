@@ -16,9 +16,10 @@
   dw  = diff --color-words
   l   = log --oneline -10
   lo  = log --stat --decorate --find-renames
-  co  = commit
-  comv = commit -v
   ch  = checkout
+  co  = commit
+  coam = commit -am
+  comv = commit -v
   today = log --oneline --since='16 hour ago'
   fix   = commit --amend
   eda   = branch -a
