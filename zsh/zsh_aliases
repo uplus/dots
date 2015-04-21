@@ -24,6 +24,7 @@ alias vialias="vim ~/.zsh_aliases"
 alias vi.simp='\vim -u NONE -N'
 alias vi.sjis='vi -c ":e ++enc=cp932"'
 alias gv='gvim'
+alias nv='nvim'
 
 # Git
 alias dotgit='git -C ~/.dotfiles'
