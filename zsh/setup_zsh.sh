@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 local current
 current=$(cd `dirname $0` && pwd)
 
@@ -9,3 +9,5 @@ for name in `\ls`; do
 done
 
 [[ ! -d $HOME/.zsh ]] && mkdir $HOME/.zsh
+
+git clone https://github.com/zsh-users/antigen.git $HOME/.zsh/antigen
