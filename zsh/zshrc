@@ -46,8 +46,8 @@ function prompt-ssh {
   fi
 }
 
-export PROMPT="%B%F{cyan}%(4~|...|)%3~%b$(prompt-return-value)%F{white} %# %f%k"
-export RPROMPT='$(rprompt-git)$(prompt-ssh)'
+export PROMPT="%B%F{cyan}%(4~|...|)%3~%b%F{white} %# %f%k"
+export RPROMPT='$(prompt-return-value) $(rprompt-git)$(prompt-ssh)'
 
 # Historyh
 setopt sharehistory hist_ignore_space
