@@ -8,7 +8,7 @@ alias lli='ls -li'
 alias here='ls -ld $PWD'
 
 function ccd { cd ../${1:-} }
-alias cdd="cd -"
+alias cdb="cd -"
 alias pu='pushd'
 alias po='popd'
 
@@ -81,11 +81,12 @@ alias -s rb='ruby'
 alias -s php='php -f'
 alias -s {gif,jpg,jpeg,png,bmp}='display'
 alias -s {html,htm}='opera-beta'
-function runcpp { clang++ $1 -o ${1%.*} && ./${1%.*} }
-alias -s cpp='runcpp'
-function runc { clang $1 -o ${1%.*} && ./${1%.*} }
 alias -s c='runc'
+alias -s cpp='runcpp'
+function runcpp { clang++ $1 -o ${1%.*} && ./${1%.*} }
+function runc { clang $1 -o ${1%.*} && ./${1%.*} }
 
+# Global
 alias -g G='2>&1 | grep'
 alias -g L='2>&1 | less'
 alias -g H='2>&1 | head'
