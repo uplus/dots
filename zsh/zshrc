@@ -62,11 +62,13 @@ HISTFILE=~/.zsh/zsh_history
 # -v にするとすごい笑える
 bindkey -e
 
+exists_source $HOME/.zsh_antigen      #after of autoload and before compinit
 # Use modern completion system
-autoload -Uz compinit
+autoload -U compinit
+
 compinit
-exists_source $HOME/.zsh_completion           #requrie just after compinit?
-fpath=($HOME/.zsh/zsh-completions/src $HOME/.zsh/completions $fpath)
+exists_source $HOME/.zsh_completion   #requrie after compinit
+
 
 setopt auto_cd
 setopt no_beep no_list_beep
@@ -111,7 +113,6 @@ bindkey '^xe' edit-command-line
 # keymap
 bindkey "^[[Z" reverse-menu-complete
 
-exists_source $HOME/.zsh_antigen
 exists_source $HOME/.zsh_aliases
 
 ## Functions

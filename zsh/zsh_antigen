@@ -1,7 +1,7 @@
 exists_source $HOME/.zsh/antigen/antigen.zsh
 
 if [[ $? == 0 ]]; then
-  antigen-bundle git
-  antigen-bundle zsh-users/zsh-syntax-highlighting
-  antigen-bundle zsh-users/zsh-completions
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen bundle zsh-users/zsh-completions
+  fpath=($HOME/.antigen/repos/*zsh-completions.git/src $fpath)
 fi
