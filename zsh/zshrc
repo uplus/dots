@@ -254,3 +254,11 @@ function sln {
 function binln { sln $1 $HOME/bin/${1%.*} }
 
 function wcjp { grep -v "#" $1 | wc -m }
+
+function there_pull {
+  for i in `ls -F | grep '/$'`; do
+    echo -ne "$i\t"
+    git -C $i pull
+  done
+}
+
