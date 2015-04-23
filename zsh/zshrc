@@ -264,5 +264,23 @@ function there_pull {
   done
 }
 
+function viconf {
+  local dir="$HOME/.vim/"
+  case $# in
+    0) vi $dir ;;
+    1)
+      if [[ $1 = "--dir" || $1 = '-D' ]]; then
+        echo $dir
+      elif [[ $1 = '-l'  || $1 = '--list' ]]; then
+        ls $dir
+      elif [ -e $dir/$1 ]; then
+        vi $dir/$1
+      else
+        echo "$1 is not exists" >&2
+      fi
+      ;;
+  esac
+}
+
 # load temproray config
 exists_source $HOME/.zsh_tmp
