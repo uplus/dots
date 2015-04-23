@@ -264,3 +264,5 @@ function there_pull {
   done
 }
 
+# load temproray config
+exists_source $HOME/.zsh_tmp
