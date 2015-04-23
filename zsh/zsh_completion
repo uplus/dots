@@ -15,6 +15,6 @@ _cr(){
 compdef _cr cr
 
 _viconf(){
-  _files -W $HOME/.vim/ &&return 0
+  _files -W `viconf --dir` && return 0
 }
 compdef _viconf viconf
