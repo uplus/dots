@@ -103,6 +103,13 @@ alias -g E='2> /dev/null'
 alias -g Q='> /dev/null 2>&1'
 alias -g B='> /dev/null 2>&1 &'
 
+# Directory aliases
+hash -d vim=$HOME/.vim/
+hash -d zsh=$HOME/.dotfiles/zsh/
+hash -d dotfiles=$HOME/.dotfiles/
+hash -d code=$HOME/code/
+hash -d ruby=$HOME/code/ruby/
+
 # New and other aliases
 alias twme='tw `tw -user:default`'
 alias be='bundle exec'
