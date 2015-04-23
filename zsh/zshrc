@@ -264,3 +264,4 @@ function there_pull {
   done
 }
 
+exists_source $HOME/.zsh_tmp
