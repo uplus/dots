@@ -264,8 +264,5 @@ function there_pull {
   done
 }
 
-<<<<<<< HEAD
 # load temproray config
-=======
->>>>>>> 20c223dc56c7c2abdd19632ae5aca1a5fbcf5ce4
 exists_source $HOME/.zsh_tmp
