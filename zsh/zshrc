@@ -269,7 +269,7 @@ function viconf {
   case $# in
     0) vi $dir ;;
     1)
-      if [[ $1 = "--dir" || $1 = '-D' ]]; then
+      if [[ $1 = "-d" || $1 = '--dir' ]]; then
         echo $dir
       elif [[ $1 = '-l'  || $1 = '--list' ]]; then
         ls $dir
