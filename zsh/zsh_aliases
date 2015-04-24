@@ -109,6 +109,8 @@ hash -d zsh=$HOME/.dotfiles/zsh/
 hash -d dotfiles=$HOME/.dotfiles/
 hash -d code=$HOME/code/
 hash -d ruby=$HOME/code/ruby/
+hash -d rails=$HOME/code/rails/
+hash -d utilities=$HOME/code/utilities/
 
 # New and other aliases
 alias twme='tw `tw -user:default`'
