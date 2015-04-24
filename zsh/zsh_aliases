@@ -27,8 +27,8 @@ alias gv='gvim'
 alias nv='nvim'
 
 # Git
-alias dotgit='git -C ~/.dotfiles'
-alias vimgit='git -C ~/.vim'
+alias dotgit='git -C ~/.dotfiles sh'
+alias vigit='git -C ~/.vim sh'
 alias gs='git s'
 alias gst='git st'
 alias gd='git d'
