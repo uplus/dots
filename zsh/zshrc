@@ -69,6 +69,8 @@ autoload -U compinit
 compinit
 exists_source $HOME/.zsh_completion   #requrie after compinit
 
+DIRSTACKSIZE=100
+setopt auto_pushd
 
 setopt auto_cd
 setopt no_beep no_list_beep
