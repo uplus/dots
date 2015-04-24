@@ -14,7 +14,7 @@ _cr(){
 }
 compdef _cr cr
 
-_viconf(){
-  _files -W `viconf --dir` && return 0
+_vimrc(){
+  _files -W `vimrc --dir` && return 0
 }
-compdef _viconf viconf
+compdef _vimrc vimrc

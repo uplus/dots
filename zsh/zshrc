@@ -266,7 +266,7 @@ function there_pull {
   done
 }
 
-function viconf {
+function vimrc {
   local dir="$HOME/.vim/"
   case $# in
     0) vi $dir ;;
@@ -275,6 +275,8 @@ function viconf {
         echo $dir
       elif [[ $1 = '-l'  || $1 = '--list' ]]; then
         ls $dir
+      elif [[ $1 = '-c' || $1 = '--cd' ]]; then
+        cd $dir
       elif [ -e $dir/$1 ]; then
         vi $dir/$1
       else
