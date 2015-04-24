@@ -266,8 +266,11 @@ function there_pull {
   done
 }
 
-function vimrc {
-  local dir="$HOME/.vim/"
+function generic_rc {
+  set -u
+  : $1
+  local dir="$1"
+  shift
   case $# in
     0) vi $dir ;;
     1)
@@ -284,6 +287,14 @@ function vimrc {
       fi
       ;;
   esac
+}
+
+function vimrc {
+  generic_rc $HOME/.vim/ $@
+}
+
+function zshrc {
+  generic_rc $HOME/.dotfiles/zsh/ $@
 }
 
 # load temproray config

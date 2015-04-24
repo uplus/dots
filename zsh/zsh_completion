@@ -18,3 +18,8 @@ _vimrc(){
   _files -W `vimrc --dir` && return 0
 }
 compdef _vimrc vimrc
+
+_zshrc(){
+  _files -W `zshrc --dir` && return 0
+}
+compdef _zshrc zshrc
