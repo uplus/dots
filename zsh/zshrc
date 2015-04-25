@@ -10,7 +10,6 @@ darwin*)
 	;;
 esac
 
-
 # Prompt
 autoload -Uz promptinit
 promptinit
@@ -82,7 +81,7 @@ unsetopt transient_rprompt        #コマンド実行時にRPROMPTを
 setopt auto_resume                #サスペンド中のコマンドと同じものを実行したらリジュームする
 setopt extended_glob              #拡張グロッビング ~ で否定が使える
 setopt always_last_prompt         #補完で行を移動しない
-setopt dot_glob
+setopt no_dot_glob
 setopt brace_ccl
 setopt zle
 setopt no_correct no_correct_all  #コマンド実行時のスペルチェック無効
