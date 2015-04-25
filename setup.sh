@@ -1,0 +1,133 @@
+#!/bin/bash -u
+
+# 終了した処理名を:区切りで追加
+finished=''
+current=$(cd `dirname $0` && pwd)
+
+# dirs
+function make_dirs {
+  mkdir -vp $HOME/bin/
+  mkdir -vp $HOME/code/
+  mkdir -vp $HOME/code/c/sample
+  mkdir -vp $HOME/code/cpp/sample
+  mkdir -vp $HOME/code/ruby/sample
+  mkdir -vp $HOME/code/shell/sample
+  mkdir -vp $HOME/code/rails/
+  mkdir -vp $HOME/work
+  mkdir -vp $HOME/tmp
+  mkdir -vp $HOME/sources
+  mkdir -vm 700 $HOME/.ssh
+  finished+='dirs:'
+}
+
+# link files
+function link_files {
+  for name in `ls -F $current/ | egrep -v "*/|*\*|README.*"`; do
+    ln -svi $current/$name $HOME/.$name
+  done
+  finished+='link:'
+}
+
+# ubuntu pkg
+function pkg_u {
+  sudo add-apt-repository -y ppa:neovim-ppa/unstable
+  sudo apt-get update
+  sudo apt-get -y upgrade
+  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome
+  finished+='pkg_u:'
+}
+
+# neobundle
+function install_neobundle {
+  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+  finished+='neobundle:'
+}
+
+# myrepos
+function clone_myrepos {
+  my_repo='https://github.com/YuutoIto/'
+  git clone $my_repo/dotfiles.git $HOME/.dotfiles/
+  git clone $my_repo/utilities.git $HOME/code/utilities
+  git clone $my_repo/memo.git $HOME/code/ruby/memo
+  git clone $my_repo/rename.git $HOME/code/ruby/rename
+  git clone $my_repo/vim.git $HOME/.vim/
+  install_neobundle
+  finished+='repo:'
+}
+
+# rbenv
+function install_rbenv {
+  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  finished+='rbenv:'
+}
+
+# install_ruby with rbenv
+function install_ruby {
+  local v19 v20 HEAD
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  v19=`rbenv install --list | egrep "\s1\.9\.." | tail -1`
+  v20=`rbenv install --list | egrep "\s2\.0\.." | tail -1`
+  HEAD=`rbenv install --list | egrep "\s.\..\.." | egrep -v "\s*-dev" | tail -1`
+
+  rbenv install $v19
+  rbenv install $v20
+  rbenv install $HEAD
+  rbenv global $HEAD
+  rbenv rehash
+  gem update
+  gem install rb-readline pry
+  finished+='ruby:'
+}
+
+# psysh
+function install_psysh {
+  [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
+  finished+='psysh:'
+}
+
+# zsh
+function link_zsh {
+  $current/zsh/setup_zsh.sh
+  [[ $SHELL =~ '/zsh' ]] && chsh -s /bin/zsh
+  finished+='zsh:'
+}
+
+# todo
+function todo {
+  if [[ $os = 'u' ]]; then
+    echo "#caps to ctrl"
+    echo "vi /etc/default/keyboard"
+    echo "XKBOPTION='ctrl:nocaps'"
+  fi
+}
+
+#bashの1文字入力は-n
+echo -n "Which OS type Ubuntu? Centos? or OSX (u/c/o/Skip) "
+read -n 1 os
+echo
+
+echo -n "setup zsh?(y/N) "
+read -n 1 setup_zsh
+echo
+
+exit
+return 0
+
+case $os in
+  'u')
+    pkg_u
+    ;;
+  'c')
+    echo "Can you use sudo? (y/N)"
+    read -n 1 key
+    which git wget > /dev/null
+    if [ $? -ne 0 ]; then
+      echo "please run again after install the git and wget" >&2
+      exit 1
+    fi
+    ;;
+  'o') ;;
+  *) ;;
+esac
