@@ -298,4 +298,4 @@ function zshrc {
 }
 
 # load temproray config
-exists_source $HOME/.zsh_tmp
+exists_source $HOME/.zshrc.local
