@@ -45,13 +45,22 @@ function install_neobundle {
 
 # myrepos
 function clone_myrepos {
-  my_repo='https://github.com/YuutoIto/'
+  local ssh my_repo
+  echo -n " have you ssh-key of git?(y/N)"
+  read -n 1 ssh
+  echo
+  if [[ $ssh =~ [yY] ]]; then
+    my_repo='git@github.com:YuutoIto'
+  else
+    my_repo='https://github.com/YuutoIto'
+  fi
+
   git clone $my_repo/dotfiles.git $HOME/.dotfiles/
+  git clone $my_repo/vim.git $HOME/.vim/
+  install_neobundle
   git clone $my_repo/utilities.git $HOME/code/utilities
   git clone $my_repo/memo.git $HOME/code/ruby/memo
   git clone $my_repo/rename.git $HOME/code/ruby/rename
-  git clone $my_repo/vim.git $HOME/.vim/
-  install_neobundle
   finished+='repo:'
 }
 
@@ -103,6 +112,19 @@ function todo {
   fi
 }
 
+function help {
+  grep "^function" $0 | awk '{print $2}'
+  echo
+  echo "os typeを判別したりする予定"
+}
+
+if [ $# -eq 0 ]; then
+  help
+else
+  $1
+  exit 0
+fi
+
 #bashの1文字入力は-n
 echo -n "Which OS type Ubuntu? Centos? or OSX (u/c/o/Skip) "
 read -n 1 os
@@ -112,8 +134,6 @@ echo -n "setup zsh?(y/N) "
 read -n 1 setup_zsh
 echo
 
-exit
-return 0
 
 case $os in
   'u')
