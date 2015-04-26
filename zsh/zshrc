@@ -263,7 +263,11 @@ function sln {
   fi
 }
 
-function binln { sln $1 $HOME/bin/${1%.*} }
+function binln {
+  for name in $@; do
+    sln $1 $HOME/bin/${name%.*}
+  done
+}
 
 function wcjp { grep -v "#" $1 | wc -m }
 
