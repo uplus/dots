@@ -63,8 +63,8 @@ alias irb='irb --simple-prompt'
 alias pry='pry --simple-prompt'
 
 # to safely used.
-alias mv='mv -iv'
-alias cp='cp -iv'
+alias mv='mv -i'
+alias cp='cp -i'
 alias rm='rm -v'
 
 # not require sudo

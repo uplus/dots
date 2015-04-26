@@ -7,13 +7,13 @@ current=$(cd `dirname $0` && pwd)
 # dirs
 function make_dirs {
   mkdir -vp $HOME/bin/
-  mkdir -vp $HOME/code/
+  mkdir -vpm 700 $HOME/code/
   mkdir -vp $HOME/code/c/sample
   mkdir -vp $HOME/code/cpp/sample
   mkdir -vp $HOME/code/ruby/sample
   mkdir -vp $HOME/code/shell/sample
   mkdir -vp $HOME/code/rails/
-  mkdir -vp $HOME/work
+  mkdir -vpm 700 $HOME/work
   mkdir -vp $HOME/tmp
   mkdir -vp $HOME/sources
   mkdir -vm 700 $HOME/.ssh
@@ -34,7 +34,7 @@ function pkg_u {
  sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt-get update
   sudo apt-get -y upgrade
-  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh unar clang sqlite zenmap gimp easystroke gparted sqlitebrowser gufw compizconfig-settings-manager classicmenu-indicator unity-tweak-tool indicator-multiload gkrellm comix vlc gwenview
+  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh unar clang sqlite zenmap gimp easystroke gparted sqlitebrowser gufw compizconfig-settings-manager classicmenu-indicator unity-tweak-tool indicator-multiload gkrellm comix vlc gwenview libclang-dev
 
   #対話的
   sudo apt install -y wireshark mysql-server oracle-java9-installer
