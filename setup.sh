@@ -33,7 +33,7 @@ function pkg_u {
   sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt-get update
   sudo apt-get -y upgrade
-  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome
+  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh
   finished+='pkg_u:'
 }
 
