@@ -12,12 +12,12 @@ alias cdb="cd -"
 alias pu='pushd'
 alias po='popd'
 
-# Find
+# find
 alias findr="find / -name"
 alias findh="find ~/ -name"
 alias findc="find . -name"
 
-# Vim
+# vim
 alias vi='vim'
 alias vizsh="vim ~/.zshrc"
 alias vialias="vim ~/.zsh_aliases"
@@ -26,7 +26,7 @@ alias vi.sjis='vi -c ":e ++enc=cp932"'
 alias gv='gvim'
 alias nv='nvim'
 
-# Git
+# git
 alias gs='git s'
 alias gst='git st'
 alias gd='git d'
@@ -47,7 +47,7 @@ alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:spac
 alias vimopt='vim --version | \egrep "^\+|^-"'
 alias todo='memo -e do'
 
-# Clang
+# clang
 alias clang="clang $C_COMP_OPT"
 alias clang++="clang++ $CPP_COMP_OPT"
 
@@ -76,7 +76,7 @@ alias apt='sudo apt'
 alias mount='sudo mount'
 alias visudo='sudo visudo'
 
-# Suffix
+# suffix
 alias -s py='python'
 alias -s rb='ruby'
 alias -s php='php -f'
@@ -87,7 +87,7 @@ alias -s cpp='runcpp'
 function runcpp { clang++ $1 -o ${1%.*} && ./${1%.*} }
 function runc { clang $1 -o ${1%.*} && ./${1%.*} }
 
-# Global
+# global
 alias -g G='2>&1 | grep'
 alias -g L='2>&1 | less'
 alias -g H='2>&1 | head'
@@ -103,7 +103,7 @@ alias -g E='2> /dev/null'
 alias -g Q='> /dev/null 2>&1'
 alias -g B='> /dev/null 2>&1 &'
 
-# Directory aliases
+# directory aliases
 hash -d vim=$HOME/.vim/
 hash -d zsh=$HOME/.dotfiles/zsh/
 hash -d dotfiles=$HOME/.dotfiles/
@@ -112,6 +112,6 @@ hash -d ruby=$HOME/code/ruby/
 hash -d rails=$HOME/code/rails/
 hash -d utilities=$HOME/code/utilities/
 
-# New and other aliases
+# new and other aliases
 alias twme='tw `tw -user:default`'
 alias be='bundle exec'
