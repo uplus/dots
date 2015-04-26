@@ -33,12 +33,14 @@ function rprompt-git {
   [[ -n $stash ]] && stash=" $stash"
 
   st=`echo $st | sed -e 1d`
-  if [[ -n `echo "$st" | grep "^??"` ]]; then
+  if [[ -z $st ]]; then
+    color=%F{green}
+  elif [[ -n `echo "$st" | grep "^\?\?"` ]]; then
     color=%F{yellow}
   elif [[ -n `echo "$st" | grep '^.M'` ]]; then
     color=%F{red}
   else
-    color=%F{green}
+    color=%F{red}
   fi
 
   echo "[$color$name%f%b%F{green}$ahead%f%F{red}$behind%f%F{yellow}$stash%f]"
