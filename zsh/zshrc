@@ -70,12 +70,12 @@ HISTFILE=~/.zsh/zsh_history
 # -v にするとすごい笑える
 bindkey -e
 
-exists_source $HOME/.zsh_antigen      #after of autoload and before compinit
+exists_source $HOME/.zsh.antigen      #after of autoload and before compinit
 # Use modern completion system
 autoload -U compinit
 
 compinit
-exists_source $HOME/.zsh_completion   #requrie after compinit
+exists_source $HOME/.zsh.completion   #requrie after compinit
 
 DIRSTACKSIZE=100
 setopt auto_pushd
@@ -124,7 +124,7 @@ bindkey '^xe' edit-command-line
 # keymap
 bindkey "^[[Z" reverse-menu-complete
 
-exists_source $HOME/.zsh_aliases
+exists_source $HOME/.zsh.aliases
 
 ## Functions
 export BEFORE_DIR=$PWD
