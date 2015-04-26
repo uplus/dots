@@ -17,13 +17,13 @@ setopt prompt_subst   #プロンプト定義で置き換えを使用する
 
 #git リポジトリの状態を表示する
 function rprompt-git {
-  local name st color
+  local name st color brace ahead behind stash
   [[ "$PWD" =~ '/\.git(/.*)?$' ]] && return
 
   name=`git symbolic-ref --short HEAD 2> /dev/null`
   [[ -z $name ]] && return
 
-  st=`git status --short 2> /dev/null`
+  st=`git status --short --branch`
   if [[ -n `echo "$st" | grep "^??"` ]]; then
     color=%F{yellow}
   elif [[ -n `echo "$st" | grep '^.M'` ]]; then
@@ -32,7 +32,15 @@ function rprompt-git {
     color=%F{green}
   fi
 
-  echo "[$color$name%f%b]"
+  brace=`echo $st head -1 | grep -oe "\[.*]$"`
+  ahead=`echo $st | \grep -oe "ahead [0-9]*" | \grep -oe "[0-9]*"`
+  behind=`echo $st | \grep -oe "behind [0-9]*" | \grep -oe "[0-9]*"`
+  stash=`git stash list | wc -l | grep -v "^0$"`
+
+  [[ -n $ahead ]] && ahead=" $ahead"
+  [[ -n $behind ]] && behind=" $behind"
+  [[ -n $stash ]] && stash=" $stash"
+  echo "[$color$name%f%b%F{green}$ahead%f%F{red}$behind%f%F{yellow}$stash%f]"
 }
 
 function prompt-return-value {
