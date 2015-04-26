@@ -30,10 +30,15 @@ function link_files {
 
 # ubuntu pkg
 function pkg_u {
-  sudo add-apt-repository -y ppa:neovim-ppa/unstable
+ sudo add-apt-repository -y ppa:webupd8team/java
+ sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt-get update
   sudo apt-get -y upgrade
-  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh
+  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh unar clang sqlite zenmap gimp easystroke gparted sqlitebrowser gufw compizconfig-settings-manager classicmenu-indicator unity-tweak-tool indicator-multiload gkrellm comix vlc gwenview
+
+  #対話的
+  sudo apt install -y wireshark mysql-server oracle-java9-installer
+
   finished+='pkg_u:'
 }
 
