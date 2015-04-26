@@ -310,5 +310,8 @@ function zshrc {
   generic_rc $HOME/.dotfiles/zsh/ $@
 }
 
+function dotgit { git -C ~/.dotfiles/ ${1:-sh} }
+function vimgit { git -C ~/.vim/ ${1:-sh} }
+
 # load temproray config
 exists_source $HOME/.zshrc.local
