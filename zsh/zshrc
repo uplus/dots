@@ -24,6 +24,15 @@ function rprompt-git {
   [[ -z $name ]] && return
 
   st=`git status --short --branch`
+  brace=`echo $st head -1 | grep -oe "\[.*]$"`
+  ahead=`echo $st | \grep -oe "ahead [0-9]*" | \grep -oe "[0-9]*"`
+  behind=`echo $st | \grep -oe "behind [0-9]*" | \grep -oe "[0-9]*"`
+  stash=`git stash list | wc -l | grep -v "^0$"`
+  [[ -n $ahead ]] && ahead=" $ahead"
+  [[ -n $behind ]] && behind=" $behind"
+  [[ -n $stash ]] && stash=" $stash"
+
+  st=`echo $st | sed -e 1d`
   if [[ -n `echo "$st" | grep "^??"` ]]; then
     color=%F{yellow}
   elif [[ -n `echo "$st" | grep '^.M'` ]]; then
@@ -32,14 +41,6 @@ function rprompt-git {
     color=%F{green}
   fi
 
-  brace=`echo $st head -1 | grep -oe "\[.*]$"`
-  ahead=`echo $st | \grep -oe "ahead [0-9]*" | \grep -oe "[0-9]*"`
-  behind=`echo $st | \grep -oe "behind [0-9]*" | \grep -oe "[0-9]*"`
-  stash=`git stash list | wc -l | grep -v "^0$"`
-
-  [[ -n $ahead ]] && ahead=" $ahead"
-  [[ -n $behind ]] && behind=" $behind"
-  [[ -n $stash ]] && stash=" $stash"
   echo "[$color$name%f%b%F{green}$ahead%f%F{red}$behind%f%F{yellow}$stash%f]"
 }
 
