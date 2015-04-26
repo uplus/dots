@@ -3,11 +3,11 @@ alias l='ls -F'
 alias la='ls -A'
 alias ll='ls -l'
 alias li='ls -i'
+alias lld='ls -ld'
 alias lla='ls -lA'
 alias lli='ls -li'
 alias here='ls -ld $PWD'
 
-function ccd { cd ../${1:-} }
 alias cdb="cd -"
 alias pu='pushd'
 alias po='popd'

@@ -313,5 +313,7 @@ function zshrc {
 function dotgit { git -C ~/.dotfiles ${1:-sh} }
 function vimgit { git -C ~/.vim ${1:-sh} }
 
+function ccd { cd ../${1:-} }
+
 # load temproray config
 exists_source $HOME/.zshrc.local
