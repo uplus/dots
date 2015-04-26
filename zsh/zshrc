@@ -272,18 +272,19 @@ function generic_rc {
   shift
   case $# in
     0) vi $dir ;;
-    1)
-      if [[ $1 = "-d" || $1 = '--dir' ]]; then
-        echo $dir
-      elif [[ $1 = '-l'  || $1 = '--list' ]]; then
-        ls $dir
-      elif [[ $1 = '-c' || $1 = '--cd' ]]; then
-        cd $dir
-      elif [ -e $dir/$1 ]; then
-        vi $dir/$1
-      else
-        echo "$1 is not exists" >&2
-      fi
+    *)
+      case $1 in
+        '-d' | '--dir' )  echo $dir ;;
+        '-l' | '--list' ) ls $dir ;;
+        '-c' | '--cd' )   cd $dir ;;
+        '-g' | '--git' )  git -C $dir ${2:=sh} ;;
+        * )
+          if [ -e $dir/$1 ]; then
+            vi $dir/$1
+          else
+            echo "$1 is not exists" >&2
+          fi
+      esac
       ;;
   esac
 }
