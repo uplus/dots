@@ -1,6 +1,2 @@
 eval "$(gdircolors -b)"
-alias ls='ls  -G'
-alias grep='grep -G'
-alias egrep='egrep -G'
-alias fgrep='\fgrep --color'
 export CPP_COMP_OPT="`echo $CPP_COMP_OPT | sed s/c++1z/c++14/`"

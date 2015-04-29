@@ -1,4 +1,9 @@
 #!/bin/zsh
+alias ls='ls  --color=auto'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
 alias l='ls -F'
 alias la='ls -A'
 alias ll='ls -l'
