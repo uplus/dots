@@ -27,7 +27,7 @@ function rprompt-git {
   brace=`echo $st head -1 | grep -oe "\[.*]$"`
   ahead=`echo $st | grep -oe "ahead [0-9]*" | awk '{print $2}'`
   behind=`echo $st | grep -oe "behind [0-9]*" | awk '{print $2}'`
-  stash=`git stash list | wc -l | grep -v "\s0$"`
+  stash=`git stash list | wc -l | grep -v "^\s*0$"`
   [[ -n $ahead ]] && ahead=" $ahead"
   [[ -n $behind ]] && behind=" $behind"
   [[ -n $stash ]] && stash=" $stash"
