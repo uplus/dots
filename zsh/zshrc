@@ -10,6 +10,8 @@ darwin*)
 	;;
 esac
 
+umask 077
+
 # Prompt
 autoload -Uz promptinit
 promptinit
@@ -187,14 +189,6 @@ function ch {
 	fi
 }
 
-function cr {
-	if [ $# -eq 0 ]; then
-		cd /
-	else
-		cd /$1
-	fi
-}
-
 function rbenv-upgrade {
   local rbenv_dir i
   local -a plugin_dirs
@@ -320,8 +314,6 @@ function zshrc {
 
 function dotgit { git -C ~/.dotfiles ${1:-sh} }
 function vimgit { git -C ~/.vim ${1:-sh} }
-
-function ccd { cd ../${1:-} }
 
 # load temproray config
 exists_source $HOME/.zshrc.local

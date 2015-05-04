@@ -8,12 +8,6 @@ _ch(){
 }
 compdef _ch ch
 
-_cr(){
-  CDPATH="/"
-  _cd "cd"
-}
-compdef _cr cr
-
 _vimrc(){
   _files -W `vimrc --dir` && return 0
 }
