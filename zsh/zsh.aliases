@@ -108,6 +108,8 @@ alias -g N='> /dev/null'
 alias -g E='2> /dev/null'
 alias -g Q='> /dev/null 2>&1'
 alias -g B='> /dev/null 2>&1 &'
+alias -g ....='../..'
+alias -g ......='../../..'
 
 # directory aliases
 hash -d vim=$HOME/.vim/
@@ -117,6 +119,10 @@ hash -d code=$HOME/code/
 hash -d ruby=$HOME/code/ruby/
 hash -d rails=$HOME/code/rails/
 hash -d utilities=$HOME/code/utilities/
+hash -d memo=$HOME/code/ruby/memo/
+hash -d ctf=$HOME/code/ctf/
+hash -d ksnctf=$HOME/code/ctf/ksnctf/
+
 
 # new and other aliases
 alias twme='tw `tw -user:default`'
