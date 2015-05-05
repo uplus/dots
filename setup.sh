@@ -28,20 +28,19 @@ function link_files {
   finished+='link:'
 }
 
-# ubuntu pkg
+# ubuntu pkg #{{{
 function pkg_u {
  sudo add-apt-repository -y ppa:webupd8team/java
  sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt-get update
   sudo apt-get -y upgrade
-  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh unar clang sqlite zenmap gimp easystroke gparted sqlitebrowser gufw compizconfig-settings-manager classicmenu-indicator unity-tweak-tool indicator-multiload gkrellm comix vlc gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol
-
+  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh unar clang sqlite zenmap gimp easystroke gparted sqlitebrowser gufw compizconfig-settings-manager classicmenu-indicator unity-tweak-tool indicator-multiload gkrellm comix vlc gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev
 
   #対話的
   sudo apt install -y wireshark mysql-server oracle-java9-installer
 
   finished+='pkg_u:'
-}
+} #}}}
 
 # neobundle
 function install_neobundle {
@@ -49,7 +48,7 @@ function install_neobundle {
   finished+='neobundle:'
 }
 
-# myrepos
+# myrepos #{{{
 function clone_myrepos {
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
@@ -68,7 +67,7 @@ function clone_myrepos {
   git clone $my_repo/memo.git $HOME/code/ruby/memo
   git clone $my_repo/rename.git $HOME/code/ruby/rename
   finished+='repo:'
-}
+} #}}}
 
 # rbenv
 function install_rbenv {
@@ -77,7 +76,7 @@ function install_rbenv {
   finished+='rbenv:'
 }
 
-# install_ruby with rbenv
+# install_ruby with rbenv #{{{
 function install_ruby {
   local v19 v20 HEAD
   export PATH="$HOME/.rbenv/bin:$PATH"
@@ -94,7 +93,7 @@ function install_ruby {
   gem update
   gem install rb-readline pry
   finished+='ruby:'
-}
+} #}}}
 
 # psysh
 function install_psysh {
