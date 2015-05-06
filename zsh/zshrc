@@ -327,5 +327,8 @@ function cons-web {
   done
 }
 
+function host-list {
+  sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1 \n/"
+}
 # load temproray config
 exists_source $HOME/.zshrc.local
