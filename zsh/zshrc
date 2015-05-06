@@ -316,11 +316,11 @@ function dotgit { git -C ~/.dotfiles ${1:-sh} }
 function vimgit { git -C ~/.vim ${1:-sh} }
 
 function cons-web {
-if [[ $# -eq 0 ]]; then
-  echo "usage: cons-web <url> <start-num> <last-num>"
-  echo "       open the consecutive web pages"
-  return 0
-fi
+  if [[ $# -eq 0 ]]; then
+    echo "usage: cons-web <url> <start-num> <last-num>"
+    echo "       open the consecutive web pages"
+    return 0
+  fi
 
   for i in {$2..$3}; do
     opera-beta $1"$i"

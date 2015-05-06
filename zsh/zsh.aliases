@@ -33,6 +33,7 @@ alias gv='gvim'
 alias nv='nvim'
 
 # git
+alias g='git'
 alias gs='git s'
 alias gst='git st'
 alias gd='git d'
@@ -125,5 +126,5 @@ hash -d ksnctf=$HOME/code/ctf/ksnctf/
 
 
 # new and other aliases
-alias twme='tw `tw -user:default`'
+alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
