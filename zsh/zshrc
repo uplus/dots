@@ -275,7 +275,7 @@ function wcjp { grep -v "#" $1 | wc -m }
 
 function pull-these {
   for i in `ls -F | grep '/$'`; do
-    echo -ne "$i\t"
+    printf "%-20s" $i
     git -C $i pull
   done
 }
