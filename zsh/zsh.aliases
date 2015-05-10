@@ -123,6 +123,7 @@ hash -d utilities=$HOME/code/utilities/
 hash -d memo=$HOME/code/ruby/memo/
 hash -d ctf=$HOME/code/ctf/
 hash -d ksnctf=$HOME/code/ctf/ksnctf/
+hash -d ylibs=$HOME/code/ylibs/
 
 
 # new and other aliases
