@@ -124,7 +124,7 @@ hash -d memo=$HOME/code/ruby/memo/
 hash -d ctf=$HOME/code/ctf/
 hash -d ksnctf=$HOME/code/ctf/ksnctf/
 hash -d ylibs=$HOME/code/ylibs/
-
+hash -d samples=$HOME/code/samples/
 
 # new and other aliases
 alias twme='tw `tw -user:default 2> /dev/null`'
