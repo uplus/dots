@@ -64,6 +64,7 @@ alias gcc32="\gcc -m32 $GCC_OPT"
 alias gccg32="\gcc -g -m32 $GCC_OPT"
 alias gdb='gdb -q'
 alias gdba='gdb -q a.out'
+alias lldba='lldb a.out'
 alias objdump='objdump -M intel'
 
 alias irb='irb --simple-prompt'
@@ -129,3 +130,4 @@ hash -d samples=$HOME/code/samples/
 # new and other aliases
 alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
+alias a.out='./a.out'
