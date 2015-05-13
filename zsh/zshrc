@@ -292,7 +292,14 @@ function generic_rc {
         '-d' | '--dir' )  echo $dir ;;
         '-l' | '--list' ) ls $dir ;;
         '-c' | '--cd' )   cd $dir ;;
-        '-g' | '--git' )  git -C $dir ${2:=sh} ;;
+        '-g' | '--git' )
+          shift
+          if [[ $# -eq 0 ]]; then
+            git -C $dir sh
+          else
+            git -C $dir $@
+          fi
+          ;;
         * )
           if [ -e $dir/$1 ]; then
             vi $dir/$1
