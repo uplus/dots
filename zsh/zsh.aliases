@@ -6,9 +6,11 @@ alias fgrep='fgrep --color=auto'
 alias less='less -SRn'
 
 alias l='ls -F'
+alias l1='ls -F1'
 alias la='ls -A'
 alias ll='ls -l'
 alias li='ls -i'
+alias llh='ls -lh'
 alias lld='ls -ld'
 alias lla='ls -lA'
 alias lli='ls -li'
@@ -112,6 +114,7 @@ alias -g Q='> /dev/null 2>&1'
 alias -g B='> /dev/null 2>&1 &'
 alias -g ....='../..'
 alias -g ......='../../..'
+alias -g HELP='--help 2>&1 | less'
 
 # directory aliases
 hash -d vim=$HOME/.vim/
