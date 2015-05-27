@@ -101,6 +101,7 @@ setopt no_correct no_correct_all  #コマンド実行時のスペルチェック
 setopt no_flow_control            # C-s, C-qを無効にする。
 setopt clobber                    # リダイレクトで上書きする事を許可
 setopt no_tify                    #バックグラウンドジョブが終了したら知らせる
+setopt rm_star_silent             #rm *の警告を無効にする
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -336,6 +337,10 @@ function cons-web {
 
 function host-list {
   sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1 \n/"
+}
+
+function edigo {
+  vi $1 && $2 $1
 }
 # load temproray config
 exists_source $HOME/.zshrc.local
