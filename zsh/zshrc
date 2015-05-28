@@ -268,7 +268,7 @@ function sln {
 
 function binln {
   for name in $@; do
-    sln $1 $HOME/bin/${name%.*}
+    sln $name $HOME/bin/${name%.*}
   done
 }
 
