@@ -342,5 +342,13 @@ function host-list {
 function edigo {
   vi $1 && $2 $1
 }
+
+function +r { chmod +r $1 }
+function -r { chmod -r $1 }
+function +w { chmod +w $1 }
+function -w { chmod -w $1 }
+function +x { chmod +x $1 }
+function -x { chmod -x $1 }
+
 # load temproray config
 exists_source $HOME/.zshrc.local
