@@ -350,5 +350,12 @@ function -w { chmod -w $1 }
 function +x { chmod +x $1 }
 function -x { chmod -x $1 }
 
+function samp {
+  file="/tmp/my_samp_.$1"
+  cp $HOME/Templates/pg/$1.$1 $file
+  vi $file
+  rm $file
+}
+
 # load temproray config
 exists_source $HOME/.zshrc.local
