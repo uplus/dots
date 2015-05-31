@@ -80,8 +80,9 @@ compinit
 exists_source $HOME/.zsh.completion   #requrie after compinit
 
 DIRSTACKSIZE=100
-setopt auto_pushd
 
+#setopt {{{
+setopt auto_pushd
 setopt auto_cd
 setopt no_beep no_list_beep
 setopt auto_list                  #補完リスト有効
@@ -100,7 +101,9 @@ setopt no_flow_control            # C-s, C-qを無効にする。
 setopt clobber                    # リダイレクトで上書きする事を許可
 setopt no_tify                    #バックグラウンドジョブが終了したら知らせる
 setopt rm_star_silent             #rm *の警告を無効にする
+# }}}
 
+#completion {{{
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' group-name ''
@@ -118,6 +121,7 @@ zstyle ':completion:*' use-cache yes
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# }}}
 
 # 別セッションのディレクトリに移動
 # 説明表示 cddのだけはonにしてもいいかも

@@ -52,7 +52,7 @@ function binfo {
   $1 --version
 }
 
-#color # {{{
+#color {{{
 function colors {
   local c
   echo
@@ -92,7 +92,7 @@ function binln {
   done
 }
 
-#rc commands # {{{
+#rc commands {{{
 function generic_rc {
   set -u
   : $1
