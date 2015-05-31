@@ -272,8 +272,6 @@ function binln {
   done
 }
 
-function wcjp { grep -v "#" $1 | wc -m }
-
 function pull-these {
   for i in `ls -F | grep '/$'`; do
     printf "%-20s" $i
@@ -324,7 +322,7 @@ function dotgit { git -C ~/.dotfiles ${1:-sh} }
 function vimgit { git -C ~/.vim ${1:-sh} }
 
 function cons-web {
-  if [[ $# -eq 0 ]]; then
+  if [[ $# -ne 3 ]]; then
     echo "usage: cons-web <url> <start-num> <last-num>"
     echo "       open the consecutive web pages"
     return 0
@@ -351,6 +349,11 @@ function +x { chmod +x $1 }
 function -x { chmod -x $1 }
 
 function samp {
+  if [[ $#  -eq 0 ]]; then
+    echo "usage: samp TYPE" 2>&1
+    return 1
+  fi
+
   file="/tmp/my_samp_.$1"
   cp $HOME/Templates/pg/$1.$1 $file
   vi $file
