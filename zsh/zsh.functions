@@ -6,12 +6,20 @@ function gor {
   done
 }
 
+function ch {
+	if [ $# -eq 0 ]; then
+		cd $HOME
+	else
+		cd $HOME/$1
+	fi
+}
+
 function mcdir {
   mkdir $@
   cd "${@:$#}"
 }
 
-function rbenv-upgrade {
+function rbenv-upgrade { # {{{
   local rbenv_dir i
   local -a plugin_dirs
 
@@ -37,13 +45,14 @@ function rbenv-upgrade {
   done
 
   popd > /dev/null
-}
+} # }}}
 
 function binfo {
   where $1
   $1 --version
 }
 
+#color # {{{
 function colors {
   local c
   echo
@@ -63,6 +72,7 @@ function colorsv {
   done
   echo
 }
+# }}}
 
 function sln {
   local sour targ
@@ -82,6 +92,7 @@ function binln {
   done
 }
 
+#rc commands # {{{
 function generic_rc {
   set -u
   : $1
@@ -120,6 +131,7 @@ function vimrc {
 function zshrc {
   generic_rc $HOME/.dotfiles/zsh/ $@
 }
+# }}}
 
 function dotgit { git -C ~/.dotfiles ${1:-sh} }
 function vimgit { git -C ~/.vim ${1:-sh} }
@@ -177,19 +189,12 @@ function samp {
   rm $file
 }
 
-function ch {
-	if [ $# -eq 0 ]; then
-		cd $HOME
-	else
-		cd $HOME/$1
-	fi
-}
 
 #rubyとかで作りなおしたほうがいいかも
 #マッチした部分のon/off
 #特定ディレクトリの無視、検索条件指定
 #errorの表示 on/off
-function findstr {
+function findstr { # {{{
   if [ $# -lt 2 ];then
     echo "missing argument" 1>&2
     return 1
@@ -210,4 +215,4 @@ function findstr {
   echo "str: $str"
 
   find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
-}
+} # }}}

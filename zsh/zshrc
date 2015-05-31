@@ -13,6 +13,7 @@ autoload -Uz promptinit
 promptinit
 setopt prompt_subst   #プロンプト定義で置き換えを使用する
 
+# git functions# {{{
 #git リポジトリの状態を表示する
 function rprompt-git {
   local name st color brace ahead behind stash
@@ -53,6 +54,7 @@ function prompt-ssh {
     echo "%F{magenta}($HOST)%f"
   fi
 }
+# }}}
 
 export PROMPT="%B%F{cyan}%(4~|...|)%3~%b%F{white} %# %f%k"
 export RPROMPT='$(prompt-return-value) $(rprompt-git)$(prompt-ssh)'
