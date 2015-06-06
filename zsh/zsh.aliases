@@ -1,4 +1,5 @@
 #!/bin/zsh
+#color
 alias ls='ls  --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -6,6 +7,7 @@ alias fgrep='fgrep --color=auto'
 alias pgrep='pgrep -l'
 alias less='less -SRn'
 
+#ls
 alias l='ls -F'
 alias l1='ls -F1'
 alias la='ls -A'
@@ -21,12 +23,12 @@ alias cdb="cd -"
 alias pu='pushd'
 alias po='popd'
 
-# find
+#find
 alias findr="find / -name"
 alias findh="find ~/ -name"
 alias findc="find . -name"
 
-# vim
+#vim
 alias vi='vim'
 alias vizsh="vim ~/.zshrc"
 alias vialias="vim ~/.zsh.aliases"
@@ -35,7 +37,7 @@ alias vi.sjis='vi -c ":e ++enc=cp932"'
 alias gv='gvim'
 alias nv='nvim'
 
-# git
+#git
 alias g='git'
 alias gs='git s'
 alias gst='git st'
@@ -45,7 +47,7 @@ alias gl='git l'
 alias glo='git lo'
 alias gsh='git sh'
 
-# utilities
+#utilities
 alias envlang="env | egrep --color=never 'LANG|LC'"
 alias apt-search='\apt-cache search --names-only'
 alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
@@ -57,10 +59,11 @@ alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:spac
 alias vimopt='vim --version | \egrep "^\+|^-"'
 alias todo='memo -e do'
 
-# clang
+#clang
 alias clang="clang $C_COMP_OPT"
 alias clang++="clang++ $CPP_COMP_OPT"
 
+#gcc
 alias gcc="\gcc $GCC_OPT"
 alias gccg="\gcc -g $GCC_OPT"
 alias gcc32="\gcc -m32 $GCC_OPT"
@@ -87,7 +90,7 @@ alias apt='sudo apt'
 alias mount='sudo mount'
 alias visudo='sudo visudo'
 
-# suffix
+#suffix
 alias -s py='python'
 alias -s rb='ruby'
 alias -s php='php -f'
@@ -98,7 +101,7 @@ alias -s cpp='runcpp'
 function runcpp { clang++ $1 -o ${1%.*} && ./${1%.*} }
 function runc { clang $1 -o ${1%.*} && ./${1%.*} }
 
-# global
+#global
 alias -g G='2>&1 | grep'
 alias -g L='2>&1 | less'
 alias -g H='2>&1 | head'
@@ -117,7 +120,7 @@ alias -g ....='../..'
 alias -g ......='../../..'
 alias -g HELP='--help 2>&1 | less'
 
-# directory aliases
+#directory aliases
 hash -d vim=$HOME/.vim/
 hash -d zsh=$HOME/.dotfiles/zsh/
 hash -d dotfiles=$HOME/.dotfiles/
