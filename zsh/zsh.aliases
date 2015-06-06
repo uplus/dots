@@ -32,6 +32,7 @@ alias findc="find . -name"
 alias vi='vim'
 alias vizsh="zshrc zshrc"
 alias vialias="zshrc zsh.aliases"
+alias vifunc="zshrc zsh.functions"
 alias vi.simp='\vim -u NONE -N'
 alias vi.sjis='vi -c ":e ++enc=cp932"'
 alias gv='gvim'
