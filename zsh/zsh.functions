@@ -197,6 +197,13 @@ function samp {
   vi $file
 }
 
+function dump {
+  if [[ $# -eq 0 ]]; then
+    echo "usage: dump BIN [FUNC] [FILE]" >&2
+    return 1
+  fi
+  objdump -M intel -S "$1" | block "<.?${2:-main}.:" "^\n" | tee ${3:-${1%%.*}}.disa
+}
 
 #rubyとかで作りなおしたほうがいいかも
 #マッチした部分のon/off
