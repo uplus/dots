@@ -183,10 +183,18 @@ function samp {
     return 1
   fi
 
-  file="/tmp/my_samp_.$1"
-  cp $HOME/Templates/pg/$1.$1 $file
+  type=$1
+  shift
+
+  if [[ $# -eq 0 ]]; then
+    file="/tmp/my_samp_.$type"
+  else
+    name=$1
+    file="$PWD/$name.$type"
+  fi
+
+  cp $HOME/Templates/pg/$type.$type $file
   vi $file
-  rm $file
 }
 
 
