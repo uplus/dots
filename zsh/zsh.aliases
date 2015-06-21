@@ -76,6 +76,7 @@ alias objdump='objdump -M intel'
 
 alias irb='irb --simple-prompt'
 alias pry='pry --simple-prompt'
+alias tmux="TERM=screen-256color-bce tmux"
 
 # to safely used.
 alias mv='mv -i'
