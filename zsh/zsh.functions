@@ -205,6 +205,11 @@ function dump {
   objdump -M intel -S "$1" | block "<.?${2:-main}.:" "^\n" | sed "/^$/d" | tee ${3:-${1%%.*}}.disa
 }
 
+# 再帰的にディレクトリのみパーミッションを変更する
+function dhmod {
+  ls -F | grep "/" | xargs chmod -R $1
+}
+
 #rubyとかで作りなおしたほうがいいかも
 #マッチした部分のon/off
 #特定ディレクトリの無視、検索条件指定
