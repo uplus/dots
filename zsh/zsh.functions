@@ -216,7 +216,7 @@ function dhmod {
 #errorの表示 on/off
 function findstr { # {{{
   if [ $# -lt 2 ];then
-    echo "missing argument" 1>&2
+    echo "findstr DIR [OPTS] STR" 1>&2
     return 1
   fi
 
