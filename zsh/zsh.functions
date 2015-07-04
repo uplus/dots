@@ -75,6 +75,7 @@ function colorsv {
 }
 # }}}
 
+# link# {{{
 function sln {
   local sour targ
   if [[ $# < 2 ]]; then
@@ -92,6 +93,7 @@ function binln {
     sln $name $HOME/bin/${name%.*}
   done
 }
+# }}}
 
 #rc commands {{{
 function generic_rc {
@@ -148,7 +150,7 @@ function -x { chmod -x $1 }
 
 function ermdir {
   if [[ $# -ne 1 ]]; then
-    echo "usage: ermdir DIR" >&2
+    echo "usage: ermdir DIR    erase empty directories" >&2
     return 1
   fi
 
@@ -178,7 +180,7 @@ function host-list {
   sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1 \n/"
 }
 
-function samp {
+function samp { # {{{
   if [[ $#  -eq 0 ]]; then
     echo "usage: samp TYPE" >&2
     return 1
@@ -196,11 +198,11 @@ function samp {
 
   cp $HOME/Templates/pg/$type.$type $file
   vi $file
-}
+} # }}}
 
 function dump {
   if [[ $# -eq 0 ]]; then
-    echo "usage: dump BIN [FUNC] [FILE]" >&2
+    echo "usage: dump BIN [SYMBOL] [OUTPUT_FILE]" >&2
     return 1
   fi
   objdump -M intel -S "$1" | block "<.?${2:-main}.:" "^\n" | sed "/^$/d" | tee ${3:-${1%%.*}}.disa
@@ -209,6 +211,10 @@ function dump {
 # 再帰的にディレクトリのみパーミッションを変更する
 function dhmod {
   ls -F | grep "/" | xargs chmod -R $1
+}
+
+function tmp {
+  vim $HOME/tmp/"$*"
 }
 
 #rubyとかで作りなおしたほうがいいかも
