@@ -1,6 +1,9 @@
 #!/usr/bin/zsh
 #login interactive scriptの全てから参照される
-typeset -U path PATH  #unique属性を付加
+
+#unique属性を付加
+typeset -U path PATH MANPATH INFOPATH
+
 export EDITOR=vim
 export WORDCHARS='*?:;[]{}<>|~\!#%`@+-'
 export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value -Wno-ignored-qualifiers'
