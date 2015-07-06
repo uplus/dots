@@ -15,6 +15,7 @@
   d   = diff
   dw  = diff --color-words
   l   = log --oneline -10
+  la  = log --oneline
   lo  = log --stat --decorate --find-renames
   ch  = checkout
   co  = commit

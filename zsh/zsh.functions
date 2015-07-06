@@ -217,6 +217,10 @@ function tmp {
   vim $HOME/tmp/"$*"
 }
 
+function help {
+  $1 --help 2>&1 | less -SRn
+}
+
 #rubyとかで作りなおしたほうがいいかも
 #マッチした部分のon/off
 #特定ディレクトリの無視、検索条件指定
