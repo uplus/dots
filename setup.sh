@@ -32,6 +32,7 @@ function link_files {
 function pkg_u {
   sudo add-apt-repository -y ppa:webupd8team/java
   sudo add-apt-repository -y ppa:neovim-ppa/unstable
+  sudo add-apt-repository -y ppa:git-core/ppa
   sudo apt-get update
   sudo apt-get -y upgrade
   sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh clang sqlite sqlitebrowser gufw classicmenu-indicator indicator-multiload gkrellm gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev nodejs exuberant-ctags libcurl4-openssl-dev libncurses-dev
@@ -99,6 +100,11 @@ function install_ruby_with_rbenv {
   gem install rb-readline pry
   finished+='ruby:'
 } #}}}
+
+# install_linuxbrew
+function install_linuxbrew {
+  git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
+}
 
 # psysh
 function install_psysh {
