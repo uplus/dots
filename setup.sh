@@ -30,14 +30,16 @@ function link_files {
 
 # ubuntu pkg #{{{
 function pkg_u {
- sudo add-apt-repository -y ppa:webupd8team/java
- sudo add-apt-repository -y ppa:neovim-ppa/unstable
+  sudo add-apt-repository -y ppa:webupd8team/java
+  sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt-get update
   sudo apt-get -y upgrade
   sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh clang sqlite sqlitebrowser gufw classicmenu-indicator indicator-multiload gkrellm gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev nodejs exuberant-ctags libcurl4-openssl-dev libncurses-dev
 
   # utility
-  sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc
+  if [[ $2 != "develop" ]]; then
+    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc
+  fi
 
   #対話的
   sudo apt-get install -y wireshark mysql-server oracle-java9-installer
