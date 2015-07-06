@@ -4,7 +4,7 @@
 finished=''
 current=$(cd `dirname $0` && pwd)
 
-# dirs #{{{
+# make_dirs #{{{
 function make_dirs {
   mkdir -vp $HOME/bin/
   mkdir -vpm 700 $HOME/code/
@@ -20,13 +20,13 @@ function make_dirs {
   finished+='dirs:'
 } #}}}
 
-# link files
+# link_files #{{{
 function link_files {
   for name in `ls -F $current/ | egrep -v "*/|*\*|README.*"`; do
     ln -svi $current/$name $HOME/.$name
   done
   finished+='link:'
-}
+} #}}}
 
 # ubuntu pkg #{{{
 function pkg_u {
@@ -34,10 +34,13 @@ function pkg_u {
  sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt-get update
   sudo apt-get -y upgrade
-  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh unar clang sqlite zenmap gimp easystroke gparted sqlitebrowser gufw compizconfig-settings-manager classicmenu-indicator unity-tweak-tool indicator-multiload gkrellm comix vlc gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev nodejs exuberant-ctags
+  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh clang sqlite sqlitebrowser gufw classicmenu-indicator indicator-multiload gkrellm gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev nodejs exuberant-ctags libcurl4-openssl-dev libncurses-dev
+
+  # utility
+  sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc
 
   #対話的
-  sudo apt install -y wireshark mysql-server oracle-java9-installer
+  sudo apt-get install -y wireshark mysql-server oracle-java9-installer
 
   finished+='pkg_u:'
 } #}}}
@@ -69,15 +72,15 @@ function clone_myrepos {
   finished+='repo:'
 } #}}}
 
-# rbenv
+# rbenv #{{{
 function install_rbenv {
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
   finished+='rbenv:'
-}
+} #}}}
 
 # install_ruby with rbenv #{{{
-function install_ruby {
+function install_ruby_with_rbenv {
   local v19 v20 HEAD
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
@@ -108,6 +111,12 @@ function link_zsh {
   finished+='zsh:'
 }
 
+# config
+function link_zsh {
+  # caps to ctrl
+  dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
+}
+
 # todo
 function todo {
   if [[ $os = 'u' ]]; then
@@ -120,11 +129,12 @@ function todo {
 function help {
   grep "^function" $0 | awk '{print $2}'
   echo
-  echo "os typeを判別したりする予定"
+  # echo "os typeを判別したりする予定"
 }
 
 if [ $# -eq 0 ]; then
   help
+  exit 0
 else
   $1
   exit 0
