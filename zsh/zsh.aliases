@@ -59,6 +59,8 @@ alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
 alias vimopt='vim --version | \egrep "^\+|^-"'
 alias todo='memo -e todo'
+alias ehis="history -n -100 | vim - + -c 'nnoremap :q<CR> :q!<CR>'"
+
 
 #clang
 alias clang="clang $C_COMP_OPT"
