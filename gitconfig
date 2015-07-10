@@ -27,4 +27,5 @@
   fix   = commit --amend -v
   eda   = branch -a
   spop  = stash pop
+  patch = add -p
   aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'
