@@ -83,7 +83,7 @@ exists_source $HOME/.zsh.completion   #requrie after compinit
 DIRSTACKSIZE=100
 
 #setopt {{{
-setopt auto_pushd
+setopt noauto_pushd
 setopt auto_cd
 setopt no_beep no_list_beep
 setopt auto_list                  #補完リスト有効
