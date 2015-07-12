@@ -10,6 +10,7 @@
 [merge]
 	tool = vimdiff
 [alias]
+  a   = add
   s   = status --short --branch
   st  = status
   d   = diff

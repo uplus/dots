@@ -144,3 +144,4 @@ hash -d samples=$HOME/code/samples/
 alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
 alias a.out='./a.out'
+alias m='memo'
