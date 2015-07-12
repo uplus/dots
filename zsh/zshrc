@@ -8,7 +8,7 @@ esac
 
 umask 077
 
-#Prompt
+#Prompt # {{{
 autoload -Uz promptinit
 promptinit
 setopt prompt_subst   #プロンプト定義で置き換えを使用する
@@ -58,8 +58,9 @@ function prompt-ssh {
 
 export PROMPT=$'%{\e[38;5;63m%}%(4~|...|)%3~%F{white} %# %f'
 export RPROMPT='$(prompt-return-value) $(rprompt-git)$(prompt-ssh)'
+# }}}
 
-#History
+#History # {{{
 setopt sharehistory hist_ignore_space
 setopt no_hist_reduce_blanks
 setopt no_hist_ignore_all_dups  #過去の履歴と重複しても削除しない
@@ -68,10 +69,7 @@ setopt extended_history         #履歴に時刻を刻む
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh/zsh_history
-
-# Use emacs keybindings even if our EDITOR is set to vi
-# -v にするとすごい笑える
-bindkey -e
+# }}}
 
 exists_source $HOME/.zsh.antigen      #after of autoload and before compinit
 # Use modern completion system
@@ -131,9 +129,14 @@ source $HOME/.antigen/repos/*cdd.git/cdd
 typeset -ga chpwd_functions
 chpwd_functions+=_cdd_chpwd
 
+# Use emacs keybindings even if our EDITOR is set to vi
+# -v にするとすごい笑える
+bindkey -e
+
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
+bindkey "^[e" edit-command-line
 
 #Keymap
 bindkey "^[[Z" reverse-menu-complete
