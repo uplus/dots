@@ -109,9 +109,10 @@ setopt brace_ccl
 setopt zle
 setopt no_correct no_correct_all  #コマンド実行時のスペルチェック無効
 setopt no_flow_control            # C-s, C-qを無効にする。
+
 setopt clobber                    # リダイレクトで上書きする事を許可
-setopt no_tify                    #バックグラウンドジョブが終了したら知らせる
 setopt rm_star_silent             #rm *の警告を無効にする
+setopt notify                # バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
 # }}}
 
 #completion {{{
