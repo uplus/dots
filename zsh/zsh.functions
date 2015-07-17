@@ -19,6 +19,10 @@ function mcdir {
   cd "${@:$#}"
 }
 
+function sizes {
+  du -sm ./$1/* | sort -nr
+}
+
 function rbenv-upgrade { # {{{
   local rbenv_dir i
   local -a plugin_dirs
