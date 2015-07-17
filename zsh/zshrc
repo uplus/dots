@@ -62,7 +62,8 @@ function rprompt-bg {
   names=$(echo "$bg_cmds" | grep -Eo "vim")
 
   if [[ -n $names ]]; then
-    echo " [%F{99}$names%f]"
+    out=`echo $names | head -1`
+    echo " [%F{99}$out%f]"
   fi
 }
 
