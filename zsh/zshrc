@@ -42,29 +42,41 @@ function rprompt-git {
     color=%F{red}
   fi
 
-  echo "[$color$name%f%b%F{green}$ahead%f%F{red}$behind%f%F{yellow}$stash%f]"
+  echo " [$color$name%f%b%F{green}$ahead%f%F{red}$behind%f%F{yellow}$stash%f]"
 }
 
 function prompt-return-value {
-  echo "%(?,,%F{red} %?%f)"
+  echo " %(?,,%F{red} %?%f)"
 }
 
 function prompt-ssh {
   if [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]; then
-    echo "%F{magenta}($HOST)%f"
+    echo " %F{magenta}($HOST)%f"
   fi
 }
+
+# vimなど特定のbgコマンドを表示する
+function rprompt-bg {
+  local bg_cmds names
+  bg_cmds=$(ps -o 'comm' -T)
+  names=$(echo "$bg_cmds" | grep -Eo "vim")
+
+  if [[ -n $names ]]; then
+    echo " [%F{99}$names%f]"
+  fi
+}
+
 # }}}
 
 export PROMPT=$'%{\e[38;5;63m%}%(4~|...|)%3~%F{white} %# %f'
-export RPROMPT='$(prompt-return-value) $(rprompt-git)$(prompt-ssh)'
+export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
 #History # {{{
 setopt sharehistory hist_ignore_space
 setopt no_hist_reduce_blanks
 setopt no_hist_ignore_all_dups  #過去の履歴と重複しても削除しない
-setopt no_hist_verify
+unsetopt hist_verify
 setopt extended_history         #履歴に時刻を刻む
 HISTSIZE=10000
 SAVEHIST=10000
