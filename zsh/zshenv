@@ -5,7 +5,8 @@
 typeset -U path PATH MANPATH INFOPATH
 
 export EDITOR=vim
-export TERM=screen-256color-bce
+# italicが使えない
+# export TERM=screen-256color-bce
 export WORDCHARS='*?:;[]{}<>|~\!#%`@+-'
 export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value -Wno-ignored-qualifiers'
 export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
