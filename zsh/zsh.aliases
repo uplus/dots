@@ -41,6 +41,7 @@ alias nv='nvim'
 #git
 alias g='git'
 alias gs='git s'
+alias ga='git a'
 alias gst='git st'
 alias gd='git d'
 alias gdw='git dw'
