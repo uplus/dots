@@ -83,18 +83,18 @@ function colorsv {
 function sln {
   local sour targ
   if [[ $# < 2 ]]; then
-    echo "usage: sln source target"
+    echo "usage: sln <source> <target>"
     return 1
   else
-    sour=`realpath -s $1`
-    targ=`realpath -s $2`
+    sour=${1:a}
+    targ=${2:a}
     ln -svi $sour $targ
   fi
 }
 
 function binln {
   for name in $@; do
-    sln $name $HOME/bin/${name%.*}
+    ln -svi ${name:a} $HOME/bin/${name:t:r}
   done
 }
 # }}}
