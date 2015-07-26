@@ -143,17 +143,76 @@ source $HOME/.antigen/repos/*cdd.git/cdd
 typeset -ga chpwd_functions
 chpwd_functions+=_cdd_chpwd
 
-# Use emacs keybindings even if our EDITOR is set to vi
-# -v にするとすごい笑える
+#keybind # {{{
 bindkey -e
-
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '^xe' edit-command-line
-bindkey "^[e" edit-command-line
 
-#Keymap
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^F" forward-char
+bindkey "^B" backward-char
+bindkey "^D" delete-char
+bindkey "^H" backward-delete-char
+bindkey "^K" kill-line
+bindkey "^U" kill-whole-line
+bindkey "^N" down-line-or-history
+bindkey "^P" up-line-or-history
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+
+bindkey "^W" backward-kill-word
+
+bindkey "^L" clear-screen
+bindkey "^M" accept-line
+bindkey "^G" send-break
+bindkey "^Q" push-line
+
+bindkey "^I" expand-or-complete
+bindkey "^O" accept-line-and-down-history
+bindkey "^T" transpose-chars
+bindkey "^Y" yank
+bindkey "^V" quoted-insert
+
+# Slash
+bindkey "^_" undo
+# insert
+bindkey "^[[2~" overwrite-mode
+# delete
+bindkey "^[[3~" delete-char
+# backspace
+bindkey "^?" backward-delete-char
+
+
+# <S-Tab>
 bindkey "^[[Z" reverse-menu-complete
+
+# cursor-key and other # {{{
+bindkey "^[[A" up-line-or-history
+bindkey "^[[B" down-line-or-history
+bindkey "^[[C" forward-char
+bindkey "^[[D" backward-char
+bindkey "^[OA" up-line-or-history
+bindkey "^[OB" down-line-or-history
+bindkey "^[OC" forward-char
+bindkey "^[OD" backward-char
+bindkey "^[OH" beginning-of-line
+bindkey "^[OF" end-of-line
+# }}}
+
+# alt-bind
+bindkey "^[b" backward-word
+bindkey "^[f" forward-word
+bindkey "^[n" history-search-forward
+bindkey "^[p" history-search-backward
+
+bindkey "^[w" kill-word
+bindkey "^[y" vi-yank-whole-line
+bindkey "^[q" push-line
+bindkey "^[e" edit-command-line
+bindkey "^[h" run-help
+
+# }}}
 
 exists_source $HOME/.zsh.functions
 exists_source $HOME/.zsh.aliases
