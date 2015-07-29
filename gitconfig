@@ -15,7 +15,7 @@
   st  = status
   d   = diff
   dw  = diff --color-words
-  l   = log --oneline
+  l   = log --oneline -20
   la  = log --oneline
   lo  = log --stat --decorate --find-renames
   ch  = checkout
