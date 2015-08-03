@@ -15,9 +15,9 @@
   st  = status
   d   = diff
   dw  = diff --color-words
-  l   = log --oneline -20
-  la  = log --oneline
-  lo  = log --stat --decorate --find-renames
+  l   = log --oneline --graph -20
+  la  = log --oneline --graph
+  lo  = log --stat --decorate --graph --find-renames
   ch  = checkout
   co  = commit
   coam  = commit -am
