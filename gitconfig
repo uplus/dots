@@ -1,6 +1,6 @@
 [user]
 	email = uplus.e10@gmail.com
-	name = YuutoIto
+	name  = u10e10
 [core]
 	editor = vim
 [color]
@@ -9,24 +9,40 @@
 	default = current
 [merge]
 	tool = vimdiff
+[url "git@github.com:u10e10/"]
+    insteadof = gh:
+[url "git@bitbucket.org:u10e10/"]
+    insteadof = bb:
 [alias]
   a   = add
   s   = status --short --branch
   st  = status
   d   = diff
+  dc  = diff --cached
   dw  = diff --color-words
-  l   = log --oneline --graph -20
-  la  = log --oneline --graph
-  lo  = log --stat --decorate --graph --find-renames
-  ch  = checkout
-  co  = commit
-  coam  = commit -am
-  coa   = commit -a
-  cov   = commit -v
-  coav  = commit -av
-  today = log --oneline --since='16 hour ago'
-  fix   = commit --amend -v
+  l   = log --graph --decorate --oneline -20
+  la  = log --graph --decorate --oneline
+  lo  = log --graph --decorate --stat --find-renames
+  today = log --graph --decorate --oneline --stat --since='16 hour ago'
+  ch   = checkout
+  co   = commit
+  coa  = commit -a
+  cov  = commit -v
+  coav = commit -av
+  coam = commit -am
+  fix  = commit --amend -v
+  fixa = commit --amend -va
   eda   = branch -a
+  editl = config --edit --local
+  editg = config --edit --global
   spop  = stash pop
+  slist = stash list --stat --oneline
   patch = add -p
   aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'
+  merged  = !git branch --merged | grep -v master | grep -v '*'
+  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+  loggr = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
+  reoh     = rebase -i origin/HEAD
+  continue = rebase --continue
+  abort    = rebase --abort
+

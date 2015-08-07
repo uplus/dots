@@ -40,15 +40,18 @@ alias nv='nvim'
 
 #git
 alias g='git'
-alias gs='git s'
 alias ga='git a'
-alias ge='git eda'
-alias gst='git st'
+alias gap='git patch'
+alias gch='git ch'
 alias gd='git d'
+alias gdc='git dc'
 alias gdw='git dw'
+alias ge='git eda'
 alias gl='git l'
 alias glo='git lo'
+alias gs='git s'
 alias gsh='git sh'
+alias gst='git stash'
 
 #utilities
 alias envlang="env | egrep --color=never 'LANG|LC'"
@@ -56,6 +59,7 @@ alias apt-search='\apt-cache search --names-only'
 alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
 alias dirsize='du -csh'
 alias resh='exec $SHELL -l'
+alias realias='source ~/.dotfiles/zsh/zsh.aliases'
 alias histories="history -E 1"
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'

@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+
+# install antigen
 if [[ ! -f $HOME/.zsh/antigen/antigen.zsh ]]; then
   echo "antigen install?(y/N)"
   read -k 1 k
