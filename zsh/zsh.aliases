@@ -149,11 +149,15 @@ hash -d ctf=$HOME/code/ctf/
 hash -d ksnctf=$HOME/code/ctf/ksnctf/
 hash -d ylibs=$HOME/code/ylibs/
 hash -d samples=$HOME/code/samples/
+hash -d tmp=$HOME/tmp/
 
 # new and other aliases
 alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
 alias a.out='./a.out'
 alias m='memo'
-alias v='vim'
 alias t='tig'
+alias v='vim'
+alias v.='vim .'
+alias vp='vim -p'
+alias vo='vim -o'
