@@ -31,7 +31,7 @@ alias findc="find . -name"
 #vim
 alias vi='vim'
 alias vizsh="zshrc zshrc"
-alias vialias="zshrc zsh.aliases"
+alias vialias="zshrc zsh.aliases && realias"
 alias vifunc="zshrc zsh.functions"
 alias vi.simp='\vim -u NONE -N'
 alias vi.sjis='vi -c ":e ++enc=cp932"'
@@ -52,11 +52,14 @@ alias glo='git lo'
 alias gs='git s'
 alias gsh='git sh'
 alias gst='git stash'
+alias gtmpc='git add . && git commit -m "temporary commit"'
 
 #utilities
 alias envlang="env | egrep --color=never 'LANG|LC'"
 alias apt-search='\apt-cache search --names-only'
 alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
+alias apt-clean='apt-get autoremove && apt-get autoclean'
+alias inst='apt install'
 alias dirsize='du -csh'
 alias resh='exec $SHELL -l'
 alias realias='source ~/.dotfiles/zsh/zsh.aliases'

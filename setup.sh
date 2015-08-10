@@ -35,7 +35,7 @@ function pkg_u {
   sudo add-apt-repository -y ppa:git-core/ppa
   sudo apt-get update
   sudo apt-get -y upgrade
-  sudo apt-get -y install zsh curl git git-sh tig php5 php5-dev perl ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.1 luajit vim-gnome ssh clang sqlite sqlitebrowser gufw classicmenu-indicator indicator-multiload gkrellm gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev nodejs exuberant-ctags libcurl4-openssl-dev libncurses-dev fontforge python-fontforge silversearcher-ag
+  sudo apt-get -y install ssh clang zsh curl git git-sh tig php5 php5-dev perl libperl-dev ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.2 luajit vim-gnome sqlite sqlitebrowser gufw classicmenu-indicator indicator-multiload gkrellm gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev nodejs exuberant-ctags libcurl4-openssl-dev libncurses-dev fontforge python-fontforge silversearcher-ag apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch patchutils pbuilder x11-xfs-utils
 
 
   # utility
