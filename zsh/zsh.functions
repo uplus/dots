@@ -247,3 +247,59 @@ function findstr { # {{{
 
   find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
 } # }}}
+
+#udd # {{{
+export UDD_FILE=$HOME/.udd
+alias udd-clear='rm $UDD_FILE'
+alias udd-show='cat $UDD_FILE'
+function udd-add {
+  [[ $PWD == $HOME ]] &&  return
+  echo "${TTY:t}:$PWD" >> $UDD_FILE
+
+  local -AU data
+  while read line; do
+    data[${line%%:*}]=${line#*:}
+  done < ${UDD_FILE}
+
+  rm $UDD_FILE
+  for key in ${(k)data}; do
+    echo "$key:$data[$key]" >> $UDD_FILE
+  done
+}
+
+function udd-delete {
+  local -AU data
+  while read line; do
+    data[${line%%:*}]=${line#*:}
+  done < ${UDD_FILE}
+
+  rm $UDD_FILE
+  for key in ${(k)data}; do
+    if [[ $key != $1 ]]; then
+      echo "$key:$data[$key]" >> $UDD_FILE
+    fi
+  done
+}
+
+function udd-cd {
+  local -AU data
+  while read line; do
+    data[${line%%:*}]=${line#*:}
+  done < ${UDD_FILE}
+
+  for key in ${(k)data}; do
+    if [[ $key == $1 ]]; then
+      cd $data[$key]
+    fi
+  done
+}
+
+function udd {
+if [[ $# == 0 ]]; then
+  udd-show
+else
+  udd-cd $1
+fi
+}
+# }}}
+

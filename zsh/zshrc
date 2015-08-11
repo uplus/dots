@@ -221,6 +221,11 @@ export BEFORE_DIR=$PWD
 function precmd {
   [[ -n $BEFORE_DIR ]] && [[ $BEFORE_DIR != $PWD ]] && ls
   BEFORE_DIR=$PWD
+  udd-add
+}
+
+function zshexit {
+  udd-delete ${TTY:t}
 }
 
 #Load temproray config
