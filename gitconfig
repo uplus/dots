@@ -7,6 +7,9 @@
 	ui = true
 [push]
 	default = current
+[diff]
+  algorithm = histogram
+  tool      = vimdiff
 [merge]
 	tool = vimdiff
 [url "git@github.com:u10e10/"]

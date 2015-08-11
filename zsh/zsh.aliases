@@ -30,15 +30,18 @@ alias findc="find . -name"
 
 #vim
 alias vi='vim'
-alias vizsh="zshrc zshrc"
-alias vialias="zshrc zsh.aliases && realias"
-alias vifunc="zshrc zsh.functions"
-alias vi.simp='\vim -u NONE -N'
-alias vi.sjis='vi -c ":e ++enc=cp932"'
 alias gv='gvim'
 alias nv='nvim'
+alias vi.simp='\vim -u NONE -N'
+alias vi.sjis='vi -c ":e ++enc=cp932"'
+alias vimopt='vim --version | \egrep "^\+|^-"'
+alias v='vim'
+alias v.='vim .'
+alias vp='vim -p'
+alias vo='vim -o'
 
 #git
+alias t='tig'
 alias g='git'
 alias ga='git a'
 alias gap='git patch'
@@ -66,10 +69,11 @@ alias realias='source ~/.dotfiles/zsh/zsh.aliases'
 alias histories="history -E 1"
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
-alias vimopt='vim --version | \egrep "^\+|^-"'
 alias todo='memo -e todo'
 alias ehis="history -n -100 | vim - + -c 'nnoremap :q<CR> :q!<CR>'"
-
+alias vizsh="zshrc zshrc"
+alias vialias="zshrc zsh.aliases && realias"
+alias vifunc="zshrc zsh.functions"
 
 #clang
 alias clang="clang $C_COMP_OPT"
@@ -116,8 +120,8 @@ function runc { clang $1 -o ${1%.*} && ./${1%.*} }
 
 #global
 alias -g G='2>&1 | grep'
-alias -g V='2>&1 | grep -v'
-alias -g EG='2>&1 | grep'
+alias -g GV='2>&1 | grep -v'
+alias -g GE='2>&1 | grep -e'
 alias -g L='2>&1 | less'
 alias -g H='2>&1 | head'
 alias -g M='2>&1 | more'
@@ -137,7 +141,10 @@ alias -g Q='> /dev/null 2>&1'
 alias -g B='> /dev/null 2>&1 &'
 alias -g ....='../..'
 alias -g ......='../../..'
+alias -g ........='../../../..'
+alias -g ..........='../../../../..'
 alias -g HELP='--help 2>&1 | less'
+alias -g VI='| vim -'
 
 #directory aliases
 hash -d vim=$HOME/.vim/
@@ -154,13 +161,11 @@ hash -d ylibs=$HOME/code/ylibs/
 hash -d samples=$HOME/code/samples/
 hash -d tmp=$HOME/tmp/
 
-# new and other aliases
+#new and other aliases
 alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
 alias a.out='./a.out'
 alias m='memo'
-alias t='tig'
-alias v='vim'
-alias v.='vim .'
-alias vp='vim -p'
-alias vo='vim -o'
+
+#percol
+alias pd='cd $(find -type d  2>/dev/null | percol)'
