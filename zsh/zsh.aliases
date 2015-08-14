@@ -160,6 +160,8 @@ hash -d ksnctf=$HOME/code/ctf/ksnctf/
 hash -d ylibs=$HOME/code/ylibs/
 hash -d samples=$HOME/code/samples/
 hash -d tmp=$HOME/tmp/
+hash -d work=$HOME/work/
+hash -d bin=$HOME/bin/
 
 #new and other aliases
 alias twme='tw `tw -user:default 2> /dev/null`'

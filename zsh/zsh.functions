@@ -253,7 +253,8 @@ export UDD_FILE=$HOME/.udd
 alias udd-clear='rm $UDD_FILE'
 alias udd-show='cat $UDD_FILE'
 function udd-add {
-  [[ $PWD == $HOME ]] &&  return
+  [[ $USER == 'root' ]] && return
+  [[ $PWD  == $HOME  ]] && return
   echo "${TTY:t}:$PWD" >> $UDD_FILE
 
   local -AU data
@@ -268,6 +269,7 @@ function udd-add {
 }
 
 function udd-delete {
+  [[ $USER == 'root' ]] && return
   local -AU data
   while read line; do
     data[${line%%:*}]=${line#*:}
