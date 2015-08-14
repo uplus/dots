@@ -22,9 +22,9 @@ function make_dirs {
 
 # link_files #{{{
 function link_files {
-  for name in `ls -F $current/ | egrep -v "*/|*\*|README.*"`; do
-    ln -svi $current/$name $HOME/.$name
-  done
+  ln -svi $current/gitconfig $HOME/.gitconfig
+  ln -svi $current/tmux.conf $HOME/.tmux.conf
+  ln -svi $current/xmodmap   $HOME/.xmodmap
   finished+='link:'
 } #}}}
 
@@ -40,7 +40,7 @@ function pkg_u {
 
   # utility
   if [[ $2 != "develop" ]]; then
-    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc
+    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc open-jtalk espeak
   fi
 
   #対話的
@@ -80,6 +80,10 @@ function clone_myrepos {
 function install_rbenv {
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
+  git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+  git clone https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
+  ln -svi $current/default-gems $HOME/.rbenv/default-gems
   finished+='rbenv:'
 } #}}}
 

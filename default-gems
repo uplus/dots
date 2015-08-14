@@ -1,0 +1,5 @@
+pry pry-doc pry-byebug pry-coollnine
+bundler
+rb-readline
+rfd
+eys
