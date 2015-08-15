@@ -55,7 +55,7 @@ alias glo='git lo'
 alias gs='git s'
 alias gsh='git sh'
 alias gst='git stash'
-alias gtmpc='git add . && git commit -m "temporary commit"'
+alias gtmpc='git add --all && git commit -m "temporary commit"'
 
 #utilities
 alias envlang="env | egrep --color=never 'LANG|LC'"
@@ -168,6 +168,8 @@ alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
 alias a.out='./a.out'
 alias m='memo'
+alias me='memo'
+alias mem='memo'
 
 #percol
 alias pd='cd $(find -type d  2>/dev/null | percol)'
