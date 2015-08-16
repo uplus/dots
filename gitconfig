@@ -44,7 +44,7 @@
   update = add --update
   patch  = add --patch
   ours   = checkout --ours
-  theirs = checkout --thires
+  theirs = checkout --theirs
   reoh     = rebase -i origin/HEAD
   continue = rebase --continue
   abort    = rebase --abort
