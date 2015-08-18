@@ -1,6 +1,8 @@
-pry pry-doc pry-byebug pry-coollnine
-bundler
+pry
+pry-doc
+pry-byebug
+pry-coolline
 rb-readline
+bundler
 rfd
-eys
 rcodetools

@@ -111,10 +111,12 @@ function install_linuxbrew {
   git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
 }
 
-# psysh
-function install_psysh {
+
+function install_commands {
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
-  finished+='psysh:'
+  pip install --upgrade pip
+  pip install percol
+  finished+='commands:'
 }
 
 # zsh
