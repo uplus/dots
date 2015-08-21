@@ -174,4 +174,4 @@ alias me='memo'
 alias mem='memo'
 
 #percol
-alias pd='cd $(find -type d  2>/dev/null | percol)'
+alias pd='cd $(find . -type d 2>/dev/null | percol)'
