@@ -114,8 +114,17 @@ function install_linuxbrew {
 
 function install_commands {
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
+
   pip install --upgrade pip
   pip install percol
+
+  # tig
+  git clone https://github.com/jonas/tig ~/sources/
+  cd ~/sources/tig
+  make prefix=/usr/local
+  sudo make install prefix=/usr/local
+  sudo make install-doc prefix=/usr/local
+
   finished+='commands:'
 }
 
