@@ -22,11 +22,11 @@ function make_dirs {
 
 # link_files #{{{
 function link_files {
-  ln -svi $current/gitconfig $HOME/.gitconfig
-  ln -svi $current/tmux.conf $HOME/.tmux.conf
-  ln -svi $current/xmodmap   $HOME/.xmodmap
-  ln -svi $current/tigrc     $HOME/.tigrc
-  finished+='link:'
+  dir=$current/homedots
+  for name in $(ls $dir); do
+    ln -svi $dir/$name $HOME/.$name
+  done
+  finished+='link_files:'
 } #}}}
 
 # ubuntu pkg #{{{
