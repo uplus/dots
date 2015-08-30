@@ -73,6 +73,9 @@ alias mount='sudo mount'
 alias visudo='sudo visudo'
 alias suspend='sudo pm-suspend'
 
+#non glob expansion {{{1
+alias find='noglob find'
+
 #suffix {{{1
 alias -s py='python'
 alias -s rb='ruby'
@@ -105,10 +108,10 @@ alias -g N='> /dev/null'
 alias -g E='2> /dev/null'
 alias -g Q='> /dev/null 2>&1'
 alias -g B='> /dev/null 2>&1 &'
-alias -g ....='../..'
-alias -g ......='../../..'
-alias -g ........='../../../..'
-alias -g ..........='../../../../..'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 alias -g HELP='--help 2>&1 | less'
 alias -g VI='| vim -'
 
@@ -152,8 +155,8 @@ alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:spac
 #utilities
 alias hist='history -n'
 alias histall='history -n 1'
-alias histories="history -E 1"
-alias ehis="history -n -100 | vim - + -c 'nnoremap :q<CR> :q!<CR>'"
+alias histories='history -E 1'
+alias ehis='history -n -100 | vim - +'
 alias envlang='env | grep -e LANG -e LC'
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias guirestart='sudo service lightdm restart'
@@ -166,20 +169,15 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -v'
 
-#find cd
-alias findr='find / -name'
-alias findh='find ~/ -name'
-alias findc='find . -name'
-alias cdb='cd -'
-alias pu='pushd'
-alias po='popd'
-
 #percol
 alias pd='cd $(find . -type d 2>/dev/null | percol)'
 alias pf='cd $(find . -type f 2>/dev/null | percol)'
-alias ph='$(history -nr -500  2>/dev/null | percol)'
+alias ph='$(history -nr -1000 2>/dev/null | percol)'
 
 #shortening
+alias cdb='cd -'
+alias pu='pushd'
+alias po='popd'
 alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
 alias a.out='./a.out'
