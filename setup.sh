@@ -142,9 +142,21 @@ function link_zsh {
 }
 
 # change keymap
+function update_keymap {
+  sudo cp $current/xkbsymbols /usr/share/X11/xkb/symbols/u10
+  sudo rm /var/lib/xkb/*
+}
+
 function change_keymap {
-  # caps to ctrl
-  dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
+  update_keymap
+
+  echo "
+! option = symbols
+  u10:happy  = +u10(happy)
+  u10:tenkey = +u10(tenkey)" | sudo tee -a /usr/share/X11/xkb/rules/evdev
+
+  dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'u10:happy', 'u10:tenkey']"
+
   finished+=change_keymap
 }
 
@@ -165,10 +177,10 @@ function help {
 
 if [ $# -eq 0 ]; then
   help
-  exit 0
+  return 1
 else
   $1
-  exit 0
+  return
 fi
 
 # #bashの1文字入力は-n
