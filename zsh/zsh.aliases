@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-#color {{{
+#color {{{1
 alias ls='ls  --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -8,7 +8,7 @@ alias fgrep='fgrep --color=auto'
 alias pgrep='pgrep -l'
 alias less='less -SRn'
 
-#ls
+#ls {{{1
 alias l='ls -F'
 alias l1='ls -F1'
 alias la='ls -A'
@@ -18,18 +18,10 @@ alias llh='ls -lh'
 alias lld='ls -ld'
 alias lla='ls -lA'
 alias lli='ls -li'
+alias lla='ls -lAi'
 alias here='ls -ld $PWD'
 
-alias cdb="cd -"
-alias pu='pushd'
-alias po='popd'
-
-#find
-alias findr="find / -name"
-alias findh="find ~/ -name"
-alias findc="find . -name"
-
-#vim
+#vim {{{1
 alias vi='vim'
 alias gv='gvim'
 alias nv='nvim'
@@ -42,7 +34,7 @@ alias vp='vim -p'
 alias vo='vim -o'
 alias vr='vim -R'
 
-#git
+#git {{{1
 alias t='tig'
 alias g='git'
 alias ga='git a'
@@ -59,30 +51,9 @@ alias gst='git st'
 alias ge='git eda'
 alias gtmpc='git add --all && git commit -m "temporary commit"'
 
-#utilities
-alias envlang="env | egrep --color=never 'LANG|LC'"
-alias apt-search='\apt-cache search --names-only'
-alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
-alias apt-clean='apt-get autoremove && apt-get autoclean'
-alias inst='apt install'
-alias dirsize='du -csm'
-alias dirsizes='dirsize * | sort -n'
-alias resh='exec $SHELL -l'
-alias realias='source ~/.dotfiles/zsh/zsh.aliases'
-alias histories="history -E 1"
-alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
-alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
-alias todo='memo -e todo'
-alias ehis="history -n -100 | vim - + -c 'nnoremap :q<CR> :q!<CR>'"
-alias vizsh="zshrc zshrc"
-alias vialias="zshrc zsh.aliases && realias"
-alias vifunc="zshrc zsh.functions"
-
-#clang
+#C/C++ gdb {{{1
 alias clang="clang $C_COMP_OPT"
 alias clang++="clang++ $CPP_COMP_OPT"
-
-#gcc
 alias gcc="\gcc $GCC_OPT"
 alias gccg="\gcc -g $GCC_OPT"
 alias gcc32="\gcc -m32 $GCC_OPT"
@@ -92,16 +63,7 @@ alias gdba='gdb -q a.out'
 alias lldba='lldb a.out'
 alias objdump='objdump -M intel'
 
-alias irb='irb --simple-prompt'
-alias pry='pry --simple-prompt'
-alias tmux="TERM=screen-256color-bce tmux"
-
-# to safely used.
-alias mv='mv -i'
-alias cp='cp -i'
-alias rm='rm -v'
-
-# not require sudo
+#not require sudo {{{1
 alias shutdown='sudo shutdown'
 alias poweroff='sudo poweroff'
 alias reboot='sudo reboot'
@@ -109,8 +71,9 @@ alias apt-get='sudo apt-get'
 alias apt='sudo apt'
 alias mount='sudo mount'
 alias visudo='sudo visudo'
+alias suspend='sudo pm-suspend'
 
-#suffix
+#suffix {{{1
 alias -s py='python'
 alias -s rb='ruby'
 alias -s php='php -f'
@@ -119,9 +82,9 @@ alias -s {html,htm}='opera-beta'
 alias -s c='runc'
 alias -s cpp='runcpp'
 function runcpp { clang++ $1 -o ${1%.*} && ./${1%.*} }
-function runc { clang $1 -o ${1%.*} && ./${1%.*} }
+function runc   { clang   $1 -o ${1%.*} && ./${1%.*} }
 
-#global
+#global {{{1
 alias -g G='2>&1 | grep'
 alias -g GV='2>&1 | grep -v'
 alias -g GE='2>&1 | grep -e'
@@ -149,7 +112,7 @@ alias -g ..........='../../../../..'
 alias -g HELP='--help 2>&1 | less'
 alias -g VI='| vim -'
 
-#directory aliases
+#directory aliases {{{1
 hash -d vim=$HOME/.vim/
 hash -d zsh=$HOME/.dotfiles/zsh/
 hash -d dotfiles=$HOME/.dotfiles/
@@ -166,13 +129,61 @@ hash -d tmp=$HOME/tmp/
 hash -d work=$HOME/work/
 hash -d bin=$HOME/bin/
 
-#new and other aliases
+#shell {{{1
+alias resh='exec $SHELL -l'
+alias realias='source ~/.dotfiles/zsh/zsh.aliases'
+alias vizsh='zshrc zshrc'
+alias vialias='zshrc zsh.aliases || realias'
+alias vifunc='zshrc zsh.functions'
+alias vihist='vi ~/.zsh/zsh_history'
+alias dirsize='du -csm'
+alias dirsizes='dirsize * | sort -n'
+
+#pkg {{{1
+alias apt-search='\apt-cache search --names-only'
+alias apt-upgrade='apt update && echo "##Upgrade start" && apt upgrade'
+alias apt-clean='apt-get autoremove && apt-get autoclean'
+alias inst='apt install'
+alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
+
+# FOLDS END {{{1
+# }}}1
+
+#utilities
+alias hist='history -n'
+alias histall='history -n 1'
+alias histories="history -E 1"
+alias ehis="history -n -100 | vim - + -c 'nnoremap :q<CR> :q!<CR>'"
+alias envlang='env | grep -e LANG -e LC'
+alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
+alias guirestart='sudo service lightdm restart'
+
+#override
+alias irb='irb --simple-prompt'
+alias pry='pry --simple-prompt'
+alias tmux="TERM=screen-256color-bce tmux"
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -v'
+
+#find cd
+alias findr='find / -name'
+alias findh='find ~/ -name'
+alias findc='find . -name'
+alias cdb='cd -'
+alias pu='pushd'
+alias po='popd'
+
+#percol
+alias pd='cd $(find . -type d 2>/dev/null | percol)'
+alias pf='cd $(find . -type f 2>/dev/null | percol)'
+alias ph='$(history -nr -500  2>/dev/null | percol)'
+
+#shortening
 alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
 alias a.out='./a.out'
 alias m='memo'
-alias me='memo'
-alias mem='memo'
+alias todo='memo -e todo'
+alias ipy='ipython3'
 
-#percol
-alias pd='cd $(find . -type d 2>/dev/null | percol)'
