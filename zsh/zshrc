@@ -86,13 +86,6 @@ SAVEHIST=10000
 HISTFILE=~/.zsh/zsh_history
 # }}}
 
-exists_source $HOME/.zsh.antigen      #after of autoload and before compinit
-# Use modern completion system
-autoload -U compinit
-
-compinit
-exists_source $HOME/.zsh.completion   #requrie after compinit
-
 #setopt {{{
 setopt autocd
 setopt noauto_pushd
@@ -120,7 +113,33 @@ setopt clobber                    #リダイレクトで上書きする事を許
 setopt rm_star_silent             #rm *の警告を無効にする
 setopt notify                     #バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
 # }}}
+
+#install antigen # {{{
+if [[ ! -f $HOME/.zsh/antigen/antigen.zsh ]]; then
+  echo "antigen install?(y/N)"
+  read -k 1 k
+  if [[ $k =~ [yY] ]]; then
+    git clone https://github.com/zsh-users/antigen.git .zsh/antigen
+  fi
+fi
 # }}}
+
+#antigen bundle
+exists_source $HOME/.zsh/antigen/antigen.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle m4i/cdd
+
+#zsh completion system
+autoload -U compinit
+
+#require before compinit
+antigen bundle zsh-users/zsh-completions
+
+compinit
+
+#requrie after compinit
+exists_source $HOME/.zsh.completion
+source $HOME/.antigen/repos/*cdd.git/cdd
 
 #zstyle completion {{{
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -142,9 +161,6 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # }}}
 
 # 別セッションのディレクトリに移動
-# 説明表示 cddのだけはonにしてもいいかも
-# zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
-source $HOME/.antigen/repos/*cdd.git/cdd
 typeset -ga chpwd_functions
 chpwd_functions+=_cdd_chpwd
 
