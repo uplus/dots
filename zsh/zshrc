@@ -90,31 +90,33 @@ HISTFILE=~/.zsh/history
 # }}}
 
 #setopt {{{
+setopt local_options          #on: 関数終了時に全てのオプションを復元する
 setopt autocd
 setopt noauto_pushd
 setopt no_beep no_list_beep
-setopt pushd_to_home              #pushdを引数無しで実行した時ホームに移動する
-setopt interactive_comments       #コマンドラインでもコメントを使えるようにする
-setopt no_transient_rprompt       #コマンド実行時にRPROMPTを隠す
-setopt auto_resume                #サスペンド中のコマンドと同じものを実行したらリジュームする
+setopt pushd_to_home          #pushdを引数無しで実行した時ホームに移動する
+setopt interactive_comments   #コマンドラインでもコメントを使えるようにする
+setopt no_transient_rprompt   #コマンド実行時にRPROMPTを隠す
+setopt auto_resume            #リダイレクトを使わないでコマンドを実効したとき、サスペンド中のものと同じものがあればレジューム
+setopt notify                 # バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
 
-setopt extended_glob              #拡張グロッビング ~ で否定が使える
-setopt no_dot_glob
+setopt extended_glob
 setopt brace_ccl
+setopt no_dot_glob
+# setopt nonomatch          #off: マッチしなかったときエラーにせずただの文字列として扱う
+# setopt numeric_glob_sort  #数値が含まれたとき数字順にソートする
 
-setopt auto_param_keys            #自動補完される余分なカンマなどを適宜削除してスムーズに入力できるようにする
-setopt auto_param_slash           #ディレクトリ名の補完で末尾の/を自動的に付加し、次の補完に備える
-setopt auto_remove_slash          #スラッシュが補完された後、;やスペースを入力したら自動的にそのスラッシュを消す
-setopt auto_list                  #補完リスト有効
-setopt list_packed                #補完リストをなるべく少ない量に
-setopt always_lastprompt          #補完で行を移動しない
-setopt zle
+setopt auto_param_keys    #自動補完される余分なカンマなどを適宜削除してスムーズに入力できるようにする
+setopt auto_param_slash   #ディレクトリ名の補完で末尾の/を自動的に付加し、次の補完に備える
+setopt auto_remove_slash  #スラッシュが補完された後、;やスペースを入力したら自動的にそのスラッシュを消す
+setopt auto_list          #補完リスト有効
+setopt list_packed        #補完リストをなるべく少ない量に
+setopt always_lastprompt  #補完で行を移動しない
 
-setopt no_correct no_correct_all  #コマンドが間違ってたときに修正される
-setopt no_flow_control            # C-s, C-qを無効にする。
-setopt clobber                    #リダイレクトで上書きする事を許可
-setopt rm_star_silent             #rm *の警告を無効にする
-setopt notify                     #バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
+setopt no_flow_control    # C-s, C-qを無効にする。
+setopt clobber            # リダイレクトで上書きする事を許可
+setopt rm_star_silent     # rm *の警告を無効にする
+setopt zle                #use zsh line editor
 # }}}
 
 #install antigen # {{{
