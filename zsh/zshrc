@@ -7,6 +7,8 @@ darwin*) exists_source "$HOME/.zshrc.darwin" ;;
 esac
 
 umask 077
+DIRSTACKSIZE=100
+disable r # r is zsh-builtin 直前のコマンドを実効する
 
 #Prompt # {{{
 autoload -Uz promptinit
@@ -91,32 +93,36 @@ autoload -U compinit
 compinit
 exists_source $HOME/.zsh.completion   #requrie after compinit
 
-DIRSTACKSIZE=100
-
 #setopt {{{
+setopt autocd
 setopt noauto_pushd
-setopt auto_cd
 setopt no_beep no_list_beep
-setopt auto_list                  #補完リスト有効
-setopt list_packed                #補完リストをなるべく少ない量に
 setopt pushd_to_home              #pushdを引数無しで実行した時ホームに移動する
 setopt interactive_comments       #コマンドラインでもコメントを使えるようにする
-unsetopt transient_rprompt        #コマンド実行時にRPROMPTを
+setopt no_transient_rprompt       #コマンド実行時にRPROMPTを隠す
 setopt auto_resume                #サスペンド中のコマンドと同じものを実行したらリジュームする
+
 setopt extended_glob              #拡張グロッビング ~ で否定が使える
-setopt always_last_prompt         #補完で行を移動しない
 setopt no_dot_glob
 setopt brace_ccl
-setopt zle
-setopt no_correct no_correct_all  #コマンド実行時のスペルチェック無効
-setopt no_flow_control            # C-s, C-qを無効にする。
 
-setopt clobber                    # リダイレクトで上書きする事を許可
+setopt auto_param_keys            #自動補完される余分なカンマなどを適宜削除してスムーズに入力できるようにする
+setopt auto_param_slash           #ディレクトリ名の補完で末尾の/を自動的に付加し、次の補完に備える
+setopt auto_remove_slash          #スラッシュが補完された後、;やスペースを入力したら自動的にそのスラッシュを消す
+setopt auto_list                  #補完リスト有効
+setopt list_packed                #補完リストをなるべく少ない量に
+setopt always_lastprompt          #補完で行を移動しない
+setopt zle
+
+setopt no_correct no_correct_all  #コマンドが間違ってたときに修正される
+setopt no_flow_control            # C-s, C-qを無効にする。
+setopt clobber                    #リダイレクトで上書きする事を許可
 setopt rm_star_silent             #rm *の警告を無効にする
-setopt notify                # バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
+setopt notify                     #バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
+# }}}
 # }}}
 
-#completion {{{
+#zstyle completion {{{
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' group-name ''
@@ -131,7 +137,6 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' use-cache yes
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # }}}
