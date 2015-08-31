@@ -32,19 +32,25 @@ function link_files {
 # ubuntu pkg #{{{
 function pkg_u {
   sudo add-apt-repository -y ppa:webupd8team/java
-  sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo add-apt-repository -y ppa:git-core/ppa
   sudo apt-get update
   sudo apt-get -y upgrade
-  sudo apt-get -y install ssh clang zsh curl git git-sh tig php5 php5-dev perl libperl-dev ruby ruby-dev python-dev tcl-dev build-essential devscripts lua5.2 luajit vim-gnome sqlite sqlitebrowser gufw classicmenu-indicator indicator-multiload gkrellm gwenview libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev nodejs exuberant-ctags libcurl4-openssl-dev libncurses-dev fontforge python-fontforge silversearcher-ag apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch patchutils pbuilder x11-xfs-utils
 
+  sudo apt-get -y install ssh clang zsh curl git git-sh tig php5 php5-dev perl libperl-dev \
+  doneruby ruby-dev python-dev python3-pip tcl-dev build-essential devscripts lua5.2 luajit \
+  vim-gnome sqlite gufw sqlitebrowser indicator-multiload gkrellm gwenview \
+  libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev \
+  nodejs exuberant-ctags libcurl4-openssl-dev fontforge python-fontforge silversearcher-ag \
+  apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
+  patchutils pbuilder x11-xfs-utils
 
   # utility
   if [[ $2 != "develop" ]]; then
-    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc open-jtalk espeak
+    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc open-jtalk espeak classicmenu-indicator
+    sudo add-apt-repository -y ppa:neovim-ppa/unstable
   fi
 
-  #対話的
+  #interactive
   sudo apt-get install -y wireshark mysql-server oracle-java9-installer
 
   finished+='pkg_u:'
@@ -63,9 +69,9 @@ function clone_myrepos {
   read -n 1 ssh
   echo
   if [[ $ssh =~ [yY] ]]; then
-    my_repo='git@github.com:YuutoIto'
+    my_repo='git@github.com:u10e10'
   else
-    my_repo='https://github.com/YuutoIto'
+    my_repo='https://github.com/u10e10'
   fi
 
   git clone $my_repo/dotfiles.git $HOME/.dotfiles/
@@ -88,22 +94,21 @@ function install_rbenv {
   finished+='rbenv:'
 } #}}}
 
-# install_ruby with rbenv #{{{
+# install ruby with rbenv #{{{
 function install_ruby_with_rbenv {
   local v19 v20 HEAD
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
-  v19=`rbenv install --list | egrep "\s1\.9\.." | tail -1`
-  v20=`rbenv install --list | egrep "\s2\.0\.." | tail -1`
-  HEAD=`rbenv install --list | egrep "\s.\..\.." | egrep -v "\s*-dev" | tail -1`
+  # v19=`rbenv install --list | egrep "\s1\.9\.." | tail -1`
+  # v20=`rbenv install --list | egrep "\s2\.0\.." | tail -1`
+  HEAD=$(rbenv install --list | grep -e "^\s*.\..\.." | grep -Ev "\-(dev|preview|rc)$" | tail -1)
 
-  rbenv install $v19
-  rbenv install $v20
+  # rbenv install $v19
+  # rbenv install $v20
   rbenv install $HEAD
   rbenv global $HEAD
   rbenv rehash
-  gem update
-  gem install rb-readline pry
+  gem update --system
   finished+='ruby:'
 } #}}}
 
@@ -116,8 +121,8 @@ function install_linuxbrew {
 function install_commands {
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 
-  pip install --upgrade pip
-  pip install percol
+  pip3 install --upgrade pip
+  pip3 install percol ipython
 
   # tig
   git clone https://github.com/jonas/tig ~/sources/
@@ -136,10 +141,11 @@ function link_zsh {
   finished+='zsh:'
 }
 
-# config
-function link_zsh {
+# change keymap
+function change_keymap {
   # caps to ctrl
   dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
+  finished+=change_keymap
 }
 
 # todo
@@ -165,29 +171,29 @@ else
   exit 0
 fi
 
-#bashの1文字入力は-n
-echo -n "Which OS type Ubuntu? Centos? or OSX (u/c/o/Skip) "
-read -n 1 os
-echo
+# #bashの1文字入力は-n
+# echo -n "Which OS type Ubuntu? Centos? or OSX (u/c/o/Skip) "
+# read -n 1 os
+# echo
+#
+# echo -n "setup zsh?(y/N) "
+# read -n 1 setup_zsh
+# echo
 
-echo -n "setup zsh?(y/N) "
-read -n 1 setup_zsh
-echo
 
-
-case $os in
-  'u')
-    pkg_u
-    ;;
-  'c')
-    echo "Can you use sudo? (y/N)"
-    read -n 1 key
-    which git wget > /dev/null
-    if [ $? -ne 0 ]; then
-      echo "please run again after install the git and wget" >&2
-      exit 1
-    fi
-    ;;
-  'o') ;;
-  *) ;;
-esac
+# case $os in
+#   'u')
+#     pkg_u
+#     ;;
+#   'c')
+#     echo "Can you use sudo? (y/N)"
+#     read -n 1 key
+#     which git wget > /dev/null
+#     if [ $? -ne 0 ]; then
+#       echo "please run again after install the git and wget" >&2
+#       exit 1
+#     fi
+#     ;;
+#   'o') ;;
+#   *) ;;
+# esac
