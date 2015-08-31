@@ -1,8 +1,9 @@
+rb-readline
 pry
 pry-doc
 pry-byebug
 pry-coolline
-rb-readline
 bundler
 rfd
 rcodetools
+rails_best_practices
