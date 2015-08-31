@@ -84,6 +84,7 @@ alias -s {gif,jpg,jpeg,png,bmp}='display'
 alias -s {html,htm}='opera-beta'
 alias -s c='runc'
 alias -s cpp='runcpp'
+alias -s {sh,bash,zsh}='source'
 function runcpp { clang++ $1 -o ${1%.*} && ./${1%.*} }
 function runc   { clang   $1 -o ${1%.*} && ./${1%.*} }
 
