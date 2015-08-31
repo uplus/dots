@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 #login interactive scriptの全てから参照される
 
 #unique属性を付加
