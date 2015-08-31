@@ -76,14 +76,17 @@ export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
 #History # {{{
-setopt sharehistory hist_ignore_space
-setopt no_hist_reduce_blanks
-setopt no_hist_ignore_all_dups  #過去の履歴と重複しても削除しない
-unsetopt hist_verify
-setopt extended_history         #履歴に時刻を刻む
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.zsh/zsh_history
+setopt sharehistory
+setopt hist_ignore_dups
+setopt hist_no_store            #on: not add history command
+setopt no_hist_reduce_blanks    #on: reduce unnecessary blanks
+setopt hist_ignore_space
+setopt no_hist_ignore_all_dups  #on: 過去の履歴と重複しても削除しない
+setopt hist_verify              #on: 履歴を遡って再利用する時に、それを書き換えない
+setopt extended_history         #on: 履歴に時刻を刻む
+SAVEHIST=10000  #file
+HISTSIZE=10000  #memory
+HISTFILE=~/.zsh/history
 # }}}
 
 #setopt {{{
