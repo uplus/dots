@@ -243,7 +243,7 @@ function findstr { # {{{
 
 #udd # {{{
 export UDD_FILE=$HOME/.udd
-alias udd-clear='rm $UDD_FILE | touch $UDD_FILE'
+alias udd-clear=': >$UDD_FILE'
 alias udd-show='cat $UDD_FILE'
 function udd-add {
   [[ $USER == 'root' || $PWD == $HOME ]] && return
