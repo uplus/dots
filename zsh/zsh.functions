@@ -243,11 +243,10 @@ function findstr { # {{{
 
 #udd # {{{
 export UDD_FILE=$HOME/.udd
-alias udd-clear='rm $UDD_FILE'
+alias udd-clear='rm $UDD_FILE | touch $UDD_FILE'
 alias udd-show='cat $UDD_FILE'
 function udd-add {
-  [[ $USER == 'root' ]] && return
-  [[ $PWD  == $HOME  ]] && return
+  [[ $USER == 'root' || $PWD == $HOME ]] && return
   echo "${TTY:t}:$PWD" >> $UDD_FILE
 
   local -AU data
@@ -255,7 +254,7 @@ function udd-add {
     data[${line%%:*}]=${line#*:}
   done < ${UDD_FILE}
 
-  rm $UDD_FILE
+  udd-clear
   for key in ${(k)data}; do
     echo "$key:$data[$key]" >> $UDD_FILE
   done
@@ -268,9 +267,9 @@ function udd-delete {
     data[${line%%:*}]=${line#*:}
   done < ${UDD_FILE}
 
-  rm $UDD_FILE
+  udd-clear
   for key in ${(k)data}; do
-    if [[ $key != $1 ]]; then
+    if [[ $key != ${TTY:t} ]]; then
       echo "$key:$data[$key]" >> $UDD_FILE
     fi
   done
@@ -290,11 +289,11 @@ function udd-cd {
 }
 
 function udd {
-if [[ $# == 0 ]]; then
-  udd-show
-else
-  udd-cd $1
-fi
+  if [[ $# == 0 ]]; then
+    udd-show
+  else
+    udd-cd $1
+  fi
 }
 # }}}
 
