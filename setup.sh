@@ -46,7 +46,7 @@ function pkg_u {
 
   # utility
   if [[ $2 != "develop" ]]; then
-    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc open-jtalk espeak classicmenu-indicator
+    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc open-jtalk espeak classicmenu-indicator uvtool
     sudo add-apt-repository -y ppa:neovim-ppa/unstable
   fi
 

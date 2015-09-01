@@ -12,6 +12,8 @@
   tool      = vimdiff
 [merge]
 	tool = vimdiff
+[rebase]
+  autostash = true
 [url "git@github.com:u10e10/"]
     insteadof = gh:
 [url "git@bitbucket.org:u10e10/"]
@@ -37,7 +39,7 @@
   fix  = commit --amend -v
   fixa = commit --amend -va
   eda  = branch -a
-  st    = stash
+  st    = stash save --include-untracked
   spop  = stash pop
   slist = stash list --stat --oneline
   all    = add --all
