@@ -9,6 +9,7 @@ esac
 umask 077
 DIRSTACKSIZE=100
 disable r # r is zsh-builtin 直前のコマンドを実効する
+autoload -Uz add-zsh-hook
 
 #Prompt # {{{
 autoload -Uz promptinit
@@ -144,7 +145,9 @@ compinit
 
 #requrie after compinit
 exists_source $HOME/.zsh.completion
+
 source $HOME/.antigen/repos/*cdd.git/cdd
+add-zsh-hook chpwd _cdd_chpwd
 
 #zstyle completion {{{
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -164,10 +167,6 @@ zstyle ':completion:*' use-cache yes
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # }}}
-
-# 別セッションのディレクトリに移動
-typeset -ga chpwd_functions
-chpwd_functions+=_cdd_chpwd
 
 #keybind # {{{
 bindkey -e
@@ -243,16 +242,9 @@ bindkey "^[h" run-help
 exists_source $HOME/.zsh.functions
 exists_source $HOME/.zsh.aliases
 
-export BEFORE_DIR=$PWD
-function precmd {
-  [[ -n $BEFORE_DIR ]] && [[ $BEFORE_DIR != $PWD ]] && ls
-  BEFORE_DIR=$PWD
-  udd-add
-}
+add-zsh-hook precmd autols
+add-zsh-hook precmd udd-add
+add-zsh-hook zshexit udd-delete
 
-function zshexit {
-  udd-delete ${TTY:t}
-}
-
-#Load temproray config
+#Load local config
 exists_source $HOME/.zshrc.local

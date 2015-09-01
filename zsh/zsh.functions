@@ -4,6 +4,12 @@ function getuuid {
   ruby -r securerandom -e 'print SecureRandom.uuid'
 }
 
+export AUTOLS_DIR=$PWD
+autols() {
+  [[ -n $AUTOLS_DIR && $AUTOLS_DIR != $PWD ]] && ls --color=always
+  AUTOLS_DIR=$PWD
+}
+
 function gor {
   while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
     cd ..
