@@ -29,6 +29,15 @@ function mcdir {
   cd "${@:$#}"
 }
 
+function ermdir {
+  if [[ $# -ne 1 ]]; then
+    echo "usage: ermdir DIR    erase empty directories" >&2
+    return 1
+  fi
+
+  rmdir -p $1/**/ 2> /dev/null
+}
+
 function sizes {
   du -sm ./$1/* | sort -nr
 }
@@ -36,6 +45,10 @@ function sizes {
 function binfo {
   where $1
   $1 --version
+}
+
+function help {
+  $1 --help 2>&1 | less -SRn
 }
 
 #color {{{
@@ -60,7 +73,7 @@ function colorsv {
 }
 # }}}
 
-# link# {{{
+#link# {{{
 function sln {
   local sour targ
   if [[ $# < 2 ]]; then
@@ -123,8 +136,8 @@ function zshrc {
 
 function dotgit { git -C ~/.dotfiles ${1:-sh} }
 function vimgit { git -C ~/.vim ${1:-sh} }
-function dcho { eval "echo \$$1" }
-function edigo { vi $1 && $2 $1 }
+function dcho   { eval "echo \$$1" }
+function edigo  { vi $1 && $2 $1 }
 
 function +r { chmod +r $1 }
 function -r { chmod -r $1 }
@@ -132,15 +145,6 @@ function +w { chmod +w $1 }
 function -w { chmod -w $1 }
 function +x { chmod +x $1 }
 function -x { chmod -x $1 }
-
-function ermdir {
-  if [[ $# -ne 1 ]]; then
-    echo "usage: ermdir DIR    erase empty directories" >&2
-    return 1
-  fi
-
-  rmdir -p $1/**/ 2> /dev/null
-}
 
 function pull-these {
   for i in `ls -F | grep '/$'`; do
@@ -208,10 +212,6 @@ function dump {
 # 再帰的にディレクトリのみパーミッションを変更する
 function dhmod {
   ls -F | grep "/" | xargs chmod -R $1
-}
-
-function help {
-  $1 --help 2>&1 | less -SRn
 }
 
 #rubyとかで作りなおしたほうがいいかも
