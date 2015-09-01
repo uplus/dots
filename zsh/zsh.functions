@@ -297,3 +297,32 @@ function udd {
 }
 # }}}
 
+#percol
+pc(){
+  if [[ $# == 0 ]]; then
+    echo "usage: pc [mode [target]] [command]"
+    return 1
+  fi
+
+  case $1 in
+    '-h'|'--history')
+      cmd="history -nr -${2:-1000}" ;;
+    '-f'|'--file')
+      cmd="find ${2:-.} -type f" ;;
+    '-d'|'--directory')
+      cmd="find ${2:-.} -type d" ;;
+    '-a'|'--all')
+      cmd="find ${2:-.}" ;;
+    *)
+      cmd=$* ;;
+  esac
+
+  # Todo: 絞り込み結果をどうするか
+  echo $cmd
+  result=$(eval $cmd 2>/dev/null | percol)
+}
+
+alias pd='cd $(pc -d)'
+alias pf='print -z $(pc -f)'
+alias ph='$(pc -h)'
+
