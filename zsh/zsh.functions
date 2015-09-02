@@ -317,12 +317,27 @@ pc(){
       cmd=$* ;;
   esac
 
-  # Todo: 絞り込み結果をどうするか
-  echo $cmd
   result=$(eval $cmd 2>/dev/null | percol)
+
+  case $1 in
+    '-h'|'--history')
+      eval $result ;;
+    '-f'|'--file')
+      cd ${result:h} ;;
+    '-d'|'--directory')
+      cd ${result} ;;
+    '-a'|'--all')
+      if [[ -f $result ]]; then
+        cd ${result:h}
+      else
+        cd ${result}
+      fi
+      ;;
+    *)
+      print -z $* ;;
+  esac
 }
 
-alias pd='cd $(pc -d)'
-alias pf='print -z $(pc -f)'
-alias ph='$(pc -h)'
-
+pd(){ pc -d ${1:-} }
+pf(){ pc -f ${1:-} }
+ph(){ pc -h ${1:-} }
