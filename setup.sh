@@ -42,7 +42,7 @@ function pkg_u {
   libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev \
   nodejs exuberant-ctags libcurl4-openssl-dev fontforge python-fontforge silversearcher-ag \
   apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
-  patchutils pbuilder x11-xfs-utils
+  patchutils pbuilder x11-xfs-utils terminology
 
   # utility
   if [[ $2 != "develop" ]]; then
