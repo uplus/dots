@@ -116,7 +116,7 @@ function generic_rc {
           ;;
         * )
           if [ -e $dir/$1 ]; then
-            vi $dir/$1
+            vim $dir/$1
           else
             echo "$1 is not exists" >&2
           fi
