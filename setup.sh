@@ -121,8 +121,11 @@ function install_linuxbrew {
 function install_commands {
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 
-  pip3 install --upgrade pip
-  pip3 install percol ipython
+  sudo pip3 install --upgrade pip
+  pip3 install percol ipython --user
+
+  mkdir -p $HOME/.percol.d/
+  ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
 
   # tig
   git clone https://github.com/jonas/tig ~/sources/
