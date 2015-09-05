@@ -245,6 +245,32 @@ bindkey "^[e" edit-command-line
 bindkey "^[h" run-help
 # }}}
 
+  ## original keybind functions # {{{
+  zle_percol_history(){
+    BUFFER=$(history -nr -3000 | percol --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle -R -c
+  }
+  zle -N zle_percol_history
+  bindkey '^R' zle_percol_history
+
+  zle_percol_file_open(){
+    local file dir file_path
+    dir=${$(relative "$LBUFFER"):-.}
+    file=$(cd "$dir" && find . -type f 2>/dev/null | percol)
+    file_path=$(relative "$dir/$file")
+
+    if [[ -z $file || ! -r $file_path ]]; then
+      zle reset-prompt
+    else
+      BUFFER="vim $file_path"
+      zle accept-line
+    fi
+  }
+  zle -N zle_percol_file_open
+  bindkey '^O' zle_percol_file_open
+
+  # }}}
 # }}}
 
 exists_source $HOME/.zsh.aliases
