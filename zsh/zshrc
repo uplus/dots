@@ -150,6 +150,16 @@ exists_source $HOME/.zsh.completion
 source $HOME/.antigen/repos/*cdd.git/cdd
 add-zsh-hook chpwd _cdd_chpwd
 
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+
+exists_source $HOME/.zsh.functions
+exists_source $HOME/.zsh.aliases
+
+add-zsh-hook precmd autols
+add-zsh-hook precmd udd-add
+add-zsh-hook zshexit udd-delete
+
 #zstyle completion {{{
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -174,8 +184,6 @@ zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.zsh/chpwd-recent-dirs"
 zstyle ':chpwd:*' recent-dirs-pushd true
 # }}}
-
-exists_source $HOME/.zsh.functions
 
 #keybind # {{{
 bindkey -e
@@ -272,15 +280,6 @@ bindkey "^[h" run-help
 
   # }}}
 # }}}
-
-exists_source $HOME/.zsh.aliases
-
-add-zsh-hook precmd autols
-add-zsh-hook precmd udd-add
-add-zsh-hook zshexit udd-delete
-
-autoload -Uz chpwd_recent_dirs cdr
-add-zsh-hook chpwd chpwd_recent_dirs
 
 #Load local config
 exists_source $HOME/.zshrc.local
