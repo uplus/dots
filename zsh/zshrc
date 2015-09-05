@@ -134,6 +134,7 @@ fi
 exists_source $HOME/.zsh/antigen/antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle m4i/cdd
+antigen bundle zsh-users/zaw
 
 #zsh completion system
 autoload -U compinit
@@ -166,6 +167,12 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+zstyle ':completion:*:*:cdr:*:*' menu selection
+zstyle ':chpwd:*' recent-dirs-max 300
+zstyle ':chpwd:*' recent-dirs-default true
+zstyle ':chpwd:*' recent-dirs-file "$HOME/.zsh/chpwd-recent-dirs"
+zstyle ':chpwd:*' recent-dirs-pushd true
 # }}}
 
 exists_source $HOME/.zsh.functions
@@ -245,6 +252,9 @@ exists_source $HOME/.zsh.aliases
 add-zsh-hook precmd autols
 add-zsh-hook precmd udd-add
 add-zsh-hook zshexit udd-delete
+
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
 
 #Load local config
 exists_source $HOME/.zshrc.local
