@@ -4,6 +4,10 @@ function getuuid {
   ruby -r securerandom -e 'print SecureRandom.uuid'
 }
 
+relative(){
+  echo ${1:a} | sed -e "s|^$PWD/\?||"
+}
+
 export AUTOLS_DIR=$PWD
 autols() {
   [[ -n $AUTOLS_DIR && $AUTOLS_DIR != $PWD ]] && ls --color=always
@@ -219,24 +223,30 @@ function dhmod {
 #特定ディレクトリの無視、検索条件指定
 #errorの表示 on/off
 function findstr { # {{{
-  if [ $# -lt 2 ];then
-    echo "findstr DIR [OPTS] STR" 1>&2
+  if [ $# -lt 1 ];then
+    echo "findstr [DIR] [OPTS] STR" 1>&2
     return 1
   fi
 
-  local location=$1
-  shift
+  local location str opt
+
+  if [[ $# == 1 ]];then
+    location="."
+  else
+    location=$1
+    shift
+  fi
 
   while [ $# -gt 1 ]; do
-    local opt="$opt $1"
+    opt="$opt $1"
     shift
   done
 
-  local str=$1
+  str=$1
 
-  echo "location: $location"
-  echo "opt: $opt"
-  echo "str: $str"
+  # echo "location: $location"
+  # echo "opt: $opt"
+  # echo "str: $str"
 
   find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
 } # }}}
@@ -341,3 +351,12 @@ pc(){
 pd(){ pc -d ${1:-} }
 pf(){ pc -f ${1:-} }
 ph(){ pc -h ${1:-} }
+
+google_translate() {
+  local arg en_jp opt
+
+  arg=`echo ${@} | sed -e 's/  */+/g'`
+  en_jp="?hl=ja&sl=en&tl=ja&ie=UTF-8&oe=UTF-8" # url
+  opt="${en_jp}&text=${arg}"
+  w3m "http://translate.google.com/${opt}" | block '\[\s+\]' '\[\s+\]' | tail --lines=+2
+}
