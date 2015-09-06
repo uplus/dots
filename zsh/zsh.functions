@@ -1,41 +1,29 @@
 #!/usr/bin/env zsh -eu
 
-function getuuid {
-  ruby -r securerandom -e 'print SecureRandom.uuid'
-}
-
+getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
-
-relative(){
-  echo ${1:a} | sed -e "s|^$PWD/\?||"
-}
+relative(){ echo ${1:a} | sed -e "s|^$PWD/\?||" }
 
 export AUTOLS_DIR=$PWD
-autols() {
+autols(){
   [[ -n $AUTOLS_DIR && $AUTOLS_DIR != $PWD ]] && ls --color=always
   AUTOLS_DIR=$PWD
 }
 
-function gor {
+gor(){
   while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
     cd ..
   done
 }
 
-function ch {
-	if [ $# -eq 0 ]; then
-		cd $HOME
-	else
-		cd $HOME/$1
-	fi
-}
+ch(){ cd $HOME/${1:-} }
 
-function mcdir {
+mcdir(){
   mkdir $@
   cd "${@:$#}"
 }
 
-function ermdir {
+ermdir(){
   if [[ $# -ne 1 ]]; then
     echo "usage: ermdir DIR    erase empty directories" >&2
     return 1
@@ -44,21 +32,22 @@ function ermdir {
   rmdir -p $1/**/ 2> /dev/null
 }
 
-function sizes {
-  du -sm ./$1/* | sort -nr
-}
-
-function binfo {
-  where $1
-  $1 --version
-}
-
-function help {
-  $1 --help 2>&1 | less -SRn
-}
+dcho()   { eval "echo \$$1" }
+sizes()  { du -sm ./$1/* | sort -nr }
+binfo()  { where $1 && $1 --version }
+help()   { $1 --help 2>&1 | less -SRn }
+edigo()  { vi $1 && $2 $1 }
+dotgit() { git -C ~/.dotfiles ${1:-sh} }
+vimgit() { git -C ~/.vim ${1:-sh} }
++r(){ chmod +r $1 }
+-r(){ chmod -r $1 }
++w(){ chmod +w $1 }
+-w(){ chmod -w $1 }
++x(){ chmod +x $1 }
+-x(){ chmod -x $1 }
 
 #color {{{
-function colors {
+colors(){
   local c
   echo
   for c in {000..255}; do
@@ -68,7 +57,7 @@ function colors {
   echo
 }
 
-function colorsv {
+colorsv(){
   local c
   echo
   for c in {016..255}; do
@@ -80,7 +69,7 @@ function colorsv {
 # }}}
 
 #link# {{{
-function sln {
+sln(){
   local sour targ
   if [[ $# < 2 ]]; then
     echo "usage: sln <source> <target>"
@@ -92,7 +81,7 @@ function sln {
   fi
 }
 
-function binln {
+binln(){
   for name in $@; do
     ln -svi ${name:a} $HOME/bin/${name:t:r}
   done
@@ -100,7 +89,7 @@ function binln {
 # }}}
 
 #rc commands {{{
-function generic_rc {
+generic_rc(){
   set -u
   : $1
   local dir="$1"
@@ -131,35 +120,24 @@ function generic_rc {
   esac
 }
 
-function vimrc {
+vimrc(){
   generic_rc $HOME/.vim/ $@
 }
 
-function zshrc {
+zshrc(){
   generic_rc $HOME/.dotfiles/zsh/ $@
 }
 # }}}
 
-function dotgit { git -C ~/.dotfiles ${1:-sh} }
-function vimgit { git -C ~/.vim ${1:-sh} }
-function dcho   { eval "echo \$$1" }
-function edigo  { vi $1 && $2 $1 }
 
-function +r { chmod +r $1 }
-function -r { chmod -r $1 }
-function +w { chmod +w $1 }
-function -w { chmod -w $1 }
-function +x { chmod +x $1 }
-function -x { chmod -x $1 }
-
-function pull-these {
+pull-these(){
   for i in `ls -F | grep '/$'`; do
     printf "%-20s" $i
     git -C $i pull
   done
 }
 
-function cons-web {
+cons-web(){
   if [[ $# -ne 3 ]]; then
     echo "usage: cons-web <url> <start-num> <last-num>"
     echo "       open the consecutive web pages"
@@ -171,11 +149,11 @@ function cons-web {
   done
 }
 
-function host-list {
+host-list(){
   sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1 \n/"
 }
 
-function samp { # {{{
+samp(){ # {{{
   if [[ $#  -eq 0 ]]; then
     echo "usage: samp TYPE" >&2
     return 1
@@ -207,7 +185,7 @@ function samp { # {{{
   vim + $file
 } # }}}
 
-function dump {
+dump(){
   if [[ $# -eq 0 ]]; then
     echo "usage: dump BIN [SYMBOL] [OUTPUT_FILE]" >&2
     return 1
@@ -216,7 +194,7 @@ function dump {
 }
 
 # 再帰的にディレクトリのみパーミッションを変更する
-function dhmod {
+dhmod(){
   ls -F | grep "/" | xargs chmod -R $1
 }
 
@@ -224,7 +202,7 @@ function dhmod {
 #マッチした部分のon/off
 #特定ディレクトリの無視、検索条件指定
 #errorの表示 on/off
-function findstr { # {{{
+findstr(){ # {{{
   if [ $# -lt 1 ];then
     echo "findstr [DIR] [OPTS] STR" 1>&2
     return 1
@@ -254,17 +232,17 @@ function findstr { # {{{
 } # }}}
 
 #udd # {{{
-function udd-add {
+udd-add(){
   [[ $USER == 'root' || $PWD == $HOME ]] && return
   cdd add "t$(gettty)"
 }
 
-function udd-delete {
+udd-delete(){
   [[ $USER == 'root' ]] && return
   cdd delete "t$(gettty)" 2>/dev/null
 }
 
-function udd {
+udd(){
   if [[ $# == 0 ]]; then
     cat ~/.cdd
   else
@@ -273,7 +251,7 @@ function udd {
 }
 # }}}
 
-#percol
+#percol # {{{
 pc(){
   if [[ $# == 0 ]]; then
     echo "usage: pc [mode [target]] [command]"
@@ -317,8 +295,9 @@ pc(){
 pd(){ pc -d ${1:-} }
 pf(){ pc -f ${1:-} }
 ph(){ pc -h ${1:-} }
+# }}}
 
-google_translate() {
+google_translate(){
   local arg en_jp opt
 
   arg=`echo ${@} | sed -e 's/  */+/g'`
