@@ -180,5 +180,6 @@ alias a.out='./a.out'
 alias m='memo'
 alias todo='memo -e todo'
 alias ipy='ipython3'
+alias ud='cdd'
 alias ur='cdr'
 

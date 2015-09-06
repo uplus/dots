@@ -4,6 +4,8 @@ function getuuid {
   ruby -r securerandom -e 'print SecureRandom.uuid'
 }
 
+gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
+
 relative(){
   echo ${1:a} | sed -e "s|^$PWD/\?||"
 }
@@ -252,57 +254,21 @@ function findstr { # {{{
 } # }}}
 
 #udd # {{{
-export UDD_FILE=$HOME/.udd
-alias udd-clear=': >$UDD_FILE'
-alias udd-show='cat $UDD_FILE'
 function udd-add {
   [[ $USER == 'root' || $PWD == $HOME ]] && return
-  echo "${TTY:t}:$PWD" >> $UDD_FILE
-
-  local -AU data
-  while read line; do
-    data[${line%%:*}]=${line#*:}
-  done < ${UDD_FILE}
-
-  udd-clear
-  for key in ${(k)data}; do
-    echo "$key:$data[$key]" >> $UDD_FILE
-  done
+  cdd add "t$(gettty)"
 }
 
 function udd-delete {
   [[ $USER == 'root' ]] && return
-  local -AU data
-  while read line; do
-    data[${line%%:*}]=${line#*:}
-  done < ${UDD_FILE}
-
-  udd-clear
-  for key in ${(k)data}; do
-    if [[ $key != ${TTY:t} ]]; then
-      echo "$key:$data[$key]" >> $UDD_FILE
-    fi
-  done
-}
-
-function udd-cd {
-  local -AU data
-  while read line; do
-    data[${line%%:*}]=${line#*:}
-  done < ${UDD_FILE}
-
-  for key in ${(k)data}; do
-    if [[ $key == $1 ]]; then
-      cd $data[$key]
-    fi
-  done
+  cdd delete "t$(gettty)" 2>/dev/null
 }
 
 function udd {
   if [[ $# == 0 ]]; then
-    udd-show
+    cat ~/.cdd
   else
-    udd-cd $1
+    cdd "t$1"
   fi
 }
 # }}}
