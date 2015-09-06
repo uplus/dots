@@ -260,7 +260,21 @@ bindkey "^[h" run-help
     zle -R -c
   }
   zle -N zle_percol_history
-  bindkey '^R' zle_percol_history
+  bindkey '^S' zle_percol_history
+
+  zle_percol_cdr(){
+    local dir
+    dir=$(cdr -l | awk '{ $1=""; sub(/^ /, "", $0); print }' | grep "$LBUFFER" | percol --query "$LBUFFER")
+
+    if [[ -z $dir ]]; then
+      zle reset-prompt
+    else
+      BUFFER="cd $dir"
+      zle accept-line
+    fi
+  }
+  zle -N zle_percol_cdr
+  bindkey '^R' zle_percol_cdr
 
   zle_percol_file_open(){
     local file dir file_path
@@ -277,6 +291,20 @@ bindkey "^[h" run-help
   }
   zle -N zle_percol_file_open
   bindkey '^O' zle_percol_file_open
+
+  zle_pry(){
+    BUFFER=pry
+    zle accept-line
+  }
+  zle -N zle_pry
+  bindkey 'p' zle_pry
+
+  zle_todo(){
+    BUFFER='memo todo'
+    zle accept-line
+  }
+  zle -N zle_todo
+  bindkey 't' zle_todo
 
   # }}}
 # }}}
