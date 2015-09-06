@@ -12,6 +12,8 @@
   tool      = vimdiff
 [merge]
 	tool = vimdiff
+[pull]
+	rebase = true
 [rebase]
   autostash = true
 [url "git@github.com:u10e10/"]
@@ -34,6 +36,8 @@
   co   = commit
   coa  = commit -a
   cov  = commit -v
+  com  = commit -m
+  cam  = commit -am
   coav = commit -av
   coam = commit -am
   fix  = commit --amend -v
@@ -45,6 +49,7 @@
   all    = add --all
   update = add --update
   patch  = add --patch
+  back   = "!f(){ git reset HEAD~${1}; }; f"
   ours   = checkout --ours
   theirs = checkout --theirs
   reoh     = rebase -i origin/HEAD
