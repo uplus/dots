@@ -155,18 +155,23 @@ host-list(){
 
 samp(){ # {{{
   if [[ $#  -eq 0 ]]; then
-    echo "usage: samp TYPE" >&2
+    echo "usage: samp TYPE [file]" >&2
     return 1
   fi
 
-  local type file
+  local type file templates="$HOME/Templates/pg"
+
+  if [[ $1 == '--types' || $1 == '-t' ]]; then
+    ls $templates | grep -o '^[^.]*'
+    return
+  fi
+
   type=$1
 
   # ファイルとパスを設定
   if [[ $# -lt 2 ]]; then
     file=$(mktemp  --suffix=.${type})
   else
-    echo "$2"
     file="$PWD/$2.$type"
 
     if [[ -e $file ]]; then
@@ -175,7 +180,7 @@ samp(){ # {{{
     fi
   fi
 
-  cat $HOME/Templates/pg/${type}.${type} > $file
+  cat "$templates/${type}.${type}" > $file
 
   if [[ $? != 0 ]]; then
     echo "Error: $file is not writable"

@@ -17,3 +17,8 @@ _zshrc(){
   _files -W `zshrc --dir` && return 0
 }
 compdef _zshrc zshrc
+
+_samp(){
+  compadd $(samp --types)
+}
+compdef _samp samp
