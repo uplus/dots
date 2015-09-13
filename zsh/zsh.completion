@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
-exists_source $HOME/code/ruby/memo/memo_completion.zsh
+
+which memo >/dev/null
+[[ $? -eq 0 ]] && eval "$(memo --complete)"
 
 #cdの補完関数を利用して保管する
 _ch(){
