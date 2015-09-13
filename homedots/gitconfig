@@ -12,8 +12,6 @@
   tool      = vimdiff
 [merge]
 	tool = vimdiff
-[pull]
-	rebase = true
 [rebase]
   autostash = true
 [url "git@github.com:u10e10/"]
@@ -28,6 +26,7 @@
   dw  = diff --color-words
   ds  = diff --stat
   l   = log --graph --decorate --oneline -20
+  lh  = log --graph --decorate --oneline origin/HEAD..@
   la  = log --graph --decorate --oneline
   lo  = log --graph --decorate --stat --find-renames
   today = log --graph --decorate --oneline --stat --since='16 hour ago'
@@ -38,6 +37,8 @@
   cov  = commit -v
   com  = commit -m
   cam  = commit -am
+  cav = commit -av
+  cam = commit -am
   coav = commit -av
   coam = commit -am
   fix  = commit --amend -v
