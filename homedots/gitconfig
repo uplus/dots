@@ -36,9 +36,8 @@
   coa  = commit -a
   cov  = commit -v
   com  = commit -m
+  cav  = commit -av
   cam  = commit -am
-  cav = commit -av
-  cam = commit -am
   coav = commit -av
   coam = commit -am
   fix  = commit --amend -v
