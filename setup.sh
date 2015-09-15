@@ -37,7 +37,7 @@ function pkg_u {
   sudo apt-get -y upgrade
 
   sudo apt-get -y install ssh clang zsh curl git git-sh tig php5 php5-dev perl libperl-dev \
-  doneruby ruby-dev python-dev python3-pip tcl-dev build-essential devscripts lua5.2 luajit \
+  ruby ruby-dev python-dev python3-pip tcl-dev build-essential devscripts lua5.2 luajit \
   vim-gnome sqlite gufw sqlitebrowser indicator-multiload gkrellm gwenview \
   libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev \
   nodejs exuberant-ctags libcurl4-openssl-dev fontforge python-fontforge silversearcher-ag \
