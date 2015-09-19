@@ -91,7 +91,7 @@ function runc   { clang   $1 -o ${1%.*} && ./${1%.*} }
 #global {{{1
 alias -g G='2>&1 | grep'
 alias -g GV='2>&1 | grep -v'
-alias -g GE='2>&1 | grep -e'
+alias -g GE='2>&1 | egrep'
 alias -g L='2>&1 | less'
 alias -g H='2>&1 | head'
 alias -g M='2>&1 | more'
