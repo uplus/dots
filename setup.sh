@@ -1,7 +1,6 @@
 #!/bin/bash -u
 
 # 終了した処理名を:区切りで追加
-finished=''
 current=$(cd `dirname $0` && pwd)
 
 # make_dirs #{{{
@@ -17,7 +16,6 @@ function make_dirs {
   mkdir -vp $HOME/tmp
   mkdir -vp $HOME/sources
   mkdir -vm 700 $HOME/.ssh
-  finished+='dirs:'
 } #}}}
 
 # link_files #{{{
@@ -30,7 +28,6 @@ function link_files {
   mkdir -p $HOME/.percol.d/
   ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
 
-  finished+='link_files:'
 } #}}}
 
 # ubuntu pkg #{{{
@@ -60,13 +57,11 @@ function pkg_u {
   #interactive
   sudo apt-get install -y wireshark mysql-server oracle-java9-installer
 
-  finished+='pkg_u:'
 } #}}}
 
 # neobundle
 function install_neobundle {
   git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-  finished+='neobundle:'
 }
 
 # myrepos #{{{
@@ -86,7 +81,6 @@ function clone_myrepos {
   install_neobundle
   git clone $my_repo/utilities.git $HOME/code/utilities
   git clone $my_repo/rename.git $HOME/code/ruby/rename
-  finished+='repo:'
 } #}}}
 
 # rbenv #{{{
@@ -97,7 +91,6 @@ function install_rbenv {
   git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
   git clone https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
   ln -svi $current/default-gems $HOME/.rbenv/default-gems
-  finished+='rbenv:'
 } #}}}
 
 # install ruby with rbenv #{{{
@@ -115,7 +108,6 @@ function install_ruby_with_rbenv {
   rbenv global $HEAD
   rbenv rehash
   gem update --system
-  finished+='ruby:'
 } #}}}
 
 # install_linuxbrew
@@ -138,14 +130,12 @@ function install_commands {
   sudo make install prefix=/usr/local
   sudo make install-doc prefix=/usr/local
 
-  finished+='commands:'
 }
 
 # zsh
 function link_zsh {
   $current/zsh/setup_zsh.sh
   [[ $SHELL =~ '/zsh' ]] && chsh -s /bin/zsh
-  finished+='zsh:'
 }
 
 # change keymap
@@ -163,8 +153,6 @@ function change_keymap {
   u10:tenkey = +u10(tenkey)" | sudo tee -a /usr/share/X11/xkb/rules/evdev
 
   dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'u10:happy', 'u10:tenkey']"
-
-  finished+=change_keymap
 }
 
 # todo
