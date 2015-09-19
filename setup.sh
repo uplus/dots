@@ -143,9 +143,7 @@ change_keymap() {
 #}}}
 
 help() {
-  grep "^function" $0 | awk '{print $2}'
-  echo
-  # echo "os typeを判別したりする予定"
+  grep -o "^[^ ]*()" setup.sh | sed "s/()//g"
 }
 
 if [ $# -eq 0 ]; then
