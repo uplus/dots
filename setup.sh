@@ -26,6 +26,10 @@ function link_files {
   for name in $(ls $dir); do
     ln -svi $dir/$name $HOME/.$name
   done
+
+  mkdir -p $HOME/.percol.d/
+  ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
+
   finished+='link_files:'
 } #}}}
 
@@ -124,12 +128,10 @@ function install_commands {
   sudo pip3 install --upgrade pip
   pip3 install percol ipython --user
 
-  mkdir -p $HOME/.percol.d/
-  ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
-
   # tig
   git clone https://github.com/jonas/tig ~/sources/
   cd ~/sources/tig
+  ./configure --with-ncursesw
   make prefix=/usr/local
   sudo make install prefix=/usr/local
   sudo make install-doc prefix=/usr/local
