@@ -82,7 +82,6 @@ function clone_myrepos {
   git clone $my_repo/vim.git $HOME/.vim/
   install_neobundle
   git clone $my_repo/utilities.git $HOME/code/utilities
-  git clone $my_repo/memo.git $HOME/code/ruby/memo
   git clone $my_repo/rename.git $HOME/code/ruby/rename
   finished+='repo:'
 } #}}}
@@ -129,7 +128,7 @@ function install_commands {
   pip3 install percol ipython --user
 
   # tig
-  git clone https://github.com/jonas/tig ~/sources/
+  git clone https://github.com/jonas/tig ~/sources/tig/
   cd ~/sources/tig
   ./configure --with-ncursesw
   make prefix=/usr/local
@@ -182,10 +181,10 @@ function help {
 
 if [ $# -eq 0 ]; then
   help
-  return 1
+  exit 1
 else
   $1
-  return
+  exit
 fi
 
 # #bashの1文字入力は-n
