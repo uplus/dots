@@ -156,29 +156,3 @@ else
   return
 fi
 
-# #bashの1文字入力は-n
-# echo -n "Which OS type Ubuntu? Centos? or OSX (u/c/o/Skip) "
-# read -n 1 os
-# echo
-#
-# echo -n "setup zsh?(y/N) "
-# read -n 1 setup_zsh
-# echo
-
-
-# case $os in
-#   'u')
-#     pkg_u
-#     ;;
-#   'c')
-#     echo "Can you use sudo? (y/N)"
-#     read -n 1 key
-#     which git wget > /dev/null
-#     if [ $? -ne 0 ]; then
-#       echo "please run again after install the git and wget" >&2
-#       exit 1
-#     fi
-#     ;;
-#   'o') ;;
-#   *) ;;
-# esac
