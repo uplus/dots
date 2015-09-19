@@ -1,6 +1,4 @@
 #!/bin/bash -u
-
-# 終了した処理名を:区切りで追加
 current=$(cd `dirname $0` && pwd)
 
 make_dirs() { #{{{
@@ -27,10 +25,12 @@ link_files() { #{{{
   ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
 } #}}}
 
+link_zsh() { #{{{
+  $current/zsh/setup_zsh.sh
+  [[ $SHELL =~ '/zsh' ]] && chsh -s /bin/zsh
 } #}}}
 
-# ubuntu pkg #{{{
-pkg_u() {
+pkg_u() { # {{{
   sudo add-apt-repository -y ppa:webupd8team/java
   sudo add-apt-repository -y ppa:git-core/ppa
   sudo apt-get update
@@ -44,22 +44,19 @@ pkg_u() {
   patchutils pbuilder x11-xfs-utils terminology iotop htop \
   gufw gkrellm gwenview \
 
-  # utility
-  if [[ $2 != "develop" ]]; then
-    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool indicator-multiload \
-    compizconfig-settings-manager compiz-plugins-extra comix vlc open-jtalk espeak classicmenu-indicator \
-    uvtool sqlitebrowser virtualbox fontforge python-fontforge
-
-    sudo add-apt-repository -y ppa:neovim-ppa/unstable
-  fi
-
   #interactive
   sudo apt-get install -y wireshark mysql-server oracle-java9-installer
-
 } #}}}
 
-# myrepos #{{{
-clone_myrepos() {
+pkg_u_utility() {
+  sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool indicator-multiload \
+  compizconfig-settings-manager compiz-plugins-extra comix vlc open-jtalk espeak classicmenu-indicator \
+  uvtool sqlitebrowser virtualbox fontforge python-fontforge
+
+  sudo add-apt-repository -y ppa:neovim-ppa/unstable
+}
+
+clone_myrepos() { #{{{
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
   read -n 1 ssh
@@ -77,8 +74,7 @@ clone_myrepos() {
   git clone $my_repo/rename.git $HOME/code/ruby/rename
 } #}}}
 
-# rbenv #{{{
-install_rbenv() {
+install_rbenv() { #{{{
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
   git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
@@ -87,8 +83,7 @@ install_rbenv() {
   ln -svi $current/default-gems $HOME/.rbenv/default-gems
 } #}}}
 
-# install ruby with rbenv #{{{
-install_ruby_with_rbenv() {
+install_ruby_with_rbenv() { #{{{
   local v19 v20 HEAD
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
@@ -104,18 +99,15 @@ install_ruby_with_rbenv() {
   gem update --system
 } #}}}
 
-# install neobundle
 install_neobundle() {
   git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 }
 
-# install linuxbrew
 install_linuxbrew() {
   git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
 }
 
-
-install_commands() {
+install_commands() { #{{{
   [ ! -e $HOME/bin ] && mkdir $HOME/bin
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 
@@ -130,14 +122,7 @@ install_commands() {
   make prefix=/usr/local
   sudo make install prefix=/usr/local
   sudo make install-doc prefix=/usr/local
-
-}
-
-# zsh
-function link_zsh {
-  $current/zsh/setup_zsh.sh
-  [[ $SHELL =~ '/zsh' ]] && chsh -s /bin/zsh
-}
+} #}}}
 
 # change keymap #{{{
 update_keymap() {
@@ -156,12 +141,6 @@ change_keymap() {
   dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'u10:happy', 'u10:tenkey']"
 }
 #}}}
-
-# todo
-todo() {
-  echo "vi /etc/default/keyboard"
-  echo "XKBOPTION='ctrl:nocaps'"
-}
 
 help() {
   grep "^function" $0 | awk '{print $2}'
