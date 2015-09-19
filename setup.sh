@@ -49,7 +49,7 @@ pkg_u() { # {{{
     apt-get install -y wireshark mysql-server oracle-java9-installer
   }
 
-  sudo _pkg_u
+  _pkg_u
 } #}}}
 
 pkg_u_utility() { #{{{
@@ -61,7 +61,7 @@ pkg_u_utility() { #{{{
     add-apt-repository -y ppa:neovim-ppa/unstable
   }
 
-  sudo _pkg_u_utility
+  _pkg_u_utility
 } #}}}
 
 clone_myrepos() { #{{{
