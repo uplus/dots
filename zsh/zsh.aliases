@@ -36,6 +36,7 @@ alias vr='vim -R'
 
 #git {{{1
 alias t='tig'
+alias ts='tig status'
 alias g='git'
 alias ga='git a'
 alias gch='git ch'

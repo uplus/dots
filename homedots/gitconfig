@@ -43,8 +43,10 @@
   fix  = commit --amend -v
   fixa = commit --amend -va
   eda  = branch -a
-  st    = stash save --include-untracked
+  st    = stash
+  save  = stash save --include-untracked
   spop  = stash pop
+  sdrop = stash drop
   slist = stash list --stat --oneline
   all    = add --all
   update = add --update
