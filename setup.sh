@@ -40,17 +40,20 @@ function pkg_u {
   sudo apt-get update
   sudo apt-get -y upgrade
 
-  sudo apt-get -y install ssh clang zsh curl git git-sh tig php5 php5-dev perl libperl-dev \
-  ruby ruby-dev python-dev python3-pip tcl-dev build-essential devscripts lua5.2 luajit \
-  vim-gnome sqlite gufw sqlitebrowser indicator-multiload gkrellm gwenview \
-  libclang-dev virtualbox compiz-plugins-extra gnome-session tmux pavucontrol libmysqld-dev \
-  nodejs exuberant-ctags libcurl4-openssl-dev fontforge python-fontforge silversearcher-ag \
+  sudo apt-get -y install clang zsh ssh curl git git-sh tig tmux build-essential devscripts  \
+  php5 php5-dev perl libperl-dev ruby ruby-dev python-dev python3-pip tcl-dev lua5.2 luajit \
+  vim-gnome sqlite nodejs libclang-dev libmysqld-dev  libcurl4-openssl-dev \
+  gnome-session pavucontrol exuberant-ctags silversearcher-ag \
   apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
-  patchutils pbuilder x11-xfs-utils terminology iotop htop
+  patchutils pbuilder x11-xfs-utils terminology iotop htop \
+  gufw gkrellm gwenview \
 
   # utility
   if [[ $2 != "develop" ]]; then
-    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool compizconfig-settings-manager comix vlc open-jtalk espeak classicmenu-indicator uvtool
+    sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool indicator-multiload \
+    compizconfig-settings-manager compiz-plugins-extra comix vlc open-jtalk espeak classicmenu-indicator \
+    uvtool sqlitebrowser virtualbox fontforge python-fontforge
+
     sudo add-apt-repository -y ppa:neovim-ppa/unstable
   fi
 
