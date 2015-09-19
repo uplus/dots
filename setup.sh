@@ -3,8 +3,7 @@
 # 終了した処理名を:区切りで追加
 current=$(cd `dirname $0` && pwd)
 
-# make_dirs #{{{
-function make_dirs {
+make_dirs() { #{{{
   mkdir -vp $HOME/bin/
   mkdir -vpm 700 $HOME/code/
   mkdir -vp $HOME/code/c/sample
@@ -18,8 +17,7 @@ function make_dirs {
   mkdir -vm 700 $HOME/.ssh
 } #}}}
 
-# link_files #{{{
-function link_files {
+link_files() { #{{{
   dir=$current/homedots
   for name in $(ls $dir); do
     ln -svi $dir/$name $HOME/.$name
@@ -27,11 +25,12 @@ function link_files {
 
   mkdir -p $HOME/.percol.d/
   ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
+} #}}}
 
 } #}}}
 
 # ubuntu pkg #{{{
-function pkg_u {
+pkg_u() {
   sudo add-apt-repository -y ppa:webupd8team/java
   sudo add-apt-repository -y ppa:git-core/ppa
   sudo apt-get update
@@ -59,13 +58,8 @@ function pkg_u {
 
 } #}}}
 
-# neobundle
-function install_neobundle {
-  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-}
-
 # myrepos #{{{
-function clone_myrepos {
+clone_myrepos() {
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
   read -n 1 ssh
@@ -84,7 +78,7 @@ function clone_myrepos {
 } #}}}
 
 # rbenv #{{{
-function install_rbenv {
+install_rbenv() {
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
   git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
@@ -94,7 +88,7 @@ function install_rbenv {
 } #}}}
 
 # install ruby with rbenv #{{{
-function install_ruby_with_rbenv {
+install_ruby_with_rbenv() {
   local v19 v20 HEAD
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
@@ -110,13 +104,15 @@ function install_ruby_with_rbenv {
   gem update --system
 } #}}}
 
-# install_linuxbrew
-function install_linuxbrew {
+# install neobundle
+install_neobundle() {
+# install linuxbrew
+install_linuxbrew() {
   git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
 }
 
 
-function install_commands {
+install_commands() {
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 
   sudo pip3 install --upgrade pip
@@ -138,13 +134,13 @@ function link_zsh {
   [[ $SHELL =~ '/zsh' ]] && chsh -s /bin/zsh
 }
 
-# change keymap
-function update_keymap {
+# change keymap #{{{
+update_keymap() {
   sudo cp $current/xkbsymbols /usr/share/X11/xkb/symbols/u10
   sudo rm /var/lib/xkb/*
 }
 
-function change_keymap {
+change_keymap() {
   update_keymap
 
   echo "
@@ -154,6 +150,7 @@ function change_keymap {
 
   dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'u10:happy', 'u10:tenkey']"
 }
+#}}}
 
 # todo
 function todo {
@@ -164,7 +161,7 @@ function todo {
   fi
 }
 
-function help {
+help() {
   grep "^function" $0 | awk '{print $2}'
   echo
   # echo "os typeを判別したりする予定"
@@ -172,10 +169,10 @@ function help {
 
 if [ $# -eq 0 ]; then
   help
-  exit 1
+  return 1
 else
   $1
-  exit
+  return
 fi
 
 # #bashの1文字入力は-n
