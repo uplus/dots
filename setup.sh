@@ -106,6 +106,9 @@ install_ruby_with_rbenv() {
 
 # install neobundle
 install_neobundle() {
+  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+}
+
 # install linuxbrew
 install_linuxbrew() {
   git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
@@ -113,8 +116,10 @@ install_linuxbrew() {
 
 
 install_commands() {
+  [ ! -e $HOME/bin ] && mkdir $HOME/bin
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 
+  sudo apt-get install python3-pip
   sudo pip3 install --upgrade pip
   pip3 install percol ipython --user
 
@@ -153,12 +158,9 @@ change_keymap() {
 #}}}
 
 # todo
-function todo {
-  if [[ $os = 'u' ]]; then
-    echo "#caps to ctrl"
-    echo "vi /etc/default/keyboard"
-    echo "XKBOPTION='ctrl:nocaps'"
-  fi
+todo() {
+  echo "vi /etc/default/keyboard"
+  echo "XKBOPTION='ctrl:nocaps'"
 }
 
 help() {
