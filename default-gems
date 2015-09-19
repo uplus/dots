@@ -3,7 +3,9 @@ pry
 pry-doc
 pry-byebug
 pry-coolline
+pry-stack_explorer
 bundler
 rfd
 rcodetools
 rails_best_practices
+rak
