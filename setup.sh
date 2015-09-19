@@ -31,30 +31,38 @@ link_zsh() { #{{{
 } #}}}
 
 pkg_u() { # {{{
-  sudo add-apt-repository -y ppa:webupd8team/java
-  sudo add-apt-repository -y ppa:git-core/ppa
-  sudo apt-get update
-  sudo apt-get -y upgrade
+  _pkg_u() {
+    add-apt-repository -y ppa:webupd8team/java
+    add-apt-repository -y ppa:git-core/ppa
+    apt-get update
+    apt-get -y upgrade
 
-  sudo apt-get -y install clang zsh ssh curl git git-sh tig tmux build-essential devscripts  \
-  php5 php5-dev perl libperl-dev ruby ruby-dev python-dev python3-pip tcl-dev lua5.2 luajit \
-  vim-gnome sqlite nodejs libclang-dev libmysqld-dev  libcurl4-openssl-dev \
-  gnome-session pavucontrol exuberant-ctags silversearcher-ag \
-  apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
-  patchutils pbuilder x11-xfs-utils terminology iotop htop \
-  gufw gkrellm gwenview \
+    apt-get -y install clang zsh ssh curl git git-sh tig tmux build-essential devscripts  \
+      php5 php5-dev perl libperl-dev ruby ruby-dev python-dev python3-pip tcl-dev lua5.2 luajit \
+      vim-gnome sqlite nodejs libclang-dev libmysqld-dev  libcurl4-openssl-dev \
+      gnome-session pavucontrol exuberant-ctags silversearcher-ag \
+      apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
+      patchutils pbuilder x11-xfs-utils terminology iotop htop \
+      gufw gkrellm gwenview \
 
-  #interactive
-  sudo apt-get install -y wireshark mysql-server oracle-java9-installer
+    #interactive
+    apt-get install -y wireshark mysql-server oracle-java9-installer
+  }
+
+  sudo _pkg_u
 } #}}}
 
-pkg_u_utility() {
-  sudo apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool indicator-multiload \
-  compizconfig-settings-manager compiz-plugins-extra comix vlc open-jtalk espeak classicmenu-indicator \
-  uvtool sqlitebrowser virtualbox fontforge python-fontforge
+pkg_u_utility() { #{{{
+  _pkg_u_utility() {
+    apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool indicator-multiload \
+      compizconfig-settings-manager compiz-plugins-extra comix vlc open-jtalk espeak classicmenu-indicator \
+      uvtool sqlitebrowser virtualbox fontforge python-fontforge
 
-  sudo add-apt-repository -y ppa:neovim-ppa/unstable
-}
+    add-apt-repository -y ppa:neovim-ppa/unstable
+  }
+
+  sudo _pkg_u_utility
+} #}}}
 
 clone_myrepos() { #{{{
   local ssh my_repo
