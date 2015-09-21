@@ -33,7 +33,7 @@ function exists_source(){
 }
 
 if [ -n "${WINDOWID-}" -a -f $HOME/.xmodmap ]; then
-	xmodmap ~/.xmodmap
+  xmodmap ~/.xmodmap
 fi
 
 stty -ixon -ixoff #これがないと何故かvimでC-Sが使えない

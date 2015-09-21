@@ -12,10 +12,10 @@ os_local_file=$HOME/.zsh.`uname | tr '[:upper]' '[:lower]'`
 case $OSTYPE in
 linux*)
   rm_file=darwin
-	;;
+  ;;
 darwin*)
   rm_file=linux
-	;;
+  ;;
 esac
 
 [[ -L $HOME/.zshrc.$rm_file ]] && rm $HOME/.zshrc.$rm_file
