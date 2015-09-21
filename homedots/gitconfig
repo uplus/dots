@@ -3,6 +3,7 @@
 	name  = u10e10
 [core]
 	editor = vim
+  excludesfile = ~/.gitignore
 [color]
 	ui = true
 [push]
