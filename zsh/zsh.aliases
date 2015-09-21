@@ -75,6 +75,8 @@ alias suspend='sudo pm-suspend'
 
 #non glob expansion {{{1
 alias find='noglob find'
+alias rbrn='noglob rbrn'
+alias zmv='noglob zmv'
 
 #suffix {{{1
 alias -s py='python'
