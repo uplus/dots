@@ -10,6 +10,7 @@ umask 077
 DIRSTACKSIZE=100
 disable r # r is zsh-builtin 直前のコマンドを実効する
 autoload -Uz add-zsh-hook
+autoload -Uz zmv
 
 #Prompt # {{{
 autoload -Uz promptinit
