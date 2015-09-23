@@ -54,11 +54,15 @@ pkg_u() { # {{{
 
 pkg_u_utility() { #{{{
   _pkg_u_utility() {
+    add-apt-repository -y ppa:neovim-ppa/unstable
+    add-apt-repository -y ppa:ubuntu-desktop/ubuntu-make
+    add-apt-repository -y ppa:numix/ppa
+
+    apt-get update
+
     apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool indicator-multiload \
       compizconfig-settings-manager compiz-plugins-extra comix vlc open-jtalk espeak classicmenu-indicator \
-      uvtool sqlitebrowser virtualbox fontforge python-fontforge
-
-    add-apt-repository -y ppa:neovim-ppa/unstable
+      uvtool sqlitebrowser virtualbox fontforge python-fontforge ubuntu-make qemu-kvm dconf-editor
   }
 
   _pkg_u_utility
