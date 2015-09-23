@@ -65,19 +65,6 @@ alias gdba='gdb -q a.out'
 alias lldba='lldb a.out'
 alias objdump='objdump -M intel'
 
-#not require sudo {{{1
-alias shutdown='sudo shutdown'
-alias poweroff='sudo poweroff'
-alias reboot='sudo reboot'
-alias mount='sudo mount'
-alias visudo='sudo visudo'
-alias suspend='sudo pm-suspend'
-
-#non glob expansion {{{1
-alias find='noglob find'
-alias rbrn='noglob rbrn'
-alias zmv='noglob zmv'
-
 #suffix {{{1
 alias -s py='python'
 alias -s rb='ruby'
@@ -94,19 +81,19 @@ function runc   { clang   $1 -o ${1%.*} && ./${1%.*} }
 alias -g G='2>&1 | grep'
 alias -g GV='2>&1 | grep -v'
 alias -g GE='2>&1 | egrep'
+alias -g C='2>&1 | cat'
+alias -g M='2>&1 | more'
 alias -g L='2>&1 | less'
 alias -g H='2>&1 | head'
-alias -g M='2>&1 | more'
 alias -g T='2>&1 | tail'
-alias -g C='2>&1 | cat'
 alias -g X='2>&1 | xargs'
+alias -g A='2>&1 | awk'
+alias -g S='2>&1 | sed'
 alias -g W='2>&1 | wc'
 alias -g WL='2>&1 | wc -l'
 alias -g WW='2>&1 | wc -w'
 alias -g WC='2>&1 | wc -c'
 alias -g WM='2>&1 | wc -m'
-alias -g A='2>&1 | awk'
-alias -g S='2>&1 | sed'
 alias -g N='> /dev/null'
 alias -g E='2> /dev/null'
 alias -g Q='> /dev/null 2>&1'
@@ -146,24 +133,27 @@ alias dirsize='du -csm'
 alias dirsizes='dirsize * | sort -n'
 
 #pkg {{{1
-alias apt-search='\apt-cache search --names-only'
+alias apt-search='apt-cache search --names-only'
 alias apt-upgrade='sudo apt update && echo "##Upgrade start" && sudo apt upgrade'
 alias apt-clean='sudo apt-get autoremove && sudo apt-get autoclean'
 alias inst='sudo apt install'
 alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
 
+#not require sudo {{{1
+alias shutdown='sudo shutdown'
+alias poweroff='sudo poweroff'
+alias reboot='sudo reboot'
+alias mount='sudo mount'
+alias visudo='sudo visudo'
+alias suspend='sudo pm-suspend'
+
+#non glob expansion {{{1
+alias find='noglob find'
+alias rbrn='noglob rbrn'
+alias zmv='noglob zmv'
+
 # FOLDS END {{{1
 # }}}1
-
-#utilities
-alias hist='history -n'
-alias histall='history -n 1'
-alias histories='history -E 1'
-alias ehis='history -n -100 | vim - +'
-alias envlang='env | grep -e LANG -e LC'
-alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
-alias guirestart='sudo service lightdm restart'
-alias older='ls -altr'
 
 #override
 alias irb='irb --simple-prompt'
@@ -172,7 +162,19 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -v'
-alias which='which -aps'
+alias which='which -p'
+
+#utilities
+alias hist='history -n'
+alias histall='history -n 1'
+alias histories='history -E 1'
+alias ehis='history -n -1000 | vim - +'
+alias ehisall='history -n 1 | vim - +'
+alias envlang='env | grep -e LANG -e LC'
+alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
+alias guirestart='sudo service lightdm restart'
+alias older='ls -altr'
+alias whichis='which -aps'
 
 #shortening
 alias cdb='cd -'
