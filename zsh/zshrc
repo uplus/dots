@@ -256,7 +256,7 @@ bindkey "^[h" run-help
 
   ## original keybind functions # {{{
   zle_percol_history(){
-    BUFFER=$(history -nr -3000 | percol --query "$LBUFFER")
+    BUFFER=$(history -nr -3000 | awk '!a[$0]++' | percol --query "$LBUFFER")
     CURSOR=$#BUFFER
     zle -R -c
   }
