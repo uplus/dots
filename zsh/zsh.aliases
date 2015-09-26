@@ -129,7 +129,7 @@ alias realias='source ~/.dotfiles/zsh/zsh.aliases'
 alias vizsh='zshrc zshrc'
 alias vialias='zshrc zsh.aliases || realias'
 alias vifunc='zshrc zsh.functions'
-alias vihist='vi ~/.zsh/zsh_history'
+alias vihist='vi $HISTFILE'
 alias dirsize='du -csm'
 alias dirsizes='dirsize * | sort -n'
 
