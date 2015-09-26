@@ -147,6 +147,8 @@ alias reboot='sudo reboot'
 alias mount='sudo mount'
 alias visudo='sudo visudo'
 alias suspend='sudo pm-suspend'
+alias pip3-check='pip3 list -o --user'
+alias pip3-update='pip3 install --user -U `pip3-check`'
 
 #non glob expansion {{{1
 alias find='noglob find'
