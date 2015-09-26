@@ -121,6 +121,7 @@ hash -d samples=$HOME/code/samples/
 hash -d tmp=$HOME/tmp/
 hash -d work=$HOME/work/
 hash -d bin=$HOME/bin/
+hash -d sources=$HOME/sources/
 
 #shell {{{1
 alias resh='exec $SHELL -l'
