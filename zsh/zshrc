@@ -259,6 +259,12 @@ bindkey "^[h" run-help
     BUFFER=$(history -nr -3000 | awk '!a[$0]++' | percol --query "$LBUFFER")
     CURSOR=$#BUFFER
     zle -R -c
+
+    if [[ -z $BUFFER ]]; then
+      zle reset-prompt
+    else
+      zle accept-line
+    fi
   }
   zle -N zle_percol_history
   bindkey '^S' zle_percol_history
