@@ -6,6 +6,7 @@ pry-coolline
 pry-stack_explorer
 bundler
 rfd
+fastri
 rcodetools
 rails_best_practices
 rak
