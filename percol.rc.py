@@ -1,7 +1,7 @@
 # Run command file for percol
 percol.view.PROMPT  = ur"<bold><cyan>QUERY </cyan>[a]:</bold> %q"
 percol.view.CANDIDATES_LINE_SELECTED = ("on_magenta", "white")
-percol.view.CANDIDATES_LINE_QUERY    = ("black", "bold")
+percol.view.CANDIDATES_LINE_QUERY    = ("green", "bold")
 
 # Display finder name in RPROMPT
 percol.view.prompt_replacees["F"] = lambda self, **args: self.model.finder.get_name()
