@@ -10,12 +10,6 @@ autols(){
   AUTOLS_DIR=$PWD
 }
 
-gor(){
-  while [ ! -f Gemfile ] && [[ $PWD != '/' ]]; do
-    cd ..
-  done
-}
-
 ch(){ cd $HOME/${1:-} }
 
 mcdir(){

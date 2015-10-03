@@ -178,6 +178,7 @@ alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias guirestart='sudo service lightdm restart'
 alias older='ls -altr'
 alias whichis='which -aps'
+alias gor='cd `git rev-parse --show-toplevel`'
 
 #shortening
 alias cdb='cd -'
