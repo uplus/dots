@@ -1,0 +1,3 @@
+--sort=yes
+--recurse=yes
+-f .tags
