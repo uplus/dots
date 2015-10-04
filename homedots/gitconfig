@@ -44,7 +44,7 @@
   fix  = commit --amend -v
   fixa = commit --amend -va
   eda  = branch -a
-  st    = stash
+  st    = stash save --include-untracked --keep-index
   save  = stash save --include-untracked
   spop  = stash pop
   sdrop = stash drop

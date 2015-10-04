@@ -179,6 +179,7 @@ alias guirestart='sudo service lightdm restart'
 alias older='ls -altr'
 alias whichis='which -aps'
 alias gor='cd `git rev-parse --show-toplevel`'
+alias lvim="vim -c \"normal '0\""
 
 #shortening
 alias cdb='cd -'
