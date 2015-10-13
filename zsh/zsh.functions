@@ -26,9 +26,8 @@ ermdir(){
   rmdir -p $1/**/ 2> /dev/null
 }
 
-dcho()   { eval "echo \$$1" }
 sizes()  { du -sm ./$1/* | sort -nr }
-binfo()  { where $1 && $1 --version }
+binfo()  { which -aps $1 && $1 --version }
 help()   { $1 --help 2>&1 | less -SRn }
 edigo()  { vi $1 && $2 $1 }
 lddw()   { ldd $(which $1) }
