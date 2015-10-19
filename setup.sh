@@ -43,7 +43,7 @@ pkg_u() { # {{{
       gnome-session pavucontrol exuberant-ctags silversearcher-ag \
       apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
       patchutils pbuilder x11-xfs-utils terminology iotop htop \
-      gufw gkrellm gwenview \
+      gufw gkrellm gwenview gpart \
 
     #interactive
     apt-get install -y wireshark mysql-server oracle-java9-installer
