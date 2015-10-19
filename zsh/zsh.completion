@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-which memo >/dev/null
+which memo >/dev/null 2>&1
 [[ $? -eq 0 ]] && eval "$(memo --complete)"
 
 #cdの補完関数を利用して保管する
