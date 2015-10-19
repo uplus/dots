@@ -166,6 +166,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -v'
 alias which='which -p'
+alias jobs='jobs -ld'
 
 #utilities
 alias hist='history -n'
