@@ -55,7 +55,7 @@
   back   = "!f(){ git reset HEAD~${1}; }; f"
   ours   = checkout --ours
   theirs = checkout --theirs
-  reoh     = rebase -i origin/HEAD
+  reoh     = rebase -i origin/master
   continue = rebase --continue
   abort    = rebase --abort
   smerge = !"f(){ git merge --ff-only ${1}; git branch -d ${1}; }; f"
