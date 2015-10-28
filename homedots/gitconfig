@@ -27,7 +27,7 @@
   dw  = diff --color-words
   ds  = diff --stat
   l   = log --graph --decorate --oneline -20
-  lh  = log --graph --decorate --oneline origin/HEAD..@
+  lh  = log --graph --decorate --oneline origin/master..@
   la  = log --graph --decorate --oneline
   lo  = log --graph --decorate --stat --find-renames
   today = log --graph --decorate --oneline --stat --since='16 hour ago'
