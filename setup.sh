@@ -25,6 +25,13 @@ link_files() { #{{{
   ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
 } #}}}
 
+set_dark_theme() {
+  local gtk_config="$HOME/.config/gtk-3.0"
+  [[ -d $gtk_config ]] && mkdir -p "$gtk_config"
+  ln -svi $current/gtk3.css $gtk_config/gtk3.css
+  echo '@import url("gtk3.css");'>> "$gtk_config/gtk.css"
+}
+
 link_zsh() { #{{{
   $current/zsh/setup_zsh.sh
   [[ $SHELL =~ '/zsh' ]] && chsh -s /bin/zsh
