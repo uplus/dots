@@ -69,4 +69,4 @@
   current-branch = rev-parse --abbrev-ref HEAD
   fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
   pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
-
+  inish = !"f(){ git init && [ $# -ne 0 ] && git add $1; git s && git sh; }; f"
