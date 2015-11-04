@@ -44,16 +44,14 @@ pkg_u() { # {{{
     apt-get update
     apt-get -y upgrade
 
-    apt-get -y install clang zsh ssh curl git git-sh tig tmux build-essential devscripts  \
-      php5 php5-dev perl libperl-dev ruby ruby-dev python-dev python3-pip tcl-dev lua5.2 luajit \
-      vim-gnome sqlite nodejs libclang-dev libmysqld-dev  libcurl4-openssl-dev \
-      gnome-session pavucontrol exuberant-ctags silversearcher-ag \
+    apt-get -y install clang zsh tmux ssh curl git git-sh tig \
+      php5 php5-dev perl libperl-dev ruby ruby-dev python-dev python3-pip lua5.2 luajit tcl-dev \
+      libclang-dev libmysqld-dev libcurl4-openssl-dev build-essential devscripts \
+      vim-gtk exuberant-ctags silversearcher-ag \
       apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
       patchutils pbuilder x11-xfs-utils terminology iotop htop \
-      gufw gkrellm gwenview gpart xclip \
+      gufw gkrellm gnome-session gwenview gpart xclip
 
-    #interactive
-    apt-get install -y wireshark mysql-server oracle-java9-installer
   }
 
   _pkg_u
@@ -68,8 +66,12 @@ pkg_u_utility() { #{{{
     apt-get update
 
     apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool indicator-multiload \
-      compizconfig-settings-manager compiz-plugins-extra comix vlc open-jtalk espeak classicmenu-indicator \
-      uvtool sqlitebrowser virtualbox fontforge python-fontforge ubuntu-make qemu-kvm dconf-editor
+      compizconfig-settings-manager compiz-plugins-extra mcomix vlc open-jtalk espeak classicmenu-indicator \
+      uvtool virtualbox fontforge python-fontforge ubuntu-make qemu-kvm dconf-editor \
+      pavucontrol sqlite nodejs sqlitebrowser
+
+      #interactive
+      apt-get install -y wireshark mysql-server oracle-java9-installer
   }
 
   _pkg_u_utility
@@ -167,9 +169,9 @@ help() {
 
 if [ $# -eq 0 ]; then
   help
-  return 1
+  exit 1
 else
   $1
-  return
+  exit 0
 fi
 
