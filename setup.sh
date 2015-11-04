@@ -45,12 +45,13 @@ pkg_u() { # {{{
     apt-get -y upgrade
 
     apt-get -y install clang zsh tmux ssh curl git git-sh tig \
-      php5 php5-dev perl libperl-dev ruby ruby-dev python-dev python3-pip lua5.2 luajit tcl-dev \
+      php5 php5-dev perl libperl-dev ruby ruby-dev python-dev python3-pip lua5.2 luajit \
       libclang-dev libmysqld-dev libcurl4-openssl-dev build-essential devscripts \
+      tcl-dev libncurses5-dev libncursesw5-dev \
       vim-gtk exuberant-ctags silversearcher-ag \
-      apt-file libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
+      libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
       patchutils pbuilder x11-xfs-utils terminology iotop htop \
-      gufw gkrellm gnome-session gwenview gpart xclip
+      apt-file gufw gkrellm gnome-session gwenview gpart xclip
 
   }
 
