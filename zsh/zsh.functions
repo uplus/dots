@@ -305,3 +305,16 @@ google_translate(){
   opt="${en_jp}&text=${arg}"
   w3m "http://translate.google.com/${opt}" | block '\[\s+\]' '\[\s+\]' | tail --lines=+2
 }
+
+pk(){
+  out=`pgrep "${1}"`
+  [[ -z $out ]] && return 1
+
+  echo $out
+  echo 'kill? (y/N)'
+  read -ks key
+  [[ $key != 'y' ]] && return 0
+
+  echo 'kill: '
+  pkill -c "${1}"
+}
