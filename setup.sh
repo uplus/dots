@@ -139,10 +139,12 @@ install_commands() { #{{{
   # tig
   git clone https://github.com/jonas/tig ~/sources/tig/
   cd ~/sources/tig
+  make configure
   ./configure --with-ncursesw
   make prefix=/usr/local
   sudo make install prefix=/usr/local
   sudo make install-doc prefix=/usr/local
+  cd $current
 } #}}}
 
 # change keymap #{{{
