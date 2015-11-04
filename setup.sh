@@ -169,9 +169,7 @@ help() {
 
 if [ $# -eq 0 ]; then
   help
-  exit 1
 else
   $1
-  exit 0
 fi
 
