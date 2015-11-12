@@ -172,6 +172,11 @@ change_keymap() {
 }
 #}}}
 
+vlc_dvd() {
+  sudo apt-get install vlc libdvdread4
+  sudo /usr/share/doc/libdvdread4/install-css.sh
+}
+
 help() {
   grep -o "^[^ ]*()" setup.sh | sed "s/()//g"
 }
