@@ -44,18 +44,18 @@ pkg_u() { # {{{
     apt-get update
     apt-get -y upgrade
 
-    apt-get -y install clang zsh tmux ssh curl git git-sh tig \
-      php5 php5-dev perl libperl-dev ruby ruby-dev python-dev python3-pip lua5.2 luajit \
-      libclang-dev libmysqld-dev libcurl4-openssl-dev build-essential devscripts \
-      tcl-dev libncurses5-dev libncursesw5-dev \
+    apt-get -y install zsh tmux ssh curl git git-sh tig \
+      clang clang-doc libclang-dev ruby ruby-dev perl libperl-dev \
+      php5 php5-dev python-dev python3-pip lua5.2 luajit tcl-dev libncurses5-dev libncursesw5-dev \
+      libmysqld-dev libcurl4-openssl-dev build-essential devscripts \
       vim-gtk exuberant-ctags silversearcher-ag \
       libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
       patchutils pbuilder x11-xfs-utils terminology iotop htop \
-      apt-file gufw gkrellm gnome-session gwenview gpart xclip
+      apt-file gufw gnome-session gwenview xclip
 
   }
 
-  _pkg_u
+  sudo _pkg_u
 } #}}}
 
 pkg_u_utility() { #{{{
@@ -63,19 +63,25 @@ pkg_u_utility() { #{{{
     add-apt-repository -y ppa:neovim-ppa/unstable
     add-apt-repository -y ppa:ubuntu-desktop/ubuntu-make
     add-apt-repository -y ppa:numix/ppa
-
+    add-apt-repository -y ppa:webupd8team/y-ppa-manager
     apt-get update
 
-    apt-get -y install zenmap gimp easystroke gparted unar unity-tweak-tool indicator-multiload \
-      compizconfig-settings-manager compiz-plugins-extra mcomix vlc open-jtalk espeak classicmenu-indicator \
-      uvtool virtualbox fontforge python-fontforge ubuntu-make qemu-kvm dconf-editor \
-      pavucontrol sqlite nodejs sqlitebrowser
+    apt-get -y install gpart gparted \
+      qemu-kvm uvtool virtualbox \
+      vlc libdvdread4 \
+      ubuntu-make y-ppa-manager ppa-purge \
+      mcomix unar gimp  nautilus-image-converter \
+      unity-tweak-tool dconf-editor \
+      compizconfig-settings-manager compiz-plugins-extra \
+      classicmenu-indicator indicator-multiload \
+      pavucontrol nodejs sqlite sqlitebrowser zenmap easystroke \
+      fontforge python-fontforge open-jtalk espeak
 
       #interactive
-      apt-get install -y wireshark mysql-server oracle-java9-installer
+      apt-get install -y wireshark mysql-server oracle-java8-installer oracle-java9-installer
   }
 
-  _pkg_u_utility
+  sudo _pkg_u_utility
 } #}}}
 
 clone_myrepos() { #{{{
