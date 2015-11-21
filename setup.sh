@@ -75,7 +75,9 @@ pkg_u_utility() { #{{{
       compizconfig-settings-manager compiz-plugins-extra \
       classicmenu-indicator indicator-multiload \
       pavucontrol nodejs sqlite sqlitebrowser zenmap easystroke \
-      fontforge python-fontforge open-jtalk espeak
+      fontforge python-fontforge open-jtalk espeak \
+      ubuntu-restricted-extras \
+      asunder soundkonverter lame flac wavpack
 
       #interactive
       apt-get install -y wireshark mysql-server oracle-java8-installer oracle-java9-installer
@@ -150,7 +152,7 @@ install_commands() { #{{{
   ./configure --with-ncursesw
   make prefix=/usr/local
   sudo make install prefix=/usr/local
-  sudo make install-doc prefix=/usr/local
+  # sudo make install-doc prefix=/usr/local
   cd $current
 } #}}}
 
