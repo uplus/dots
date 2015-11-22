@@ -2,17 +2,19 @@
 current=$(cd `dirname $0` && pwd)
 
 make_dirs() { #{{{
-  mkdir -vp $HOME/bin/
-  mkdir -vpm 700 $HOME/code/
-  mkdir -vp $HOME/code/c/sample
-  mkdir -vp $HOME/code/cpp/sample
-  mkdir -vp $HOME/code/ruby/sample
-  mkdir -vp $HOME/code/shell/sample
-  mkdir -vp $HOME/code/rails/
-  mkdir -vpm 700 $HOME/work
-  mkdir -vp $HOME/tmp
-  mkdir -vp $HOME/sources
+  mkdir -v $HOME/bin
+  mkdir -vm 700 $HOME/tmp
+  mkdir -vm 700 $HOME/works
   mkdir -vm 700 $HOME/.ssh
+
+  mkdir -vm 700 $HOME/code
+  mkdir -v $HOME/code/samples
+  mkdir -v $HOME/code/src
+  mkdir -v $HOME/code/c
+  mkdir -v $HOME/code/cpp
+  mkdir -v $HOME/code/ruby
+  mkdir -v $HOME/code/shell
+  mkdir -v $HOME/code/rails
 } #}}}
 
 link_files() { #{{{
@@ -146,8 +148,8 @@ install_commands() { #{{{
   pip3 install percol ipython --user
 
   # tig
-  git clone https://github.com/jonas/tig ~/sources/tig/
-  cd ~/sources/tig
+  git clone https://github.com/jonas/tig ~/src/tig/
+  cd ~/src/tig
   make configure
   ./configure --with-ncursesw
   make prefix=/usr/local

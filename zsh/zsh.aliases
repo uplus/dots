@@ -118,10 +118,11 @@ hash -d ctf=$HOME/code/ctf/
 hash -d ksnctf=$HOME/code/ctf/ksnctf/
 hash -d ylibs=$HOME/code/ylibs/
 hash -d samples=$HOME/code/samples/
+hash -d smp=$HOME/code/samples/
 hash -d tmp=$HOME/tmp/
-hash -d work=$HOME/work/
+hash -d works=$HOME/works/
 hash -d bin=$HOME/bin/
-hash -d sources=$HOME/sources/
+hash -d src=$HOME/src/
 
 #shell {{{1
 alias resh='exec $SHELL -l'
