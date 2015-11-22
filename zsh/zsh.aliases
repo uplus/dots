@@ -33,6 +33,7 @@ alias v.='vim .'
 alias vp='vim -p'
 alias vo='vim -o'
 alias vr='vim -R'
+alias lvim="vim -c \"normal '0\""
 
 #git {{{1
 alias t='tig'
@@ -45,6 +46,7 @@ alias gdc='git dc'
 alias gdw='git dw'
 alias gds='git ds'
 alias gl='git l'
+alias gla='git la'
 alias glh='git lh'
 alias glo='git lo'
 alias gs='git s'
@@ -81,7 +83,7 @@ function runc   { clang   $1 -o ${1%.*} && ./${1%.*} }
 alias -g G='2>&1 | grep -i'
 alias -g GV='2>&1 | grep -iv'
 alias -g GE='2>&1 | egrep -i'
-alias -g C='2>&1 | cat'
+alias -g C='2>&1 | cut'
 alias -g M='2>&1 | more'
 alias -g L='2>&1 | less'
 alias -g H='2>&1 | head'
@@ -138,7 +140,11 @@ alias dirsizes='dirsize * | sort -n'
 alias apt-search='apt-cache search --names-only'
 alias apt-upgrade='sudo apt update && echo "##Upgrade start" && sudo apt upgrade'
 alias apt-clean='sudo apt-get autoremove && sudo apt-get autoclean'
-alias inst='sudo apt install'
+alias inst='sudo apt-get install'
+alias remove='sudo apt-get remove'
+alias update='sudo apt-get update'
+alias upgrade='sudo apt-get upgrade'
+alias upgradable='apt list --upgradable'
 alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
 
 #not require sudo {{{1
@@ -181,8 +187,9 @@ alias guirestart='sudo service lightdm restart'
 alias older='ls -altr'
 alias whichis='which -aps'
 alias gor='cd `git rev-parse --show-toplevel`'
-alias lvim="vim -c \"normal '0\""
 alias clip='xclip -sel clip -i'
+alias gtrans='google_translate'
+alias ::='echo $PWD && gs E'
 
 #shortening
 alias cdb='cd -'
