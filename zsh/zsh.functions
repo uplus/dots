@@ -148,43 +148,6 @@ host-list(){
   sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1 \n/"
 }
 
-samp(){ # {{{
-  if [[ $#  -eq 0 ]]; then
-    echo "usage: samp TYPE [file]" >&2
-    return 1
-  fi
-
-  local type file templates="$HOME/Templates/pg"
-
-  if [[ $1 == '--types' || $1 == '-t' ]]; then
-    ls $templates | grep -o '^[^.]*'
-    return
-  fi
-
-  type=$1
-
-  # ファイルとパスを設定
-  if [[ $# -lt 2 ]]; then
-    file=$(mktemp  --suffix=.${type})
-  else
-    file="$PWD/$2.$type"
-
-    if [[ -e $file ]]; then
-      echo "$file already"
-      return 1
-    fi
-  fi
-
-  cat "$templates/${type}.${type}" > $file
-
-  if [[ $? != 0 ]]; then
-    echo "Error: $file is not writable"
-    return 1
-  fi
-
-  vim + $file
-} # }}}
-
 dump(){
   if [[ $# -eq 0 ]]; then
     echo "usage: dump BIN [SYMBOL] [OUTPUT_FILE]" >&2
