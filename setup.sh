@@ -3,13 +3,13 @@ current=$(cd `dirname $0` && pwd)
 
 make_dirs() { #{{{
   mkdir -v $HOME/bin
+  mkdir -v $HOME/src
   mkdir -vm 700 $HOME/tmp
   mkdir -vm 700 $HOME/works
   mkdir -vm 700 $HOME/.ssh
 
   mkdir -vm 700 $HOME/code
   mkdir -v $HOME/code/samples
-  mkdir -v $HOME/code/src
   mkdir -v $HOME/code/c
   mkdir -v $HOME/code/cpp
   mkdir -v $HOME/code/ruby
@@ -46,7 +46,7 @@ pkg_u() { # {{{
     apt-get update
     apt-get -y upgrade
 
-    apt-get -y install zsh tmux ssh curl git git-sh tig \
+    apt-get -y sudo install zsh tmux ssh wget curl git git-sh tig \
       clang clang-doc libclang-dev ruby ruby-dev perl libperl-dev \
       php5 php5-dev python-dev python3-pip lua5.2 luajit tcl-dev libncurses5-dev libncursesw5-dev \
       libmysqld-dev libcurl4-openssl-dev build-essential devscripts \
@@ -140,22 +140,22 @@ install_linuxbrew() {
 }
 
 install_commands() { #{{{
+  # need: wget git pip3 make pip3
   [ ! -e $HOME/bin ] && mkdir $HOME/bin
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 
-  sudo apt-get install python3-pip
   sudo pip3 install --upgrade pip
   pip3 install percol ipython --user
 
   # tig
   git clone https://github.com/jonas/tig ~/src/tig/
-  cd ~/src/tig
+  pushd ~/src/tig
   make configure
   ./configure --with-ncursesw
   make prefix=/usr/local
   sudo make install prefix=/usr/local
   # sudo make install-doc prefix=/usr/local
-  cd $current
+  popd $current
 } #}}}
 
 # change keymap #{{{

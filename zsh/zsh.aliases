@@ -108,23 +108,21 @@ alias -g HELP='--help 2>&1 | less'
 alias -g VI='| vim -'
 
 #directory aliases {{{1
-hash -d vim=$HOME/.vim/
+hash -d bin=$HOME/bin/
+hash -d src=$HOME/src/
+hash -d tmp=$HOME/tmp/
+hash -d works=$HOME/works/
+hash -d dots=$HOME/.dotfiles/
 hash -d zsh=$HOME/.dotfiles/zsh/
-hash -d dotfiles=$HOME/.dotfiles/
+hash -d vim=$HOME/.vim/
 hash -d code=$HOME/code/
+hash -d smp=$HOME/code/samples/
+hash -d utilities=$HOME/code/utilities/
 hash -d ruby=$HOME/code/ruby/
 hash -d rails=$HOME/code/rails/
-hash -d utilities=$HOME/code/utilities/
-hash -d memo=$HOME/code/ruby/memo/
 hash -d ctf=$HOME/code/ctf/
 hash -d ksnctf=$HOME/code/ctf/ksnctf/
 hash -d ylibs=$HOME/code/ylibs/
-hash -d samples=$HOME/code/samples/
-hash -d smp=$HOME/code/samples/
-hash -d tmp=$HOME/tmp/
-hash -d works=$HOME/works/
-hash -d bin=$HOME/bin/
-hash -d src=$HOME/src/
 
 #shell {{{1
 alias resh='exec $SHELL -l'
