@@ -1,11 +1,11 @@
 # Run command file for percol
-percol.view.PROMPT  = ur"<bold><cyan>QUERY </cyan>[a]:</bold> %q"
+percol.view.PROMPT  = r"<bold><cyan>QUERY </cyan>[a]:</bold> %q"
 percol.view.CANDIDATES_LINE_SELECTED = ("on_magenta", "white")
 percol.view.CANDIDATES_LINE_QUERY    = ("green", "bold")
 
 # Display finder name in RPROMPT
 percol.view.prompt_replacees["F"] = lambda self, **args: self.model.finder.get_name()
-percol.view.RPROMPT = ur"\<%F\> (%i/%I) [%n/%N]"
+percol.view.RPROMPT = r"\<%F\> (%i/%I) [%n/%N]"
 
 percol.import_keymap({
     "C-h" : lambda percol: percol.command.delete_backward_char(),
