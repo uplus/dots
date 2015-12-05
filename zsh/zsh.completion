@@ -19,3 +19,12 @@ _zshrc(){
   _files -W `zshrc --dir` && return 0
 }
 compdef _zshrc zshrc
+
+_rbenv() {
+  if [[ ${#words} -eq 2 ]]; then
+    compadd $(rbenv commands)
+  else
+    compadd $(rbenv completions ${words[2,-2]})
+  fi
+}
+compdef _rbenv rbenv

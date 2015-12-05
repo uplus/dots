@@ -21,7 +21,8 @@ export YLIB_RUBY="$YLIBS/ruby"
 # Order is important
 export PATH="$HOME/.rbenv/bin:$PATH"
 which rbenv >/dev/null 2>&1
-[[ $? -eq 0 ]] && eval "$(rbenv init -)"
+[[ $? -eq 0 ]] && eval "$(rbenv init - zsh)"
+
 export PATH="./bundle_bin:$HOME/bin:$HOME/.local/bin:$PATH"
 
 function exists_source(){
