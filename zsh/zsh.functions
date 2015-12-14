@@ -93,43 +93,34 @@ binln(){
 
 #rc commands {{{
 generic_rc(){
-  set -u
-  : $1
+  set -ue
   local dir="$1"
   shift
-  case $# in
-    0) vi $dir ;;
-    *)
-      case $1 in
-        '-d' | '--dir' )  echo $dir ;;
-        '-l' | '--list' ) ls $dir ;;
-        '-c' | '--cd' )   cd $dir ;;
-        '-g' | '--git' )
-          shift
-          if [[ $# -eq 0 ]]; then
-            git -C $dir sh
-          else
-            git -C $dir $@
-          fi
-          ;;
-        * )
-          if [ -e $dir/$1 ]; then
-            vim $dir/$1
-          else
-            echo "$1 is not exists" >&2
-          fi
-      esac
+
+  if [[ $# -eq 0 ]]; then
+    $EDITOR $dir
+    return $?
+  fi
+
+  case $1 in
+    '-c') cd "$dir" ;;
+    '-d') echo "$dir" ;;
+    '-l') ls "$dir" ;;
+    '-g')
+      shift
+      git -C "$dir" ${@:-sh}
       ;;
+    * )
+      if [[ -e $dir/$1 ]]; then
+        $EDITOR $dir/$1
+      else
+        warn "$1 is not exists"
+      fi
   esac
 }
 
-vimrc(){
-  generic_rc $HOME/.vim/ $@
-}
-
-zshrc(){
-  generic_rc $HOME/.dotfiles/zsh/ $@
-}
+vimrc(){ generic_rc $HOME/.vim/ $@ }
+zshrc(){ generic_rc $ZSH_DOT_DIR $@ }
 # }}}
 
 pull-these(){

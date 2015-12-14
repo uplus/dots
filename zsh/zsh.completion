@@ -10,12 +10,12 @@ _ch(){
 compdef _ch ch
 
 _vimrc(){
-  _files -W `vimrc --dir` && return 0
+  _files -W $(vimrc -d) && return 0
 }
 compdef _vimrc vimrc
 
 _zshrc(){
-  _files -W `zshrc --dir` && return 0
+  _files -W $(zshrc -d) && return 0
 }
 compdef _zshrc zshrc
 
