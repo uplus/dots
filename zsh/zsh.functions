@@ -278,13 +278,14 @@ google_translate(){
 }
 
 pk(){
-  out=`pgrep "${1}"`
+  set -ue
+  out=$(pgrep "${1}")
   [[ -z $out ]] && return 1
 
   echo $out
   echo 'kill? (y/N)'
   read -ks key
-  [[ $key != 'y' ]] && return 0
+  [[ ! $key =~ [yY] ]] && return 0
 
   echo 'kill: '
   pkill -c "${1}"
