@@ -4,6 +4,11 @@
 #unique属性を付加
 typeset -U path PATH MANPATH INFOPATH
 
+in_path(){
+  which "$1" >/dev/null 2>&1
+  return $?
+}
+
 export EDITOR=vim
 export WORDCHARS='*?:;[]{}<>|~\!#%`@+-'
 # export TERM=screen-256color-bce # italicが使えない
@@ -16,8 +21,7 @@ export REPO_SSH='git@github.com:YuutoIto'
 
 # Order is important
 export PATH="$HOME/.rbenv/bin:$PATH"
-which rbenv >/dev/null 2>&1
-[[ $? -eq 0 ]] && eval "$(rbenv init - zsh)"
+in_path rbenv && eval "$(rbenv init - zsh)"
 
 export PATH="./bundle_bin:$HOME/bin:$HOME/.local/bin:$PATH"
 
