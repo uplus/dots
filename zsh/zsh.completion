@@ -60,7 +60,7 @@ pip-cache-packages() { # {{{
 
   if [[ ! -f $ZSH_PIP_CACHE_FILE ]]; then
     echo -n "(...caching package index...)"
-    tmp_cache=`mktemp`
+    tmp_cache=$(mktemp)
     for index in $zsh_pip_indexes ; do
       # well... I've already got two problems
       curl $index 2>/dev/null | pip-clean-packages >> $tmp_cache
@@ -132,7 +132,7 @@ _pip() { # {{{
       fi ;;
     uninstall|show)
       local -a installed_pkgs
-      installed_pkgs=(`pip freeze | cut -d '=' -f 1`)
+      installed_pkgs=($(pip freeze | cut -d '=' -f 1))
       _wanted installed_pkgs expl 'installed packages' compadd -a installed_pkgs ;;
   esac
 } # }}}

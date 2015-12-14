@@ -21,24 +21,24 @@ function rprompt-git {
   local name st color brace ahead behind stash
   [[ "$PWD" =~ '/\.git(/.*)?$' ]] && return
 
-  name=`git symbolic-ref --short HEAD 2> /dev/null`
+  name=$(git symbolic-ref --short HEAD 2>/dev/null)
   [[ -z $name ]] && return
 
-  st=`git status --short --branch`
-  brace=`echo $st head -1 | grep -oe "\[.*]$"`
-  ahead=`echo $st | grep -oe "ahead [0-9]*" | awk '{print $2}'`
-  behind=`echo $st | grep -oe "behind [0-9]*" | awk '{print $2}'`
-  stash=`git stash list | wc -l | tr -d ' ' | grep -v "^0$"`
+  st=$(git status --short --branch)
+  brace=$(echo $st head -1 | grep -oe "\[.*]$")
+  ahead=$(echo $st | grep -oe "ahead [0-9]*" | awk '{print $2}')
+  behind=$(echo $st | grep -oe "behind [0-9]*" | awk '{print $2}')
+  stash=$(git stash list | wc -l | tr -d ' ' | grep -v "^0$")
   [[ -n $ahead ]] && ahead=" $ahead"
   [[ -n $behind ]] && behind=" $behind"
   [[ -n $stash ]] && stash=" $stash"
 
-  st=`echo $st | sed -e 1d`
+  st=$(echo $st | sed -e 1d)
   if [[ -z $st ]]; then
     color=%F{green}
-  elif [[ -n `echo "$st" | grep "^??"` ]]; then
+  elif [[ -n $(echo "$st" | grep "^??") ]]; then
     color=%F{yellow}
-  elif [[ -n `echo "$st" | grep '^.M'` ]]; then
+  elif [[ -n $(echo "$st" | grep '^.M') ]]; then
     color=%F{red}
   else
     color=%F{red}
@@ -64,7 +64,7 @@ function rprompt-bg {
   names=$(echo "$bg_cmds" | grep -Eo "vim")
 
   if [[ -n $names ]]; then
-    out=`echo $names | head -1`
+    out=$(echo $names | head -1)
     echo " [%F{99}$out%f]"
   fi
 }
