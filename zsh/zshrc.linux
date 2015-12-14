@@ -1,2 +1,1 @@
-eval "$(dircolors -b)"
 alias notify="notify-send -u low -i /usr/share/pixmaps/faces/butterfly.png"

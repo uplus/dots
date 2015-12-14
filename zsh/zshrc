@@ -12,6 +12,9 @@ disable r # zsh-builtin: 直前のコマンドを実効する
 autoload -Uz add-zsh-hook
 autoload -Uz zmv
 
+eval "$(dircolors -b)"
+autoload -U colors && colors
+
 #Prompt # {{{
 autoload -Uz promptinit
 promptinit
