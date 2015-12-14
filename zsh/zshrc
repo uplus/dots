@@ -196,7 +196,7 @@ bindkey "^D" delete-char
 bindkey "^H" backward-delete-char
 bindkey "^W" backward-kill-word
 bindkey "^K" kill-line
-bindkey "^U" kill-whole-line
+bindkey "^U" backward-kill-line
 bindkey "^N" down-line-or-history
 bindkey "^P" up-line-or-history
 # }}}
@@ -223,6 +223,9 @@ bindkey "^?" backward-delete-char
 
 # <S-Tab>
 bindkey "^[[Z" reverse-menu-complete
+
+# zaw
+bindkey "^X^X" zaw
 
 # cursor-key and other # {{{
 bindkey "^[[A" up-line-or-history
