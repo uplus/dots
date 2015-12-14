@@ -28,6 +28,13 @@ _rbenv() {
 }
 compdef _rbenv rbenv
 
+_ud(){
+  local -a candidates
+  candidates=($(grep -v '^last' ~/.cdd | sort -t: -k 2,2 -u | sort -n | sed -e 's/^\.//'))
+  _describe -t commands "pip subcommand" candidates
+}
+compdef _ud ud
+
 # pip # {{{
 ZSH_PIP_CACHE_FILE=~/.cache/pip/zsh-cache
 

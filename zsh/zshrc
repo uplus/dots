@@ -158,8 +158,7 @@ exists_source $HOME/.zsh.functions
 exists_source $HOME/.zsh.aliases
 
 add-zsh-hook precmd autols
-add-zsh-hook precmd udd-add
-add-zsh-hook zshexit udd-delete
+add-zsh-hook precmd ud-add
 
 #zstyle completion {{{
 zstyle ':completion:*' auto-description 'specify: %d'

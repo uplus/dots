@@ -193,23 +193,10 @@ findstr(){ # {{{
   find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
 } # }}}
 
-#udd # {{{
-udd-add(){
-  [[ $USER == 'root' || $PWD == $HOME ]] && return
-  cdd add "t$(gettty)"
-}
-
-udd-delete(){
-  [[ $USER == 'root' ]] && return
-  cdd delete "t$(gettty)" 2>/dev/null
-}
-
-udd(){
-  if [[ $# == 0 ]]; then
-    cat ~/.cdd
-  else
-    cdd "t$1"
-  fi
+#ud # {{{
+ud(){ cdd ".${1:?}" }
+ud-add(){
+  [[ $UID -ne 0 && $PWD != $HOME ]] && cdd add ".$(gettty)"
 }
 # }}}
 
