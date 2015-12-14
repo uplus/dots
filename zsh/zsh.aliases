@@ -5,7 +5,6 @@ alias ls='ls  --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias pgrep='pgrep -l'
 
 #ls {{{1
 alias l='ls -F'
@@ -24,15 +23,15 @@ alias here='ls -ld $PWD'
 alias vi='vim'
 alias gv='gvim'
 alias nv='nvim'
-alias vi.simp='\vim -u NONE -N'
-alias vi.sjis='vi -c ":e ++enc=cp932"'
-alias vimopt='vim --version | \egrep "^\+|^-"'
 alias v='vim'
 alias v.='vim .'
 alias vp='vim -p'
 alias vo='vim -o'
 alias vr='vim -R'
-alias lvim="vim -c \"normal '0\""
+alias lvi="vim -c \"normal '0\""
+alias vi.simp='\vim -u NONE -N'
+alias vi.sjis='vi -c ":e ++enc=cp932"'
+alias vimopt='vim --version | \egrep "^\+|^-"'
 
 #git {{{1
 alias t='tig'
@@ -74,8 +73,8 @@ alias -s {html,htm}='opera-beta'
 alias -s c='runc'
 alias -s cpp='runcpp'
 alias -s {sh,bash,zsh}='source'
-function runcpp { clang++ $1 -o ${1%.*} && ./${1%.*} }
-function runc   { clang   $1 -o ${1%.*} && ./${1%.*} }
+function runcpp { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" }
+function runc   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" }
 
 #global {{{1
 alias -g G='2>&1 | grep -i'
@@ -129,8 +128,6 @@ alias vizsh='zshrc zshrc'
 alias vialias='zshrc zsh.aliases || realias'
 alias vifunc='zshrc zsh.functions'
 alias vihist='vi $HISTFILE'
-alias dirsize='du -csm'
-alias dirsizes='dirsize * | sort -n'
 
 #pkg {{{1
 alias apt-search='apt-cache search --names-only'
@@ -149,9 +146,7 @@ alias poweroff='sudo poweroff'
 alias reboot='sudo reboot'
 alias mount='sudo mount'
 alias visudo='sudo visudo'
-alias suspend='sudo pm-suspend'
-alias pip3-check='pip3 list -o --user'
-alias pip3-update='pip3 install --user -U `pip3-check | awk "{print $1}"`'
+alias pm-suspend='sudo pm-suspend'
 
 #noglog {{{1
 alias find='noglob find'
@@ -183,6 +178,10 @@ alias whichis='which -aps'
 alias gor='cd $(git rev-parse --show-toplevel)'
 alias clip='xclip -sel clip -i'
 alias gtrans='google_translate'
+alias pip3-check='pip3 list -o --user'
+alias pip3-update='pip3 install --user -U $(pip3-check | awk "{print $1}")'
+alias dirsize='du -csm'
+alias dirsizes='dirsize * | sort -n'
 alias ::='echo $PWD && gs E'
 
 #shortening
