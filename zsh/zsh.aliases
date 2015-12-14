@@ -94,29 +94,34 @@ function runc   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" }
 alias -g G='2>&1 | grep -i'
 alias -g GV='2>&1 | grep -iv'
 alias -g GE='2>&1 | egrep -i'
-alias -g C='2>&1 | cut'
-alias -g M='2>&1 | more'
-alias -g L='2>&1 | less'
-alias -g H='2>&1 | head'
-alias -g T='2>&1 | tail'
-alias -g X='2>&1 | xargs'
-alias -g A='2>&1 | awk'
-alias -g S='2>&1 | sed'
+
 alias -g W='2>&1 | wc'
 alias -g WL='2>&1 | wc -l'
 alias -g WW='2>&1 | wc -w'
 alias -g WC='2>&1 | wc -c'
 alias -g WM='2>&1 | wc -m'
-alias -g N='> /dev/null'
-alias -g E='2> /dev/null'
-alias -g Q='> /dev/null 2>&1'
-alias -g B='> /dev/null 2>&1 &'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
-alias -g HELP='--help 2>&1 | less'
-alias -g VI='| vim -'
+
+alias -g X='2>&1 | xargs'
+alias -g L='2>&1 | less'
+alias -g S='2>&1 | sed'
+alias -g H='2>&1 | head'
+alias -g T='2>&1 | tail'
+alias -g A='2>&1 | awk'
+alias -g C='2>&1 | cut'
+
+alias -g M='--help 2>&1 | less' # show manual(help)
+alias -g U='--help 2>&1 | head' # show usage.
+alias -g V='| vim -'
+alias -g R='| ruby -e'
+alias -g P='| percol'
+
+alias -g N='>/dev/null'
+alias -g E='2>/dev/null'
+alias -g Q='>/dev/null 2>&1'
+alias -g B='>/dev/null 2>&1 &'
+
+# .../ みたいな使い方ができない
+# alias -g ...='../..'
 
 #directory aliases {{{1
 hash -d bin=$HOME/bin/
