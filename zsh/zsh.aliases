@@ -166,7 +166,6 @@ alias zmv='noglob zmv'
 #override
 alias irb='irb --simple-prompt'
 alias pry='pry --simple-prompt'
-alias tmux="TERM=screen-256color-bce tmux"
 alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -v'
