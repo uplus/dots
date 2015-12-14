@@ -117,21 +117,25 @@ setopt rm_star_silent     # rm *の警告を無効にする
 setopt zle                #use zsh line editor
 # }}}
 
-#install antigen # {{{
-if [[ ! -f $HOME/.zsh/antigen/antigen.zsh ]]; then
+#antigen # {{{
+antigen_path="$HOME/.zsh/antigen/antigen.zsh"
+if [[ ! -f $antigen_path ]]; then
   echo "antigen install?(y/N)"
-  read -k 1 k
-  if [[ $k =~ [yY] ]]; then
+  read -k 1 key
+  if [[ $key =~ [yY] ]]; then
     git clone https://github.com/zsh-users/antigen.git .zsh/antigen
   fi
+  unset key
 fi
-# }}}
 
-#antigen bundle
-exists_source $HOME/.zsh/antigen/antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle m4i/cdd
-antigen bundle zsh-users/zaw
+if [[ -f $antigen_path ]]; then
+  source $HOME/.zsh/antigen/antigen.zsh
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen bundle m4i/cdd
+  antigen bundle zsh-users/zaw
+fi
+unset antigen_path
+# }}}
 
 #zsh completion system
 autoload -U compinit
