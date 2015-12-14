@@ -6,7 +6,6 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias pgrep='pgrep -l'
-alias less='less -SRn'
 
 #ls {{{1
 alias l='ls -F'
