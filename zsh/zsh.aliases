@@ -114,6 +114,7 @@ hash -d works=$HOME/works/
 hash -d dots=$HOME/.dotfiles/
 hash -d zsh=$HOME/.dotfiles/zsh/
 hash -d vim=$HOME/.vim/
+
 hash -d code=$HOME/code/
 hash -d smp=$HOME/code/samples/
 hash -d utilities=$HOME/code/utilities/
@@ -122,6 +123,14 @@ hash -d rails=$HOME/code/rails/
 hash -d ctf=$HOME/code/ctf/
 hash -d ksnctf=$HOME/code/ctf/ksnctf/
 hash -d ylibs=$HOME/code/ylibs/
+
+hash -d desktop=$HOME/Desktop
+hash -d documents=$HOME/Documents
+hash -d downloads=$HOME/Downloads
+hash -d music=$HOME/Music
+hash -d pictures=$HOME/Pictures
+hash -d templates=$HOME/Templates
+hash -d videos=$HOME/Videos
 
 #shell {{{1
 alias resh='exec $SHELL -l'
