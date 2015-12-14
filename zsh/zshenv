@@ -9,6 +9,10 @@ in_path(){
   return $?
 }
 
+exists_source(){
+  [[ -f "$1" ]] && source "$1"
+}
+
 export EDITOR=vim
 export WORDCHARS='*?:;[]{}<>|~\!#%`@+-'
 # export TERM=screen-256color-bce # italicが使えない
@@ -24,14 +28,6 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 in_path rbenv && eval "$(rbenv init - zsh)"
 
 export PATH="./bundle_bin:$HOME/bin:$HOME/.local/bin:$PATH"
-
-function exists_source(){
-  if [[ -f "$1" ]]; then
-    source $1
-  else
-    return 1
-  fi
-}
 
 if [ -n "${WINDOWID-}" -a -f $HOME/.xmodmap ]; then
   xmodmap ~/.xmodmap
