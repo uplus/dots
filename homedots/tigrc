@@ -161,7 +161,10 @@ bind generic  p view-pager
 bind generic  s view-status
 bind generic  c view-stage
 bind generic  y view-stash
-bind generic  g view-grep
+bind generic  g none
+bind generic  g/ view-grep
+bind generic  gg move-first-line
+bind generic  G move-last-line
 bind generic  H view-help
 
 # View manipulation
