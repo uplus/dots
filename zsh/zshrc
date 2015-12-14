@@ -19,6 +19,7 @@ autoload -U colors && colors
 autoload -Uz promptinit
 promptinit
 setopt prompt_subst   #プロンプト定義で置き換えを使用する
+setopt prompt_cr      #show prompt in new line, when after command finish.
 
 function rprompt-git {
   local name st color brace ahead behind stash
@@ -78,46 +79,64 @@ export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 
 #History # {{{
 setopt share_history
+setopt inc_append_history       #on: 履歴を即座に書き込む
+setopt extended_history         #on: 履歴に時を刻む
+setopt hist_no_store            #on: not add history-command to history.
+setopt hist_no_functions        #on: remove functon definitions from the history list.
+setopt hist_reduce_blanks       #on: reduce unnecessary blanks
+setopt hist_ignore_space        #on: not add to the history if first character of the command is space.
 setopt hist_ignore_dups
-setopt hist_no_store            #on: not add history command
-setopt no_hist_reduce_blanks    #on: reduce unnecessary blanks
-setopt hist_ignore_space
 setopt no_hist_ignore_all_dups  #on: 過去の履歴と重複しても削除しない
-setopt hist_verify              #on: 履歴を遡って再利用する時に、それを書き換えない
-setopt extended_history         #on: 履歴に時刻を刻む
-SAVEHIST=10000  #file
-HISTSIZE=10000  #memory
+setopt no_hist_verify           #on: history-commandを直接実行せず、まず展開する
+SAVEHIST=100000 #file
+HISTSIZE=20000  #memory
 HISTFILE=~/.zsh/history
 # }}}
 
 #setopt {{{
 setopt local_options          #on: 関数終了時に全てのオプションを復元する
+setopt no_beep no_list_beep no_hist_beep
 setopt autocd
 setopt noauto_pushd
-setopt no_beep no_list_beep
 setopt pushd_to_home          #pushdを引数無しで実行した時ホームに移動する
-setopt interactive_comments   #コマンドラインでもコメントを使えるようにする
-setopt no_transient_rprompt   #on: remove old rprompt when after execute a command.
-setopt auto_resume            #リダイレクトを使わないでコマンドを実効したとき、サスペンド中のものと同じものがあればレジューム
-setopt notify                 #バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
-
-setopt extended_glob
-setopt brace_ccl
-setopt no_dot_glob
-# setopt nonomatch          #off: マッチしなかったときエラーにせずただの文字列として扱う
-# setopt numeric_glob_sort  #数値が含まれたとき数字順にソートする
-
-setopt auto_param_keys    #自動補完される余分なカンマなどを適宜削除してスムーズに入力できるようにする
-setopt auto_param_slash   #ディレクトリ名の補完で末尾の/を自動的に付加し、次の補完に備える
-setopt auto_remove_slash  #スラッシュが補完された後、;やスペースを入力したら自動的にそのスラッシュを消す
-setopt auto_list          #補完リスト有効
-setopt list_packed        #補完リストをなるべく少ない量に
-setopt always_lastprompt  #補完で行を移動しない
-
+setopt pushd_silent
+setopt interactive_comments   # can use comment
+setopt equals                 # Enable "=command" feature
 setopt no_flow_control    # C-s, C-qを無効にする。
 setopt clobber            # リダイレクトで上書きする事を許可
 setopt rm_star_silent     # rm *の警告を無効にする
-setopt zle                #use zsh line editor
+setopt ZLE                #use zsh line editor
+# setopt cdablevars             #on: if arguments of cd is not directory, expand as variable.
+
+#jobs
+setopt auto_resume            # background jobをそのコマンド名で再開する(リダイレクト時不可)
+setopt notify                 # background jobが終了したらプロンプトの表示を待たずに知らせる
+setopt check_jobs             # report the background  and suspendedjobs before exit.
+setopt long_list_jobs
+
+#glob
+setopt extended_glob
+setopt brace_ccl          # {a-c}をa b cに展開する
+setopt no_dot_glob
+setopt mark_dirs              # Add "/" when glob.
+# setopt nonomatch          #off: マッチしなかったときエラーにせずただの文字列として扱う
+# setopt numeric_glob_sort  #数値が含まれたとき数字順にソートする
+
+#complete
+setopt always_lastprompt  #補完で行を移動しない
+setopt list_types         # List like "ls -F"
+setopt list_packed        # 補完リストをなるべく少ない量にする
+setopt auto_param_keys    #自動補完される余分なカンマなどを適宜削除してスムーズに入力できるようにする
+setopt auto_param_slash   #ディレクトリ名の補完で末尾の/を自動的に付加し、次の補完に備える
+setopt auto_remove_slash  #スラッシュが補完された後、;やスペースを入力したら自動的にそのスラッシュを消す
+
+setopt list_rows_first    # 候補を移動するとき横に進む
+setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示しない
+
+# auto_list auto_menu bash_auto_list glob_complete hash_list_all list_ambiguous menu_complete rec_exact
+# setopt auto_list          #補完リスト有効
+# setopt no_menu_complete   #
+
 # }}}
 
 #antigen # {{{
