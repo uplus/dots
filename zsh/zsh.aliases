@@ -155,7 +155,7 @@ alias suspend='sudo pm-suspend'
 alias pip3-check='pip3 list -o --user'
 alias pip3-update='pip3 install --user -U `pip3-check | awk "{print $1}"`'
 
-#non glob expansion {{{1
+#noglog {{{1
 alias find='noglob find'
 alias rbrn='noglob rbrn'
 alias zmv='noglob zmv'
@@ -179,7 +179,6 @@ alias histall='history -n 1'
 alias histories='history -E 1'
 alias ehis='history -n -1000 | vim - +'
 alias ehisall='history -n 1 | vim - +'
-alias envlang='env | grep -e LANG -e LC'
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias guirestart='sudo service lightdm restart'
 alias older='ls -altr'
@@ -190,15 +189,12 @@ alias gtrans='google_translate'
 alias ::='echo $PWD && gs E'
 
 #shortening
-alias cdb='cd -'
 alias pu='pushd'
 alias po='popd'
 alias twme='tw `tw -user:default 2> /dev/null`'
 alias be='bundle exec'
-alias a.out='./a.out'
 alias m='memo'
 alias todo='memo -e todo'
 alias ipy='ipython3'
-alias ud='cdd'
 alias ur='cdr'
 

@@ -8,7 +8,7 @@ esac
 
 umask 077
 DIRSTACKSIZE=100
-disable r # r is zsh-builtin 直前のコマンドを実効する
+disable r # zsh-builtin: 直前のコマンドを実効する
 autoload -Uz add-zsh-hook
 autoload -Uz zmv
 
@@ -17,8 +17,6 @@ autoload -Uz promptinit
 promptinit
 setopt prompt_subst   #プロンプト定義で置き換えを使用する
 
-# git functions# {{{
-#git リポジトリの状態を表示する
 function rprompt-git {
   local name st color brace ahead behind stash
   [[ "$PWD" =~ '/\.git(/.*)?$' ]] && return
@@ -71,14 +69,12 @@ function rprompt-bg {
   fi
 }
 
-# }}}
-
 export PROMPT=$'%{\e[38;5;63m%}%(4~|...|)%3~%F{white} %# %f'
 export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
 #History # {{{
-setopt sharehistory
+setopt share_history
 setopt hist_ignore_dups
 setopt hist_no_store            #on: not add history command
 setopt no_hist_reduce_blanks    #on: reduce unnecessary blanks
@@ -98,9 +94,9 @@ setopt noauto_pushd
 setopt no_beep no_list_beep
 setopt pushd_to_home          #pushdを引数無しで実行した時ホームに移動する
 setopt interactive_comments   #コマンドラインでもコメントを使えるようにする
-setopt no_transient_rprompt   #コマンド実行時にRPROMPTを隠す
+setopt no_transient_rprompt   #on: remove old rprompt when after execute a command.
 setopt auto_resume            #リダイレクトを使わないでコマンドを実効したとき、サスペンド中のものと同じものがあればレジューム
-setopt notify                 # バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
+setopt notify                 #バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
 
 setopt extended_glob
 setopt brace_ccl

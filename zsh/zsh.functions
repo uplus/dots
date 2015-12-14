@@ -124,7 +124,6 @@ zshrc(){
 }
 # }}}
 
-
 pull-these(){
   for i in `ls -F | grep '/$'`; do
     printf "%-20s" $i
@@ -161,6 +160,7 @@ dhmod(){
   ls -F | grep "/" | xargs chmod -R $1
 }
 
+#TODO: remake.
 #rubyとかで作りなおしたほうがいいかも
 #マッチした部分のon/off
 #特定ディレクトリの無視、検索条件指定

@@ -1,9 +1,2 @@
 eval "$(dircolors -b)"
-
-# brew
-# export PATH="$HOME/.linuxbrew/bin:$PATH"
-# export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-# export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-# export LD_LIBRARY_PATH="$HOME/.linuxbrew/lib:$LD_LIBRARY_PATH"
-
 alias notify="notify-send -u low -i /usr/share/pixmaps/faces/butterfly.png"
