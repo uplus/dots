@@ -42,12 +42,12 @@ lddw()   { ldd $(which $1) }
 xopen()  { xdg-open ${1:-.} }
 dotgit() { git -C ~/.dotfiles ${1:-sh} }
 vimgit() { git -C ~/.vim ${1:-sh} }
-+r(){ chmod +r $1 }
--r(){ chmod -r $1 }
-+w(){ chmod +w $1 }
--w(){ chmod -w $1 }
-+x(){ chmod +x $1 }
--x(){ chmod -x $1 }
++r(){ chmod u+r $@ }
+-r(){ chmod a-r $@ }
++w(){ chmod u+w $@ }
+-w(){ chmod a-w $@ }
++x(){ chmod u+x $@ }
+-x(){ chmod a-x $@ }
 
 #color {{{
 colors(){
