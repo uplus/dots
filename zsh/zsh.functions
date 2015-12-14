@@ -224,48 +224,25 @@ udd(){
 
 #percol # {{{
 pc(){
-  if [[ $# == 0 ]]; then
-    echo "usage: pc [mode [target]] [command]"
+  if [[ $# -eq 0 ]]; then
+    warn "usage: pc command"
     return 1
   fi
-
-  case $1 in
-    '-h'|'--history')
-      cmd="history -nr -${2:-1000}" ;;
-    '-f'|'--file')
-      cmd="find ${2:-.} -type f" ;;
-    '-d'|'--directory')
-      cmd="find ${2:-.} -type d" ;;
-    '-a'|'--all')
-      cmd="find ${2:-.}" ;;
-    *)
-      cmd=$* ;;
-  esac
-
-  result=$(eval $cmd 2>/dev/null | percol)
-
-  case $1 in
-    '-h'|'--history')
-      eval $result ;;
-    '-f'|'--file')
-      cd ${result:h} ;;
-    '-d'|'--directory')
-      cd ${result} ;;
-    '-a'|'--all')
-      if [[ -f $result ]]; then
-        cd ${result:h}
-      else
-        cd ${result}
-      fi
-      ;;
-    *)
-      print -z $* ;;
-  esac
+  print -z $(eval $* 2>/dev/null | percol)
 }
 
-pd(){ pc -d ${1:-} }
-pf(){ pc -f ${1:-} }
-ph(){ pc -h ${1:-} }
+pa(){
+  result=$(find ${@:-.} 2>/dev/null | percol)
+  [[ -z $result ]] && return
+  if [[ -d $result ]]; then
+    cd "${result}"
+  else
+    cd "${result:h}"
+  fi
+}
+
+pd(){ pa "$1" -type d }
+pf(){ pa "$1" -type f }
 # }}}
 
 google_translate(){
