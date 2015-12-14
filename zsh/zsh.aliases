@@ -19,6 +19,18 @@ alias lli='ls -li'
 alias lla='ls -lAi'
 alias here='ls -ld $PWD'
 
+#cd {{{1
+alias c='cd'
+alias cb='cd -'
+alias 1.='cd ..'
+alias 2.='cd ../..'
+alias 3.='cd ../../..'
+alias 4.='cd ../../../..'
+alias 5.='cd ../../../../..'
+alias 6.='cd ../../../../../..'
+alias 7.='cd ../../../../../../..'
+alias 8.='cd ../../../../../../../..'
+
 #vim {{{1
 alias v.='vimrc'
 alias vi='vim'
