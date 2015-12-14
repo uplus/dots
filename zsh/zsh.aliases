@@ -126,10 +126,14 @@ hash -d ylibs=$HOME/code/ylibs/
 #shell {{{1
 alias resh='exec $SHELL -l'
 alias realias='source ~/.dotfiles/zsh/zsh.aliases'
-alias vizsh='zshrc zshrc'
-alias vialias='zshrc zsh.aliases || realias'
-alias vifunc='zshrc zsh.functions'
-alias vihist='vi $HISTFILE'
+alias z.=zshrc
+alias z.e='zshrc zshenv'
+alias z.r='zshrc zshrc'
+alias z.l='$EDITOR $HOME/.zshrc.local'
+alias z.a='zshrc zsh.aliases && realias'
+alias z.f='zshrc zsh.functions'
+alias z.c='zshrc zsh.completion'
+alias z.h='vim $HISTFILE'
 
 #pkg {{{1
 if in_path apt-get; then
