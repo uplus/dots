@@ -20,11 +20,12 @@ alias lla='ls -lAi'
 alias here='ls -ld $PWD'
 
 #vim {{{1
+alias v.='vimrc'
 alias vi='vim'
 alias gv='gvim'
 alias nv='nvim'
 alias v='vim'
-alias v.='vim .'
+alias vh='vim .'
 alias vp='vim -p'
 alias vo='vim -o'
 alias vr='vim -R'
@@ -51,6 +52,7 @@ alias gs='git s'
 alias gsh='git sh'
 alias gst='git st'
 alias ge='git eda'
+alias ggrep='git grep -iIn'
 
 #C/C++ gdb {{{1
 alias clang="clang $C_COMP_OPT"
@@ -152,6 +154,7 @@ alias pm-suspend='sudo pm-suspend'
 alias find='noglob find'
 alias rbrn='noglob rbrn'
 alias zmv='noglob zmv'
+alias findstr='noglob findstr'
 
 # FOLDS END {{{1
 # }}}1
@@ -164,8 +167,10 @@ alias cp='cp -i'
 alias rm='rm -v'
 alias which='which -p'
 alias jobs='jobs -ld'
+alias pgrep='pgrep -l'
 
 #utilities
+alias histrank="history 1 | awk '{print $2}' | sort | uniq -c | sort -nr"
 alias hist='history -n'
 alias histall='history -n 1'
 alias histories='history -E 1'
@@ -191,6 +196,8 @@ alias twme='tw $(tw -user:default 2> /dev/null)'
 alias be='bundle exec'
 alias m='memo'
 alias todo='memo -e todo'
-alias ipy='ipython3'
+alias ipy='ipython3 --no-confirm-exit --no-banner'
+alias py=python
+alias py3=python3
 alias ur='cdr'
 
