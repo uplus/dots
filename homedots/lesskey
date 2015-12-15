@@ -1,0 +1,15 @@
+#command
+\e  quit
+h   left-scroll
+l   right-scroll
+
+#line-edit
+\e  abort
+  word-backspace
+  delete
+  up
+  down
+  home
+  end
+  right
+  left

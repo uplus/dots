@@ -23,6 +23,7 @@ link_files() { #{{{
     ln -svi $dir/$name $HOME/.$name
   done
 
+  lesskey
   mkdir -p $HOME/.percol.d/
   ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
 } #}}}
