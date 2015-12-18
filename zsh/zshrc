@@ -56,14 +56,14 @@ prompt-return-value() {
 
 prompt-ssh() {
   if [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]; then
-    echo " %F{magenta}($HOST)%f"
+    echo " %F{37}($HOST)%f"
   fi
 }
 
 # vimなど特定のbgコマンドを表示する
 rprompt-bg() {
   local bg_cmds names
-  bg_cmds=$(ps -o 'comm' -T)
+  bg_cmds=$(ps -o comm -T)
   names=$(echo "$bg_cmds" | grep -Eo "vim")
 
   if [[ -n $names ]]; then
@@ -72,7 +72,7 @@ rprompt-bg() {
   fi
 }
 
-export PROMPT=$'%{\e[38;5;63m%}%(4~|...|)%3~%F{white} %# %f'
+export PROMPT='%F{37}%(6~|...|)%5~%F{white} %# %f'
 export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
