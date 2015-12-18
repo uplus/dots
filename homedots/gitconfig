@@ -43,7 +43,8 @@
   coam = commit -am
   fix  = commit --amend -v
   fixa = commit --amend -va
-  eda  = branch -a
+  fixm = commit --amend -C HEAD
+  eda  = branch -avv
   st    = stash save --include-untracked --keep-index
   save  = stash save --include-untracked
   spop  = stash pop
