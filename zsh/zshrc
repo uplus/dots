@@ -17,8 +17,9 @@ autoload -U colors && colors
 
 #Prompt # {{{
 autoload -Uz promptinit && promptinit
-setopt prompt_subst   #プロンプト定義で置き換えを使用する
-setopt prompt_cr      #show prompt in new line, when after command finish.
+setopt prompt_subst         # プロンプト定義で置き換えを使用する
+setopt prompt_cr            # show prompt in new line, when after command finish.
+setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
 rprompt-git() {
   local name st color brace ahead behind stash
