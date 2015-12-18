@@ -22,33 +22,32 @@ setopt prompt_cr            # show prompt in new line, when after command finish
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
 rprompt-git() {
-  local name st color brace ahead behind stash
-  [[ "$PWD" =~ '/\.git(/.*)?$' ]] && return
+  git rev-parse --git-dir >&! /dev/null || return
 
-  name=$(git symbolic-ref --short HEAD 2>/dev/null)
-  [[ -z $name ]] && return
-
-  st=$(git status --short --branch)
-  brace=$(echo $st head -1 | grep -oe "\[.*]$")
-  ahead=$(echo $st | grep -oe "ahead [0-9]*" | awk '{print $2}')
-  behind=$(echo $st | grep -oe "behind [0-9]*" | awk '{print $2}')
-  stash=$(git stash list | wc -l | tr -d ' ' | grep -v "^0$")
-  [[ -n $ahead ]] && ahead=" $ahead"
-  [[ -n $behind ]] && behind=" $behind"
-  [[ -n $stash ]] && stash=" $stash"
-
-  st=$(echo $st | sed -e 1d)
-  if [[ -z $st ]]; then
-    color=%F{green}
-  elif [[ -n $(echo "$st" | grep "^??") ]]; then
-    color=%F{yellow}
-  elif [[ -n $(echo "$st" | grep '^.M') ]]; then
-    color=%F{red}
+  # branch name
+  local name color
+  name=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  if [[ -n $(git ls-files -u) ]]; then
+    color=magenta
+  elif [[ -n $(git ls-files --other --exclude-standard) ]]; then
+    color=yellow
+  elif  [[ -n $(git ls-files -m) ]]; then
+    color=red
   else
-    color=%F{red}
+    color=green
   fi
 
-  echo " [$color$name%f%b%F{green}$ahead%f%F{red}$behind%f%F{yellow}$stash%f]"
+  # branch status
+  local st brace ahead behind stash
+  brace=$(git status --short --branch | head -1 | grep -oe '\[.*]$')
+  ahead=$(echo "${brace}" | grep -oe 'ahead [0-9]\+' | awk '{print $2}')
+  behind=$(echo "${brace}" | grep -oe 'behind [0-9]\+' | awk '{print $2}')
+  stash=$(git stash list | wc -l | sed -e 's/^0$//g')
+  [[ -n $ahead ]] && ahead=" %F{green}$ahead%f"
+  [[ -n $behind ]] && behind=" %F{red}$behind%f"
+  [[ -n $stash ]] && stash=" %F{yellow}$stash%f"
+
+  echo " [%F{$color}$name%f${ahead}${behind}${stash}]"
 }
 
 prompt-return-value() {
