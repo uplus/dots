@@ -16,12 +16,11 @@ eval "$(dircolors -b)"
 autoload -U colors && colors
 
 #Prompt # {{{
-autoload -Uz promptinit
-promptinit
+autoload -Uz promptinit && promptinit
 setopt prompt_subst   #プロンプト定義で置き換えを使用する
 setopt prompt_cr      #show prompt in new line, when after command finish.
 
-function rprompt-git {
+rprompt-git() {
   local name st color brace ahead behind stash
   [[ "$PWD" =~ '/\.git(/.*)?$' ]] && return
 
@@ -51,18 +50,18 @@ function rprompt-git {
   echo " [$color$name%f%b%F{green}$ahead%f%F{red}$behind%f%F{yellow}$stash%f]"
 }
 
-function prompt-return-value {
+prompt-return-value() {
   echo " %(?,,%F{red} %?%f)"
 }
 
-function prompt-ssh {
+prompt-ssh() {
   if [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]; then
     echo " %F{magenta}($HOST)%f"
   fi
 }
 
 # vimなど特定のbgコマンドを表示する
-function rprompt-bg {
+rprompt-bg() {
   local bg_cmds names
   bg_cmds=$(ps -o 'comm' -T)
   names=$(echo "$bg_cmds" | grep -Eo "vim")
