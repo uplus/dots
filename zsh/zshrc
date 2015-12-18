@@ -280,13 +280,11 @@ bindkey "^[h" run-help
 
   ## original keybind functions # {{{
   zle_percol_history(){
-    BUFFER=$(history -nr -3000 | awk '!a[$0]++' | percol --query "$LBUFFER")
-    CURSOR=$#BUFFER
-    zle -R -c
+    zle reset-prompt
+    local cmd="$(history -nr 0 | awk '!a[$0]++' | percol --query "$LBUFFER")"
 
-    if [[ -z $BUFFER ]]; then
-      zle reset-prompt
-    else
+    if [[ -n $cmd ]]; then
+      BUFFER="$cmd"
       zle accept-line
     fi
   }
@@ -294,12 +292,10 @@ bindkey "^[h" run-help
   bindkey '^S' zle_percol_history
 
   zle_percol_cdr(){
-    local dir
-    dir=$(cdr -l | awk '{ $1=""; sub(/^ /, "", $0); print }' | grep "$LBUFFER" | percol --query "$LBUFFER")
+    zle reset-prompt
+    local dir=$(cdr -l | awk '{ $1=""; sub(/^ /, "", $0); print }' | grep "$LBUFFER" | percol --query "$LBUFFER")
 
-    if [[ -z $dir ]]; then
-      zle reset-prompt
-    else
+    if [[ -n $dir ]]; then
       BUFFER="cd $dir"
       zle accept-line
     fi
@@ -307,21 +303,31 @@ bindkey "^[h" run-help
   zle -N zle_percol_cdr
   bindkey '^R' zle_percol_cdr
 
-  zle_percol_file_open(){
-    local file dir file_path
-    dir=${$(relative "$LBUFFER"):-.}
-    file=$(cd "$dir" && find . -type f 2>/dev/null | percol)
-    file_path=$(relative "$dir/$file")
+  zle_percol_select_file(){
+    zle reset-prompt
+    local -a array
+    array+=${(z)LBUFFER}
+    shift array
 
-    if [[ -z $file || ! -r $file_path ]]; then
-      zle reset-prompt
-    else
-      BUFFER="vim $file_path"
-      zle accept-line
+    local dir file file_path
+    dir="${$(relative "$array[-1]"):-.}"
+    file="$(cd "$dir" && find . -type f 2>/dev/null | percol)"
+    file_path="$(relative "$dir/$file")"
+
+    if [[ -n $file ]]; then
+      BUFFER="${BUFFER%"$array[-1]"}$file_path"
+      CURSOR=${#BUFFER}
     fi
   }
-  zle -N zle_percol_file_open
-  bindkey '^O' zle_percol_file_open
+  zle -N zle_percol_select_file
+  bindkey '^O' zle_percol_select_file
+
+  zle_play_music(){
+    zle reset-prompt
+    play-music </dev/tty
+  }
+  zle -N zle_play_music
+  bindkey '^Xm' zle_play_music
 
   zle_pry(){
     BUFFER=pry
