@@ -44,6 +44,7 @@
   fix  = commit --amend -v
   fixa = commit --amend -va
   fixm = commit --amend -C HEAD
+  fixam = commit --amend -a -C HEAD
   eda  = branch -avv
   st    = stash save --include-untracked --keep-index
   save  = stash save --include-untracked
@@ -73,3 +74,4 @@
   inish = !"f(){ git init && [ $# -ne 0 ] && git add $1; git s && git sh; }; f"
   empty = commit --allow-empty -m
   tmpc = !"git add --all && git commit -m 'TODO: temporary commit'"
+  merge-to-master = !"git checkout master && git merge --ff-only -"
