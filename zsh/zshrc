@@ -229,6 +229,8 @@ bindkey "^K" kill-line
 bindkey "^U" backward-kill-line
 bindkey "^N" down-line-or-history
 bindkey "^P" up-line-or-history
+bindkey "n" history-search-forward
+bindkey "p" history-search-backward
 # }}}
 
 bindkey "^L" clear-screen
@@ -347,6 +349,14 @@ bindkey "^[h" run-help
   }
   zle -N zle_todo
   bindkey 't' zle_todo
+
+  zle_memo(){
+    zle push-line
+    BUFFER='memo '
+    CURSOR=${#BUFFER}
+  }
+  zle -N zle_memo
+  bindkey 'm' zle_memo
 
   # }}}
 # }}}
