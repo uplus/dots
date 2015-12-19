@@ -257,3 +257,11 @@ uree() {
   done
   command tree -C -l ${opt} | less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
 }
+
+enc-utf8(){
+  output=$(mktemp)
+  for s in $@; do
+    nkf -Lu --utf8 "${s}" >! "${output}"
+    mv "${output}" "${s}"
+  done
+}
