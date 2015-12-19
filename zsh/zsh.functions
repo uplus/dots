@@ -4,6 +4,7 @@ getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
 relative(){ echo ${1:a} | sed -e "s|^$PWD/\?||" }
 warn(){ echo $* >&2 }
+is_num(){ expr "${1}" + 1 >&! /dev/null }
 
 back() {
   nohup $@ >&! /dev/null <&- &
