@@ -17,10 +17,8 @@ export WORDCHARS='*?!#%[]{}<>():;~.-`@\|' # ^$&_+
 export EDITOR=vim
 export VISUAL=vim
 
-# TODO man kill した時にjで終了しなくする
-export PAGER=less
-export LESS='-i --RAW-CONTROL-CHARS --LONG-PROMPT --QUIET --chop-long-lines --quit-if-one-screen --no-init'
-export GIT_PAGER="less --no-init" # --no-initが無いと git logの表示が上手く行かない
+export PAGER='less -i' #最低限共通部分
+export MANPAGER='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines'
 
 export GZIP='-v9N'
 export WWW_BROWSER=w3m

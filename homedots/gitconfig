@@ -4,6 +4,7 @@
 [core]
   editor = vim
   excludesfile = ~/.gitignore
+  pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
 [color]
   ui = true
 [push]

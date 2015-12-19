@@ -203,6 +203,7 @@ alias rm='rm -v'
 alias which='which -p'
 alias jobs='jobs -ld'
 alias pgrep='pgrep -l'
+alias less='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init'
 
 #utilities
 alias histrank="history 1 | awk '{print $2}' | sort | uniq -c | sort -nr"
