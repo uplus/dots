@@ -246,3 +246,14 @@ pk(){
   echo 'kill: '
   pkill -c "${1}"
 }
+
+# improved tree
+uree() {
+  local s
+  local -a opt
+  for s in $@; do
+    is_num "${s}" && opt+='-L'
+    opt+="${s}"
+  done
+  command tree -C -l ${opt} | less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
+}

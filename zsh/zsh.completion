@@ -2,6 +2,8 @@
 
 in_path memo && eval "$(memo --complete)"
 
+compdef _tree uree
+
 #CDPATHに値を設定すると補完候補に追加できる
 _ch(){
   CDPATH=$HOME
