@@ -229,8 +229,6 @@ bindkey "^K" kill-line
 bindkey "^U" backward-kill-line
 bindkey "^N" down-line-or-history
 bindkey "^P" up-line-or-history
-bindkey "n" history-search-forward
-bindkey "p" history-search-backward
 # }}}
 
 bindkey "^L" clear-screen
@@ -244,7 +242,7 @@ bindkey "^O" accept-line-and-down-history
 bindkey "^T" transpose-chars
 bindkey "^Y" yank
 
-# Slash
+# \ -
 bindkey "^_" undo
 # insert
 bindkey "^[[2~" overwrite-mode
@@ -279,7 +277,6 @@ bindkey "^[n" history-search-forward
 bindkey "^[p" history-search-backward
 
 bindkey "^[w" kill-word
-bindkey "^[y" vi-yank-whole-line
 bindkey "^[q" push-line
 bindkey "^[e" edit-command-line
 bindkey "^[h" run-help
