@@ -358,6 +358,12 @@ bindkey "^[h" run-help
   zle -N zle_memo
   bindkey 'm' zle_memo
 
+  zle_clip(){
+    echo -n "${BUFFER}" | clip
+  }
+  zle -N zle_clip
+  bindkey 'y' zle_clip
+
   # }}}
 # }}}
 

@@ -114,6 +114,7 @@ alias -g U='--help 2>&1 | head' # show usage.
 alias -g V='| vim -'
 alias -g R='| ruby -e'
 alias -g P='| percol'
+alias -g Y='| clip'
 
 alias -g N='>/dev/null'
 alias -g E='2>/dev/null'
