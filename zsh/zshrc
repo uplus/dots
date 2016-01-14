@@ -152,9 +152,14 @@ fi
 
 if [[ -f $antigen_path ]]; then
   source $HOME/.zsh/antigen/antigen.zsh
+  # antigen bundle tarruda/zsh-autosuggestions
+  # antigen bundle hchbaw/auto-fu.zsh && zle-line-init(){ auto-fu-init } # interactive completion
   antigen bundle zsh-users/zsh-syntax-highlighting
   antigen bundle m4i/cdd
+  antigen bundle rimraf/k && alias k='k -Ah'
+  antigen bundle mollifier/anyframe
   antigen bundle zsh-users/zaw
+  antigen apply
 fi
 unset antigen_path
 # }}}
