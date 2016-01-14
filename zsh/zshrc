@@ -217,7 +217,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # }}}
 
-#keybind # {{{
+#bindkey # {{{
 bindkey -e
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -246,6 +246,7 @@ bindkey "^I" expand-or-complete
 bindkey "^O" accept-line-and-down-history
 bindkey "^T" transpose-chars
 bindkey "^Y" yank
+bindkey "^]" insert-last-word
 
 # \ -
 bindkey "^_" undo
@@ -298,11 +299,11 @@ bindkey "^[h" run-help
     fi
   }
   zle -N zle_percol_history
-  bindkey '^S' zle_percol_history
+  bindkey '^R' zle_percol_history
 
   zle_percol_cdr(){
     zle reset-prompt
-    local dir=$(cdr -l | awk '{ $1=""; sub(/^ /, "", $0); print }' | grep "$LBUFFER" | percol --query "$LBUFFER")
+    local dir=$(cdr -l | sed 's/^[^ ]\+ \+//' | percol --query "$LBUFFER")
 
     if [[ -n $dir ]]; then
       BUFFER="cd $dir"
@@ -310,7 +311,7 @@ bindkey "^[h" run-help
     fi
   }
   zle -N zle_percol_cdr
-  bindkey '^R' zle_percol_cdr
+  bindkey '^S' zle_percol_cdr
 
   zle_percol_select_file(){
     zle reset-prompt
