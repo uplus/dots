@@ -221,6 +221,10 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' use-cache yes
 
+# setopt noautolist
+setopt no_menu_complete
+setopt autolist
+setopt automenu
 
 # }}}
 
