@@ -90,9 +90,9 @@ function runcpp { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" }
 function runc   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" }
 
 #global {{{1
-alias -g G='2>&1 | grep -i'
-alias -g GV='2>&1 | grep -iv'
-alias -g GE='2>&1 | egrep -i'
+alias -g G='2>&1 | noglob grep -ie'
+alias -g GV='2>&1 | noglob grep -ive'
+alias -g GE='2>&1 | noglob egrep -ie'
 
 alias -g W='2>&1 | wc'
 alias -g WL='2>&1 | wc -l'
@@ -100,7 +100,7 @@ alias -g WW='2>&1 | wc -w'
 alias -g WC='2>&1 | wc -c'
 alias -g WM='2>&1 | wc -m'
 
-alias -g X='2>&1 | xargs'
+alias -g X='2>&1 | xargs -I{}'
 alias -g L='2>&1 | less'
 alias -g S='2>&1 | sed'
 alias -g H='2>&1 | head'
