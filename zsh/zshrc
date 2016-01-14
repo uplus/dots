@@ -13,6 +13,7 @@ autoload -Uz add-zsh-hook
 autoload -Uz zmv
 
 eval "$(dircolors -b)"
+LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=01;36/ln=03;34/g')
 autoload -U colors && colors
 
 #Prompt # {{{
