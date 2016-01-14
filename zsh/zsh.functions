@@ -234,17 +234,17 @@ google_translate(){
 }
 
 pk(){
-  set -ue
-  out=$(pgrep "${1}")
+  set -u
+  out=$(pgrep "${1:?}")
   [[ -z $out ]] && return 1
 
-  echo $out
+  echo "$out"
   echo 'kill? (y/N)'
   read -ks key
   [[ ! $key =~ [yY] ]] && return 0
 
   echo 'kill: '
-  pkill -c "${1}"
+  pkill -c "${1:?}"
 }
 
 # improved tree
