@@ -178,13 +178,15 @@ exists_source $HOME/.zsh.completion
 source $HOME/.antigen/repos/*cdd.git/cdd
 add-zsh-hook chpwd _cdd_chpwd
 
+# cdr # {{{
 autoload -Uz chpwd_recent_dirs cdr
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-pushd true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.zsh/chpwd-recent-dirs"
-zstyle ':completion:*:*:cdr:*:*' menu selection
+zstyle ':completion:*:*:cdr:*' menu select
+# }}}
 
 exists_source $HOME/.zsh.functions
 exists_source $HOME/.zsh.aliases
