@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh -eu
+#!/usr/bin/env zsh -u
 
 getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
