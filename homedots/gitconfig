@@ -74,5 +74,5 @@
   pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
   inish = !"f(){ git init && [ $# -ne 0 ] && git add $1; git s && git sh; }; f"
   empty = commit --allow-empty -m
-  tmpc = !"git add --all && git commit -m 'TODO: temporary commit'"
+  tmpc = !"git add --all && git commit -m \"TODO: temporary commit $(date +%F:%R)\""
   merge-to-master = !"git checkout master && git merge --ff-only -"
