@@ -13,7 +13,7 @@ exists_source(){
   [[ -f "$1" ]] && source "$1"
 }
 
-export WORDCHARS='*?!#%[]{}<>():;~.-`@\|' # ^$&_+
+export WORDCHARS='*?!#%[]{}<>()~`@\' # ^$&_+-:;|.
 export EDITOR=vim
 export VISUAL=vim
 
