@@ -17,7 +17,6 @@ alias lld='ls -ld'
 alias lla='ls -lA'
 alias lli='ls -li'
 alias lla='ls -lAi'
-alias here='ls -ld $PWD'
 
 #cd {{{1
 alias c='cd'
@@ -186,11 +185,12 @@ alias mount='sudo mount'
 alias visudo='sudo visudo'
 alias pm-suspend='sudo pm-suspend'
 
-#noglog {{{1
+#noglob {{{1
 alias find='noglob find'
 alias rbrn='noglob rbrn'
 alias zmv='noglob zmv'
 alias findstr='noglob findstr'
+alias expr='noglob expr'
 
 # FOLDS END {{{1
 # }}}1
@@ -208,7 +208,7 @@ alias less='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-i
 alias dmesg='dmesg --color=always -e L' # -Hだとless動作が揃わない
 
 #utilities
-alias histrank="history 1 | awk '{print $2}' | sort | uniq -c | sort -nr"
+alias histrank="history 1 | awk '{print \$2}' | sort | uniq -c | sort -nr"
 alias hist='history -n'
 alias histall='history -n 1'
 alias histories='history -E 1'
@@ -216,7 +216,7 @@ alias ehis='history -n -1000 | vim - +'
 alias ehisall='history -n 1 | vim - +'
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias guirestart='sudo service lightdm restart'
-alias older='ls -altr'
+alias older='ls -Altr'
 alias whichis='which -aps'
 alias gor='cd $(git rev-parse --show-toplevel)'
 alias clip='xclip -sel clip -i'
@@ -224,9 +224,12 @@ alias gtrans='google_translate'
 alias pip3-check='pip3 list -o --user'
 alias pip3-update='pip3 install --user -U $(pip3-check | awk "{print $1}")'
 alias dirsize='du -csm'
-alias dirsizes='dirsize * | sort -n'
+alias bigs='ls -A | xargs -I{} du -sm "{}" 2>/dev/null | awk "{if(9 < \$1) print}" | distribution'
+alias here='ls -ld $PWD && du -csh | tail -1'
 alias host-list='sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1\n/"'
 alias ::='echo $PWD && gs E'
+alias p=pry
+alias r='noglob ruby -e "include Math; puts eval ARGV.join(\" \")" --'
 
 #shortening
 alias pu='pushd'
