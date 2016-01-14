@@ -135,7 +135,8 @@ setopt list_rows_first    # 候補を移動するとき横に進む
 setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示しない
 
 # auto_list auto_menu bash_auto_list glob_complete hash_list_all list_ambiguous menu_complete rec_exact
-# setopt auto_list          #補完リスト有効
+# setopt auto_menu          # TABで候補を選択できるメニュー(2type必要)
+# setopt auto_list          # 補完候補一覧をPAGER的なもので表示する
 # setopt no_menu_complete   #
 
 # }}}
@@ -171,7 +172,8 @@ autoload -U compinit
 #require before compinit
 antigen bundle zsh-users/zsh-completions
 
-compinit
+# -u disable security check.
+compinit -u
 
 #requrie after compinit
 exists_source $HOME/.zsh.completion
