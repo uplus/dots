@@ -123,7 +123,7 @@ install_ruby_with_rbenv() { #{{{
   eval "$(rbenv init -)"
   # v19=`rbenv install --list | egrep "\s1\.9\.." | tail -1`
   # v20=`rbenv install --list | egrep "\s2\.0\.." | tail -1`
-  HEAD=$(rbenv install --list | grep -e "^\s*.\..\.." | grep -Ev "\-(dev|preview|rc)$" | tail -1)
+  HEAD=$(rbenv install --list | grep -e '^\s\+[0-9]\..\..' | grep -Ev "\-(dev|preview|rc)$" | tail -1)
 
   # rbenv install $v19
   # rbenv install $v20
