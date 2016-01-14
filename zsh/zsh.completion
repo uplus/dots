@@ -32,8 +32,10 @@ compdef _rbenv rbenv
 
 _ud(){
   local -a candidates
-  candidates=($(grep -v '^last' ~/.cdd | sort -t: -k 2,2 -u | sort -n | sed -e 's/^\.//'))
-  _describe -t commands "pip subcommand" candidates
+  grep '^\.' ~/.cdd | sort -t: -k 2,2 -u | sed -e 's/^\.//' | sort -n | while read d; do
+    candidates+="$d"
+  done
+  _describe -t commands "directories" candidates
 }
 compdef _ud ud
 
