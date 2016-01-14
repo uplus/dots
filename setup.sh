@@ -54,7 +54,7 @@ pkg_u() { # {{{
       vim-gtk exuberant-ctags silversearcher-ag \
       libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
       patchutils pbuilder x11-xfs-utils terminology iotop htop \
-      apt-file gufw gnome-session gwenview xclip
+      apt-file gufw gnome-session gwenview xclip rlwrap
 
   }
 
@@ -72,6 +72,7 @@ pkg_u_utility() { #{{{
     apt-get -y install gpart gparted \
       qemu-kvm uvtool virtualbox \
       vlc libdvdread4 \
+      paprefs pavucontrol \
       ubuntu-make y-ppa-manager ppa-purge \
       mcomix unar gimp  nautilus-image-converter \
       unity-tweak-tool dconf-editor \
