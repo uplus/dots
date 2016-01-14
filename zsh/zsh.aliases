@@ -225,6 +225,7 @@ alias pip3-check='pip3 list -o --user'
 alias pip3-update='pip3 install --user -U $(pip3-check | awk "{print $1}")'
 alias dirsize='du -csm'
 alias dirsizes='dirsize * | sort -n'
+alias host-list='sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1\n/"'
 alias ::='echo $PWD && gs E'
 
 #shortening
