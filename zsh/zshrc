@@ -198,34 +198,34 @@ add-zsh-hook precmd autols
 add-zsh-hook precmd ud-add
 
 #zstyle completion {{{
+# zstyle ':completion:*:*:CMD:*:TAG' STYLE
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose true
-zstyle ':completion:*' list-separator '(:>)'
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' menu select=2
-zstyle ':completion:*:default' menu select=2    #補完候補を色付けする
+zstyle ':completion:*:options' verbose true
+zstyle ':completion:*:values' verbose true
+zstyle ':completion:*' menu select=1 # 現在の補完候補をハイライト
+zstyle ':completion:*' list-separator '~~>'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' list-prompt '%S%F{197}   Hey Hey! %p   %f%s'
+zstyle ':completion:*' select-prompt '%S%F{208}  ε=ε=ε=ε=＼(;´□ `)/ %p  %f%s'
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+
+zstyle ':completion:*:descriptions' format '%F{43}%d%f'
+zstyle ':completion:*:messages'     format '%F{227}%d%f'
+zstyle ':completion:*:warnings'     format '%F{red}Sorry, no matches for%f: %d'
+
 #kill 番号色付き nolist interactive
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*=0=38;05;162'
 zstyle ':completion:*:*:kill:*' menu true interactive
 zstyle ':completion:*:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' use-cache yes
+zstyle ':completion:*:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters   # complete array index.
 
 # setopt noautolist
 setopt no_menu_complete
 setopt autolist
 setopt automenu
-
 # }}}
 
 #bindkey # {{{
