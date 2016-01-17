@@ -36,8 +36,13 @@ export ZSH_DOT_DIR="$(dirname $(readlink $HOME/.zshenv))"
 
 # Order is important
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-in_path rbenv && eval "$(rbenv init - zsh)"
+
+if [[ -d $HOME/.rbenv/bin ]]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  in_path rbenv && eval "$(rbenv init - zsh)"
+else
+  export PATH="${$(gem environment gempath)%%:*}/bin:$PATH"
+fi
 
 if [[ -n "${WINDOWID:-}" && -f $HOME/.xmodmap ]]; then
   xmodmap ~/.xmodmap
