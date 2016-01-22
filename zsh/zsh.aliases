@@ -185,7 +185,8 @@ alias poweroff='sudo poweroff'
 alias reboot='sudo reboot'
 alias mount='sudo mount'
 alias visudo='sudo visudo'
-alias pm-suspend='sudo pm-suspend'
+alias dsuspend='dbus-send --system --print-reply=literal --dest=org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager.Suspend boolean:true'
+alias dlock='dbus-send --system --print-reply=literal --dest=org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager.LockSession string:'
 
 #noglob {{{1
 alias find='noglob find'
