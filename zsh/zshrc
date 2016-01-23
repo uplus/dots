@@ -30,13 +30,13 @@ rprompt-git() {
   name=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   state=$(git status --short | awk '{print $1}')
   if [[ $state =~ U ]]; then
-    color=magenta
+    color=165 #magenta
   elif [[ $state =~ '\?' ]]; then
-    color=yellow
-  elif  [[ $state =~ M ]]; then
-    color=red
+    color=208 #yellow
+  elif [[ -z $state ]]; then
+    color=36 #green
   else
-    color=green
+    color=196 #red
   fi
 
   # branch status
@@ -45,15 +45,15 @@ rprompt-git() {
   ahead=$(echo "${brace}" | grep -oe 'ahead [0-9]\+' | awk '{print $2}')
   behind=$(echo "${brace}" | grep -oe 'behind [0-9]\+' | awk '{print $2}')
   stash=$(git stash list | wc -l | sed -e 's/^0$//g')
-  [[ -n $ahead ]] && ahead=" %F{green}$ahead%f"
-  [[ -n $behind ]] && behind=" %F{red}$behind%f"
-  [[ -n $stash ]] && stash=" %F{yellow}$stash%f"
+  [[ -n $ahead ]] && ahead=" %F{36}$ahead%f"
+  [[ -n $behind ]] && behind=" %F{196}$behind%f"
+  [[ -n $stash ]] && stash=" %F{208}$stash%f"
 
   echo " [%F{$color}$name%f${ahead}${behind}${stash}]"
 }
 
 prompt-return-value() {
-  echo " %(?,,%F{red} %?%f)"
+  echo " %(?,,%F{196} %?%f)"
 }
 
 prompt-ssh() {
@@ -74,7 +74,7 @@ rprompt-bg() {
   fi
 }
 
-export PROMPT='%F{37}%(6~|...|)%5~%F{white} %# %f'
+export PROMPT='%F{37}%(6~|...|)%5~%F{255} %# %f'
 export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
