@@ -302,7 +302,7 @@ bindkey "^[h" run-help
   ## original keybind functions # {{{
   zle_percol_history(){
     zle reset-prompt
-    local cmd="$(history -nr 0 | awk '!a[$0]++' | percol --query "$LBUFFER")"
+    local cmd="$(history -nr 0 | awk '!a[$0]++' | percol --match-method=regex --query "$LBUFFER")"
 
     if [[ -n $cmd ]]; then
       BUFFER="$cmd"
@@ -314,7 +314,7 @@ bindkey "^[h" run-help
 
   zle_percol_cdr(){
     zle reset-prompt
-    local dir=$(cdr -l | sed 's/^[^ ]\+ \+//' | percol --query "$LBUFFER")
+    local dir=$(cdr -l | sed 's/^[^ ]\+ \+//' | percol --match-method=regex --query "$LBUFFER")
 
     if [[ -n $dir ]]; then
       BUFFER="cd $dir"
@@ -332,7 +332,7 @@ bindkey "^[h" run-help
 
     local dir file file_path
     dir="${$(relative "$array[-1]"):-.}"
-    file="$(cd "$dir" && find . -type f 2>/dev/null | percol)"
+    file="$(cd "$dir" && find . -type f 2>/dev/null | percol --match-method=regex)"
     file_path="$(relative "$dir/$file")"
 
     if [[ -n $file ]]; then

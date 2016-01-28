@@ -202,11 +202,11 @@ pc(){
     warn "usage: pc command"
     return 1
   fi
-  print -z $(eval $* 2>/dev/null | percol)
+  print -z $(eval $* 2>/dev/null | percol --match-method=regex)
 }
 
 pa(){
-  result=$(find ${@:-.} 2>/dev/null | percol)
+  result=$(find ${@:-.} 2>/dev/null | percol --match-method=regex)
   [[ -z $result ]] && return
   if [[ -d $result ]]; then
     cd "${result}"
