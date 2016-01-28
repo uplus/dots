@@ -32,17 +32,17 @@ alias 8.='cd ../../../../../../../..'
 
 #vim {{{1
 alias v.='vimrc'
+alias v='vim'
 alias vi='vim'
 alias gv='gvim'
 alias nv='nvim'
-alias v='vim'
 alias vh='vim .'
 alias vp='vim -p'
 alias vo='vim -o'
 alias vr='vim -R'
-alias lvi="vim -c \"normal '0\""
-alias vi.simp='\vim -u NONE -N'
-alias vi.sjis='vi -c ":e ++enc=cp932"'
+alias vl="vim -c 'normal \`0' -c 'bwipeout #'"
+alias v.min='vim -N -u NONE -U NONE -i NONE --noplugin'
+alias v.sjis='vi -c ":e ++enc=cp932"'
 alias vimopt='vim --version | \egrep "^\+|^-"'
 
 #git {{{1
