@@ -212,6 +212,7 @@ alias jobs='jobs -ld'
 alias pgrep='pgrep -l'
 alias less='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init'
 alias dmesg='dmesg --color=always -e L' # -Hだとless動作が揃わない
+alias vboxmanage='VBoxManage'
 
 #utilities
 alias histrank="history 1 | awk '{print \$2}' | sort | uniq -c | sort -nr"
@@ -236,6 +237,7 @@ alias host-list='sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1\n/"'
 alias ::='echo $PWD && gs E'
 alias p=pry
 alias r='noglob ruby -e "include Math; puts eval ARGV.join(\" \")" --'
+alias rr='while read line; do r "${line}"; done'
 
 #shortening
 alias pu='pushd'
