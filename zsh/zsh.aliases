@@ -120,6 +120,9 @@ alias -g E='2>/dev/null'
 alias -g Q='>/dev/null 2>&1'
 alias -g B='>/dev/null 2>&1 &'
 
+alias -g ...='../..'
+alias -g ....='../../..'
+
 # .../ みたいな使い方ができない
 # alias -g ...='../..'
 
