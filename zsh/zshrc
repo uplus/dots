@@ -144,7 +144,7 @@ setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示し�
 #antigen # {{{
 antigen_path="$HOME/.zsh/antigen/antigen.zsh"
 if [[ ! -f $antigen_path ]]; then
-  echo "antigen install?(y/N)"
+  echo -n "antigen install?(y/N) "
   read -k 1 key
   if [[ $key =~ [yY] ]]; then
     git clone https://github.com/zsh-users/antigen.git .zsh/antigen
