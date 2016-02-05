@@ -16,7 +16,7 @@ exists_source(){
 export LANGUAGE=en
 export LANG=en_US.UTF-8 # Provides default value for LC_* variables.
 
-export WORDCHARS='*?!#%[]{}<>()~`@\' # ^$&_+-:;|.
+export WORDCHARS='*?!#%[]{}<>()~`\' # ^$&@_+-:;|.
 export EDITOR=vim
 export VISUAL=vim
 
