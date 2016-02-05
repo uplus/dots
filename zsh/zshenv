@@ -5,8 +5,7 @@
 typeset -U path PATH MANPATH INFOPATH fpath
 
 in_path(){
-  which "$1" >/dev/null 2>&1
-  return $?
+  which $@ >/dev/null 2>&1
 }
 
 exists_source(){
