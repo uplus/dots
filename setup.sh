@@ -137,6 +137,12 @@ install_neobundle() {
   git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 }
 
+setup_vim(){
+  git clone https://github.com/u10e10/vim ~/.vim
+  install_neobundle
+  mkdir ~/.vim/tmp
+}
+
 install_linuxbrew() {
   git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
 }
