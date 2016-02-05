@@ -189,6 +189,14 @@ vlc_dvd() {
   sudo /usr/share/doc/libdvdread4/install-css.sh
 }
 
+setup_common() {
+  make_dirs
+  link_files
+  link_zsh
+  setup_vim
+  git clone https://github.com/u10e10/utilities ~/code/utilities
+}
+
 help() {
   grep -o "^[^ ]*()" setup.sh | sed "s/()//g"
 }
