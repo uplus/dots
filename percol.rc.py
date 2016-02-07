@@ -1,7 +1,7 @@
 from percol.finder import FinderMultiQueryMigemo
 
 FinderMultiQueryMigemo.dictionary_path = '/usr/share/cmigemo/utf-8/migemo-dict'
-FinderMultiQueryMigemo.minimum_query_length = 1
+FinderMultiQueryMigemo.minimum_query_length = 2
 
 # Run command file for percol
 percol.view.PROMPT  = r"<bold><cyan>QUERY </cyan>[a]:</bold> %q"
