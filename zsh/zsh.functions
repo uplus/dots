@@ -30,7 +30,7 @@ rmd(){
     return 1
   fi
 
-  rmdir -p $1/**/ 2> /dev/null
+  find ${@} -type d -empty | xargs -I{} rmdir --ignore-fail-on-non-empty -p "{}"
 }
 
 vboxresize(){ VBoxManage modifymedium --resize $((1024*$1)) $2 }
