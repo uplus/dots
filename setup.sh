@@ -101,7 +101,6 @@ clone_myrepos() { #{{{
     my_repo='https://github.com/u10e10'
   fi
 
-  git clone $my_repo/dotfiles.git $HOME/.dotfiles/
   git clone $my_repo/vim.git $HOME/.vim/
   install_neobundle
   git clone $my_repo/utilities.git $HOME/code/utilities
