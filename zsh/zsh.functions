@@ -228,20 +228,6 @@ google_translate(){
   w3m "http://translate.google.com/${opt}" | block '\[\s+\]' '\[\s+\]' | tail --lines=+2
 }
 
-pk(){
-  set -u
-  out=$(pgrep "${1:?}")
-  [[ -z $out ]] && return 1
-
-  echo "$out"
-  echo 'kill? (y/N)'
-  read -ks key
-  [[ ! $key =~ [yY] ]] && return 0
-
-  echo 'kill: '
-  pkill -c "${1:?}"
-}
-
 # improved tree
 uree() {
   local s
