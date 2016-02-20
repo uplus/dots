@@ -246,6 +246,7 @@ alias twme='tw $(tw -user:default 2> /dev/null)'
 alias be='bundle exec'
 alias m='memo'
 alias todo='memo -e todo'
+alias diary='memo -e diary'
 alias ipy='ipython3 --no-confirm-exit --no-banner'
 alias py=python
 alias py3=python3
