@@ -19,3 +19,5 @@ darwin*)
 esac
 
 [[ -L $HOME/.zshrc.$rm_file ]] && rm $HOME/.zshrc.$rm_file
+
+[[ ! $SHELL =~ '/zsh' ]] && chsh -s /bin/zsh

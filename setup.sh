@@ -37,7 +37,6 @@ set_dark_theme() {
 
 link_zsh() { #{{{
   $current/zsh/setup_zsh.sh
-  [[ $SHELL =~ '/zsh' ]] && chsh -s /bin/zsh
 } #}}}
 
 pkg_u() { # {{{
