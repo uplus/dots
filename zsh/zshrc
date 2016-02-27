@@ -306,7 +306,7 @@ bindkey "^[h" run-help
 
     if [[ -n $cmd ]]; then
       BUFFER="$cmd"
-      zle accept-line
+      CURSOR=$#BUFFER
     fi
   }
   zle -N zle_percol_history
