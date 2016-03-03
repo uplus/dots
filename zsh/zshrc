@@ -6,7 +6,6 @@ linux*)  exists_source "$HOME/.zshrc.linux" ;;
 darwin*) exists_source "$HOME/.zshrc.darwin" ;;
 esac
 
-umask 077
 DIRSTACKSIZE=100
 disable r # zsh-builtin: 直前のコマンドを実効する
 autoload -Uz add-zsh-hook
