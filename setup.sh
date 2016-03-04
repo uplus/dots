@@ -187,12 +187,22 @@ vlc_dvd() {
   sudo /usr/share/doc/libdvdread4/install-css.sh
 }
 
+#TODO: ubuntu centos archに対応させる
+#       rubyやclang,phpなどバージョンがめんどくさいリポジトリがある
+
 setup_common() {
   make_dirs
   link_files
   link_zsh
   setup_vim
   git clone https://github.com/u10e10/utilities ~/code/utilities
+}
+
+#TODO: temporary
+setup_common_apps() {
+  local -a names
+  names=(zsh git tig gcc clang ruby python python3 curl wget php ssh lua luajit tree unar)
+  echo $names
 }
 
 help() {
