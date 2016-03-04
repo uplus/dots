@@ -168,7 +168,7 @@ unset antigen_path
 autoload -U compinit
 
 #require before compinit
-antigen bundle zsh-users/zsh-completions
+in_path antigen && antigen bundle zsh-users/zsh-completions
 
 # -u disable security check.
 compinit -u
