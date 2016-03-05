@@ -201,8 +201,23 @@ setup_common() {
 #TODO: temporary
 setup_common_apps() {
   local -a names
-  names=(zsh git tig gcc clang ruby python python3 curl wget php ssh lua luajit tree unar)
+  names=(zsh git tig curl wget ssh tree gcc clang ruby python python3 php lua luajit)
   echo $names
+}
+
+get_pkg_manager(){
+  case "$(grep -Po '(?<=ID_LIKE\=).*' /etc/os-release)" in
+    *debian*)
+      echo apt-get
+      ;;
+    *fedora*)
+      echo yum
+      ;;
+    *)
+      if which pacman >/dev/null 2>&1; then
+        echo pacman
+      fi
+  esac
 }
 
 help() {
