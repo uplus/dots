@@ -158,7 +158,7 @@ if [[ -f $antigen_path ]]; then
   antigen bundle m4i/cdd
   antigen bundle rimraf/k && alias k='k -Ah'
   # antigen bundle mollifier/anyframe
-  # antigen bundle zsh-users/zaw
+  antigen bundle zsh-users/zaw
   antigen apply
 fi
 unset antigen_path
