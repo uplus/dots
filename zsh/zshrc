@@ -230,6 +230,7 @@ setopt automenu
 bindkey -e
 autoload -Uz edit-command-line
 zle -N edit-command-line
+bindkey -r "^T"
 
 # emacs bind # {{{
 bindkey "^A" beginning-of-line
@@ -253,7 +254,6 @@ bindkey "^V" quoted-insert
 
 bindkey "^I" expand-or-complete
 bindkey "^O" accept-line-and-down-history
-bindkey "^T" transpose-chars
 bindkey "^Y" yank
 bindkey "^]" insert-last-word
 
