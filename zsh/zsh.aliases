@@ -181,6 +181,12 @@ if in_path apt-get; then
   alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
 elif in_path pacman; then
   #TODO: pacman
+elif in_path yum; then
+  alias a.u='sudo yum update'
+  alias a.i='sudo yum install'
+  alias a.r='sudo yum remove'
+  alias a.c='sudo yum clean all'
+  alias a.s='yum search'
 fi
 
 #not require sudo {{{1
