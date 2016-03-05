@@ -248,6 +248,7 @@ bindkey "^P" up-line-or-history
 
 bindkey "^L" clear-screen
 bindkey "^M" accept-line
+bindkey "^J" accept-line
 bindkey "^G" send-break
 bindkey "^Q" push-line
 bindkey "^V" quoted-insert
