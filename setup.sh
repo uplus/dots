@@ -66,6 +66,7 @@ pkg_u_utility() { #{{{
     add-apt-repository -y ppa:ubuntu-desktop/ubuntu-make
     add-apt-repository -y ppa:numix/ppa
     add-apt-repository -y ppa:webupd8team/y-ppa-manager
+    apt-add-repository -y ppa:screenlets/ppa
     apt-get update
 
     apt-get -y install gpart gparted \
@@ -80,7 +81,8 @@ pkg_u_utility() { #{{{
       pavucontrol nodejs sqlite sqlitebrowser zenmap easystroke \
       fontforge python-fontforge open-jtalk espeak \
       ubuntu-restricted-extras \
-      asunder soundkonverter lame flac wavpack
+      asunder soundkonverter lame flac wavpack \
+      screenlets screenlets-pack-all
 
       #interactive
       apt-get install -y wireshark mysql-server oracle-java8-installer oracle-java9-installer
@@ -201,7 +203,7 @@ setup_common() {
 #TODO: temporary
 setup_common_apps() {
   local -a names
-  names=(zsh git tig curl wget ssh tree gcc clang ruby python python3 php lua luajit)
+  names=(ssh zsh git tig curl wget tmux tree gcc clang ruby python python3 php lua luajit)
   echo $names
 }
 
