@@ -33,7 +33,7 @@ if [[ -z $TMUX ]]; then
   export TERM='xterm-256color'
 
   if [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]; then
-    in_path tmux && tmux
+    in_path tmux && exec tmux
   fi
 fi
 
