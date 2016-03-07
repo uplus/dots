@@ -207,16 +207,24 @@ setup_common_apps() {
   echo $names
 }
 
+in_path(){
+  which $@ >/dev/null 2>&1
+}
+
 get_pkg_manager(){
   case "$(grep -Po '(?<=ID_LIKE\=).*' /etc/os-release)" in
     *debian*)
       echo apt-get
       ;;
     *fedora*)
-      echo yum
+      if in_path dnf; then
+        echo dnf
+      else
+        echo yum
+      fi
       ;;
     *)
-      if which pacman >/dev/null 2>&1; then
+      if in_path pacman then
         echo pacman
       fi
   esac
