@@ -248,9 +248,13 @@ alias bigs='ls -A | xargs -I{} du -sm "{}" 2>/dev/null | awk "{if(9 < \$1) print
 alias here='ls -ld $PWD && du -csh | tail -1'
 alias host-list='sudo nmap -sP 192.168.1.1/24 | sed -e "s/^\(MAC.*\)$/\1\n/"'
 alias ::='echo $PWD && gs E'
-alias p=pry
 alias r='noglob ruby -e "include Math; puts eval ARGV.join(\" \")" --'
 alias rr='while read line; do r "${line}"; done'
+alias killall='killall -i -I'
+alias mounted="mount -l | grep '^/dev/' | sort"
+alias devinfo="sudo fdisk --color=always -l /dev/sd? | sed -e '/^$/d' -e 's/Disk \//\nDisk /g'"
+alias devs='df -hTx tmpfs'
+
 
 #shortening
 alias pu='pushd'
@@ -264,4 +268,6 @@ alias ipy='ipython3 --no-confirm-exit --no-banner'
 alias py=python
 alias py3=python3
 alias ur='cdr'
+alias p=pry
+alias vg=vagrant
 
