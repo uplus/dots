@@ -192,7 +192,7 @@ vlc_dvd() {
 #TODO: ubuntu centos archに対応させる
 #       rubyやclang,phpなどバージョンがめんどくさいリポジトリがある
 
-setup_common() {
+common() {
   make_dirs
   link_files
   link_zsh
@@ -201,7 +201,7 @@ setup_common() {
 }
 
 #TODO: temporary
-setup_common_apps() {
+common_apps() {
   local -a names
   names=(ssh zsh git tig curl wget tmux tree gcc clang ruby python python3 php lua luajit)
   echo $names
@@ -224,7 +224,7 @@ get_pkg_manager(){
       fi
       ;;
     *)
-      if in_path pacman then
+      if in_path pacman; then
         echo pacman
       fi
   esac
