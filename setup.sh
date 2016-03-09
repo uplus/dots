@@ -1,5 +1,5 @@
 #!/bin/bash -u
-current=$(cd `dirname $0` && pwd)
+current="$(cd -- "$(dirname -- "${BASH_SOURCE}")" && pwd)"
 
 make_dirs() { #{{{
   mkdir -v $HOME/bin

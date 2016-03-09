@@ -1,5 +1,5 @@
 #!/bin/bash -eu
-current=$(cd $(dirname $0) && pwd)
+current="$(cd -- "$(dirname -- "${BASH_SOURCE}")" && pwd)"
 for name in $(\ls -F $current/ | egrep -v ".*/|.*\*|README\..*"); do
   ln -svi "$current/$name" "$HOME/.$name"
 done
