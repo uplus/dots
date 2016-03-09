@@ -114,7 +114,7 @@ alias -g V='| vim -'
 alias -g R='| ruby -e'
 alias -g P='| percol --match-method=regex'
 alias -g Y='| clip'
-alias -g LOG='| tee -a log.txt'
+alias -g LOG=' 2>&1 | tee -a log.txt'
 
 alias -g N='>/dev/null'
 alias -g E='2>/dev/null'
