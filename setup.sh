@@ -103,7 +103,7 @@ clone_myrepos() { #{{{
   fi
 
   git clone $my_repo/vim.git $HOME/.vim/
-  install_neobundle
+  install_dein
   git clone $my_repo/utilities.git $HOME/code/utilities
   git clone $my_repo/rename.git $HOME/code/ruby/rename
 } #}}}
@@ -133,13 +133,13 @@ install_ruby_with_rbenv() { #{{{
   gem update --system
 } #}}}
 
-install_neobundle() {
-  git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+install_dein(){
+  git clone https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
 }
 
 setup_vim(){
   git clone https://github.com/u10e10/vim ~/.vim
-  install_neobundle
+  install_dein
   mkdir ~/.vim/tmp
 }
 
