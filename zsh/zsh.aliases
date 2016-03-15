@@ -10,13 +10,12 @@ alias fgrep='fgrep --color=auto'
 alias l='ls -F'
 alias l1='ls -F1'
 alias la='ls -A'
-alias ll='ls -l'
+alias ll='ls -lh'
 alias li='ls -i'
-alias llh='ls -lh'
 alias lld='ls -ld'
-alias lla='ls -lA'
+alias lla='ls -lAh'
 alias lli='ls -li'
-alias lla='ls -lAi'
+alias lai='ls -lAhi'
 
 #cd {{{1
 alias c='cd'
@@ -123,9 +122,9 @@ alias -g B='>/dev/null 2>&1 &'
 
 alias -g ...='../..'
 alias -g ....='../../..'
-
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
 # .../ みたいな使い方ができない
-# alias -g ...='../..'
 
 #directory aliases {{{1
 hash -d bin=$HOME/bin/
@@ -239,7 +238,7 @@ alias older='ls -Altr'
 alias whichis='which -aps'
 alias gor='cd $(git rev-parse --show-toplevel)'
 alias clip='xclip -sel clip -i'
-alias gtrans='google_translate'
+alias gt='google_translate'
 alias pip3-check='pip3 list -o --user'
 alias pip3-update='pip3 install --user -U $(pip3-check | awk "{print $1}")'
 alias dirsize='du -csm'
@@ -254,6 +253,7 @@ alias killall='killall -i -I'
 alias mounted="mount -l | grep '^/dev/' | sort"
 alias devinfo="sudo fdisk --color=always -l /dev/sd? | sed -e '/^$/d' -e 's/Disk \//\nDisk /g'"
 alias devs='df -hTx tmpfs'
+alias galias='alias -g'
 
 
 #shortening

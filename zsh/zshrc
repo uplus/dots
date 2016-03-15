@@ -86,7 +86,7 @@ setopt hist_no_functions        #on: remove functon definitions from the history
 setopt hist_reduce_blanks       #on: reduce unnecessary blanks
 setopt hist_ignore_space        #on: not add to the history if first character of the command is space.
 setopt hist_ignore_dups
-setopt no_hist_ignore_all_dups  #on: 過去の履歴と重複しても削除しない
+setopt hist_ignore_all_dups     #on: 過去の履歴と重複しても削除しない
 setopt no_hist_verify           #on: history-commandを直接実行せず、まず展開する
 SAVEHIST=100000 #file
 HISTSIZE=20000  #memory
