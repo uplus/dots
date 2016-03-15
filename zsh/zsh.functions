@@ -201,17 +201,17 @@ ud-add(){
 }
 # }}}
 
-#percol # {{{
+#interactive filter # {{{
 pc(){
   if [[ $# -eq 0 ]]; then
     warn "usage: pc command"
     return 1
   fi
-  print -z $(eval $* 2>/dev/null | percol --match-method=regex)
+  print -z $(eval $* 2>/dev/null | peco --initial-filter=Regexp)
 }
 
 pa(){
-  result=$(find ${@:-.} 2>/dev/null | percol --match-method=regex)
+  result=$(find ${@:-.} 2>/dev/null | peco --initial-filter=Regexp)
   [[ -z $result ]] && return
   if [[ -d $result ]]; then
     cd "${result}"

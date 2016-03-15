@@ -1,0 +1,22 @@
+{
+  "git url": "https://github.com/peco/peco",
+  "Prompt": "[peco] ",
+  "InitialFilter": "Regexp",
+  "StickySelection": true,
+  "Style": {
+    "Query": ["white", "bold"],
+    "Basic": ["on_default", "default"],
+    "Selected": ["on_blue", "white"],
+    "SavedSelection": ["bold", "on_yellow", "white"],
+    "Matched": ["on_cyan", "black"]
+  },
+  "Keymap": {
+    "C-j": "peco.Finish",
+    "C-g": "peco.Cancel"
+  },
+  "CustomFilter": {
+    "Migemo": {
+      "Cmd":  "migemogrep"
+    }
+  }
+}

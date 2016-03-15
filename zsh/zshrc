@@ -163,6 +163,7 @@ if [[ -d $zplug_path ]]; then
   zplug 'junegunn/fzf', as:command, of:bin/fzf-tmux
   zplug 'junegunn/fzf-bin', as:command, from:gh-r, file:fzf
   zplug 'peco/peco', as:command, from:gh-r, of:'*linux_amd64*'
+  zplug 'peco/migemogrep', as:command, from:gh-r, of:'*linux_amd64*'
   zplug 'philovivero/distribution', as:command, of:distribution.py, file:distribution
   zplug "tcnksm/docker-alias", of:zshrc
   zplug "mollifier/zload" # reload zsh completion function.
@@ -311,31 +312,31 @@ bindkey "^[h" run-help
 # }}}
 
   ## original keybind functions # {{{
-  zle_percol_history(){
+  zle_filter_history(){
     zle reset-prompt
-    local cmd="$(history -nr 0 | awk '!a[$0]++' | percol --match-method=regex --query "$LBUFFER")"
+    local cmd="$(history -nr 0 | peco --initial-filter=Regexp --query "${LBUFFER}")"
 
     if [[ -n $cmd ]]; then
-      BUFFER="$cmd"
+      BUFFER="${cmd}"
       CURSOR=$#BUFFER
     fi
   }
-  zle -N zle_percol_history
-  bindkey '^R' zle_percol_history
+  zle -N zle_filter_history
+  bindkey '^R' zle_filter_history
 
-  zle_percol_cdr(){
+  zle_filter_cdr(){
     zle reset-prompt
-    local dir=$(cdr -l | sed 's/^[^ ]\+ \+//' | percol --match-method=regex --query "$LBUFFER")
+    local dir="$(cdr -l | sed 's/^[^ ]\+ \+//' | peco --initial-filter=Regexp --query "${LBUFFER}")"
 
     if [[ -n $dir ]]; then
-      BUFFER="cd $dir"
+      BUFFER="cd ${dir}"
       zle accept-line
     fi
   }
-  zle -N zle_percol_cdr
-  bindkey '^S' zle_percol_cdr
+  zle -N zle_filter_cdr
+  bindkey '^S' zle_filter_cdr
 
-  zle_percol_select_file(){
+  zle_filter_select_file(){
     zle reset-prompt
     local -a array
     array+=${(z)LBUFFER}
@@ -343,7 +344,7 @@ bindkey "^[h" run-help
 
     local dir file file_path
     dir="${$(relative "$array[-1]"):-.}"
-    file="$(cd "$dir" && find . -type f 2>/dev/null | percol --match-method=regex)"
+    file="$(cd "$dir" && find . -type f 2>/dev/null | sed 's|^\./||' | peco --initial-filter=Regexp)"
     file_path="$(relative "$dir/$file")"
 
     if [[ -n $file ]]; then
@@ -351,8 +352,8 @@ bindkey "^[h" run-help
       CURSOR=${#BUFFER}
     fi
   }
-  zle -N zle_percol_select_file
-  bindkey '^O' zle_percol_select_file
+  zle -N zle_filter_select_file
+  bindkey '^O' zle_filter_select_file
 
   zle_play_music(){
     zle reset-prompt

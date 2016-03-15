@@ -111,7 +111,7 @@ alias -g M='--help 2>&1 | less' # show manual(help)
 alias -g U='--help 2>&1 | head' # show usage.
 alias -g V='| vim -'
 alias -g R='| ruby -e'
-alias -g P='| percol --match-method=regex'
+alias -g P='| peco --initial-filter=Regexp'
 alias -g Y='| clip'
 alias -g LOG=' 2>&1 | tee -a log.txt'
 
@@ -269,4 +269,5 @@ alias py3=python3
 alias ur='cdr'
 alias p=pry
 alias vg=vagrant
+alias mgrep=migemogrep
 

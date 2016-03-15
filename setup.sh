@@ -24,8 +24,8 @@ link_files() { #{{{
   done
 
   lesskey
-  mkdir -p $HOME/.percol.d/
-  ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
+  mkdir -p $HOME/.peco/
+  ln -svi $current/peco.json $HOME/.peco/config.json
 } #}}}
 
 set_dark_theme() {
@@ -152,8 +152,7 @@ install_commands() { #{{{
   [ ! -e $HOME/bin ] && mkdir $HOME/bin
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 
-  sudo pip3 install --upgrade pip
-  pip3 install percol ipython --user
+  # sudo pip3 install --upgrade pip
 
   # tig
   git clone https://github.com/jonas/tig ~/src/tig/
