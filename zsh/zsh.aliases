@@ -155,7 +155,7 @@ hash -d videos=$HOME/Videos
 
 #shell {{{1
 alias resh='exec $SHELL -l'
-alias realias="source $DOT_DIR/zsh/zsh.aliases"
+alias realias="source $ZSH_DOT_DIR/zsh.aliases"
 alias z.=zshrc
 alias z.e='zshrc zshenv'
 alias z.r='zshrc zshrc'

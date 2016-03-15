@@ -43,7 +43,8 @@ export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
 export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector"
 export REPO_HTTPS='https://github.com/YuutoIto'
 export REPO_SSH='git@github.com:YuutoIto'
-export ZSH_DOT_DIR="$(dirname $(readlink $HOME/.zshenv))"
+export ZSH_DOT_DIR="$(dirname "$(readlink -f $HOME/.zshenv)")"
+export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
 
 # Order is important
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
