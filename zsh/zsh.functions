@@ -45,7 +45,7 @@ help()   { $1 --help 2>&1 | less }
 edigo()  { vi "$1" && $2 "$1" }
 xopen()  { xdg-open "${1:-.}" >/dev/null 2>&1 }
 lls()    { ls -l ${@-} | awk '{printf("%s %s %s\n", $9, $10, $11)}' | sed '/^\s*$/d' }
-dotgit() { git -C ~/.dotfiles ${@:-sh} }
+dotgit() { git -C $DOT_DIR ${@:-sh} }
 vimgit() { git -C ~/.vim ${@:-sh} }
 +r(){ chmod u+r $@ }
 -r(){ chmod a-r $@ }

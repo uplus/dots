@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 # login interactiveで実行される
 
+DOT_DIR="$(dirname "$(dirname "$(readlink -f "$HOME/.zshrc")")")"
+
 case "${OSTYPE:-}" in
 linux*)  exists_source "$HOME/.zshrc.linux" ;;
 darwin*) exists_source "$HOME/.zshrc.darwin" ;;

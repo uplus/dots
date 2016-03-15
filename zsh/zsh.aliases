@@ -132,8 +132,8 @@ hash -d bin=$HOME/bin/
 hash -d src=$HOME/src/
 hash -d tmp=$HOME/tmp/
 hash -d works=$HOME/works/
-hash -d dots=$HOME/.dotfiles/
-hash -d zsh=$HOME/.dotfiles/zsh/
+hash -d dots=$DOT_DIR/
+hash -d zsh=$DOT_DIR/zsh/
 hash -d vim=$HOME/.vim/
 
 hash -d code=$HOME/code/
@@ -155,7 +155,7 @@ hash -d videos=$HOME/Videos
 
 #shell {{{1
 alias resh='exec $SHELL -l'
-alias realias='source ~/.dotfiles/zsh/zsh.aliases'
+alias realias="source $DOT_DIR/zsh/zsh.aliases"
 alias z.=zshrc
 alias z.e='zshrc zshenv'
 alias z.r='zshrc zshrc'
