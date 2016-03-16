@@ -268,3 +268,27 @@ rmhere() {
   rmdir "${dir}"
 }
 
+clip(){
+  local arg="${1:-}"
+  if in_path xclip; then
+    if [[ $arg = '-o' ]]; then
+      xclip -out -selection clipboard
+    elif [[ -z $arg ]]; then
+      xclip -in -selection clipboard
+    else
+      # xclip treat "" as filename.
+      xclip -in -selection clipboard "${arg}"
+    fi
+  elif in_path xsel; then
+    if [[ $arg = '-o' ]]; then
+      xsel --clipboard --output
+    elif [[ -z $arg ]]; then
+      xsel --clipboard --input
+    else
+      cat "${arg}" | xsel --clipboard --input
+    fi
+  else
+    echo "clip: This platform not installed clipboard command(xclip/xsel)." 1>&2
+    return 1
+  fi
+}
