@@ -5,7 +5,6 @@ for name in $(\ls -F $current/ | egrep -v ".*/|.*\*|README\..*"); do
 done
 
 [[ ! -d $HOME/.zsh ]] && mkdir $HOME/.zsh
-[[ ! -d $HOME/.zsh/antigen ]] && git clone https://github.com/zsh-users/antigen.git $HOME/.zsh/antigen
 
 os_local_file="$HOME/.zsh.$(uname | tr '[:upper]' '[:lower]')"
 

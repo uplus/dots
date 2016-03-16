@@ -140,35 +140,48 @@ setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示し�
 
 # }}}
 
-#antigen # {{{
-antigen_path="$HOME/.zsh/antigen/antigen.zsh"
-if [[ ! -f $antigen_path ]]; then
-  read -q key'?install antigen?(y/N) '
-  if [[ $key = 'y' ]]; then
-    git clone https://github.com/zsh-users/antigen.git .zsh/antigen
+#zplug # {{{
+zplug_path="$HOME/.zplug"
+if [[ ! -d $zplug_path ]]; then
+
+  if read -q key'?install zplug?(y/N) '; then
+    echo; git clone https://github.com/b4b4r07/zplug.git "${zplug_path}"
   fi
   unset key
 fi
 
-if [[ -f $antigen_path ]]; then
-  source $HOME/.zsh/antigen/antigen.zsh
-  # antigen bundle tarruda/zsh-autosuggestions
-  # antigen bundle hchbaw/auto-fu.zsh && zle-line-init(){ auto-fu-init } # interactive completion
-  antigen bundle zsh-users/zsh-syntax-highlighting
-  antigen bundle m4i/cdd
-  antigen bundle rimraf/k && alias k='k -Ah'
-  # antigen bundle mollifier/anyframe
-  antigen bundle zsh-users/zaw
-  antigen apply
+if [[ -d $zplug_path ]]; then
+  source "${zplug_path}/zplug"
+  # zplug 'tarruda/zsh-autosuggestions'
+  # zplug 'hchbaw/auto-fu.zsh' && zle-line-init(){ auto-fu-init } # interactive completion
+  # zplug 'mollifier/anyframe'
+  zplug 'zsh-users/zsh-syntax-highlighting'
+  zplug 'm4i/cdd', of:cdd, as:plugin
+  zplug 'rimraf/k' && alias k='k -Ah'
+  zplug 'zsh-users/zaw'
+  zplug 'zsh-users/zsh-completions'
+  zplug 'junegunn/fzf', as:command, of:bin/fzf-tmux
+  zplug 'junegunn/fzf-bin', as:command, from:gh-r, file:fzf
+  zplug 'peco/peco', as:command, from:gh-r, of:'*linux_amd64*'
+  zplug 'philovivero/distribution', as:command, of:distribution.py, file:distribution
+  zplug "tcnksm/docker-alias", of:zshrc
+  zplug "mollifier/zload" # reload zsh completion function.
+
+  if ! zplug check --verbose; then
+    if read -q '?Install? [y/N]:'; then
+      echo; zplug install
+    fi
+  fi
+
+  alias zplug-clear='zplug clear --force >/dev/null; rm ~/.{,zplug/}zcompdump'
+
+  zplug load
 fi
-unset antigen_path
+unset zplug_path
 # }}}
 
 #zsh completion system
 autoload -U compinit
-
-#require before compinit
-in_path antigen && antigen bundle zsh-users/zsh-completions
 
 # -u disable security check.
 compinit -u
@@ -176,7 +189,6 @@ compinit -u
 #requrie after compinit
 exists_source $HOME/.zsh.completion
 
-source $HOME/.antigen/repos/*cdd.git/cdd
 add-zsh-hook chpwd _cdd_chpwd
 
 # cdr # {{{
