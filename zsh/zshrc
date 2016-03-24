@@ -2,8 +2,8 @@
 # login interactiveで実行される
 
 case "${OSTYPE:-}" in
-linux*)  exists_source "$HOME/.zshrc.linux" ;;
-darwin*) exists_source "$HOME/.zshrc.darwin" ;;
+linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
+darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
 esac
 
 DIRSTACKSIZE=100
@@ -188,7 +188,7 @@ autoload -U compinit
 compinit -u
 
 #requrie after compinit
-exists_source $HOME/.zsh.completion
+source "$ZSH_DOT_DIR/zsh.completion"
 
 add-zsh-hook chpwd _cdd_chpwd
 
@@ -202,8 +202,8 @@ zstyle ':chpwd:*' recent-dirs-file "$HOME/.zsh/chpwd-recent-dirs"
 zstyle ':completion:*:*:cdr:*' menu select
 # }}}
 
-exists_source $HOME/.zsh.functions
-exists_source $HOME/.zsh.aliases
+source "$ZSH_DOT_DIR/zsh.functions"
+source "$ZSH_DOT_DIR/zsh.aliases"
 
 add-zsh-hook precmd autols
 add-zsh-hook precmd ud-add
@@ -394,4 +394,4 @@ bindkey "^[h" run-help
 # }}}
 
 #Load local config
-exists_source $HOME/.zshrc.local
+exists_source "$ZSH_DOT_DIR/zshrc.local"

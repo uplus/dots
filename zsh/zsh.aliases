@@ -132,7 +132,7 @@ hash -d src=$HOME/src/
 hash -d tmp=$HOME/tmp/
 hash -d works=$HOME/works/
 hash -d dots=$DOT_DIR/
-hash -d zsh=$DOT_DIR/zsh/
+hash -d zsh=$ZSH_DOT_DIR/
 hash -d vim=$HOME/.vim/
 
 hash -d code=$HOME/code/
@@ -158,7 +158,7 @@ alias realias="source $ZSH_DOT_DIR/zsh.aliases"
 alias z.=zshrc
 alias z.e='zshrc zshenv'
 alias z.r='zshrc zshrc'
-alias z.l='$EDITOR $HOME/.zshrc.local'
+alias z.l='zshrc zshrc.local'
 alias z.a='zshrc zsh.aliases && realias'
 alias z.f='zshrc zsh.functions'
 alias z.c='zshrc zsh.completion'
