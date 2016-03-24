@@ -97,27 +97,27 @@ binln(){
 
 #rc commands {{{
 generic_rc(){
-  set -ue
-  local dir="$1"
+  local dir="${1}"
   shift
 
   if [[ $# -eq 0 ]]; then
-    $EDITOR $dir || :
+    "${EDITOR}" "${dir}"
+    return
   fi
 
-  case $1 in
-    '-c') cd "$dir" ;;
-    '-d') echo "$dir" ;;
-    '-l') ls "$dir" ;;
+  case ${1} in
+    '-c') cd "${dir}" ;;
+    '-d') echo "${dir}" ;;
+    '-l') ls "${dir}" ;;
     '-g')
       shift
-      git -C "$dir" ${@:-sh}
+      git -C "${dir}" ${@:-sh}
       ;;
-    * )
+    *)
       if [[ -e $dir/$1 ]]; then
-        $EDITOR $dir/$1 || :
+        "${EDITOR}" "${dir}/${1}"
       else
-        warn "$1 is not exists"
+        warn "${1} is not exists"
       fi
   esac
 }
