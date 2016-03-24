@@ -35,8 +35,11 @@ set_dark_theme() {
   echo '@import url("gtk3.css");'>> "$gtk_config/gtk.css"
 }
 
-link_zsh() { #{{{
-  $current/zsh/setup_zsh.sh
+setup_zsh() { #{{{
+  ln -svi "$current/zsh/zshenv" "$HOME/.zshenv"
+  ln -svi "$current/zsh/zshrc" "$HOME/.zshrc"
+  mkdir -p $HOME/.zsh
+  [[ ! $SHELL =~ '/zsh' ]] && chsh -s "$(grep -m 1 zsh /etc/shells)"
 } #}}}
 
 pkg_u() { # {{{
@@ -194,7 +197,7 @@ vlc_dvd() {
 common() {
   make_dirs
   link_files
-  link_zsh
+  setup_zsh
   setup_vim
   git clone https://github.com/u10e10/utilities ~/code/utilities
 }
