@@ -11,10 +11,9 @@ back() {
   disown
 }
 
-export AUTOLS_DIR="$PWD"
 autols(){
-  [[ -n $AUTOLS_DIR && $AUTOLS_DIR != $PWD ]] && ls --color=always
-  AUTOLS_DIR="$PWD"
+  [[ ${AUTOLS_DIR:-$PWD} != $PWD ]] && ls --color=always
+  AUTOLS_DIR="${PWD}"
 }
 
 ch(){ cd $HOME/${1:-} }
