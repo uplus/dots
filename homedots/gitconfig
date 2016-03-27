@@ -47,10 +47,10 @@
   fixm = commit --amend -C HEAD
   fixam = commit --amend -a -C HEAD
   eda  = branch -avv
-  st    = stash save --include-untracked --keep-index
-  save  = stash save --include-untracked
-  spop  = stash pop
-  sdrop = stash drop
+  ss   = stash save --include-untracked --keep-index
+  save = stash save --include-untracked
+  sp   = stash pop
+  sd   = stash drop
   slist = stash list --stat --oneline
   all    = add --all
   update = add --update
