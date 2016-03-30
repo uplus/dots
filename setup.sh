@@ -1,4 +1,5 @@
-#!/bin/bash -u
+#!/usr/bin/env bash
+set -u
 current="$(cd -- "$(dirname -- "${BASH_SOURCE}")" && pwd)"
 
 make_dirs() { #{{{
