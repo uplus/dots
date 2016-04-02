@@ -33,8 +33,20 @@ rmd(){
 }
 
 ench264(){
-  echo "Encode '${1:?}'"
-  ffmpeg -i "${1:?}" -vcodec h264 -loglevel warning "${1%.*}.mp4"
+  if (($# == 0)); then
+    echo "Argument is empty." 1>&2
+    return 1
+  fi
+
+  input="${1:?}"
+  out="${input%.*}"
+  while [[ -e $out.mp4 ]]; do
+    out="${out}.new"
+  done
+  out="${out}.mp4"
+
+  echo "Encode '${input}' -> '${out}'"
+  ffmpeg -i "${input}" -vcodec h264 -loglevel warning "${out}"
 }
 
 vboxresize(){ VBoxManage modifymedium --resize $((1024*$1)) $2 }
