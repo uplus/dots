@@ -40,7 +40,7 @@ setup_zsh() { #{{{
   ln -svi "$current/zsh/zshenv" "$HOME/.zshenv"
   ln -svi "$current/zsh/zshrc" "$HOME/.zshrc"
   mkdir -p $HOME/.zsh
-  [[ ! $SHELL =~ '/zsh' ]] && chsh -s "$(grep -m 1 zsh /etc/shells)"
+  [[ ! ${SHELL:-} =~ '/zsh' ]] && chsh -s "$(grep -m 1 zsh /etc/shells)"
 } #}}}
 
 pkg_u() { # {{{
