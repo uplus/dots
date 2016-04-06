@@ -157,8 +157,8 @@ if [[ -d $zplug_path ]]; then
   # zplug 'mollifier/anyframe'
   zplug 'zsh-users/zsh-syntax-highlighting'
   zplug 'm4i/cdd', of:cdd, as:plugin
-  zplug 'rimraf/k'
-  zplug 'zsh-users/zaw'
+  # zplug 'rimraf/k' # TODO: error:android: zmodload -F zsh/stat b:zstat
+  # zplug 'zsh-users/zaw' # TODO: error:android
   zplug 'zsh-users/zsh-completions'
   zplug 'junegunn/fzf', as:command, of:bin/fzf-tmux
   zplug 'junegunn/fzf-bin', as:command, from:gh-r, file:fzf
