@@ -85,8 +85,11 @@ alias -s {html,htm,xhtml}='opera-beta'
 alias -s c='runc'
 alias -s cpp='runcpp'
 alias -s {sh,bash,zsh}='source'
-function runcpp { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" }
-function runc   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" }
+runcpp() { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" }
+runc()   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" }
+alias -s zip=zipinfo
+alias -s {tgz,gz}="zcat -dc"
+alias -s {tbz,bz2}=bzcat
 
 #global {{{1
 alias -g G='2>&1 | grep -ie'
@@ -176,10 +179,15 @@ if in_path apt-get; then
   alias a.s='apt-cache search --names-only'
   alias a.sh='apt-cache show'
 
+  alias a.fs='apt-file -i search'
   alias upgradable='apt list --upgradable'
   alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
 elif in_path pacman; then
-  #TODO: pacman
+  alias a.si='pacman -Si'
+  alias a.i='sudo pacman -S'
+  alias a.r='sudo pacman -R'
+  alias a.u='sudo pacman -Syyu'
+  alias a.ud='sudo pacman -Syy'
 elif in_path dnf; then
   alias a.u='sudo dnf upgrade'
   alias a.i='sudo dnf install'
@@ -254,6 +262,9 @@ alias devinfo="sudo fdisk --color=always -l /dev/sd? | sed -e '/^$/d' -e 's/Disk
 alias devs='df -hTx tmpfs'
 alias galias='alias -g'
 alias _=sudo
+alias youtube-mp3='noglob youtube-dl -x --audio-format mp3'
+alias youtube-ogg='noglob youtube-dl -x --audio-format vorbis'
+alias mii-toolv='sudo mii-tool -vv'
 
 
 #shortening
