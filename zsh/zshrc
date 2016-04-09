@@ -179,6 +179,7 @@ if [[ -d $zplug_path ]]; then
   zplug load
 
   in_path k && alias k='k -Ah'
+  in_path distribution && alias distribution='distribution --color'
 fi
 unset zplug_path
 # }}}
