@@ -6,6 +6,7 @@ linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
 darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
 esac
 
+LC_COLLATE=C # Don't move to zshenv.
 DIRSTACKSIZE=100
 disable r # zsh-builtin: 直前のコマンドを実効する
 autoload -Uz add-zsh-hook
