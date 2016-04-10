@@ -62,7 +62,7 @@ alias gs='git s'
 alias gsh='git sh'
 alias gst='git st'
 alias ge='git eda'
-alias ggrep='git grep -iIn'
+alias ggrep='noglob git grep -iIn'
 
 #C/C++ gdb {{{1
 alias clang="clang $C_COMP_OPT"
