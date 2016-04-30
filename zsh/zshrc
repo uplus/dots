@@ -160,26 +160,20 @@ if [[ -d $zplug_path ]]; then
   # zplug 'hchbaw/auto-fu.zsh' && zle-line-init(){ auto-fu-init } # interactive completion
   # zplug 'mollifier/anyframe'
   zplug 'zsh-users/zsh-syntax-highlighting'
-  zplug 'm4i/cdd', of:cdd, as:plugin
+  zplug 'm4i/cdd', use:cdd, as:plugin
   # zplug 'rimraf/k' # TODO: error:android: zmodload -F zsh/stat b:zstat
   # zplug 'zsh-users/zaw' # TODO: error:android
   zplug 'zsh-users/zsh-completions'
-  zplug 'junegunn/fzf', as:command, of:bin/fzf-tmux
   zplug 'junegunn/fzf-bin', as:command, from:gh-r, file:fzf
   zplug 'peco/peco', as:command, from:gh-r, of:'*linux_amd64*'
-  # zplug 'peco/migemogrep', as:command, from:gh-r, of:'*linux_amd64*'
-  zplug 'philovivero/distribution', as:command, of:distribution.py, file:distribution
-  zplug "tcnksm/docker-alias", of:zshrc
+  zplug 'junegunn/fzf', as:command, use:bin/fzf-tmux
+  # zplug 'peco/migemogrep', as:command, from:gh-r, use:'*linux_amd64*'
+  zplug 'philovivero/distribution', as:command, use:distribution.py, rename-to:distribution
+  zplug "tcnksm/docker-alias", use:zshrc
   zplug "mollifier/zload" # reload zsh completion function.
 
-  if ! zplug check --verbose; then
-    if read -q '?Install? [y/N]:'; then
-      echo; zplug install
-    fi
-  fi
-
-  alias zplug-clear='zplug clear --force >/dev/null; rm ~/.{,zplug/}zcompdump'
-
+  zplug check --verbose
+  alias zplug-clear='zplug clear >/dev/null; rm ~/.{,zplug/}zcompdump'
   zplug load
 
   in_path k && alias k='k -Ah'
