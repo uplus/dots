@@ -57,7 +57,7 @@ elif in_path gem; then
 fi
 
 export GOPATH="$HOME/.go"
-export PATH="$GOPATH:$PATH"
+export PATH="$GOPATH/bin:$PATH"
 
 if [[ -n "${WINDOWID:-}" && -f $HOME/.xmodmap ]]; then
   xmodmap ~/.xmodmap
