@@ -141,6 +141,15 @@ install_dein(){
   git clone https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
 }
 
+install_peco(){
+  if in_path go; then
+    go get github.com/peco/peco/cmd/peco
+  else
+    url=$(echo https://github.com$(curl -fsSL https://github.com/peco/peco/releases/latest | grep -oP '(?<=href\=\").*linux_amd64[^"]*'))
+    wget "${url}"
+  fi
+}
+
 setup_vim(){
   git clone https://github.com/u10e10/vim ~/.vim
   install_dein

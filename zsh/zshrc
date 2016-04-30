@@ -164,9 +164,9 @@ if [[ -d $zplug_path ]]; then
   # zplug 'rimraf/k' # TODO: error:android: zmodload -F zsh/stat b:zstat
   # zplug 'zsh-users/zaw' # TODO: error:android
   zplug 'zsh-users/zsh-completions'
-  zplug 'junegunn/fzf-bin', as:command, from:gh-r, file:fzf
-  zplug 'peco/peco', as:command, from:gh-r, of:'*linux_amd64*'
   zplug 'junegunn/fzf', as:command, use:bin/fzf-tmux
+  # zplug 'junegunn/fzf-bin', as:command, from:gh-r, rename-to:fzf
+  # zplug 'peco/peco', from:gh-r, as:command, use:'*linux*amd64*'
   # zplug 'peco/migemogrep', as:command, from:gh-r, use:'*linux_amd64*'
   zplug 'philovivero/distribution', as:command, use:distribution.py, rename-to:distribution
   zplug "tcnksm/docker-alias", use:zshrc
