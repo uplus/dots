@@ -160,7 +160,7 @@ if [[ -d $zplug_path ]]; then
   # zplug 'hchbaw/auto-fu.zsh' && zle-line-init(){ auto-fu-init } # interactive completion
   # zplug 'mollifier/anyframe'
   zplug 'zsh-users/zsh-syntax-highlighting'
-  zplug 'm4i/cdd', use:cdd, as:plugin
+  zplug 'm4i/cdd', use:cdd, as:plugin, nice:10
   # zplug 'rimraf/k' # TODO: error:android: zmodload -F zsh/stat b:zstat
   # zplug 'zsh-users/zaw' # TODO: error:android
   zplug 'zsh-users/zsh-completions'
@@ -187,6 +187,8 @@ autoload -U compinit
 
 # -u disable security check.
 compinit -u
+
+compdef _cdd cdd
 
 #requrie after compinit
 source "$ZSH_DOT_DIR/zsh.completion"
