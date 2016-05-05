@@ -206,7 +206,21 @@ findstr(){
 # }}}
 
 #ud # {{{
-ud(){ cdd ".${1:?}" }
+ud(){
+  case "${1:-}" in
+    list)
+      grep '^\.' ~/.cdd | sort -u -t: -k 2,2 | sed -e 's/^\.//' | sed -e 's/:/: /' | sort -n
+      ;;
+    '')
+      dir="$(ud list | peco)"
+      [[ -n $dir ]] && ud "${dir}"
+      ;;
+    *)
+      cdd ".${1:?}"
+      ;;
+  esac
+}
+
 ud-add(){
   [[ $UID -ne 0 && $PWD != $HOME ]] && cdd add ".$(gettty)"
 }
