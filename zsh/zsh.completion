@@ -3,6 +3,7 @@
 in_path memo && eval "$(memo --complete)"
 
 compdef _tree uree
+compdef _gnu_generic objdump
 
 #CDPATHに値を設定すると補完候補に追加できる
 _ch(){
