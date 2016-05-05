@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -u
-current="$(cd -- "$(dirname -- "${BASH_SOURCE}")" && pwd)"
+current="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)"
 
 make_dirs() { #{{{
   mkdir -v $HOME/bin
