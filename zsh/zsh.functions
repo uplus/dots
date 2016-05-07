@@ -222,7 +222,9 @@ ud(){
 }
 
 ud-add(){
-  [[ $UID -ne 0 && $PWD != $HOME ]] && cdd add ".$(gettty)"
+  if can_exec cdd && [[ $UID -ne 0 && $PWD != $HOME ]]; then
+    cdd add ".$(gettty)"
+  fi
 }
 # }}}
 
