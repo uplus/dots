@@ -158,7 +158,7 @@ hash -d templates=$HOME/Templates
 hash -d videos=$HOME/Videos
 
 #shell {{{1
-alias resh='exec ${SHELL:-zsh} -l'
+alias resh='exec -c ${SHELL:-zsh} -l'
 alias realias="source $ZSH_DOT_DIR/zsh.aliases"
 alias z.=zshrc
 alias z.e='zshrc zshenv'
