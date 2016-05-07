@@ -234,6 +234,10 @@ alias pgrep='pgrep -l'
 alias less='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init'
 alias dmesg='dmesg --color=always -e L' # -Hだとless動作が揃わない
 alias vboxmanage='VBoxManage'
+if ! in_path js; then
+    alias js=nodejs
+fi
+
 
 #utilities
 alias histrank="history 1 | awk '{print \$2}' | sort | uniq -c | sort -nr"
