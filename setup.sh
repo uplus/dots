@@ -41,6 +41,9 @@ setup_zsh() { #{{{
   ln -svi "$current/zsh/zshrc" "$HOME/.zshrc"
   mkdir -p $HOME/.zsh
   [[ ! ${SHELL:-} =~ '/zsh' ]] && chsh -s "$(grep -m 1 zsh /etc/shells)"
+
+  zshlocal="${current}/zsh/zshrc.local"
+  [[ ! -e $zshlocal ]] && touch "${zshlocal}"
 } #}}}
 
 pkg_u() { # {{{
@@ -215,7 +218,7 @@ common() {
 #TODO: temporary
 common_apps() {
   local -a names
-  names=(ssh zsh git tig curl wget tmux tree gcc clang ruby python python3 php lua luajit)
+  names="ssh zsh git tig curl wget tmux tree gcc clang ruby python python3 php lua luajit"
   echo $names
 }
 
