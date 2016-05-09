@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-in_path memo && eval "$(memo --complete)"
+in_path note && eval "$(note --complete)"
 
 compdef _tree uree
 compdef _gnu_generic objdump
