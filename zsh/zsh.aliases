@@ -190,6 +190,8 @@ elif in_path pacman; then
   alias a.c='sudo pacman -Scc'
   alias a.u='sudo pacman -Syyu'
   alias a.ud='sudo pacman -Syy'
+  alias a.ug='sudo pacman -Su'
+  alias a.uf='yaourt -Syyua'
   alias a.s='pacman -Ss'
   alias a.si='pacman -Si'
 elif in_path dnf; then
@@ -242,6 +244,7 @@ elif in_path node; then
   alias js=node
 fi
 
+
 #utilities
 alias histrank="history 1 | awk '{print \$2}' | sort | uniq -c | sort -nr"
 alias hist='history -n'
@@ -277,18 +280,19 @@ alias mii-toolv='sudo mii-tool -vv'
 
 
 #shortening
+alias p=pry
+alias ipy='ipython3 --no-confirm-exit --no-banner'
+alias py=python
+alias py2=python2
+alias py3=python3
 alias pu='pushd'
 alias po='popd'
-alias twme='tw $(tw -user:default 2> /dev/null)'
 alias be='bundle exec'
 alias n='note'
 alias todo='note -e todo'
 alias diary='note -e diary'
-alias ipy='ipython3 --no-confirm-exit --no-banner'
-alias py=python
-alias py3=python3
 alias ur='cdr'
-alias p=pry
+alias twme='tw $(tw -user:default 2> /dev/null)'
 alias vg=vagrant
 alias mgrep=migemogrep
 
