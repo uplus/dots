@@ -244,6 +244,11 @@ elif in_path node; then
   alias js=node
 fi
 
+if in_path rlwrap; then
+  alias nc='rlwrap nc'
+  alias telnet='rlwrap telnet'
+fi
+
 
 #utilities
 alias histrank="history 1 | awk '{print \$2}' | sort | uniq -c | sort -nr"

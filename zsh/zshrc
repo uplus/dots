@@ -155,7 +155,7 @@ if [[ ! -d $zplug_path ]]; then
 fi
 
 if [[ -d $zplug_path ]]; then
-  source "${zplug_path}/zplug"
+  source "${zplug_path}/init.zsh"
   # zplug 'tarruda/zsh-autosuggestions'
   # zplug 'hchbaw/auto-fu.zsh' && zle-line-init(){ auto-fu-init } # interactive completion
   # zplug 'mollifier/anyframe'

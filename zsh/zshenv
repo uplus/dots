@@ -5,11 +5,11 @@
 typeset -U path PATH MANPATH INFOPATH fpath
 
 in_path(){
-  which $@ >&!/dev/null
+  which $@ &>! /dev/null
 }
 
 can_exec(){
-  type $@ >&! /dev/null
+  type $@ &>! /dev/null
 }
 
 exists_source(){

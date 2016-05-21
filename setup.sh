@@ -10,7 +10,6 @@ make_dirs() { #{{{
   mkdir -vm 700 $HOME/.ssh
 
   mkdir -vm 700 $HOME/code
-  mkdir -v $HOME/code/samples
   mkdir -v $HOME/code/c
   mkdir -v $HOME/code/cpp
   mkdir -v $HOME/code/ruby
