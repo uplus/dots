@@ -140,14 +140,13 @@ hash -d dots=$DOT_DIR/
 hash -d zsh=$ZSH_DOT_DIR/
 hash -d vim=$HOME/.vim/
 
-hash -d code=$HOME/code/
-hash -d smp=$HOME/code/samples/
-hash -d utilities=$HOME/code/utilities/
-hash -d ruby=$HOME/code/ruby/
-hash -d rails=$HOME/code/rails/
-hash -d ctf=$HOME/code/ctf/
-hash -d ksnctf=$HOME/code/ctf/ksnctf/
-hash -d ylibs=$HOME/code/ylibs/
+hash -d codes=$HOME/codes/
+hash -d smp=$HOME/codes/samples/
+hash -d utils=$HOME/codes/utilities/
+hash -d ruby=$HOME/codes/ruby/
+hash -d rails=$HOME/codes/rails/
+hash -d ctf=$HOME/codes/ctf/
+hash -d ylibs=$HOME/codes/ylibs/
 
 hash -d desktop=$HOME/Desktop
 hash -d documents=$HOME/Documents
