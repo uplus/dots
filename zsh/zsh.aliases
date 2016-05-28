@@ -87,8 +87,8 @@ alias -s cpp='runcpp'
 alias -s zsh='zsh'
 alias -s bash='bash'
 alias -s sh='sh'
-runcpp() { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" }
-runc()   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" }
+runcpp() { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
+runc()   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
 alias -s zip=zipinfo
 alias -s {tgz,gz}="zcat -dc"
 alias -s {tbz,bz2}=bzcat
