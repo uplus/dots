@@ -8,13 +8,7 @@ make_dirs() { #{{{
   mkdir -vm 700 $HOME/tmp
   mkdir -vm 700 $HOME/works
   mkdir -vm 700 $HOME/.ssh
-
-  mkdir -vm 700 $HOME/code
-  mkdir -v $HOME/code/c
-  mkdir -v $HOME/code/cpp
-  mkdir -v $HOME/code/ruby
-  mkdir -v $HOME/code/shell
-  mkdir -v $HOME/code/rails
+  mkdir -vm 700 $HOME/codes
 } #}}}
 
 link_files() { #{{{
