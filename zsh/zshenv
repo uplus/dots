@@ -17,7 +17,7 @@ exists_source(){
   source "${1}"
 }
 
-export LANGUAGE=en
+# export LANGUAGE=en # don't need?
 export LANG=en_US.UTF-8 # Provides default value for LC_* variables.
 
 export WORDCHARS='*?!#%[]{}<>()~`\' # ^$&@_+-:;|.
