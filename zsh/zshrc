@@ -173,7 +173,7 @@ if [[ -d $zplug_path ]]; then
   zplug "mollifier/zload" # reload zsh completion function.
 
   zplug check --verbose
-  alias zplug-clear='zplug clear >/dev/null; rm ~/.{,zplug/}zcompdump'
+  alias zplug-clear='zplug clean; zplug clear; rm ~/.{,zplug/}zcompdump'
   zplug load
 
   in_path k && alias k='k -Ah'
