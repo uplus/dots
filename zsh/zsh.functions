@@ -12,7 +12,7 @@ back() {
 }
 
 autols(){
-  [[ ${AUTOLS_DIR:-$PWD} != $PWD ]] && ls --color=always
+  [[ ${AUTOLS_DIR:-$PWD} != $PWD ]] && ls -F --color=always
   AUTOLS_DIR="${PWD}"
 }
 
