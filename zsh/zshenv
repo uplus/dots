@@ -24,7 +24,7 @@ export WORDCHARS='*?!#%[]{}<>()~`\' # ^$&@_+-:;|.
 export EDITOR=vim
 export VISUAL=vim
 
-export PAGER='less -i' #最低限共通部分
+export PAGER='less'
 export MANPAGER='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines'
 
 export GZIP='-v9N'
@@ -62,6 +62,10 @@ fi
 
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
+
+if [[ -z $USER ]]; then
+  export USER="$(whoami)"
+fi
 
 if [[ -n "${WINDOWID:-}" && -f $HOME/.xmodmap ]]; then
   xmodmap ~/.xmodmap
