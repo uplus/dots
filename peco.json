@@ -16,7 +16,8 @@
   },
   "CustomFilter": {
     "Migemo": {
-      "Cmd":  "migemogrep"
+      "Cmd":  "migemogrep",
+      "BufferThreshold": 10000
     }
   }
 }
