@@ -171,6 +171,9 @@ if [[ -d $zplug_path ]]; then
   zplug 'philovivero/distribution', as:command, use:distribution.py, rename-to:distribution
   zplug "tcnksm/docker-alias", use:zshrc
   zplug "mollifier/zload" # reload zsh completion function.
+  zplug 'Russell91/sshrc', as:command, use:sshrc
+  zplug 'b4b4r07/gomi', from:gh-r, as:command, use:'*linux_amd64*', rename-to:gomi
+  zplug 'b4b4r07/enhancd', as:plugin, use:enhancd.sh
 
   zplug check --verbose
   alias zplug-clear='zplug clean; zplug clear; rm ~/.{,zplug/}zcompdump'
