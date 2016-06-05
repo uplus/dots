@@ -319,3 +319,16 @@ clip(){
     return 1
   fi
 }
+
+kill(){
+  if (($# != 0)); then
+    command kill $@
+  else
+    local -a cands
+    cands=($(ps --no-headers -u "${USER}" -o pid,cmd | peco --initial-filter=Regexp | awk '{print $1}' | tr '\n' ' '))
+
+    if [[ -n $cands ]]; then
+      command kill $cands
+    fi
+  fi
+}
