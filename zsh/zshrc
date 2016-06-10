@@ -376,7 +376,8 @@ bindkey "^[h" run-help
   bindkey 'p' zle_pry
 
   zle_todo(){
-    BUFFER='memo todo'
+    zle push-line
+    BUFFER='note todo'
     zle accept-line
   }
   zle -N zle_todo
