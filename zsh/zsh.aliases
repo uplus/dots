@@ -191,7 +191,7 @@ elif in_path pacman; then
   alias a.ug='sudo pacman -Su'
   alias a.uf='yaourt -Syyua'
   alias a.s='pacman -Ss'
-  alias a.si='pacman -Si'
+  alias a.sh='pacman -Si'
 elif in_path dnf; then
   alias a.u='sudo dnf upgrade'
   alias a.i='sudo dnf install'
