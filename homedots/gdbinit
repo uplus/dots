@@ -6,6 +6,7 @@ set history filename ~/.gdb_history
 set print pretty on
 set print static-members off
 set charset UTF8
+set print asm-demangle on
 
 define d
   disassemble
