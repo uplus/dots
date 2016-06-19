@@ -283,6 +283,10 @@ sizes() {
   ls -A "${dir:-./}" | sed "s|^|${dir}|g" | xargs -I{} du -sm '{}' 2>/dev/null | sort -n
 }
 
+lsize(){
+  du -sh -- "${*:+$(relative $*)/}"*
+}
+
 rmhere() {
   if [[ -n $(ls -A) ]]; then
     warn "Here directory is not empty."
