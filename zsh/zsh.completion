@@ -40,6 +40,15 @@ _ud(){
 }
 compdef _ud ud
 
+_xdotool(){
+  local -a candidates
+  xdotool --help | tail --lines=+2 | while read d; do
+    candidates+="$d"
+  done
+  _describe -t commands "directories" candidates
+}
+compdef _xdotool xdotool
+
 # pip # {{{
 ZSH_PIP_CACHE_FILE=~/.cache/pip/zsh-cache
 
