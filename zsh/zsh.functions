@@ -31,6 +31,14 @@ rmd(){
   find ${@} -type d -empty | xargs -I{} rmdir --ignore-fail-on-non-empty -p "{}"
 }
 
+countdown(){
+  for i in {${1:-5}..1}; do
+    echo -n "${i} "
+    sleep 1
+  done
+  echo -n 0
+}
+
 ench264(){
   if (($# == 0)); then
     echo "Argument is empty." 1>&2
