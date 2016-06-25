@@ -1,7 +1,7 @@
 {
   "git url": "https://github.com/peco/peco",
   "Prompt": "[peco] ",
-  "InitialFilter": "Regexp",
+  "InitialFilter": "SmartCase",
   "StickySelection": true,
   "Style": {
     "Query": ["white", "bold"],

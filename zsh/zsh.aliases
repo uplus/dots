@@ -115,7 +115,7 @@ alias -g M='--help 2>&1 | less' # show manual(help)
 alias -g U='--help 2>&1 | head' # show usage.
 alias -g V='| vim -'
 alias -g R='| ruby -e'
-alias -g P='| peco --initial-filter=Regexp'
+alias -g P='| peco'
 alias -g Y='| clip'
 alias -g LOG=' 2>&1 | tee -a log.txt'
 

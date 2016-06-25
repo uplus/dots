@@ -241,11 +241,11 @@ pc(){
     warn "usage: pc command"
     return 1
   fi
-  print -z $(eval $* 2>/dev/null | peco --initial-filter=Regexp)
+  print -z $(eval $* 2>/dev/null | peco)
 }
 
 pa(){
-  result=$(find ${@:-.} 2>/dev/null | peco --initial-filter=Regexp)
+  result=$(find ${@:-.} 2>/dev/null | peco)
   [[ -z $result ]] && return
   if [[ -d $result ]]; then
     cd "${result}"
@@ -336,7 +336,7 @@ kill(){
     command kill $@
   else
     local -a cands
-    cands=($(ps --no-headers -u "${USER}" -o pid,cmd | peco --initial-filter=Regexp | awk '{print $1}' | tr '\n' ' '))
+    cands=($(ps --no-headers -u "${USER}" -o pid,cmd | peco | awk '{print $1}' | tr '\n' ' '))
 
     if [[ -n $cands ]]; then
       command kill $cands

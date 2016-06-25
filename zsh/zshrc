@@ -325,7 +325,7 @@ bindkey "^[h" run-help
   ## original keybind functions # {{{
   zle_filter_history(){
     zle reset-prompt
-    local cmd="$(history -nr 0 | peco --initial-filter=Regexp --query "${LBUFFER}")"
+    local cmd="$(history -nr 0 | peco --query "${LBUFFER}")"
 
     if [[ -n $cmd ]]; then
       BUFFER="${cmd}"
@@ -337,7 +337,7 @@ bindkey "^[h" run-help
 
   zle_filter_cdr(){
     zle reset-prompt
-    local dir="$(cdr -l | sed 's/^[^ ]\+ \+//' | peco --initial-filter=Regexp --query "${LBUFFER}")"
+    local dir="$(cdr -l | sed 's/^[^ ]\+ \+//' | peco --query "${LBUFFER}")"
 
     if [[ -n $dir ]]; then
       BUFFER="cd ${dir}"
@@ -355,7 +355,7 @@ bindkey "^[h" run-help
 
     local dir file file_path
     dir="${$(relative "$array[-1]"):-.}"
-    file="$(cd "$dir" && find . -type f 2>/dev/null | sed 's|^\./||' | peco --initial-filter=Regexp)"
+    file="$(cd "$dir" && find . -type f 2>/dev/null | sed 's|^\./||' | peco)"
     file_path="$(relative "$dir/$file")"
 
     if [[ -n $file ]]; then
