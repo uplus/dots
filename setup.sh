@@ -189,6 +189,8 @@ change_keymap() {
   u10:tenkey = +u10(tenkey)" | sudo tee -a /usr/share/X11/xkb/rules/evdev
 
   dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'u10:happy', 'u10:tenkey']"
+
+  # $ setxkbmap -option ctrl:nocaps
 }
 #}}}
 
