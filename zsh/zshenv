@@ -33,14 +33,6 @@ export DOWNLOADER="wget -S"
 # export TERM=screen-256color-bce # italicが使えない
 [[ -z "$TMUX" ]] && export TERM='xterm-256color'
 
-if [[ -z $TMUX ]]; then
-  export TERM='xterm-256color'
-
-  if [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]; then
-    in_path tmux && exec tmux
-  fi
-fi
-
 export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value -Wno-ignored-qualifiers'
 export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
 export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"

@@ -1,6 +1,11 @@
 #!/usr/bin/env zsh
 # login interactiveで実行される
 
+if [[ -z $TMUX && -n ${REMOTEHOST:-}${SSH_CONNECTION:-} ]]; then
+  in_path tmux && exec tmux
+fi
+
+
 case "${OSTYPE:-}" in
 linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
 darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
