@@ -2,6 +2,7 @@
 
 in_path note && eval "$(note --complete)"
 
+compdef _virtualbox vboxmanage
 compdef _tree uree
 compdef _gnu_generic objdump
 

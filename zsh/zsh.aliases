@@ -232,7 +232,6 @@ alias jobs='jobs -ld'
 alias pgrep='pgrep -l'
 alias less='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init'
 alias dmesg='dmesg --color=always -e L' # -Hだとless動作が揃わない
-alias vboxmanage='VBoxManage'
 if in_path nodejs; then
   alias js=nodejs
 elif in_path node; then
