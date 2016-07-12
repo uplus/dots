@@ -59,6 +59,8 @@ if [[ -z $USER ]]; then
   export USER="$(whoami)"
 fi
 
+fpath+=($ZSH_DOT_DIR/func)
+
 if [[ -n "${WINDOWID:-}" && -f $HOME/.xmodmap ]]; then
   xmodmap ~/.xmodmap
 fi

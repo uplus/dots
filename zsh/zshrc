@@ -82,7 +82,7 @@ rprompt-bg() {
   fi
 }
 
-export PROMPT='%F{37}%(6~|...|)%5~%F{255} %# %f'
+export PROMPT='%F{208}%(6~|...|)%5~%F{255} %# %f'
 export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
@@ -164,10 +164,10 @@ if [[ -d $zplug_path ]]; then
   # zplug 'tarruda/zsh-autosuggestions'
   # zplug 'hchbaw/auto-fu.zsh' && zle-line-init(){ auto-fu-init } # interactive completion
   # zplug 'mollifier/anyframe'
+  zplug 'zsh-users/zaw' # TODO: error:android
   zplug 'zsh-users/zsh-syntax-highlighting'
   zplug 'm4i/cdd', use:cdd, as:plugin, nice:10
   # zplug 'rimraf/k' # TODO: error:android: zmodload -F zsh/stat b:zstat
-  # zplug 'zsh-users/zaw' # TODO: error:android
   zplug 'zsh-users/zsh-completions'
   zplug 'junegunn/fzf', as:command, use:bin/fzf-tmux
   # zplug 'junegunn/fzf-bin', as:command, from:gh-r, rename-to:fzf
