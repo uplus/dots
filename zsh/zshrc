@@ -18,7 +18,7 @@ autoload -Uz add-zsh-hook
 autoload -Uz zmv
 
 eval "$(dircolors -b)"
-LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=01;36/ln=03;34/g')
+LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=..;../ln=03;94/g')
 autoload -U colors && colors
 
 #Prompt # {{{
@@ -82,7 +82,7 @@ rprompt-bg() {
   fi
 }
 
-export PROMPT='%F{208}%(6~|...|)%5~%F{255} %# %f'
+export PROMPT='%F{42}%(6~|...|)%5~%F{255} %# %f'
 export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
