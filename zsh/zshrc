@@ -121,7 +121,7 @@ setopt ZLE                #use zsh line editor
 setopt auto_resume            # background jobをそのコマンド名で再開する(リダイレクト時不可)
 setopt notify                 # background jobが終了したらプロンプトの表示を待たずに知らせる
 setopt check_jobs             # report the background  and suspendedjobs before exit.
-setopt long_list_jobs
+setopt long_list_jobs         # jobs -l
 
 #glob
 setopt extended_glob
@@ -138,6 +138,7 @@ setopt list_packed        # 補完リストをなるべく少ない量にする
 setopt auto_param_keys    #自動補完される余分なカンマなどを適宜削除してスムーズに入力できるようにする
 setopt auto_param_slash   #ディレクトリ名の補完で末尾の/を自動的に付加し、次の補完に備える
 setopt auto_remove_slash  #スラッシュが補完された後、;やスペースを入力したら自動的にそのスラッシュを消す
+setopt magic_equal_subst  # --prefix=/usr/など = 以降も補完
 
 setopt list_rows_first    # 候補を移動するとき横に進む
 setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示しない
@@ -179,6 +180,7 @@ if [[ -d $zplug_path ]]; then
   zplug 'Russell91/sshrc', as:command, use:sshrc
   # zplug 'b4b4r07/gomi', from:gh-r, as:command, use:'*linux_amd64*', rename-to:gomi
   zplug 'b4b4r07/enhancd', as:plugin, use:enhancd.sh
+  zplug 'arks22/tmuximum', as:command, use:tmuximum
 
   zplug check --verbose
   alias zplug-clear='zplug clean; zplug clear; rm ~/.{,zplug/}zcompdump'
