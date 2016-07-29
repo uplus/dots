@@ -14,12 +14,12 @@ esac
 LC_COLLATE=C # Don't move to zshenv.
 DIRSTACKSIZE=100
 disable r # zsh-builtin: 直前のコマンドを実効する
-autoload -Uz add-zsh-hook
+# autoload -Uz add-zsh-hook # NOTE: call by zplug
 autoload -Uz zmv
 
 eval "$(dircolors -b)"
 LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=..;../ln=03;94/g')
-autoload -U colors && colors
+# autoload -U colors && colors  # NOTE: call by zplug
 
 #Prompt # {{{
 autoload -Uz promptinit && promptinit
@@ -164,7 +164,7 @@ if [[ -d $zplug_path ]]; then
   # zplug 'tarruda/zsh-autosuggestions'
   # zplug 'hchbaw/auto-fu.zsh' && zle-line-init(){ auto-fu-init } # interactive completion
   # zplug 'mollifier/anyframe'
-  zplug 'zsh-users/zaw' # TODO: error:android
+  # zplug 'zsh-users/zaw' # TODO: error:android
   zplug 'zsh-users/zsh-syntax-highlighting'
   zplug 'm4i/cdd', use:cdd, as:plugin, nice:10
   # zplug 'rimraf/k' # TODO: error:android: zmodload -F zsh/stat b:zstat
@@ -182,7 +182,7 @@ if [[ -d $zplug_path ]]; then
 
   zplug check --verbose
   alias zplug-clear='zplug clean; zplug clear; rm ~/.{,zplug/}zcompdump'
-  zplug load
+  zplug load # TODO: Call compinit again.
 
   in_path k && alias k='k -Ah'
   in_path distribution && alias distribution='distribution --color'
@@ -190,13 +190,14 @@ fi
 unset zplug_path
 # }}}
 
+# NOTE: call by zplug one time.
 #zsh completion system
-autoload -U compinit
+# autoload -U compinit
 
 # -u disable security check.
-compinit -u
+# compinit -u
 
-compdef _cdd cdd
+# compdef _cdd cdd # NOTE: call by zplug.
 
 #requrie after compinit
 source "$ZSH_DOT_DIR/zsh.completion"
