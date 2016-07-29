@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 #login interactive scriptの全てから参照される
 
+# zmodload zsh/zprof && zprof
+
 #unique属性を付加
 typeset -U path PATH MANPATH INFOPATH fpath
 

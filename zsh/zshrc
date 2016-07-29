@@ -397,5 +397,7 @@ bindkey "^[h" run-help
   # }}}
 # }}}
 
+can_exec zprof && zprof
+
 #Load local config
 exists_source "$ZSH_DOT_DIR/zshrc.local"
