@@ -207,7 +207,7 @@ common() {
   link_files
   setup_zsh
   setup_vim
-  git clone https://github.com/u10e10/utilities ~/code/utilities
+  git clone https://github.com/u10e10/utilities ~/codes/utilities
 }
 
 #TODO: temporary
