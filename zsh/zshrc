@@ -106,7 +106,7 @@ HISTFILE=~/.zsh/history
 setopt local_options          #on: 関数終了時に全てのオプションを復元する
 setopt no_beep no_list_beep no_hist_beep
 setopt autocd
-setopt noauto_pushd
+setopt auto_pushd
 setopt pushd_to_home          #pushdを引数無しで実行した時ホームに移動する
 setopt pushd_silent
 setopt interactive_comments   # can use comment
