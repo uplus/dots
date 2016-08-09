@@ -157,6 +157,10 @@ pull-these(){
   done
 }
 
+host-list(){
+  sudo nmap -sP "${1:-192.168.1.0/24}" | sed -e "s/^\(MAC.*\)$/\1\n/"
+}
+
 cons-web(){
   if [[ $# -ne 3 ]]; then
     warn "usage: cons-web <url> <start-num> <last-num>"
