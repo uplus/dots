@@ -157,6 +157,8 @@ hash -d pictures=$HOME/Pictures
 hash -d templates=$HOME/Templates
 hash -d videos=$HOME/Videos
 
+hash -d dein=$HOME/.cache/dein/repos/github.com
+
 #shell {{{1
 alias resh='unset fpath; exec ${SHELL:-zsh} -l'
 alias realias="source $ZSH_DOT_DIR/zsh.aliases"
@@ -294,6 +296,7 @@ alias youtube-ogg='noglob youtube-dl -x --audio-format vorbis'
 alias mii-toolv='sudo mii-tool -vv'
 alias odh='od -A x -t x1z -v '
 alias startvm='vboxmanage startvm'
+alias vlc-clear='rm -r .cache/vlc/'
 
 
 #shortening
