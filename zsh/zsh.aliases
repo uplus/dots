@@ -250,6 +250,10 @@ elif in_path node; then
   alias js=node
 fi
 
+if in_path google-chrome-stable; then
+  alias chrome='google-chrome-stable'
+fi
+
 if in_path rlwrap; then
   alias nc='rlwrap nc'
   alias telnet='rlwrap telnet'
