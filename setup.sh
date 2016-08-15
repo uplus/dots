@@ -175,13 +175,14 @@ install_commands() { #{{{
 } #}}}
 
 # change keymap #{{{
-update_keymap() {
-  sudo cp $current/xkbsymbols /usr/share/X11/xkb/symbols/u10
-  sudo rm /var/lib/xkb/*
+xmodmap(){
+  dconf write /org/gnome/settings-daemon/plugins/keyboard/active false
+  echo "Please disable override system xkb with Fcitx"
 }
 
 change_keymap() {
-  update_keymap
+  sudo ln -s $current/u10.xkb /usr/share/X11/xkb/symbols/u10
+  sudo rm /var/lib/xkb/*
 
   echo "
 ! option = symbols
@@ -189,8 +190,7 @@ change_keymap() {
   u10:tenkey = +u10(tenkey)" | sudo tee -a /usr/share/X11/xkb/rules/evdev
 
   dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'u10:happy', 'u10:tenkey']"
-
-  # $ setxkbmap -option ctrl:nocaps
+  # $ setxkbmap -option ctrl:nocaps -option u10:happy -option u10:tenkey
 }
 #}}}
 

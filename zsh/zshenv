@@ -63,8 +63,8 @@ fi
 
 fpath+=($ZSH_DOT_DIR/func)
 
-if [[ -n "${WINDOWID:-}" && -f $HOME/.xmodmap ]]; then
-  xmodmap ~/.xmodmap
-fi
+# if [[ -n "${WINDOWID:-}" && -f $HOME/.xmodmap ]]; then
+#   xmodmap ~/.xmodmap
+# fi
 
 stty -ixon -ixoff

@@ -1,0 +1,49 @@
+// vim: filetype=xkb
+
+// edit
+// /usr/share/X11/xkb/rules/evdev
+
+// sample
+// /usr/share/X11/xkb/symbols/us
+// /usr/share/X11/xkb/symbols/terminate
+
+// default  partial modifier_keys
+// xkb_symbols "ctrl_alt_bksp" {
+//     key <BKSP> {
+//         type="CTRL+ALT",
+//         symbols[Group1] = [ NoSymbol, NoSymbol, NoSymbol, NoSymbol, Terminate_Server ]
+//     };
+// };
+
+
+// xkb_symbols "nocaps" {
+//     replace key <CAPS> { [ Control_L, Control_L ] };
+//     modifier_map  Control { <CAPS>, <LCTL> };
+// };
+
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "happy" {
+  key <HKTG> { [ Super_R ] };
+  key <MUHE> { [ Escape ] };
+  key <HENK> { [ Hangul, Hangul_Hanja, Hangul ] };
+  key <RTRN> { [ Return, asciitilde, Return  ] };
+  key <AC10> { [ semicolon,  apostrophe ] };
+  key <AC11> { [ colon,  quotedbl ] };
+
+  // key <AB07> { [   m,  M   ] };
+};
+
+hidden partial alphanumeric_keys
+xkb_symbols "tenkey" {
+  // key.type = "ONE_LEVEL"
+  key <KP5>  { [ XF86AudioPlay ] };
+  key <KP4>  { [ XF86AudioPrev ] };
+  key <KP6>  { [ XF86AudioNext ] };
+
+  // alias <KP2> =  <I2E>;
+  // alias <KP8> =  <I30>;
+  key <KP2>  { [ XF86AudioLowerVolume ] };
+  key <KP8>  { [ XF86AudioRaiseVolume ] };
+  key <KPMU> { [ XF86AudioMute ] };
+};
