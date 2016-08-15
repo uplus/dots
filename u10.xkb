@@ -1,11 +1,78 @@
 // vim: filetype=xkb
 
+// run
+// setxkbmap -option ctrl:nocaps -option u10:happy -option u10:tenkey
+
 // edit
 // /usr/share/X11/xkb/rules/evdev
 
 // sample
 // /usr/share/X11/xkb/symbols/us
+// /usr/share/X11/xkb/symbols/inet
 // /usr/share/X11/xkb/symbols/terminate
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "happy" {
+  key <HKTG> { [ Super_R ] };
+  key <MUHE> { [ Escape ] };
+  key <HENK> { [ Hangul, Hangul_Hanja ] };
+  key <RTRN> { [ Return, asciitilde ] };
+  key <AC10> { [ semicolon,  apostrophe ] };
+  key <AC11> { [ colon,  quotedbl ] };
+
+  // key <AC07> {
+  //     type="CTRL+ALT",
+  //     symbols[Group1] = [ j, J, Return, Return, Return, Return, Return ]
+  // };
+
+  key <BKSP> {
+    [ BackSpace, NoSymbol ],
+    actions = [ NoAction(), Redirect(key=<DELE>, clearmods=all) ]
+  };
+
+  key <AC07> {
+    type[Group1]="EIGHT_LEVEL_SEMIALPHABETIC",
+    [ j,    J,     plusminus,      NoSymbol,      NoSymbol ],
+    actions = [ NoAction(), NoAction(), NoAction(), NoAction(),
+                                  Redirect(key=<RTRN>, clearmods=all) ]
+  };
+};
+
+partial alphanumeric_keys
+xkb_symbols "tenkey" {
+  key <KP5>  { [ XF86AudioPlay ] };
+  key <KP4>  { [ XF86AudioPrev ] };
+  key <KP6>  { [ XF86AudioNext ] };
+
+  key <KP2> {
+    [ NoSymbol ],
+    actions = [ Redirect(key=<VOL->, clearmods=all) ]
+  };
+  key <KP8> {
+    [ NoSymbol ],
+    actions = [ Redirect(key=<VOL+>, clearmods=all) ]
+  };
+
+  key <KPMU> {
+    [ NoSymbol ],
+    actions = [ Redirect(key=<MUTE>, clearmods=all) ]
+  };
+};
+
+
+// TODO: Error
+// xkb_keycodes "tenkey-alias" {
+//   alias <KP2> =  <I2E>;
+//   alias <KP8> =  <I30>;
+// }
+
+
+// key <CAPS> { [ Control_L ] };
+// modifier_map Control { <CAPS> };
+//
+// key <LWIN> { [ Super_L   ] };
+// key <NFER> { [ Super_L   ] };
+// modifier_map Mod4   { <NFER>, Muhenkan, Super_L, Super_R };
 
 // default  partial modifier_keys
 // xkb_symbols "ctrl_alt_bksp" {
@@ -20,30 +87,4 @@
 //     replace key <CAPS> { [ Control_L, Control_L ] };
 //     modifier_map  Control { <CAPS>, <LCTL> };
 // };
-
-
-partial alphanumeric_keys modifier_keys
-xkb_symbols "happy" {
-  key <HKTG> { [ Super_R ] };
-  key <MUHE> { [ Escape ] };
-  key <HENK> { [ Hangul, Hangul_Hanja, Hangul ] };
-  key <RTRN> { [ Return, asciitilde, Return  ] };
-  key <AC10> { [ semicolon,  apostrophe ] };
-  key <AC11> { [ colon,  quotedbl ] };
-
-  // key <AB07> { [   m,  M   ] };
-};
-
-hidden partial alphanumeric_keys
-xkb_symbols "tenkey" {
-  // key.type = "ONE_LEVEL"
-  key <KP5>  { [ XF86AudioPlay ] };
-  key <KP4>  { [ XF86AudioPrev ] };
-  key <KP6>  { [ XF86AudioNext ] };
-
-  // alias <KP2> =  <I2E>;
-  // alias <KP8> =  <I30>;
-  key <KP2>  { [ XF86AudioLowerVolume ] };
-  key <KP8>  { [ XF86AudioRaiseVolume ] };
-  key <KPMU> { [ XF86AudioMute ] };
-};
+// http://superuser.com/questions/585300/how-to-make-control-j-works-as-return-without-control-bit-set-using-xkb-and
