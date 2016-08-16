@@ -20,22 +20,31 @@ xkb_symbols "happy" {
   key <AC10> { [ semicolon,  apostrophe ] };
   key <AC11> { [ colon,  quotedbl ] };
 
-  // key <AC07> {
-  //     type="CTRL+ALT",
-  //     symbols[Group1] = [ j, J, Return, Return, Return, Return, Return ]
-  // };
-
   key <BKSP> {
     [ BackSpace, NoSymbol ],
     actions = [ NoAction(), Redirect(key=<DELE>, clearmods=all) ]
   };
 
-  key <AC07> {
-    type[Group1]="EIGHT_LEVEL_SEMIALPHABETIC",
-    [ j,    J,     plusminus,      NoSymbol,      NoSymbol ],
-    actions = [ NoAction(), NoAction(), NoAction(), NoAction(),
-                                  Redirect(key=<RTRN>, clearmods=all) ]
+  key <BB99> {
+    [ J, J, J, J ]
   };
+
+  key <AC07> {
+      type="PC_CONTROL_LEVEL2",
+      type[Group1] = [ j, J, NoSymbol ],
+      actions[Group1] = [ NoAction(), NoAction(), Redirect(key=<DELE>, clearmods=all) ]
+  };
+  // key <AC07> {
+  //     type="PC_CONTROL_LEVEL2",
+  //     type[Group1] = [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ],
+  //     actions[Group1] = [ NoAction(), NoAction(), RedirectKey(key=<AB07>, modifiers=Control, clearmods=Mod3), NoAction() ]
+  // };
+
+  // key <AC07> {
+  //   type[Group1]="EIGHT_LEVEL_SEMIALPHABETIC",
+  //   [ j,    J,     NoSymbol,      NoSymbol,      NoSymbol ],
+  //   actions = [ NoAction(), NoAction(), Redirect(key=<RTRN>, clearmods=all), Redirect(key=<RTRN>, clearmods=all), Redirect(key=<RTRN>, clearmods=all) ]
+  // };
 };
 
 partial alphanumeric_keys
@@ -88,3 +97,6 @@ xkb_symbols "tenkey" {
 //     modifier_map  Control { <CAPS>, <LCTL> };
 // };
 // http://superuser.com/questions/585300/how-to-make-control-j-works-as-return-without-control-bit-set-using-xkb-and
+
+// modifier_map Mod3     { Control_R, Control_L };
+
