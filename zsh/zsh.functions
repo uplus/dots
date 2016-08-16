@@ -355,7 +355,7 @@ kill(){
 
 mac-vendor(){
   if (($# != 0)); then
-    curl --silent http://api.macvendors.com/$(echo "${1}" |sed -s 's/..:..:..$/00:00:00/g')
+    curl --silent http://api.macvendors.com/$(echo "${1}" | sed -s 's/..:..:..$/00:00:00/g')
     echo
   else
     while read line; do
