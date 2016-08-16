@@ -15,28 +15,35 @@
 // http://www.charvolant.org/~doug/xkb/html/node5.html
 // http://superuser.com/questions/585300/how-to-make-control-j-works-as-return-without-control-bit-set-using-xkb-and
 
+
+
 partial alphanumeric_keys modifier_keys
 xkb_symbols "happy" {
   key <HKTG> { [ Super_R ] };
-  key <MUHE> { [ Escape ] };
+  // key <MUHE> { [ Escape ] };
   key <HENK> { [ Hangul, Hangul_Hanja ] };
   key <RTRN> { [ Return, asciitilde ] };
 
   key <AC10> { [ semicolon,  apostrophe ] };
   key <AC11> { [ colon,  quotedbl ] };
 
-  // 8 9
+  // swap (  ) for < >
 	key <AE09> { [ NoSymbol, less ] };
 	key <AE10> { [ NoSymbol, greater ] };
-
-  // , .
 	key <AB08> { [ comma, parenleft ] };
 	key <AB09> { [ period, parenright ] };
 
-  key <BKSP> {
-    [ BackSpace, NoSymbol ],
-    actions = [ NoAction(), Redirect(key=<DELE>, clearmods=all) ]
-  };
+  key <BKSP> { actions = [ NoAction(), Redirect(key=<DELE>, clearmods=all) ] };
+
+  key <LFSH> { [ Escape ] };
+  key <MUHE> { [ Shift_L, Shift_L, Shift_L, Shift_L, Shift_L ] };
+
+  modifier_map Shift  { <MUHE>, Shift_L, Shift_R };
+  // modifier_map Control { <CAPS>, <LCTL> };
+  key  <TAB> {	[ Tab,	ISO_Left_Tab	]	};
+
+    // TODO ideas
+    // swap ! for ~
 };
 
 partial alphanumeric_keys
