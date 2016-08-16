@@ -11,40 +11,32 @@
 // /usr/share/X11/xkb/symbols/inet
 // /usr/share/X11/xkb/symbols/terminate
 
+// Documents
+// http://www.charvolant.org/~doug/xkb/html/node5.html
+// http://superuser.com/questions/585300/how-to-make-control-j-works-as-return-without-control-bit-set-using-xkb-and
+
 partial alphanumeric_keys modifier_keys
 xkb_symbols "happy" {
   key <HKTG> { [ Super_R ] };
   key <MUHE> { [ Escape ] };
   key <HENK> { [ Hangul, Hangul_Hanja ] };
   key <RTRN> { [ Return, asciitilde ] };
+
   key <AC10> { [ semicolon,  apostrophe ] };
   key <AC11> { [ colon,  quotedbl ] };
+
+  // 8 9
+	key <AE09> { [ NoSymbol, less ] };
+	key <AE10> { [ NoSymbol, greater ] };
+
+  // , .
+	key <AB08> { [ comma, parenleft ] };
+	key <AB09> { [ period, parenright ] };
 
   key <BKSP> {
     [ BackSpace, NoSymbol ],
     actions = [ NoAction(), Redirect(key=<DELE>, clearmods=all) ]
   };
-
-  key <BB99> {
-    [ J, J, J, J ]
-  };
-
-  key <AC07> {
-      type="PC_CONTROL_LEVEL2",
-      type[Group1] = [ j, J, NoSymbol ],
-      actions[Group1] = [ NoAction(), NoAction(), Redirect(key=<DELE>, clearmods=all) ]
-  };
-  // key <AC07> {
-  //     type="PC_CONTROL_LEVEL2",
-  //     type[Group1] = [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ],
-  //     actions[Group1] = [ NoAction(), NoAction(), RedirectKey(key=<AB07>, modifiers=Control, clearmods=Mod3), NoAction() ]
-  // };
-
-  // key <AC07> {
-  //   type[Group1]="EIGHT_LEVEL_SEMIALPHABETIC",
-  //   [ j,    J,     NoSymbol,      NoSymbol,      NoSymbol ],
-  //   actions = [ NoAction(), NoAction(), Redirect(key=<RTRN>, clearmods=all), Redirect(key=<RTRN>, clearmods=all), Redirect(key=<RTRN>, clearmods=all) ]
-  // };
 };
 
 partial alphanumeric_keys
@@ -69,13 +61,6 @@ xkb_symbols "tenkey" {
 };
 
 
-// TODO: Error
-// xkb_keycodes "tenkey-alias" {
-//   alias <KP2> =  <I2E>;
-//   alias <KP8> =  <I30>;
-// }
-
-
 // key <CAPS> { [ Control_L ] };
 // modifier_map Control { <CAPS> };
 //
@@ -96,7 +81,25 @@ xkb_symbols "tenkey" {
 //     replace key <CAPS> { [ Control_L, Control_L ] };
 //     modifier_map  Control { <CAPS>, <LCTL> };
 // };
-// http://superuser.com/questions/585300/how-to-make-control-j-works-as-return-without-control-bit-set-using-xkb-and
 
 // modifier_map Mod3     { Control_R, Control_L };
 
+// key <AC07> {
+//     type="REDIRECTING",
+//     // Terminalでだけ使えない
+//     [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ],
+//     // Redirect消すとJがでるようになる
+//     actions = [ NoAction(), Redirect(key=<AC07>, modifiers=Shift), NoAction(), Redirect(key=<RTRN>, clearmods=all) ]
+// };
+//
+// key <AC07> {
+//     type="PC_CONTROL_LEVEL2",
+//     type[Group1] = [ NoSymbol, NoSymbol, NoSymbol, NoSymbol ],
+//     actions[Group1] = [ NoAction(), NoAction(), RedirectKey(key=<AB07>, modifiers=Control, clearmods=Mod3), NoAction() ]
+// };
+//
+// key <AC07> {
+//   type[Group1]="EIGHT_LEVEL_SEMIALPHABETIC",
+//   [ j,    J,     NoSymbol,      NoSymbol,      NoSymbol ],
+//   actions = [ NoAction(), NoAction(), Redirect(key=<RTRN>, clearmods=all), Redirect(key=<RTRN>, clearmods=all), Redirect(key=<RTRN>, clearmods=all) ]
+// };
