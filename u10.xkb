@@ -19,31 +19,31 @@
 
 partial alphanumeric_keys modifier_keys
 xkb_symbols "happy" {
+  // modifier keys
+  key <MUHE> { [ Shift_L, Shift_L, Shift_L, Shift_L, Shift_L ] };
+  modifier_map Shift  { <MUHE>, Shift_R };
   key <HKTG> { [ Super_R ] };
-  // key <MUHE> { [ Escape ] };
+  modifier_map Mod4 { <HKTG>, Super_L, Super_R };
+
+  key <LFSH> { [ Escape ] };
   key <HENK> { [ Hangul, Hangul_Hanja ] };
   key <RTRN> { [ Return, asciitilde ] };
 
+  // swap ' "
   key <AC10> { [ semicolon,  apostrophe ] };
   key <AC11> { [ colon,  quotedbl ] };
 
   // swap (  ) for < >
-	key <AE09> { [ NoSymbol, less ] };
-	key <AE10> { [ NoSymbol, greater ] };
-	key <AB08> { [ comma, parenleft ] };
-	key <AB09> { [ period, parenright ] };
+  key <AE09> { [ 9, less ] };
+  key <AE10> { [ 0, greater ] };
+  key <AB08> { [ comma, parenleft ] };
+  key <AB09> { [ period, parenright ] };
 
   key <BKSP> { actions = [ NoAction(), Redirect(key=<DELE>, clearmods=all) ] };
 
-  key <LFSH> { [ Escape ] };
-  key <MUHE> { [ Shift_L, Shift_L, Shift_L, Shift_L, Shift_L ] };
 
-  modifier_map Shift  { <MUHE>, Shift_L, Shift_R };
-  // modifier_map Control { <CAPS>, <LCTL> };
-  key  <TAB> {	[ Tab,	ISO_Left_Tab	]	};
-
-    // TODO ideas
-    // swap ! for ~
+  // TODO ideas
+  // swap ! for ~
 };
 
 partial alphanumeric_keys
