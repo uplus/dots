@@ -20,6 +20,8 @@
 partial alphanumeric_keys modifier_keys
 xkb_symbols "happy" {
   // modifier keys
+  key <LCTL> { [ ISO_Level3_Shift, ISO_Level3_Shift ] };
+  modifier_map Mod5 { ISO_Level3_Shift, <LCTL> };
   key <MUHE> { [ Shift_L, Shift_L, Shift_L, Shift_L, Shift_L ] };
   modifier_map Shift  { <MUHE>, Shift_R };
   key <HKTG> { [ Super_R ] };
@@ -41,6 +43,11 @@ xkb_symbols "happy" {
 
   key <BKSP> { actions = [ NoAction(), Redirect(key=<DELE>, clearmods=all) ] };
 
+  // Level3 Shift
+  key <AC06> { [ h, H,  Left ] };
+  key <AC07> { [ j, J,  Down ] };
+  key <AC08> { [ k, K,    Up ] };
+  key <AC09> { [ l, L, Right ] };
 
   // TODO ideas
   // swap ! for ~
