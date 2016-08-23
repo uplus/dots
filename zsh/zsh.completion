@@ -23,6 +23,11 @@ _zshrc(){
 }
 compdef _zshrc zshrc
 
+_startvm(){
+  _files -w $(vboxmanage list vms | grep -oP '(?<=").*(?=")') && return 0
+}
+compdef _startvm startvm
+
 _rbenv() {
   if [[ ${#words} -eq 2 ]]; then
     compadd $(rbenv commands)
