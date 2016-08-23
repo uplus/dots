@@ -44,10 +44,12 @@ xkb_symbols "happy" {
   key <BKSP> { actions = [ NoAction(), Redirect(key=<DELE>, clearmods=all) ] };
 
   // Level3 Shift
-  key <AC06> { [ h, H,  Left ] };
-  key <AC07> { [ j, J,  Down ] };
-  key <AC08> { [ k, K,    Up ] };
+  key <AC06> { [ h, H, Left ] };
+  key <AC07> { [ j, J, Down ] };
+  key <AC08> { [ k, K, Up ] };
   key <AC09> { [ l, L, Right ] };
+  key <AD10> { [ p, P, Home ] };
+  key <AB06> { [ n, N, End ] };
 
   // TODO ideas
   // swap ! for ~
