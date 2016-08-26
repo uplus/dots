@@ -152,7 +152,7 @@ setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示し�
 
 #zplug # {{{
 zplug_path="$HOME/.zplug"
-if [[ ! -d $zplug_path ]]; then
+if [[ ! -d ${zplug_path:-.} ]]; then
 
   if read -q key'?install zplug?(y/N) '; then
     echo; git clone https://github.com/b4b4r07/zplug.git "${zplug_path}"
@@ -160,7 +160,7 @@ if [[ ! -d $zplug_path ]]; then
   unset key
 fi
 
-if [[ -d $zplug_path ]]; then
+if [[ -d ${zplug_path:-} ]]; then
   export ZPLUG_LOADFILE="$ZSH_DOT_DIR/zplug.zsh"
   source "${zplug_path}/init.zsh"
 
