@@ -62,17 +62,27 @@ xkb_symbols "tenkey" {
   key <KP6>  { [ XF86AudioNext ] };
 
   key <KP2> {
-    [ NoSymbol ],
+    [ NoSymbol, NoSymbol ],
     actions = [ Redirect(key=<VOL->, clearmods=all) ]
   };
   key <KP8> {
-    [ NoSymbol ],
+    [ NoSymbol, NoSymbol ],
     actions = [ Redirect(key=<VOL+>, clearmods=all) ]
   };
 
   key <KPMU> {
-    [ NoSymbol ],
+    [ NoSymbol, NoSymbol ],
     actions = [ Redirect(key=<MUTE>, clearmods=all) ]
+  };
+
+  key <KP7> {
+    [ NoSymbol, NoSymbol ],
+    actions = [ Redirect(key=<UP>, modifiers=Mod1) ]
+  };
+
+  key <KP1> {
+    [ NoSymbol, NoSymbol ],
+    actions = [ Redirect(key=<DOWN>, modifiers=Mod1) ]
   };
 };
 
