@@ -219,9 +219,6 @@ zstyle ':completion:*:*:cdr:*' menu select
 source "$ZSH_DOT_DIR/zsh.functions"
 source "$ZSH_DOT_DIR/zsh.aliases"
 
-add-zsh-hook precmd autols
-add-zsh-hook precmd ud-add
-
 #zstyle completion {{{
 # zstyle ':completion:*:*:CMD:*:TAG' STYLE
 zstyle ':completion:*' group-name ''
