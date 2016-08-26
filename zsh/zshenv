@@ -19,6 +19,8 @@ exists_source(){
   source "${1}"
 }
 
+export skip_global_compinit=1
+
 # export LANGUAGE=en # don't need?
 export LANG=en_US.UTF-8 # Provides default value for LC_* variables.
 
