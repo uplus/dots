@@ -23,8 +23,14 @@ exists_source(){
 export LANG=en_US.UTF-8 # Provides default value for LC_* variables.
 
 export WORDCHARS='*?!#%[]{}<>()~`\' # ^$&@_+-:;|.
-export EDITOR=vim
-export VISUAL=vim
+
+if in_path nvim; then
+  export EDITOR=nvim
+  export VISUAL=nvim
+else
+  export EDITOR=vim
+  export VISUAL=vim
+fi
 
 export PAGER='less'
 export MANPAGER='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines'

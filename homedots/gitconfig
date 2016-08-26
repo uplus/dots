@@ -2,7 +2,7 @@
   email = uplus.e10@gmail.com
   name  = u10e10
 [core]
-  editor = vim
+  editor = $EDITOR
   excludesfile = ~/.gitignore
   pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
 [color]
@@ -68,7 +68,7 @@
   graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
   loggr = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
   editl = config --edit --local
-  editg = !vim ~/.gitconfig
+  editg = !$EDITOR ~/.gitconfig
   current-branch = rev-parse --abbrev-ref HEAD
   fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
   pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"

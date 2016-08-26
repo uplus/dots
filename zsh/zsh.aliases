@@ -31,18 +31,18 @@ alias 8.='cd ../../../../../../../..'
 
 #vim {{{1
 alias v.='vimrc'
-alias v='vim'
+alias v="${EDITOR}"
 alias vi='vim'
 alias gv='gvim'
 alias nv='nvim'
-alias vh='vim .'
-alias vb='vim -c Vinarise'
-alias vp='vim -p'
-alias vo='vim -o'
-alias vr='vim -R'
+alias vh='v .'
+alias vb='v -c Vinarise'
+alias vp='v -p'
+alias vo='v -o'
+alias vr='v -R'
 alias vl="vim -c 'normal \`0' -c 'bwipeout #'"
-alias v.min='vim -N -u NONE -U NONE -i NONE --noplugin'
-alias v.sjis='vi -c ":e ++enc=cp932"'
+alias v.min='v -N -u NONE -U NONE -i NONE --noplugin'
+alias v.sjis='v -c ":e ++enc=cp932"'
 alias vimopt='vim --version | \egrep "^\+|^-"'
 
 #git {{{1
@@ -113,7 +113,7 @@ alias -g L='2>&1 | less'
 
 alias -g M='--help 2>&1 | less' # show manual(help)
 alias -g U='--help 2>&1 | head' # show usage.
-alias -g V='| vim -'
+alias -g V='| v -'
 alias -g R='| ruby -e'
 alias -g P='| peco'
 alias -g Y='| clip'
@@ -168,7 +168,7 @@ alias z.l='zshrc zshrc.local'
 alias z.a='zshrc zsh.aliases && realias'
 alias z.f='zshrc zsh.functions'
 alias z.c='zshrc zsh.completion'
-alias z.h='vim $HISTFILE'
+alias z.h='$EDITOR $HISTFILE'
 
 #pkg {{{1
 if in_path apt-get; then
@@ -266,8 +266,8 @@ alias histrank="history 1 | awk '{print \$2}' | sort | uniq -c | sort -nr"
 alias hist='history -n'
 alias histall='history -n 1'
 alias histories='history -E 1'
-alias ehis='history -n -1000 | vim - +'
-alias ehisall='history -n 1 | vim - +'
+alias ehis='history -n -1000 | $EDITOR - +'
+alias ehisall='history -n 1 | $EDITOR - +'
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias guirestart='sudo service lightdm restart'
 alias older='ls -Altr'
