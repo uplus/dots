@@ -150,8 +150,38 @@ setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示し�
 
 # }}}
 
+#zgen # {{{
+zgen_path="$HOME/.zgen"
+if [[ ! -e ${zgen_path:-} ]]; then
+  if read -q key'?install zgen?(y/N) '; then
+    echo; git clone https://github.com/tarjoilija/zgen.git "${zgen_path}"
+  fi
+  unset key
+fi
+
+if [[ -d ${zgen_path:-} ]]; then
+  source "${zgen_path}/zgen.zsh"
+  if ! zgen saved; then
+    zgen load m4i/cdd
+    zgen load tcnksm/docker-alias
+    # zgen load junegunn/fzf      # command
+    # zgen load Russell91/sshrc   # command
+    # zgen load philovivero/distribution # command
+
+    zgen load mollifier/zload # reload zsh completion function.
+    # zgen load b4b4r07/auto-fu.zsh
+    zgen load zsh-users/zsh-syntax-highlighting
+    zgen load zsh-users/zsh-completions src
+    zgen save
+  fi
+  source $HOME/.zgen/m4i/cdd-master/cdd
+  source $HOME/.zgen/tcnksm/docker-alias-master/zshrc
+fi
+unset zgen_path
+# }}}
+
 #zplug # {{{
-zplug_path="$HOME/.zplug"
+# zplug_path="$HOME/.zplug"
 if [[ ! -d ${zplug_path:-.} ]]; then
 
   if read -q key'?install zplug?(y/N) '; then
