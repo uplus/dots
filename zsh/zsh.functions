@@ -111,6 +111,16 @@ colorsv(){
 }
 # }}}
 
+#link# {{{
+sln(){
+  if (($# < 2)); then
+    warn "usage: sln <source> <target>"
+    return 1
+  else
+    ln -svi ${1:a} ${2:a}
+  fi
+}
+
 binln(){
   local name
   [[ ! -d $HOME/bin ]] && mkdir $HOME/bin
@@ -118,6 +128,7 @@ binln(){
     ln -svi "${name:a}" "$HOME/bin/${name:t:r}"
   done
 }
+# }}}
 
 #rc commands {{{
 generic_rc(){
