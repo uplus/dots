@@ -81,6 +81,8 @@ lls()    { ls -lgG --color=always  ${@-} | awk '{print $7, $8, $9}' }
 dotgit() { git -C $DOT_DIR ${@:-sh} }
 vimgit() { git -C ~/.vim ${@:-sh} }
 md5text(){ echo -n "${$1}" | md5sum }
+youtube-mp3(){ youtube-dl -x --audio-format mp3 "${@:-$(clip -o)}" }
+youtube-ogg(){ youtube-dl -x --audio-format vorbis "${@:-$(clip -o)}" }
 
 +r(){ chmod u+r $@ }
 -r(){ chmod a-r $@ }
