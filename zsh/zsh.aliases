@@ -293,6 +293,8 @@ alias odh='od -A x -t x1z -v '
 alias startvm='vboxmanage startvm'
 alias vlc-clear='rm -r .cache/vlc/'
 alias url-encode="ruby -r erb -e 'puts ERB::Util.url_encode(ARGV.empty? ? gets.rstrip : ARGV.join(\" \"))'"
+alias ip-sub='ip a show dev $(ip route | awk "/^default/{print \$5}") | awk "/inet/{print \$2}"'
+
 
 
 #shortening
