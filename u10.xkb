@@ -67,6 +67,7 @@ xkb_symbols "tenkey" {
   key <KP5>  { actions = [ Redirect(key=<VOL->, clearmods=all) ] };
   key <KP7>  { actions = [ Redirect(key=<UP>, modifiers=Mod1)] };
   key <KP4>  { actions = [ Redirect(key=<DOWN>, modifiers=Mod1) ] };
+  key <KPDV> { actions = [ Redirect(key=<AB10>, modifiers=Mod1) ] }; // AB10 slash
   // key <KPDL> { [ XF86AudioMedia ] };
   // key <KP0>
 };
