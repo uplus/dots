@@ -382,3 +382,15 @@ mac-vendor(){
 mac-arp(){
   arp -n | awk '/:/{printf("%-15s %s \n", $1, $3)}' | xargs -I {} echo "{} $(echo "{}" | awk '{print $2}' | mac-vendor)"
 }
+
+google(){
+  if (($# == 0)); then
+    echo "usage: $0 word"
+  else
+    xdg-open "https://www.google.co.jp/search?q=${1}&ie=utf-8&oe=utf-8&hl=ja"
+  fi
+}
+
+gdb-disas(){
+  echo 'set height unlimited\ndisas ' "${2:-main}" | gdb "${1}"
+}
