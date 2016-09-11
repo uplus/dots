@@ -59,15 +59,15 @@ partial alphanumeric_keys
 xkb_symbols "tenkey" {
   key <KPMU> { actions = [ Redirect(key=<MUTE>, clearmods=all) ] };
   key <KP1>  { actions = [ Redirect(key=<LEFT>, modifiers=Mod1)] };
-  key <KP3>  { actions = [ Redirect(key=<RGHT>, modifiers=Mod1) ] };
-  key <KP2>  { [ XF86AudioPlay ] };
-  key <KP9>  { [ XF86AudioPrev ] };
-  key <KP6>  { [ XF86AudioNext ] };
+  key <KP3>  { actions = [ Redirect(key=<RGHT>, modifiers=Mod1)] };
+  key <KP2>  { actions = [ Redirect(key=<I172>, clearmods=all) ] };
+  key <KP9>  { actions = [ Redirect(key=<I173>, clearmods=all) ] };
+  key <KP6>  { actions = [ Redirect(key=<I171>, clearmods=all) ] };
   key <KP8>  { actions = [ Redirect(key=<VOL+>, clearmods=all) ] };
   key <KP5>  { actions = [ Redirect(key=<VOL->, clearmods=all) ] };
-  key <KP7>  { actions = [ Redirect(key=<UP>, modifiers=Mod1)] };
-  key <KP4>  { actions = [ Redirect(key=<DOWN>, modifiers=Mod1) ] };
-  key <KPDV> { actions = [ Redirect(key=<AB10>, modifiers=Mod1) ] }; // AB10 slash
+  key <KP7>  { actions = [ Redirect(key=<UP>,   modifiers=Mod1)] };
+  key <KP4>  { actions = [ Redirect(key=<DOWN>, modifiers=Mod1)] };
+  key <KPDV> { actions = [ Redirect(key=<AB10>, modifiers=Mod1)] }; // AB10 slash
   // key <KPDL> { [ XF86AudioMedia ] };
   // key <KP0>
 };
