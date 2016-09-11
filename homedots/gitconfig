@@ -25,6 +25,7 @@
   s   = status --short --branch
   d   = diff
   dc  = diff --cached
+  dcw = diff --cached --color-words
   dw  = diff --color-words
   ds  = diff --stat
   l   = log --graph --decorate --oneline -20
