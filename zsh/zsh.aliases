@@ -202,7 +202,7 @@ elif in_path pacman; then
   alias a.u='sudo pacman -Syyu'
   alias a.ud='sudo pacman -Syy'
   alias a.ug='sudo pacman -Su'
-  alias a.uf='yaourt -Syyua'
+  alias a.uf='yaourt -Syua'
   alias a.s='pacman -Ss'
   alias a.sh='pacman -Si'
 elif in_path dnf; then
