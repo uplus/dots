@@ -46,6 +46,11 @@ show-src(){
   done
 }
 
+sticky-enable(){
+  dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable false
+  dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable true
+}
+
 countdown(){
   for i in {${1:-5}..1}; do
     echo -n "${i} "
