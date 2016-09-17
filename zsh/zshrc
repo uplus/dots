@@ -378,6 +378,16 @@ bindkey "^[h" run-help
   zle -N zle_filter_select_file
   bindkey '^O' zle_filter_select_file
 
+  zle_filter_open_file(){
+    BUFFER='v '
+    CURSOR=${#BUFFER}
+    zle_filter_select_file
+    zle accept-line
+  }
+  zle -N zle_filter_open_file
+  bindkey 'f' zle_filter_open_file
+
+
   zle_git_hash(){
     BUFFER="${BUFFER} $(git log --oneline --branches | peco | awk '{print $1}')"
     CURSOR=${#BUFFER}
@@ -408,7 +418,7 @@ bindkey "^[h" run-help
   bindkey 't' zle_todo
 
   zle_clip(){
-    echo -n "${BUFFER}" | clip
+    echo -nE "${BUFFER}" | clip
   }
   zle -N zle_clip
   bindkey 'y' zle_clip
