@@ -24,9 +24,20 @@ _zshrc(){
 compdef _zshrc zshrc
 
 _startvm(){
-  _files -w $(vboxmanage list vms | grep -oP '(?<=").*(?=")') && return 0
+  _files -W $(vboxmanage list vms | grep -oP '(?<=").*(?=")') && return 0
 }
 compdef _startvm startvm
+
+vg(){ v }
+_gitedit(){
+  compadd $(git status --short | sed 's/^\s*[^\s]*\s//') && return 0;
+}
+compdef _gitedit gv
+
+vw() { vim ~works/"${1}" }
+_vw(){ _files -W ~works && return 0 }
+compdef _vw vw
+
 
 _rbenv() {
   if [[ ${#words} -eq 2 ]]; then
