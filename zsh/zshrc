@@ -306,8 +306,7 @@ bindkey "^?" backward-delete-char
 # <S-Tab>
 bindkey "^[[Z" reverse-menu-complete
 
-# zaw
-bindkey "^X^X" zaw
+bindkey "^X^X" edit-command-line
 
 # cursor-key and other # {{{
 bindkey "^[[A" up-line-or-history
@@ -330,7 +329,6 @@ bindkey "^[p" history-search-backward
 
 bindkey "^[w" kill-word
 bindkey "^[q" push-line
-bindkey "^[e" edit-command-line
 bindkey "^[h" run-help
 # }}}
 
