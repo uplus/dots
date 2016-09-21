@@ -95,8 +95,8 @@ alias -s {tgz,gz}="zcat -dc"
 alias -s {tbz,bz2}=bzcat
 
 #global {{{1
-alias -g G='2>&1 | egrep -i -e'
-alias -g GV='2>&1 | egrep -iv -e'
+alias -g G='2>&1 | egrep -i'
+alias -g GV='2>&1 | egrep -iv'
 
 alias -g WL='2>&1 | wc --lines'
 alias -g WW='2>&1 | wc --words'
