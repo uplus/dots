@@ -243,6 +243,7 @@ alias rm='rm -v'
 alias which='which -p'
 alias jobs='jobs -ld'
 alias pgrep='pgrep -l'
+alias ag='ag --smart-case --hidden'
 alias less='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init'
 alias dmesg='dmesg --color=always -e L' # -Hだとless動作が揃わない
 if in_path nodejs; then
