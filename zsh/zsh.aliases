@@ -85,9 +85,9 @@ alias -s {gif,jpg,jpeg,png,bmp}='display'
 alias -s {html,htm,xhtml}='opera-beta'
 alias -s c='runc'
 alias -s cpp='runcpp'
-alias -s zsh='zsh'
-alias -s bash='bash'
-alias -s sh='sh'
+# alias -s zsh='zsh'
+# alias -s bash='bash'
+# alias -s sh='sh'
 runcpp() { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
 runc()   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
 alias -s zip=zipinfo
