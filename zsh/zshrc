@@ -110,7 +110,7 @@ setopt auto_pushd
 setopt pushd_to_home          #pushdを引数無しで実行した時ホームに移動する
 setopt pushd_silent
 setopt interactive_comments   # can use comment
-setopt equals                 # Enable "=command" feature
+setopt noequals               # Enable "=command" feature
 setopt no_flow_control    # C-s, C-qを無効にする。
 setopt clobber            # リダイレクトで上書きする事を許可
 setopt rm_star_silent     # rm *の警告を無効にする
