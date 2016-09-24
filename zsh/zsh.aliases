@@ -231,6 +231,8 @@ alias zmv='noglob zmv'
 alias findstr='noglob findstr'
 alias expr='noglob expr'
 alias zmv='noglob zmv -W'
+alias youtube-mp3='noglob youtube-mp3'
+alias youtube-ogg='noglob youtube-ogg'
 
 # FOLDS END {{{1
 # }}}1
