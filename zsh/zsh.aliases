@@ -230,6 +230,7 @@ alias rbrn='noglob rbrn'
 alias zmv='noglob zmv'
 alias findstr='noglob findstr'
 alias expr='noglob expr'
+alias zmv='noglob zmv -W'
 
 # FOLDS END {{{1
 # }}}1
