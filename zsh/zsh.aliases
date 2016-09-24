@@ -116,7 +116,7 @@ alias -g U='--help 2>&1 | head' # show usage.
 alias -g V='| v -'
 alias -g R='| ruby -e'
 alias -g P='| peco'
-alias -g Y='| clip'
+alias -g Y='| tyy | clip'
 alias -g LOG=' 2>&1 | tee -a log.txt'
 
 alias -g N='>/dev/null'
@@ -295,6 +295,7 @@ alias startvm='vboxmanage startvm'
 alias vlc-clear='rm -r .cache/vlc/'
 alias url-encode="ruby -r erb -e 'puts ERB::Util.url_encode(ARGV.empty? ? gets.rstrip : ARGV.join(\" \"))'"
 alias ip-sub='ip a show dev $(ip route | awk "/^default/{print \$5}") | awk "/inet/{print \$2}"'
+alias tyy='tee $(tty)'
 
 
 
