@@ -181,7 +181,7 @@ pull-these(){
 }
 
 host-list(){
-  sudo nmap -sP "${1:-$(ip-sub)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
+  sudo nmap -sP "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
 }
 
 cons-web(){
