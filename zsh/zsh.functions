@@ -48,7 +48,9 @@ show-src(){
 
 sticky-enable(){
   dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable false
-  dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable true
+  if ((${1:-1} != 0)); then
+    dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable true
+  fi
 }
 
 countdown(){
