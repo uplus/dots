@@ -82,7 +82,15 @@ rprompt-bg() {
   fi
 }
 
-export PROMPT='%F{190}%(6~|...|)%5~%F{255} %# %f'
+prompt-color(){
+  if (($UID == 0)); then
+    echo 196
+  else
+    echo 190
+  fi
+}
+
+export PROMPT='%F{$(prompt-color)}%(6~|...|)%5~%F{255} %# %f'
 export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
