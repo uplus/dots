@@ -241,7 +241,7 @@ findstr(){
   # echo "opt: $opt"
   # echo "str: $str"
 
-  find $location $opt -type f -exec grep -IHl "$str" {} \; 2> /dev/null
+  find "${location}" ${opt} -type f -exec grep -iIHl "${str}" {} \; 2> /dev/null
 }
 # }}}
 
@@ -395,9 +395,10 @@ mac-arp(){
 
 google(){
   if (($# == 0)); then
-    echo "usage: $0 word"
+    echo "usage: $* word"
   else
-    xdg-open "https://www.google.co.jp/search?q=${1}&ie=utf-8&oe=utf-8&hl=ja"
+    arg="$(echo ${*} | sed -e 's/  */+/g')"
+    xdg-open "https://www.google.co.jp/search?q=${arg}&ie=utf-8&oe=utf-8&hl=ja"
   fi
 }
 
