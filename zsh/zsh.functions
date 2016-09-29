@@ -405,3 +405,28 @@ google(){
 gdb-disas(){
   echo 'set height unlimited\ndisas ' "${2:-main}" | gdb "${1}"
 }
+
+tops(){
+  return
+
+  top
+  htop
+  nethogs
+  iftop
+  iotop
+  atop      アクティブなプロセスのみ?
+  slabtop   メモリ
+  jnettop   ホストとポートごとに表示
+}
+
+stats(){
+  return
+
+  # https://blog.riywo.com/2011/02/20/192123/
+  ifstat
+  netstat -taopn
+  vmstat
+  iostat -x
+  dstat -f
+  mpstat
+}
