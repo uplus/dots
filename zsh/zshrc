@@ -385,10 +385,11 @@ bindkey "^[h" run-help
   bindkey '^O' zle_filter_select_file
 
   zle_filter_open_file(){
-    BUFFER='v '
-    CURSOR=${#BUFFER}
     zle_filter_select_file
-    zle accept-line
+    if (($#BUFFER != 0)); then
+      BUFFER="v ${BUFFER}"
+      zle accept-line
+    fi
   }
   zle -N zle_filter_open_file
   bindkey '' zle_filter_open_file
@@ -406,6 +407,13 @@ bindkey "^[h" run-help
   }
   zle -N zle_play_music
   bindkey '^Xm' zle_play_music
+
+  zle_filter_commands(){
+    BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco)"
+    CURSOR=${#BUFFER}
+  }
+  zle -N zle_filter_commands
+  bindkey 'c' zle_filter_commands
 
   zle_pry(){
     BUFFER=pry
