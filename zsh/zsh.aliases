@@ -190,7 +190,7 @@ if in_path apt-get; then
     alias a.sh='apt-cache show'
   fi
 
-  alias a.u='a.ud && a.ug && a.c'
+  alias a.u='a.ud && a.ug'
   alias a.c='sudo apt-get autoremove && sudo apt-get autoclean'
   alias a.fs='apt-file -i search'
   alias upgradable='apt list --upgradable'
