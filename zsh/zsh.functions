@@ -412,6 +412,37 @@ gdb-disas(){
   echo 'set height unlimited\ndisas ' "${2:-main}" | gdb "${1}"
 }
 
+# Verify write permission.
+# Ignore directory.
+trash-safe-file(){
+  if [[ -d ${name} ]]; then
+    warn "cannot remove '${name}': Is a directory"
+    return 0
+  elif [[ -w ${1} ]]; then
+    echo -n "remove write-protected file ${1}? " >&2
+    if ! $(read -q); then
+      return 0
+    fi
+  fi
+  trash "${1}"
+}
+
+# ディレクトリが内包する全てのファイルの削除判定をしてまとめて消す
+trash-safe-dir(){
+  echo-color 31 'trash: write protected files'
+  find "${1}" -type f -not -writable E
+  echo-color 31 'trash: write protected dirs'
+  find "${1}" -type d -not -readable -or -type d -not -writable -or -type d -not -executable E
+  echo
+
+  if $(read -q "?Remove ${1} including these files? "); then
+    trash "${1}"
+    echo -e '\nRemoved!'
+  else
+    echo
+  fi
+}
+
 tops(){
   return
 
