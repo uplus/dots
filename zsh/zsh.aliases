@@ -299,7 +299,7 @@ alias vlc-clear='rm -r .cache/vlc/'
 alias url-encode="ruby -r erb -e 'puts ERB::Util.url_encode(ARGV.empty? ? gets.rstrip : ARGV.join(\" \"))'"
 alias ip-sub='ip a show dev $(ip route | awk "/^default/{print \$5}") | awk "/inet/{print \$2}"'
 alias tyy='tee $(tty)'
-
+alias gip='curl --silent --show-error inet-ip.info'
 
 
 #shortening
