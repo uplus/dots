@@ -285,7 +285,7 @@ alias here='ls -ld $PWD'
 alias dfh='{df -h | head -1; df -h | tail --lines=+2 | sort}'
 alias bigs='ls -A | xargs -I{} du -sm "{}" 2>/dev/null | awk "{if(9 < \$1) print}" | distribution'
 alias ::='echo $PWD && gs E'
-alias r='noglob ruby -e "include Math; puts eval ARGV.join(\" \")" --'
+alias r='noglob ruby -r prime -e "include Math; puts eval ARGV.join(\" \")" --'
 alias rr='while read line; do r "${line}"; done'
 alias killall='killall -i -I'
 alias mounted="mount -l | grep '^/dev/' | sort"
