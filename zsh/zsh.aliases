@@ -292,6 +292,7 @@ alias mounted="mount -l | grep '^/dev/' | sort"
 alias devinfo="sudo fdisk --color=always -l /dev/sd? | sed -e '/^$/d' -e 's/Disk \//\nDisk /g'"
 alias devs='df -hTx tmpfs'
 alias _=sudo
+alias __=sudoedit
 alias mii-toolv='sudo mii-tool -vv'
 alias odh='od -A x -t x1z -v '
 alias startvm='vboxmanage startvm'
