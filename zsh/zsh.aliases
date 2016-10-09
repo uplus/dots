@@ -264,6 +264,12 @@ if in_path rlwrap; then
   alias telnet='rlwrap telnet'
 fi
 
+if in_path colordiff; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
+
 
 #utilities
 alias histrank="history 1 | awk '{print \$2}' | sort | uniq -c | sort -nr"
