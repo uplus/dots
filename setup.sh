@@ -102,10 +102,10 @@ clone_myrepos() { #{{{
     my_repo='https://github.com/u10e10'
   fi
 
-  git clone $my_repo/vim.git $HOME/.vim/
+  git clone --depth 1 $my_repo/vim.git $HOME/.vim/
   install_dein
-  git clone $my_repo/utilities.git $HOME/code/utilities
-  git clone $my_repo/rename.git $HOME/code/ruby/rename
+  git clone --depth 1 $my_repo/utilities.git $HOME/code/utilities
+  git clone --depth 1 $my_repo/rename.git $HOME/code/ruby/rename
 } #}}}
 
 install_rbenv() { #{{{
@@ -134,7 +134,7 @@ install_ruby_with_rbenv() { #{{{
 } #}}}
 
 install_dein(){
-  git clone https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
+  git clone --depth 1 https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
 }
 
 install_peco(){
