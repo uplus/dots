@@ -467,3 +467,8 @@ stats(){
   dstat -f
   mpstat
 }
+
+mirrorsort(){
+  sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.cp
+  sudo rankmirrors -m rank
+}
