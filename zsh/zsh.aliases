@@ -69,8 +69,8 @@ alias ggrep='noglob git grep -iIn'
 alias clang="clang $C_COMP_OPT"
 alias clang++="clang++ $CPP_COMP_OPT"
 # alias gcc="\gcc $GCC_OPT"
-alias gccg="\gcc -g $GCC_OPT"
-# alias gcc32="\gcc -m32 $GCC_OPT"
+# alias gccg="\gcc -g $GCC_OPT"
+alias gcc32="\gcc -m32 $GCC_OPT"
 # alias gccg32="\gcc -g -m32 $GCC_OPT"
 alias gdb='gdb -q'
 # alias gdba='gdb -q a.out'
@@ -262,7 +262,12 @@ fi
 if in_path rlwrap; then
   alias nc='rlwrap nc'
   alias telnet='rlwrap telnet'
+  alias ruby='rlwrap ruby'
+  alias python='rlwrap python'
+  alias python2='rlwrap python2'
+  alias python3='rlwrap python3'
 fi
+
 
 if in_path colordiff; then
   alias diff='colordiff -u'
