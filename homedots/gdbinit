@@ -11,3 +11,5 @@ set print asm-demangle on
 define d
   disassemble
 end
+
+source ~/.peda/peda.py
