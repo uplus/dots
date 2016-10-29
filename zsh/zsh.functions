@@ -472,3 +472,21 @@ mirrorsort(){
   sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.cp
   sudo rankmirrors -m rank
 }
+
+lsmod(){
+  if (($# == 0)); then
+    command lsmod
+  else
+    command lsmod | grep -E "${*}"
+  fi
+
+}
+
+sl(){
+  sleep 0.4
+  echo 'l「もしかして」'
+  sleep 1.2
+  echo 's「私たち」'
+  sleep 1.4
+  echo '「「入れ替わってる！？！？！？」」'
+}
