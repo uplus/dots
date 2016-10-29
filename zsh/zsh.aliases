@@ -3,7 +3,7 @@
 #color {{{1
 alias ls='ls  --color=auto'
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
+alias egrep='grep -E --color=auto'
 alias fgrep='fgrep --color=auto'
 
 #ls {{{1
@@ -43,7 +43,7 @@ alias vr='v -R'
 alias vl="vim -c 'normal \`0' -c 'bwipeout #'"
 alias v.min='v -N -u NONE -U NONE -i NONE --noplugin'
 alias v.sjis='v -c ":e ++enc=cp932"'
-alias vimopt='vim --version | \egrep "^\+|^-"'
+alias vimopt='vim --version | \grep -E "^\+|^-"'
 
 #git {{{1
 alias t='tig'
