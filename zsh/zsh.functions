@@ -409,7 +409,7 @@ google(){
 }
 
 gdb-disas(){
-  echo 'set height unlimited\ndisas ' "${2:-main}" | gdb "${1}"
+  gdb -q --batch --eval-command="disas ${2:-main}" "${1:-a.out}"
 }
 
 # Verify write permission.
