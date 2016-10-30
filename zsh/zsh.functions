@@ -490,3 +490,12 @@ sl(){
   sleep 1.4
   echo '「「入れ替わってる！？！？！？」」'
 }
+
+clangs(){
+  : "${1:? source file}"
+  clang -O0 -m32 -fno-stack-protector -o "${1%.*}" "${1}"
+}
+
+elf-sec(){
+  objdump -d -j ."${2:-init}" --no "${1:-a.out}"
+}
