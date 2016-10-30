@@ -9,7 +9,21 @@ set charset UTF8
 set print asm-demangle on
 
 define d
-  disassemble
+  if $argc == 0
+    disassemble
+  else
+    disassemble $arg0
+  end
 end
+
+define ir
+  if $argc == 0
+    i r esp ebp eip
+  else
+    i r $arg0
+  end
+end
+
+
 
 source ~/.peda/peda.py
