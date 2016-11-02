@@ -499,3 +499,33 @@ clangs(){
 elf-sec(){
   objdump -d -j ."${2:-init}" --no "${1:-a.out}"
 }
+
+proxy-on(){
+  proxy="${1:? server:port}"
+  export http_proxy="${proxy}"
+  export https_proxy="${proxy}"
+  export ftp_proxy="${proxy}"
+  export rsync_proxy="${proxy}"
+  export all_proxy="${proxy}"
+  export HTTP_PROXY="${proxy}"
+  export HTTPS_PROXY="${proxy}"
+  export FTP_PROXY="${proxy}"
+  export RSYNC_PROXY="${proxy}"
+  export ALL_PROXY="${proxy}"
+  export no_proxy='localhost,127.0.0.1,localaddress,.localdomain.com'
+}
+
+proxy-off(){
+    unset http_proxy
+    unset https_proxy
+    unset ftp_proxy
+    unset rsync_proxy
+    unset all_proxy
+    unset HTTP_PROXY
+    unset HTTPS_PROXY
+    unset FTP_PROXY
+    unset RSYNC_PROXY
+    unset ALL_PROXY
+    unset no_proxy
+    echo -e 'Proxy env var unseted.'
+}
