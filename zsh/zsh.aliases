@@ -156,6 +156,7 @@ hash -d music=$HOME/Music
 hash -d pictures=$HOME/Pictures
 hash -d templates=$HOME/Templates
 hash -d videos=$HOME/Videos
+hash -d volume=/run/media/uplus/volume
 
 hash -d dein=$HOME/.cache/dein/repos/github.com
 
@@ -252,6 +253,7 @@ alias pgrep='pgrep -l'
 alias ag='ag --smart-case --hidden'
 alias less='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init'
 alias dmesg='dmesg --color=always -e L' # -Hだとless動作が揃わない
+alias xtrlock='xtrlock -f'
 if in_path nodejs; then
   alias js=nodejs
 elif in_path node; then
@@ -270,7 +272,6 @@ if in_path rlwrap; then
   alias python2='rlwrap python2'
   alias python3='rlwrap python3'
 fi
-
 
 if in_path colordiff; then
   alias diff='colordiff -u'
