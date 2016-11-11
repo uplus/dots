@@ -240,6 +240,7 @@ alias youtube-ogg='noglob youtube-ogg'
 # }}}1
 
 #override
+alias sudo='sudo -E'
 alias irb='irb --simple-prompt'
 alias pry='pry --simple-prompt'
 alias mv='mv -i'
