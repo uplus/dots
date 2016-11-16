@@ -5,6 +5,7 @@
   editor = $EDITOR
   excludesfile = ~/.gitignore
   pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+  quotepath = false
 [color]
   ui = true
 [push]
@@ -81,4 +82,4 @@
   souji = clean -fd
   open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
 [pull]
-	ff = true
+  ff = true
