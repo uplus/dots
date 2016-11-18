@@ -13,6 +13,9 @@
 [diff]
   algorithm = histogram
   tool      = vimdiff
+[pull]
+  # rebase = true
+  ff = only
 [merge]
   tool = vimdiff
 [rebase]
@@ -81,5 +84,3 @@
   merge-to-master = !"git checkout master && git merge --ff-only -"
   souji = clean -fd
   open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
-[pull]
-  ff = true
