@@ -150,15 +150,21 @@ hash -d ksnctf=$HOME/codes/ctf/ksnctf/
 hash -d ylibs=$HOME/codes/ylibs/
 
 hash -d desktop=$HOME/Desktop
-hash -d documents=$HOME/Documents
-hash -d downloads=$HOME/Downloads
+hash -d doc=$HOME/Documents
+hash -d down=$HOME/Downloads
 hash -d music=$HOME/Music
-hash -d pictures=$HOME/Pictures
+hash -d pic=$HOME/Pictures
 hash -d templates=$HOME/Templates
 hash -d videos=$HOME/Videos
+hash -d mount=/run/media/uplus
 hash -d volume=/run/media/uplus/volume
+hash -d large=/run/media/uplus/volume/large
+hash -d vm=/run/media/uplus/volume/vm
 
 hash -d dein=$HOME/.cache/dein/repos/github.com
+hash -d var=$HOME/works/@var/
+hash -d cbook=$HOME/codes/ctf/cbook/
+hash -d jprog=$HOME/codes/jprog/
 
 #shell {{{1
 alias resh='unset fpath; exec ${SHELL:-zsh} -l'
