@@ -154,6 +154,7 @@ hash -d music=$HOME/Music
 hash -d pic=$HOME/Pictures
 hash -d templates=$HOME/Templates
 hash -d videos=$HOME/Videos
+hash -d pub=$HOME/Public
 
 hash -d mount=$MOUNT
 hash -d volume=$MOUNT/volume
