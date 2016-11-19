@@ -51,6 +51,7 @@ export REPO_HTTPS='https://github.com/u10e10'
 export REPO_SSH='git@github.com:u10e10'
 export ZSH_DOT_DIR="$(dirname "$(readlink -f $HOME/.zshenv)")"
 export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
+export MOUNT='/run/media/uplus'
 export LC_COLLATE=C
 
 # Order is important

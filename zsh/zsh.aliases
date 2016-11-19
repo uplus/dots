@@ -142,9 +142,7 @@ hash -d vim=$HOME/.vim/
 
 hash -d codes=$HOME/codes/
 hash -d smp=$HOME/codes/smp/
-hash -d utils=$HOME/codes/utilities/
-hash -d ruby=$HOME/codes/ruby/
-hash -d rails=$HOME/codes/rails/
+hash -d utils=$DOT_DIR/utils
 hash -d ctf=$HOME/codes/ctf/
 hash -d ksnctf=$HOME/codes/ctf/ksnctf/
 hash -d ylibs=$HOME/codes/ylibs/
@@ -156,10 +154,11 @@ hash -d music=$HOME/Music
 hash -d pic=$HOME/Pictures
 hash -d templates=$HOME/Templates
 hash -d videos=$HOME/Videos
-hash -d mount=/run/media/uplus
-hash -d volume=/run/media/uplus/volume
-hash -d large=/run/media/uplus/volume/large
-hash -d vm=/run/media/uplus/volume/vm
+
+hash -d mount=$MOUNT
+hash -d volume=$MOUNT/volume
+hash -d large=$MOUNT/volume/large
+hash -d vm=$MOUNT/volume/vm
 
 hash -d dein=$HOME/.cache/dein/repos/github.com
 hash -d var=$HOME/works/@var/
