@@ -47,8 +47,13 @@ is_comment(){
 
 check_repos() {
   local st
-  for git_path in $(cat $rc_file); do
-    is_comment $git_path && print_comment "${git_path}" 3 && continue
+
+  cat "${rc_file}" | while read git_path; do
+    if is_comment $git_path; then
+      print_comment "${git_path}" 3
+      continue
+    fi
+
     st=$(git -C $git_path -c color.status=always $g_status)
     echo "$(simple_color $git_path) $st"
     [[ -n $(echo $st | sed -e 1d) ]] && echo
@@ -83,8 +88,11 @@ case "${mode}" in
     local count=0
     local push_count=0
 
-    for git_path in $(cat $rc_file); do
-      is_comment $git_path && print_comment "${git_path}" 3 && continue
+    cat "${rc_file}" | while read git_path; do
+      if is_comment $git_path; then
+        print_comment "${git_path}" 3
+        continue
+      fi
       ! has_ahead $git_path && continue
       : $[count+=1]
       simple_color $git_path
@@ -99,9 +107,14 @@ case "${mode}" in
     local count=0
     local push_count=0
 
-    for git_path in $(cat $rc_file); do
-      is_comment $git_path && print_comment "${git_path}" 3 && continue
+    cat "${rc_file}" | while read git_path; do
       : $[count+=1]
+
+      if is_comment $git_path; then
+        print_comment "${git_path}" 3
+        continue
+      fi
+
       simple_color $git_path
       git -C $git_path $g_status
       git -C $git_path pull --ff-only
@@ -111,7 +124,11 @@ case "${mode}" in
 
     echo "$push_count/$count pulled"
     ;; # }}}
-  list) for git_path ($(cat $rc_file)) simple $git_path ;;
+  list)
+    cat "${rc_file}" | while read git_path; do
+      simple $git_path
+    done
+    ;;
   edit) "${EDITOR}" $rc_file ;;
   git) # {{{
     for git_path in $(cat $rc_file); do
