@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 set -u
+# TODO change to absolute
 current="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)"
 
-make_dirs() { #{{{
-  mkdir -v $HOME/bin
-  mkdir -v $HOME/src
-  mkdir -vm 700 $HOME/tmp
-  mkdir -vm 700 $HOME/works
-  mkdir -vm 700 $HOME/.ssh
-  mkdir -vm 700 $HOME/codes
+make_dirs_other(){ #{{{
+  mkdir -vp $HOME/src
+  mkdir -vpm 700 $HOME/codes
+} #}}}
+
+make_dirs_mini(){ #{{{
+  mkdir -vp $HOME/bin
+  mkdir -vpm 700 $HOME/tmp
+  mkdir -vpm 700 $HOME/works
+  mkdir -vpm 700 $HOME/.ssh
+  mkdir -vpm 700 $HOME/.config
+  mkdir -vpm 700 $HOME/.cache
 } #}}}
 
 link_files() { #{{{
@@ -18,28 +24,44 @@ link_files() { #{{{
   done
 
   lesskey
+
   mkdir -p $HOME/.peco/
   ln -svi $current/peco.json $HOME/.peco/config.json
+
+  mkdir -p $HOME/.percol.d/
+  ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
+
+  mkdir -p $HOME/.config/lilyterm/
+  ln -svi $current/lilyterm-default.conf $HOME/.config/lilyterm/default.conf
 } #}}}
 
-set_dark_theme() {
-  local gtk_config="$HOME/.config/gtk-3.0"
-  [[ -d $gtk_config ]] && mkdir -p "$gtk_config"
-  ln -svi $current/gtk3.css $gtk_config/gtk3.css
-  echo '@import url("gtk3.css");'>> "$gtk_config/gtk.css"
-}
+link_utils_partial(){ #{{{
+  binln $current/utils/chgit.zsh
+  binln $current/utils/chrepo.zsh
+  binln $current/utils/atoh.rb
+  binln $current/utils/htoa.rb
+  binln $current/utils/bcho.rb
+  binln $current/utils/chpat.rb
+} #}}}
 
-setup_zsh() { #{{{
+setup_zsh(){ #{{{
   ln -svi "$current/zsh/zshenv" "$HOME/.zshenv"
   ln -svi "$current/zsh/zshrc" "$HOME/.zshrc"
   mkdir -p $HOME/.zsh
-  [[ ! ${SHELL:-} =~ '/zsh' ]] && chsh -s "$(grep -m 1 zsh /etc/shells)"
-
   zshlocal="${current}/zsh/zshrc.local"
   [[ ! -e $zshlocal ]] && touch "${zshlocal}"
+
+  [[ ! ${SHELL:-} =~ '/zsh' ]] && chsh -s "$(grep -m 1 zsh /etc/shells)"
 } #}}}
 
-pkg_u() { # {{{
+setup_vim(){ #{{{
+  git clone https://github.com/u10e10/vim ~/.vim
+  install_dein
+  mkdir ~/.vim/tmp
+} #}}}
+
+
+pkg_u(){ # {{{
   _pkg_u() {
     add-apt-repository -y ppa:webupd8team/java
     add-apt-repository -y ppa:git-core/ppa
@@ -60,7 +82,7 @@ pkg_u() { # {{{
   sudo _pkg_u
 } #}}}
 
-pkg_u_utility() { #{{{
+pkg_u_utility(){ #{{{
   _pkg_u_utility() {
     add-apt-repository -y ppa:neovim-ppa/unstable
     add-apt-repository -y ppa:ubuntu-desktop/ubuntu-make
@@ -91,7 +113,7 @@ pkg_u_utility() { #{{{
   sudo _pkg_u_utility
 } #}}}
 
-clone_myrepos() { #{{{
+clone_myrepos_tmp(){ #{{{
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
   read -n 1 ssh
@@ -102,22 +124,40 @@ clone_myrepos() { #{{{
     my_repo='https://github.com/u10e10'
   fi
 
-  git clone --depth 1 $my_repo/vim.git $HOME/.vim/
+  git clone $my_repo/vim.git $HOME/.vim/
   install_dein
-  git clone --depth 1 $my_repo/utilities.git $HOME/code/utilities
-  git clone --depth 1 $my_repo/rename.git $HOME/code/ruby/rename
+
+  git clone $my_repo/rbrn.git $HOME/codes/rbrn
 } #}}}
 
-install_rbenv() { #{{{
-  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-  git clone https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
-  git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
-  git clone https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
+# installs {{{
+install_dein(){
+  git clone --depth 1 https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
+}
+
+install_peda(){
+  git clone --depth 1 https://github.com/longld/peda.git ~/.peda
+}
+
+install_peco(){
+  if in_path go; then
+    go get github.com/peco/peco/cmd/peco
+  else
+    url=$(echo https://github.com$(curl -fsSL https://github.com/peco/peco/releases/latest | grep -oP '(?<=href\=\").*linux_amd64[^"]*'))
+    wget "${url}"
+  fi
+}
+
+install_rbenv() {
+  git clone --depth 1 https://github.com/sstephenson/rbenv.git ~/.rbenv
+  git clone --depth 1 https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  git clone --depth 1 https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
+  git clone --depth 1 https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+  git clone --depth 1 https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
   ln -svi $current/default-gems $HOME/.rbenv/default-gems
-} #}}}
+}
 
-install_ruby_with_rbenv() { #{{{
+install_ruby_with_rbenv() {
   local v19 v20 HEAD
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
@@ -131,39 +171,13 @@ install_ruby_with_rbenv() { #{{{
   rbenv global $HEAD
   rbenv rehash
   gem update --system
-} #}}}
-
-install_dein(){
-  git clone --depth 1 https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
-}
-
-install_peco(){
-  if in_path go; then
-    go get github.com/peco/peco/cmd/peco
-  else
-    url=$(echo https://github.com$(curl -fsSL https://github.com/peco/peco/releases/latest | grep -oP '(?<=href\=\").*linux_amd64[^"]*'))
-    wget "${url}"
-  fi
-}
-
-setup_vim(){
-  git clone https://github.com/u10e10/vim ~/.vim
-  install_dein
-  mkdir ~/.vim/tmp
 }
 
 install_linuxbrew() {
   git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
 }
 
-install_commands() { #{{{
-  # need: wget git pip3 make pip3
-  [ ! -e $HOME/bin ] && mkdir $HOME/bin
-  [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
-
-  # sudo pip3 install --upgrade pip
-
-  # tig
+install_tig(){
   git clone https://github.com/jonas/tig ~/src/tig/
   pushd ~/src/tig
   make configure
@@ -172,15 +186,31 @@ install_commands() { #{{{
   sudo make install prefix=/usr/local
   # sudo make install-doc prefix=/usr/local
   popd $current
-} #}}}
-
-# change keymap #{{{
-xmodmap(){
-  dconf write /org/gnome/settings-daemon/plugins/keyboard/active false
-  echo "Please disable override system xkb with Fcitx"
 }
 
-change_keymap() {
+install_psysh() {
+  [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
+}
+#}}}
+
+# misc {{{
+vlc_dvd(){
+  sudo apt-get install vlc libdvdread4
+  sudo /usr/share/doc/libdvdread4/install-css.sh
+}
+
+set_dark_theme(){
+  local gtk_config="$HOME/.config/gtk-3.0"
+  [[ -d $gtk_config ]] && mkdir -p "$gtk_config"
+  ln -svi $current/gtk3.css $gtk_config/gtk3.css
+  echo '@import url("gtk3.css");'>> "$gtk_config/gtk.css"
+}
+
+disable-settings-daemon-keyboard(){
+  dconf write /org/gnome/settings-daemon/plugins/keyboard/active false
+}
+
+change_keymap(){
   sudo ln -s $current/u10.xkb /usr/share/X11/xkb/symbols/u10
   sudo rm /var/lib/xkb/*
 
@@ -194,53 +224,72 @@ change_keymap() {
 }
 #}}}
 
-vlc_dvd() {
-  sudo apt-get install vlc libdvdread4
-  sudo /usr/share/doc/libdvdread4/install-css.sh
-}
-
-#TODO: ubuntu centos archに対応させる
-#       rubyやclang,phpなどバージョンがめんどくさいリポジトリがある
-
-common() {
-  make_dirs
+mini(){
+  make_dirs_mini
   link_files
+  link_utils_partial
   setup_zsh
   setup_vim
-  git clone https://github.com/u10e10/utilities ~/codes/utilities
 }
 
-#TODO: temporary
+# TODO making
+myenv(){
+  mini
+  make_dirs_other
+}
+
+# TODO tmp
+#TODO: ubuntu centos archに対応させる
+#       rubyやclang,phpなどバージョンがめんどくさいリポジトリがある
 common_apps() {
-  local -a names
-  names="ssh zsh git tig curl wget tmux tree gcc clang ruby python python3 php lua luajit"
-  echo $names
+  local -a a b
+  a="ssh zsh git tig curl wget tmux tree"
+  b="gcc clang go ruby python python3 php lua luajit"
 }
 
 in_path(){
   which $@ >/dev/null 2>&1
 }
 
+binln () {
+	local name
+	[[ ! -d $HOME/bin ]] && mkdir $HOME/bin
+	for name in $@
+	do
+		ln -svi "${name:a}" "$HOME/bin/${name:t:r}"
+	done
+}
+
+# TODO making
 get_pkg_manager(){
-  case "$(grep -Po '(?<=ID_LIKE\=).*' /etc/os-release)" in
+  case "$(grep -Po '(?<=^ID\=).*|(?<=^ID_LIKE\=).*' /etc/os-release)" in
+    *arch*)
+      alias a.i='sudo pacman -S --noconfirm'
+      alias a.u='sudo pacman -Syyu --noconfirm'
+      alias a.ud='sudo pacman -Syy'
+      ;;
     *debian*)
-      echo apt-get
+      alias a.i='sudo apt-get install -y'
+      alias a.u='sudo apt-get update && sudo apt-get upgrade -y'
+      alias a.ud='sudo apt-get update'
       ;;
     *fedora*)
       if in_path dnf; then
-        echo dnf
+        alias a.i='sudo dnf install -y'
+        alias a.u='sudo dnf upgrade -y'
+        alias a.ud='sudo dnf upgrade -y'
       else
-        echo yum
+        alias a.i='sudo yum install -y'
+        alias a.u='sudo yum update -y'
+        alias a.ud='sudo yum update -y'
       fi
       ;;
     *)
-      if in_path pacman; then
-        echo pacman
-      fi
+      echo 'cannot detect os' >&2
   esac
 }
 
-help() {
+help(){
   grep -o "^[^ ]*()" setup.sh | sed "s/()//g"
 }
 
