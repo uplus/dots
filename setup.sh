@@ -194,6 +194,19 @@ install_psysh() {
 #}}}
 
 # misc {{{
+ime_vars(){
+  cat <<- END | sudo tee -a /etc/profile
+
+export XIM_PROGRAM="fcitx"
+export XIM="fcitx"
+export XIM_ARGS="-d"
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+export ECORE_IMF_MODULE="xim"
+export XMODIFIERS="@im=fcitx"
+END
+}
+
 vlc_dvd(){
   sudo apt-get install vlc libdvdread4
   sudo /usr/share/doc/libdvdread4/install-css.sh
