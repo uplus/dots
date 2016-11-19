@@ -64,10 +64,12 @@ prompt-return-value() {
   echo " %(?,,%F{196} %?%f)"
 }
 
+in-ssh(){
+  [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]
+}
+
 prompt-ssh() {
-  if [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]; then
-    echo " %F{37}($HOST)%f"
-  fi
+  in-ssh && echo " %F{208}($HOST)%f"
 }
 
 # vimなど特定のbgコマンドを表示する
@@ -84,9 +86,11 @@ rprompt-bg() {
 
 prompt-color(){
   if (($UID == 0)); then
-    echo 196
+    echo 226
+  elif in-ssh; then
+    echo 208
   else
-    echo 190
+    echo 198
   fi
 }
 
