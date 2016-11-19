@@ -492,9 +492,19 @@ sl(){
   echo '「「入れ替わってる！？！？！？」」'
 }
 
-clangs(){
+test-build(){
   : "${1:? source file}"
-  clang -O0 -m32 -fno-stack-protector -o "${1%.*}" "${1}"
+  "${CMD}" -O0 -m32 -fno-stack-protector -o "${1%.*}" "${1}"
+}
+
+gccs(){
+  export CMD=gcc
+  test-build ${@}
+}
+
+clangs(){
+  export CMD=clang
+  test-build ${@}
 }
 
 elf-sec(){
