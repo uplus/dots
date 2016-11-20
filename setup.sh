@@ -265,11 +265,14 @@ in_path(){
 }
 
 binln () {
-	local name
+	local name rpath bname
 	[[ ! -d $HOME/bin ]] && mkdir $HOME/bin
 	for name in $@
 	do
-		ln -svi "${name:a}" "$HOME/bin/${name:t:r}"
+    :
+    rpath="$(realpath ${name})"
+    bname="$(basename ${name})"
+    ln -svi "${rpath}" "${bname%.*}"
 	done
 }
 
