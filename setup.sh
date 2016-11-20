@@ -256,7 +256,7 @@ myenv(){
 #       rubyやclang,phpなどバージョンがめんどくさいリポジトリがある
 common_apps() {
   local -a a b
-  a="ssh zsh git tig curl wget tmux tree"
+  a="openssh zsh git tig curl wget tmux tree"
   b="gcc clang go ruby python python3 php lua luajit"
 }
 
