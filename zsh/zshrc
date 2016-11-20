@@ -239,6 +239,12 @@ source "$ZSH_DOT_DIR/zsh.completion"
 
 can_exec _cdd_chpwd && add-zsh-hook chpwd _cdd_chpwd
 
+# title
+title-cmd(){ title "${1}" }
+title-dir(){ title "${PWD}" }
+add-zsh-hook preexec title-cmd
+add-zsh-hook chpwd title-dir
+
 # cdr # {{{
 autoload -Uz chpwd_recent_dirs cdr
 add-zsh-hook chpwd chpwd_recent_dirs
