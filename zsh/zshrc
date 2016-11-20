@@ -237,7 +237,7 @@ unset zplug_path
 #requrie after compinit
 source "$ZSH_DOT_DIR/zsh.completion"
 
-can_exec && add-zsh-hook chpwd _cdd_chpwd
+can_exec _cdd_chpwd && add-zsh-hook chpwd _cdd_chpwd
 
 # cdr # {{{
 autoload -Uz chpwd_recent_dirs cdr
