@@ -323,6 +323,8 @@ alias url-encode="ruby -r erb -e 'puts ERB::Util.url_encode(ARGV.empty? ? gets.r
 alias ip-sub='ip a show dev $(ip route | awk "/^default/{print \$5}") | awk "/inet/{print \$2}"'
 alias tyy='tee $(tty)'
 alias gip='curl --silent --show-error httpbin.org/ip | awk -F\" "/origin/{print \$4}"'
+alias pensay='cowsay -f tux'
+alias rmt=trash
 
 
 #shortening
