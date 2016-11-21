@@ -13,5 +13,5 @@ start="${3}"
 last="${4}"
 
 for i in {"${start}".."${last}"}; do
-  $browser ${url:gs/'{@}'/"${i}"/}
+  eval $browser '${url:gs/{@}/"${i}"/}'
 done
