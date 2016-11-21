@@ -269,10 +269,9 @@ binln () {
 	[[ ! -d $HOME/bin ]] && mkdir $HOME/bin
 	for name in $@
 	do
-    :
-    rpath="$(realpath ${name})"
-    bname="$(basename ${name})"
-    ln -svi "${rpath}" "${bname%.*}"
+    rpath="$(readlink -f "${name}")"
+    bname="$(basename "${name}")"
+    ln -svi "${rpath}" "${HOME}/${bname%.*}"
 	done
 }
 
