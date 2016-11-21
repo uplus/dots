@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 set -ue
 local music_dir rc_file ignore music
+export LC_ALL=en_US.UTF-8
 music_dir="$HOME/Music"
 rc_file="$HOME/.play-music-rc"
 
@@ -17,4 +18,3 @@ music=$(eval "cd '${music_dir}' && find -L -type f | ${ignore} sed 's|^\./||' | 
 
 [[ -z $music ]] && exit
 vlc --daemon "${music_dir}/${music}" 2>/dev/null
-
