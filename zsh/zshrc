@@ -401,7 +401,7 @@ bindkey "^[h" run-help
     fi
   }
   zle -N zle_filter_history
-  in_path peco && bindkey '^R' zle_filter_history
+  in_path peco && bindkey '' zle_filter_history
 
   zle_filter_cdr(){
     zle reset-prompt
@@ -413,7 +413,7 @@ bindkey "^[h" run-help
     fi
   }
   zle -N zle_filter_cdr
-  in_path peco && bindkey '^S' zle_filter_cdr
+  in_path peco && bindkey '' zle_filter_cdr
 
   zle_filter_select_file(){
     zle reset-prompt
@@ -432,7 +432,7 @@ bindkey "^[h" run-help
     fi
   }
   zle -N zle_filter_select_file
-  bindkey '^O' zle_filter_select_file
+  bindkey '' zle_filter_select_file
 
   zle_filter_open_file(){
     zle_filter_select_file
@@ -456,7 +456,8 @@ bindkey "^[h" run-help
     play-music </dev/tty
   }
   zle -N zle_play_music
-  bindkey '^Xm' zle_play_music
+  bindkey 'm' zle_play_music
+  bindkey '' zle_play_music
 
   zle_filter_commands(){
     BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco)"
@@ -464,6 +465,7 @@ bindkey "^[h" run-help
   }
   zle -N zle_filter_commands
   bindkey 'c' zle_filter_commands
+  bindkey '' zle_filter_commands
 
   zle_filter_cd(){
     local str=' '
@@ -484,6 +486,7 @@ bindkey "^[h" run-help
   }
   zle -N zle_pry
   bindkey 'p' zle_pry
+  bindkey '' zle_pry
 
   zle_todo(){
     zle push-line
@@ -492,6 +495,7 @@ bindkey "^[h" run-help
   }
   zle -N zle_todo
   bindkey 't' zle_todo
+  bindkey '' zle_todo
 
   zle_clip(){
     echo -nE "${BUFFER}" | clip
