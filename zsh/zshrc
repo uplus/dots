@@ -401,7 +401,7 @@ bindkey "^[h" run-help
     fi
   }
   zle -N zle_filter_history
-  bindkey '^R' zle_filter_history
+  in_path peco && bindkey '^R' zle_filter_history
 
   zle_filter_cdr(){
     zle reset-prompt
@@ -413,7 +413,7 @@ bindkey "^[h" run-help
     fi
   }
   zle -N zle_filter_cdr
-  bindkey '^S' zle_filter_cdr
+  in_path peco && bindkey '^S' zle_filter_cdr
 
   zle_filter_select_file(){
     zle reset-prompt
