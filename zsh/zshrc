@@ -465,6 +465,19 @@ bindkey "^[h" run-help
   zle -N zle_filter_commands
   bindkey 'c' zle_filter_commands
 
+  zle_filter_cd(){
+    local str=' '
+    while [[ -n $str && $str != '.' ]]; do
+      str="$(find -maxdepth 1 -type d | sed 's|^./||'| peco)"
+      cd "${str}"
+    done
+    BUFFER="cd $(pwd)"
+    zle accept-line
+  }
+  zle -N zle_filter_cd
+  bindkey 'd' zle_filter_cd
+  bindkey '' zle_filter_cd
+
   zle_pry(){
     BUFFER=pry
     zle accept-line
