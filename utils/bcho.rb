@@ -6,10 +6,6 @@ class String
   end
 end
 
-def hex_strip(hex_str)
-  hex_str.sub(/^0x|h$/, '')
-end
-
 def hex_align(hex_str)
   hex_str.insert(0, '0') if hex_str.size.odd?
   hex_str
