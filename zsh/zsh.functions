@@ -555,3 +555,7 @@ trash-elf(){
 doko(){
   find ${2:-} -iname "*${1}*"
 }
+
+aslr(){
+  sudo sysctl -w kernel.randomize_va_space=${1:-2}
+}
