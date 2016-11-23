@@ -1,5 +1,14 @@
 #!/usr/bin/env ruby
 
+# usage:
+#   #little endian binary(use all numeric as a hex)
+#   bcho 0x1234 #=> 3412
+#   bcho 1234   #=> 3412
+#
+#   #string
+#   bcho ls 0  #=> 6c73 00
+#   bcho ls\0  #=> 6c73 30
+
 class String
   def int?
     Integer(self)
@@ -31,7 +40,6 @@ ARGV.map do |str|
   if str.int?
     print to_little(str.dup)
   else
-    str += "\0" if str !~ /\0$/
     print str
   end
 end
