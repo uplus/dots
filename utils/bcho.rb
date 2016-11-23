@@ -3,19 +3,12 @@
 class String
   def int?
     Integer(self)
-  rescue # special
-    Integer('0x'+self)
-    true
-  rescue
-    false
+  rescue # retry with convert to hex
+    Integer('0x'+self) && true rescue false
   end
 
   def to_bin
     self.to_i(16).chr
-  end
-
-  def hex_strip
-    self.dup.hex_strip!
   end
 
   def hex_strip!
@@ -36,7 +29,7 @@ end
 
 ARGV.map do |str|
   if str.int?
-    print to_little(str)
+    print to_little(str.dup)
   else
     str += "\0" if str !~ /\0$/
     print str
