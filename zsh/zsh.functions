@@ -2,7 +2,7 @@
 
 getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
-relative(){ echo ${1:a} | sed -e "s|^$PWD/\?||" }
+relative(){ echo "${1:a}" | sed -e "s|^${PWD}/\?||" }
 warn(){ echo $* >&2 }
 is_num(){ expr "${1}" + 1 >&! /dev/null }
 is-elf(){ file ${1} | awk '$0=$2' | grep -q ELF }
