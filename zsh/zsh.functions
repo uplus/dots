@@ -559,3 +559,7 @@ doko(){
 aslr(){
   sudo sysctl -w kernel.randomize_va_space=${1:-2}
 }
+
+exzip(){
+  unzip -d "${*:r}" "${*}"
+}
