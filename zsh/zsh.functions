@@ -41,7 +41,7 @@ rmd(){
 
 hat(){
   for i in ${@}; do
-    highlight -O xterm256 "${i}"
+    source-highlight-esc.sh "${i}" 2>/dev/null || cat "${i}"
   done
 }
 
