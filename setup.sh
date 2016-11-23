@@ -147,8 +147,12 @@ install_peco(){
   if in_path go; then
     go get github.com/peco/peco/cmd/peco
   else
-    url=$(echo https://github.com$(curl -fsSL https://github.com/peco/peco/releases/latest | grep -oP '(?<=href\=\").*linux_amd64[^"]*'))
-    wget "${url}"
+    req_url='https://api.github.com/repos/peco/peco/releases'
+    target='peco_linux_amd64'
+    get_url="$(curl -sS "${req_url}" | grep 'browser_download_url' | grep "${target}" | head -1 | awk '$0=$2' | tr -d '"')"
+    wget "${get_url}" -O - | tar zxf
+    mv "${target}/peco" "$HOME/bin"
+    rm -r "${target}"
   fi
 }
 
