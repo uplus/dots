@@ -113,12 +113,13 @@ class Note # {{{
   end
 
   def self.exec_git_cmd(cmd)
-    system(@@GIT_CMD + cmd)
+    `#{@@GIT_CMD+cmd}`
   end
 
   def self.commit
     exec_git_cmd('add .')
-    exec_git_cmd("commit -m \"$(#{@@GIT_CMD} status --short -z | sed -e 's/M //g')\"")
+    mess = exec_git_cmd('status --short | sed -e "s/M //"').strip
+    exec_git_cmd("commit -m '#{mess}'")
   end
 
   def self.push
