@@ -174,8 +174,10 @@ setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示し�
 #zgen # {{{
 zgen_path="$HOME/.zgen"
 if [[ ! -e ${zgen_path:-} ]]; then
+  local key
   if read -q key'?install zgen?(y/N) '; then
-    echo; git clone https://github.com/tarjoilija/zgen.git "${zgen_path}"
+    echo
+    git clone https://github.com/tarjoilija/zgen.git "${zgen_path}"
   fi
   unset key
 fi
