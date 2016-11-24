@@ -283,7 +283,7 @@ binln () {
 	do
     rpath="$(readlink -f "${name}")"
     bname="$(basename "${name}")"
-    ln -svi "${rpath}" "${HOME}/${bname%.*}"
+    ln -svi "${rpath}" "${HOME}/bin/${bname%.*}"
 	done
 }
 
