@@ -59,9 +59,13 @@ setup_zsh(){ #{{{
 } #}}}
 
 setup_vim(){ #{{{
-  git clone https://github.com/u10e10/vim ~/.vim
+  git clone https://github.com/u10e10/vim $HOME/.vim
   install_dein
-  mkdir ~/.vim/tmp
+  mkdir -p $HOME/.vim/tmp
+
+  #nvim
+  mkdri -p ~/.config
+  ln -svi $HOME/.vim $HOME/.config/nvim
 } #}}}
 
 
