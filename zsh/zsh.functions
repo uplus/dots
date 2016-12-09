@@ -414,6 +414,10 @@ google(){
   fi
 }
 
+google-asm(){
+  back google "${1:?opecode}" site:softwaretechnique.jp
+}
+
 gdb-disas(){
   gdb -q --batch --eval-command="disas ${2:-main}" "${1:-a.out}"
 }
