@@ -21,6 +21,7 @@ end
 
 module Kasitime # {{{
   @@baseurl = 'http://www.kasi-time.com/item-%d.html'.freeze
+  @@img_baseurl = 'https://images-na.ssl-images-amazon.com/images/P/%s.jpg'.freeze
   module_function
 
   def url(number)
@@ -62,8 +63,12 @@ module Kasitime # {{{
   end
 
   def save_thumbnail(doc)
-    amazon_url = doc.css('.song_image > a')[0]['href']
-    Amazon.save_img(title(doc), amazon_url)
+    url     = doc.at_css('.song_image > a')['href']
+    id      = URI.parse(url).path.split('/')[3]
+    img_url = @@img_baseurl % id
+
+    name = title(doc) + File.extname(img_url)
+    File.write(name, open(img_url).read)
   end
 
   def get(number)
@@ -71,37 +76,10 @@ module Kasitime # {{{
     save_lyrics(doc)
     save_thumbnail(doc)
   end
-end # }}}
-
-module Amazon # {{{
-  @@user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXXXXXXXXX Safari/XXXXXX Vivaldi/XXXXXXXXXX'
-  module_function
-
-  def doc(url_str)
-    opt = {'User-Agent' => @@user_agent}
-    doc = parse(url_str, opt)
-  end
-
-  def img_url(doc)
-    doc.css('#imgTagWrapperId > img')[0]['data-old-hires']
-  end
-
-  def read_img(img_url)
-    open(img_url).read
-  end
-
-  def img_name(img_url)
-    File.basename(URI.parse(img_url).path)
-  end
 
   def save_img(name, url_str)
-    img_url = img_url(doc(url_str))
-    name += File.extname(img_url)
-    File.write(name, read_img(img_url))
   end
 end # }}}
-
-end
 
 
 if __FILE__ == $0
