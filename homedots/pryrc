@@ -1,0 +1,2 @@
+Pry.config.pager = true
+Pry.config.color = true
