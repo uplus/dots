@@ -16,3 +16,6 @@ sheet
 gist
 pwnlib
 pcoder
+color_echo
+nokogiri
+tty-pager
