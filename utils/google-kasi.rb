@@ -76,16 +76,29 @@ def put_cand(cand)
 end
 
 begin
-  cands = Google.search('ライオン')
+  cands = Google.search(ARGV.shift)
   cand = Google.select(cands, &method(:put_cand))
+  exit unless cand
 
-  # select  [lyrics[save, out], thumbnail, all]
-  puts Kasitime.lyrics(parse(cand[:url]))
+  p cand
+  url = cand[:url]
 
+  case input_num('[0:all, 1:lyrics, 2:thumbnail, other: quit]> ')
+  when 0
+    Kasitime.get(url)
+  when 1
+    doc = Kasitime.doc(url)
+    puts Kasitime.save_lyrics(doc)
+  when 2
+    # TODO show graphics in terminal
+    doc = Kasitime.doc(url)
+    Kasitime.save_thumbnail(doc)
+  else
+    exit
+  end
 rescue => e
   puts "Error"
-  p e, e.backtrace, e.message
-ensure
+  puts e, e.message, e.backtrace
   binding.pry
 end
 
