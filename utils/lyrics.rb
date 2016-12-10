@@ -19,11 +19,16 @@ rescue OpenURI::HTTPRedirect => e
   retry
 end
 
-module Kasitime
+module Kasitime # {{{
+  @@baseurl = 'http://www.kasi-time.com/item-%d.html'.freeze
   module_function
 
-  def doc(number)
-    parse('http://www.kasi-time.com/item-%d.html' % number)
+  def url(number)
+    @@baseurl % number
+  end
+
+  def doc(arg)
+    parse(arg.kind_of?(Integer)? url(arg): arg)
   end
 
   def title(doc)
@@ -37,6 +42,19 @@ module Kasitime
     text.sub!(/\Avar\s*lyrics\s*=\s*'/, '')
     text.sub!(/';\z/, '')
     text
+  end
+
+  def info(doc)
+    table    = doc.at_css('.person_list_and_other_contents')
+    title    = table.at_css('h1').text.strip
+    category = table.at_css('.other_list').at_css('tr > td').text.gsub(/\s+/, ' ').strip
+    person   = table.at_css('.person_list').css('a').text.gsub(/\s+/, ' ').strip
+    {title: title, category: category, person: person}
+  end
+
+  def info_str(arg)
+    hash = arg.kind_of?(Nokogiri::HTML::Document)? info(arg): arg
+    "%{title} -- %{category} - %{person}" % hash
   end
 
   def save_lyrics(doc)
@@ -53,13 +71,14 @@ module Kasitime
     save_lyrics(doc)
     save_thumbnail(doc)
   end
-end
+end # }}}
 
-module Amazon
+module Amazon # {{{
+  @@user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXXXXXXXXX Safari/XXXXXX Vivaldi/XXXXXXXXXX'
   module_function
 
   def doc(url_str)
-    opt = { 'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXXXXXXXXX Safari/XXXXXX Vivaldi/XXXXXXXXXX'}
+    opt = {'User-Agent' => @@user_agent}
     doc = parse(url_str, opt)
   end
 
@@ -67,7 +86,7 @@ module Amazon
     doc.css('#imgTagWrapperId > img')[0]['data-old-hires']
   end
 
-  def read(img_url)
+  def read_img(img_url)
     open(img_url).read
   end
 
@@ -78,9 +97,17 @@ module Amazon
   def save_img(name, url_str)
     img_url = img_url(doc(url_str))
     name += File.extname(img_url)
-    File.write(name, read(img_url))
+    File.write(name, read_img(img_url))
   end
+end # }}}
+
 end
 
-# main
-Kasitime.get(ARGV[0].to_i)
+
+if __FILE__ == $0
+  begin
+    Kasitime.get(ARGV[0].to_i)
+  rescue
+    binding.pry
+  end
+end
