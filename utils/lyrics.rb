@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
@@ -81,5 +82,5 @@ module Amazon
   end
 end
 
-
-Kasitime.get(77645)
+# main
+Kasitime.get(ARGV[0].to_i)
