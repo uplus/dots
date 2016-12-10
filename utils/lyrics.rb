@@ -59,25 +59,22 @@ module Kasitime # {{{
   end
 
   def save_lyrics(doc)
-    File.write(title(doc)+'.txt', lyrics(doc))
+    text = lyrics(doc)
+    File.write(title(doc)+'.txt', text)
+    text
   end
 
   def save_thumbnail(doc)
     url     = doc.at_css('.song_image > a')['href']
     id      = URI.parse(url).path.split('/')[3]
     img_url = @@img_baseurl % id
-
-    name = title(doc) + File.extname(img_url)
-    File.write(name, open(img_url).read)
+    File.write(title(doc)+'.jpg', open(img_url).read)
   end
 
-  def get(number)
-    doc = doc(number)
-    save_lyrics(doc)
+  def get(arg)
+    doc = doc(arg)
+    puts save_lyrics(doc)
     save_thumbnail(doc)
-  end
-
-  def save_img(name, url_str)
   end
 end # }}}
 
