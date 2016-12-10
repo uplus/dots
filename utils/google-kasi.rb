@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
-require 'pry'
-
 require_relative './lyrics.rb'
-
-#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def puts_color(color_num, str)
   puts "\e[38;5;#{color_num}m#{str}\e[00m"
@@ -38,6 +34,7 @@ module Google
     doc = parse(url_str)
   end
 
+  # return [{title: , url: , description: }]
   def cands(doc)
     doc.css('#search .g').map do |cand|
       title = cand.at_css('.r > a').text
@@ -47,27 +44,23 @@ module Google
     end
   end
 
-  def select(cands)
-    case cands.size
-    when 0
-      nil
-    when 1
-      cands[0]
-    else
-      pager do
-        cands.each_with_index do |cand, i|
-          print "#{i} "
-          yield cand
-        end
-      end
-
-      num = input_num("[0..#{cands.size-1}]> ")
-      cands[num] rescue nil
-    end
-  end
-
   def search(query)
     cands(doc(url(query)))
+  end
+
+  # show candidates and select it interactively
+  def select(cands, &block)
+    return cands[0] if cands.size <= 1
+
+    pager do
+      cands.each_with_index do |cand, i|
+        print "#{i} "
+        block.call cand
+      end
+    end
+
+    num = input_num("[0..#{cands.size-1}]> ")
+    cands[num] rescue nil
   end
 end
 
