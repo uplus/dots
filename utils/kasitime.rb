@@ -18,17 +18,40 @@ rescue OpenURI::HTTPRedirect => e
   retry
 end
 
-def title(doc)
-  doc.css('.person_list_and_other_contents > h1').text.rstrip
-end
+module Kasitime
+  module_function
 
-def lyrics(doc)
-  js_text = doc.css('.center > script')[0].text
-  html_text = js_text.split("\n").grep(/^\s*var\s*lyrics\s*=/)[0]
-  text = Nokogiri::HTML.parse(html_text).xpath('//p').inner_html.gsub('<br>', "\n")
-  text.sub!(/\Avar\s*lyrics\s*=\s*'/, '')
-  text.sub!(/';\z/, '')
-  text
+  def doc(number)
+    parse('http://www.kasi-time.com/item-%d.html' % number)
+  end
+
+  def title(doc)
+    doc.css('.person_list_and_other_contents > h1').text.rstrip
+  end
+
+  def lyrics(doc)
+    js_text = doc.css('.center > script')[0].text
+    html_text = js_text.split("\n").grep(/^\s*var\s*lyrics\s*=/)[0]
+    text = Nokogiri::HTML.parse(html_text).xpath('//p').inner_html.gsub('<br>', "\n")
+    text.sub!(/\Avar\s*lyrics\s*=\s*'/, '')
+    text.sub!(/';\z/, '')
+    text
+  end
+
+  def save_lyrics(doc)
+    File.write(title(doc)+'.txt', lyrics(doc))
+  end
+
+  def save_thumbnail(doc)
+    amazon_url = doc.css('.song_image > a')[0]['href']
+    Amazon.save_img(title(doc), amazon_url)
+  end
+
+  def get(number)
+    doc = doc(number)
+    save_lyrics(doc)
+    save_thumbnail(doc)
+  end
 end
 
 module Amazon
@@ -58,15 +81,5 @@ module Amazon
   end
 end
 
-def thumbnail(doc)
-  amazon_url = doc.css('.song_image > a')[0]['href']
-  Amazon.save_img(title(doc), amazon_url)
-end
 
-url = 'http://www.kasi-time.com/item-%d.html' % 61054
-doc = parse(url)
-lyrics = lyrics(doc)
-
-p lyrics
-
-thumbnail(doc)
+Kasitime.get(77645)
