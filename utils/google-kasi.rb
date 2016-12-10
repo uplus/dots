@@ -38,8 +38,8 @@ module Google
   def cands(doc)
     doc.css('#search .g').map do |cand|
       title = cand.at_css('.r > a').text
-      url = 'http://'+cand.at_css('cite').text
-      description = cand.at_css('span').text
+      url = 'http://'+cand.at_css('.s > div > cite').text
+      description = cand.at_css('.st').text
       {title: title, url: url, description: description}
     end
   end
