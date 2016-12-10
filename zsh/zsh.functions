@@ -567,3 +567,9 @@ aslr(){
 exzip(){
   unzip -d "${*:r}" "${*}"
 }
+
+cwget(){
+  clip -o
+  echo
+  wget -O "${1:?filename}" "$(clip -o)"
+}
