@@ -22,45 +22,50 @@ rescue Interrupt
 end
 
 
-module Google
-  @@baseurl = 'https://www.google.co.jp/search?q=site:www.kasi-time.com+intitle:%s'.freeze
-  module_function
+class Google
+  @@baseurl = 'https://www.google.co.jp/search?q=site:%s+intitle:%s'.freeze
+  attr_reader :doc, :cands
 
-  def url(query)
-    @@baseurl % query
+  def initialize(site, word)
+    @doc = parse(self.class.url(site, word))
+    @cands = self.class.parse_cands(@doc)
   end
 
-  def doc(url_str)
-    doc = parse(url_str)
+  def each
+    @cands.each
   end
 
-  # return [{title: , url: , description: }]
-  def cands(doc)
-    doc.css('#search .g').map do |cand|
-      title = cand.at_css('.r > a').text
-      url = 'http://'+cand.at_css('.s > div > cite').text
-      description = cand.at_css('.st').text
-      {title: title, url: url, description: description}
-    end
-  end
-
-  def search(query)
-    cands(doc(url(query)))
+  def size
+    @cands.size
   end
 
   # show candidates and select it interactively
-  def select(cands, &block)
-    return cands[0] if cands.size <= 1
+  def select_one
+    return @cands[0] if size <= 1
 
     pager do
-      cands.each_with_index do |cand, i|
+      each.with_index do |cand, i|
         print "#{i} "
-        block.call cand
+        yield cand
       end
     end
 
-    num = input_num("[0..#{cands.size-1}]> ")
-    cands[num] rescue nil
+    num = input_num("[0..#{size-1}]> ")
+    @cands[num] rescue nil
+  end
+
+  def self.url(site, word)
+    @@baseurl % [site, word]
+  end
+
+  # return [{title: , url: , desc: }]
+  def self.parse_cands(doc)
+    doc.css('#search .g').map do |cand|
+      title = cand.at_css('.r > a').text
+      url   = 'http://'+cand.at_css('.s > div > cite').text
+      desc  = cand.at_css('.st').text
+      {title: title, url: url, desc: desc}
+    end
   end
 end
 
@@ -76,12 +81,14 @@ def put_cand(cand)
 end
 
 begin
-  cands = Google.search(ARGV.shift)
-  cand = Google.select(cands, &method(:put_cand))
+  res = Google.new('www.kasi-time.com', ARGV.shift)
+  cand = res.select_one &method(:put_cand)
   exit unless cand
 
   p cand
   url = cand[:url]
+
+  binding.pry
 
   case input_num('[0:all, 1:lyrics, 2:thumbnail, other: quit]> ')
   when 0
@@ -102,3 +109,13 @@ rescue => e
   binding.pry
 end
 
+=begin TODO
+option
+  quick-mode: Show raw cands
+  images:     Cannot use pager
+  length:     Length of part of lyrics
+
+
+  pagerがきれいな必要ないかも
+    Enterで一行づつだしてけばいか
+=end
