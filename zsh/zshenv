@@ -37,7 +37,6 @@ fi
 export PAGER='less'
 export MANPAGER='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines'
 
-export GZIP='-v9N'
 export WWW_BROWSER=w3m
 export DOWNLOADER="wget -S"
 # export TERM=screen-256color-bce # italicが使えない
