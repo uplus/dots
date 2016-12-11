@@ -147,9 +147,13 @@ install_peda(){
   git clone --depth 1 https://github.com/longld/peda.git ~/.peda
 }
 
-install_jid(){
+install_other(){
   # json incremental digger
   go get -v github.com/simeji/jid/cmd/jid
+
+  # display images in the terminal
+  go get -v github.com/ichinaski/pxl
+
 }
 
 install_peco(){
