@@ -3,6 +3,8 @@ require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
+USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXX'.freeze
+
 def parse(url_str, opt={})
   charset = nil
   opt[:redirect] = false
