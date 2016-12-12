@@ -50,12 +50,13 @@ class Cache # {{{
   end
 end # }}}
 
-class Scraping
+# auto caching
+class Scraping # {{{
   @@user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXX'.freeze
   attr_reader :doc
 
   def cache
-    @cache ||= Cache.new(self.class)
+    @cache ||= Cache.new(self.class.to_s)
   end
 
   # auto redirect http -> https
@@ -69,16 +70,16 @@ class Scraping
   end
 
   def get_html(url_str, opt={})
-    return @cache.load(url_str) if @cache.exist?(url_str)
+    return cache.load(url_str) if cache.exist?(url_str)
     # convert anything to utf-8
     str = open_auto_redirect(url_str, opt){|f| f.read.encode!('utf-8', f.charset)}
-    @cache.save(url_str, str)
+    cache.save(url_str, str)
   end
 
   def parse(url_str, opt={})
     @doc =  Nokogiri::HTML.parse(get_html(url_str, opt))
   end
-end
+end # }}}
 
 module Kasitime # {{{
   @@baseurl = 'http://www.kasi-time.com/item-%d.html'.freeze
