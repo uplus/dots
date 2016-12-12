@@ -8,10 +8,19 @@ require 'pry'
 # one instance one directory
 class Cache # {{{
   @@base_cache_dir = File.join(Dir.home, '.cache').freeze
+  @@app_dir = ''
   attr_reader :cache_dir
 
+  def self.app_dir
+    @@app_dir
+  end
+
+  def self.app_dir=(dir)
+    @@app_dir = dir
+  end
+
   def initialize(dir_name)
-    @cache_dir = File.join(@@base_cache_dir, dir_name).freeze
+    @cache_dir = File.join(@@base_cache_dir, @@app_dir, dir_name).freeze
     FileUtils.mkdir_p(@cache_dir)
   end
 
@@ -137,6 +146,10 @@ class Kasitime < Scraping # {{{
     File.write(info[:title] +'.jpg', open_caching(img_url))
   end
 end # }}}
+
+
+# TODO: tmp
+Cache.app_dir = 'lyrics'
 
 if __FILE__ == $0
   begin
