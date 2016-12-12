@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative './lyrics.rb'
+require_relative File.join(Dir.home, '.dots/utils/lyrics.rb')
 
 def color_str(color_num, str)
   "\e[38;5;#{color_num}m#{str}\e[00m"
@@ -81,7 +81,7 @@ end
 
 begin
   res = Google.new('www.kasi-time.com', ARGV.shift)
-  cand = res.select_one &method(:put_cand)
+  cand = res.select_one(&method(:put_cand))
   exit unless cand
 
   p cand
@@ -89,20 +89,16 @@ begin
 
   binding.pry
 
+  kasi = Kasitime.new(url)
   case input_num('[0:all, 1:lyrics, 2:thumbnail, other: quit]> ')
   when 0
-    kasi = Kasitime.new(url)
     puts kasi.save_lyrics
     kasi.save_thumbnail
   when 1
-    kasi = Kasitime.new(url)
     puts kasi.save_lyrics
   when 2
     # TODO show graphics in terminal
-    kasi = Kasitime.new(url)
     kasi.save_thumbnail
-  else
-    exit
   end
 rescue => e
   puts "Error"
