@@ -81,69 +81,66 @@ class Scraping # {{{
   end
 end # }}}
 
-module Kasitime # {{{
-  @@baseurl = 'http://www.kasi-time.com/item-%d.html'.freeze
-  @@img_baseurl = 'https://images-na.ssl-images-amazon.com/images/P/%s.jpg'.freeze
-  module_function
+class Kasitime < Scraping # {{{
+  @@base_url = 'http://www.kasi-time.com/item-%d.html'.freeze
+  @@base_img_url = 'https://images-na.ssl-images-amazon.com/images/P/%s.jpg'.freeze
 
-  def url(number)
-    @@baseurl % number
+  # Take number or full-url
+  def initialize(arg)
+    if arg.kind_of? Integer
+      parse(self.class.url(arg))
+    else
+      parse(arg)
+    end
   end
 
-  def doc(arg)
-    parse(arg.kind_of?(Integer)? url(arg): arg)
+  def self.url(number)
+    @@base_url % number
   end
 
-  def title(doc)
-    doc.css('.person_list_and_other_contents > h1').text.rstrip
-  end
-
-  def lyrics(doc)
-    js_text = doc.css('.center > script')[0].text
-    html_text = js_text.split("\n").grep(/^\s*var\s*lyrics\s*=/)[0]
-    text = Nokogiri::HTML.parse(html_text).xpath('//p').inner_html.gsub('<br>', "\n")
-    text.sub!(/\Avar\s*lyrics\s*=\s*'/, '')
-    text.sub!(/';\z/, '')
-    text
-  end
-
-  def info(doc)
+  def info
+    return @info if @info
     table    = doc.at_css('.person_list_and_other_contents')
-    title    = table.at_css('h1').text.strip
-    category = table.at_css('.other_list').at_css('tr > td').text.gsub(/\s+/, ' ').strip
-    person   = table.at_css('.person_list').css('a').text.gsub(/\s+/, ' ').strip
-    {title: title, category: category, person: person}
+    @info = {
+      title:    table.at_css('h1').text.strip,
+      category: table.at_css('.other_list').at_css('tr > td').text.gsub(/\s+/, ' ').strip,
+      person:   table.at_css('.person_list').css('a').text.gsub(/\s+/, ' ').strip
+    }
   end
 
-  def info_str(arg)
-    hash = arg.kind_of?(Nokogiri::HTML::Document)? info(arg): arg
-    "%{title} -- %{category} - %{person}" % hash
+  def info_str
+    "%{title} -- %{category} - %{person}" % info
   end
 
-  def save_lyrics(doc)
-    text = lyrics(doc)
-    File.write(title(doc)+'.txt', text)
-    text
+  def lyrics
+    return @lyrics if @lyrics
+    html_text = doc.at_css('.center > script').child.text[/(?<=var lyrics = ').[^']*(?<!;'$)/]
+    elem = Nokogiri::HTML.parse(html_text).at_xpath('//p')
+    elem.search('br').each{|br| br.replace("\n")}
+    @lyrics = elem.text
   end
 
-  def save_thumbnail(doc)
+  def save_lyrics
+    File.write(info[:title] +'.txt', lyrics)
+    lyrics
+  end
+
+  def save_thumbnail
     url     = doc.at_css('.song_image > a')['href']
     id      = URI.parse(url).path.split('/')[3]
-    img_url = @@img_baseurl % id
-    File.write(title(doc)+'.jpg', open(img_url).read)
-  end
-
-  def get(arg)
-    doc = doc(arg)
-    puts save_lyrics(doc)
-    save_thumbnail(doc)
+    img_url = @@base_img_url % id
+    File.write(info[:title] +'.jpg', open(img_url).read)
   end
 end # }}}
 
 if __FILE__ == $0
   begin
-    Kasitime.get(ARGV[0].to_i)
+    kasi = Kasitime.new(ARGV[0].to_i)
+    puts kasi.save_lyrics
+    kasi.save_thumbnail
   rescue
+    puts $!.message
+    puts $!.backtrace
     binding.pry
   end
 end
