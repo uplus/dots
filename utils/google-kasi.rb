@@ -114,7 +114,9 @@ option
   quick-mode: Show raw cands
   images:     Cannot use pager
   length:     Length of part of lyrics
+  search-num: 表示数
 
+  cache
 
   pagerがきれいな必要ないかも
     Enterで一行づつだしてけばいか

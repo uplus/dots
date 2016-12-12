@@ -1,9 +1,44 @@
 #!/usr/bin/env ruby
 require 'open-uri'
+require 'fileutils'
 require 'nokogiri'
 require 'pry'
 
+class Cache
+  @@base_cache_dir = File.join(Dir.home, '.cache').freeze
+  attr_reader :cache_dir
+
+  def initialize(dir_name)
+    @cache_dir = File.join(@@base_cache_dir, dir_name).freeze
+    mkdir
+  end
+
+  def path(*path_parts)
+    File.join(@cache_dir, *path_parts)
+  end
+
+  def mkdir(*path_parts)
+    FileUtils.mkdir_p(path(*path_parts))
+  end
+
+  # return Time
+  def date(name)
+    File.stat(path(name)).mtime rescue nil
+  end
+
+  def save(name, str)
+    File.write(path(name), str)
+  end
+
+  def load(name)
+    File.read(path(name)) rescue nil
+  end
+end
+
 USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXX'.freeze
+
+# url ベースでキャッシュを保存
+cache = Cache.new('kasitime')
 
 def parse(url_str, opt={})
   charset = nil
