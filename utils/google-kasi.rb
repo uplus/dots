@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 require_relative './lyrics.rb'
 
-def puts_color(color_num, str)
-  puts "\e[38;5;#{color_num}m#{str}\e[00m"
+def color_str(color_num, str)
+  "\e[38;5;#{color_num}m#{str}\e[00m"
 end
 
 def pager
@@ -71,12 +71,12 @@ end
 
 def put_cand(cand)
   unless /^\/item/ =~ URI.parse(cand[:url]).path
-    puts_color 184, "%{title}(%{url})\n" % cand
+    puts color_str(184, "%{title}(%{url})\n" % cand)
     return
   end
 
   doc = Kasitime.doc(cand[:url])
-  puts_color 111, Kasitime.info_str(doc)
+  puts color_str(111, Kasitime.info_str(doc))
   puts Kasitime.lyrics(doc).gsub("\n", ' ')[0..60], ''
 end
 
