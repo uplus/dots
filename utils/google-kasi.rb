@@ -22,26 +22,24 @@ rescue Interrupt
 end
 
 
-class Google
+class Google < Scraping
   @@baseurl = 'https://www.google.co.jp/search?q=site:%s+intitle:%s'.freeze
-  attr_reader :doc, :cands
 
   def initialize(site, word)
-    @doc = parse(self.class.url(site, word))
-    @cands = self.class.parse_cands(@doc)
+    parse(self.class.url(site, word))
   end
 
   def each
-    @cands.each
+    cands.each
   end
 
   def size
-    @cands.size
+    cands.size
   end
 
   # show candidates and select it interactively
   def select_one
-    return @cands[0] if size <= 1
+    return cands[0] if size <= 1
 
     pager do
       each.with_index do |cand, i|
@@ -51,33 +49,34 @@ class Google
     end
 
     num = input_num("[0..#{size-1}]> ")
-    @cands[num] rescue nil
-  end
-
-  def self.url(site, word)
-    @@baseurl % [site, word]
+    cands[num] rescue nil
   end
 
   # return [{title: , url: , desc: }]
-  def self.parse_cands(doc)
-    doc.css('#search .g').map do |cand|
+  def cands
+    @cands ||= doc.css('#search .g').map do |cand|
       title = cand.at_css('.r > a').text
       url   = 'http://'+cand.at_css('.s > div > cite').text
       desc  = cand.at_css('.st').text
       {title: title, url: url, desc: desc}
     end
   end
+
+  def self.url(site, word)
+    @@baseurl % [site, word]
+  end
 end
 
+#TODO キャッシュが大量に増えるしむだ?
 def put_cand(cand)
   unless /^\/item/ =~ URI.parse(cand[:url]).path
     puts color_str(184, "%{title}(%{url})\n" % cand)
     return
   end
 
-  doc = Kasitime.doc(cand[:url])
-  puts color_str(111, Kasitime.info_str(doc))
-  puts Kasitime.lyrics(doc).gsub("\n", ' ')[0..60], ''
+  kasi = Kasitime.new(cand[:url])
+  puts color_str(111, kasi.info_str)
+  puts kasi.lyrics.gsub("\n", ' ')[0..60], ''
 end
 
 begin
@@ -92,14 +91,16 @@ begin
 
   case input_num('[0:all, 1:lyrics, 2:thumbnail, other: quit]> ')
   when 0
-    Kasitime.get(url)
+    kasi = Kasitime.new(url)
+    puts kasi.save_lyrics
+    kasi.save_thumbnail
   when 1
-    doc = Kasitime.doc(url)
-    puts Kasitime.save_lyrics(doc)
+    kasi = Kasitime.new(url)
+    puts kasi.save_lyrics
   when 2
     # TODO show graphics in terminal
-    doc = Kasitime.doc(url)
-    Kasitime.save_thumbnail(doc)
+    kasi = Kasitime.new(url)
+    kasi.save_thumbnail
   else
     exit
   end
