@@ -69,11 +69,16 @@ class Scraping # {{{
     retry
   end
 
-  def get_html(url_str, opt={})
+  # &block or #read
+  def open_caching(url_str, opt={}, &block)
     return cache.load(url_str) if cache.exist?(url_str)
+    data = open_auto_redirect(url_str, opt, &(block_given? ? block : :read))
+    cache.save(url_str, data)
+  end
+
+  def get_html(url_str, opt={})
     # convert anything to utf-8
-    str = open_auto_redirect(url_str, opt){|f| f.read.encode!('utf-8', f.charset)}
-    cache.save(url_str, str)
+    open_caching(url_str, opt){|f| f.read.encode!('utf-8', f.charset)}
   end
 
   def parse(url_str, opt={})
@@ -129,7 +134,7 @@ class Kasitime < Scraping # {{{
     url     = doc.at_css('.song_image > a')['href']
     id      = URI.parse(url).path.split('/')[3]
     img_url = @@base_img_url % id
-    File.write(info[:title] +'.jpg', open(img_url).read)
+    File.write(info[:title] +'.jpg', open_caching(img_url))
   end
 end # }}}
 
