@@ -1,24 +1,26 @@
 #!/usr/bin/env ruby
 require 'open-uri'
 require 'fileutils'
+require 'base64'
 require 'nokogiri'
 require 'pry'
 
-class Cache
+# one instance one directory
+class Cache # {{{
   @@base_cache_dir = File.join(Dir.home, '.cache').freeze
   attr_reader :cache_dir
 
   def initialize(dir_name)
     @cache_dir = File.join(@@base_cache_dir, dir_name).freeze
-    mkdir
+    FileUtils.mkdir_p(@cache_dir)
   end
 
-  def path(*path_parts)
-    File.join(@cache_dir, *path_parts)
+  def encode(name)
+    Base64.urlsafe_encode64(name)
   end
 
-  def mkdir(*path_parts)
-    FileUtils.mkdir_p(path(*path_parts))
+  def path(name)
+    File.join(@cache_dir, encode(name))
   end
 
   # return Time
@@ -26,16 +28,27 @@ class Cache
     File.stat(path(name)).mtime rescue nil
   end
 
+  def exist?(name)
+    File.exist?(path(name))
+  end
+
   def save(name, str)
-    File.write(path(name), str)
+    File.write(path(name), str, encoding: 'utf-8')
+    str
   end
 
   def load(name)
-    File.read(path(name)) rescue nil
+    File.read(path(name), encoding: 'utf-8') rescue nil
   end
-end
 
-USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXX'.freeze
+  def remove(name)
+    FileUtils.rm(path(name))
+  end
+
+  def clear
+    FileUtils.rm_r(@cache_dir)
+  end
+end # }}}
 
 # url ベースでキャッシュを保存
 cache = Cache.new('kasitime')
