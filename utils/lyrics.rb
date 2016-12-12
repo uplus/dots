@@ -50,23 +50,34 @@ class Cache # {{{
   end
 end # }}}
 
-# url ベースでキャッシュを保存
-cache = Cache.new('kasitime')
+class Scraping
+  @@user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXX'.freeze
+  attr_reader :doc
 
-def parse(url_str, opt={})
-  charset = nil
-  opt[:redirect] = false
-  html = open(URI.encode(url_str), opt) do |f|
-    charset = f.charset
-    f.read
+  def cache
+    @cache ||= Cache.new(self.class)
   end
-  Nokogiri::HTML.parse(html, nil, charset)
 
-rescue OpenURI::HTTPRedirect => e
-  # for http -> https redirect
-  puts 'redirect: %s -> %s' % [url_str, e.uri.to_s]
-  url_str = e.uri.to_s
-  retry
+  # auto redirect http -> https
+  def open_auto_redirect(url_str, opt={}, &block)
+    opt[:redirect] = false
+    open(URI.encode(url_str), opt, &block)
+  rescue OpenURI::HTTPRedirect => e
+    puts 'redirect: %s -> %s' % [url_str, e.uri.to_s]
+    url_str = e.uri.to_s
+    retry
+  end
+
+  def get_html(url_str, opt={})
+    return @cache.load(url_str) if @cache.exist?(url_str)
+    # convert anything to utf-8
+    str = open_auto_redirect(url_str, opt){|f| f.read.encode!('utf-8', f.charset)}
+    @cache.save(url_str, str)
+  end
+
+  def parse(url_str, opt={})
+    @doc =  Nokogiri::HTML.parse(get_html(url_str, opt))
+  end
 end
 
 module Kasitime # {{{
@@ -127,7 +138,6 @@ module Kasitime # {{{
     save_thumbnail(doc)
   end
 end # }}}
-
 
 if __FILE__ == $0
   begin
