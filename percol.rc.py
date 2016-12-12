@@ -4,7 +4,7 @@ FinderMultiQueryMigemo.dictionary_path = '/usr/share/cmigemo/utf-8/migemo-dict'
 FinderMultiQueryMigemo.minimum_query_length = 2
 
 # Run command file for percol
-percol.view.PROMPT  = r"<bold><cyan>QUERY </cyan>[a]:</bold> %q"
+percol.view.PROMPT  = r"<bold><cyan>[percol]</cyan>:</bold> %q"
 percol.view.CANDIDATES_LINE_SELECTED = ("on_blue", "black")
 percol.view.CANDIDATES_LINE_QUERY    = ("on_cyan", "black")
 
@@ -23,7 +23,8 @@ percol.import_keymap({
     "C-p": lambda percol: percol.command.select_previous(),
     "C-k": lambda percol: percol.command.kill_end_of_line(),
 
-    "C-y" : lambda percol: percol.command.yank(),
+    # "C-y": lambda percol: percol.command.yank(),
+    "C-y": lambda percol: percol.command.mark_all(),
     "C-v": lambda percol: percol.command.select_next_page(),
     "M-v": lambda percol: percol.command.select_previous_page(),
     "M-<": lambda percol: percol.command.select_top(),
