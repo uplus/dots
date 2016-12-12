@@ -64,6 +64,10 @@ class Scraping # {{{
   @@user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXX'.freeze
   attr_reader :doc
 
+  def initialize(url_str, opt={})
+    @doc = get_doc(url_str, opt)
+  end
+
   def cache
     @cache ||= Cache.new(self.class.to_s)
   end
@@ -90,8 +94,8 @@ class Scraping # {{{
     open_caching(url_str, opt){|f| f.read.encode!('utf-8', f.charset)}
   end
 
-  def parse(url_str, opt={})
-    @doc =  Nokogiri::HTML.parse(get_html(url_str, opt))
+  def get_doc(url_str, opt={})
+    Nokogiri::HTML.parse(get_html(url_str, opt))
   end
 end # }}}
 
@@ -101,11 +105,7 @@ class Kasitime < Scraping # {{{
 
   # Take number or full-url
   def initialize(arg)
-    if arg.kind_of? Integer
-      parse(self.class.url(arg))
-    else
-      parse(arg)
-    end
+    super(arg.kind_of?(Integer)? self.class.url(arg): arg)
   end
 
   def self.url(number)

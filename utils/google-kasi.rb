@@ -26,7 +26,7 @@ class Google < Scraping
   @@baseurl = 'https://www.google.co.jp/search?q=site:%s+intitle:%s'.freeze
 
   def initialize(site, word)
-    parse(self.class.url(site, word))
+    super(self.class.url(site, word))
   end
 
   def each
