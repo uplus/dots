@@ -263,6 +263,7 @@ alias dmesg='dmesg --color=always -e L' # -Hだとless動作が揃わない
 alias xtrlock='xtrlock -f'
 alias source-highlight='source-highlight -f esc -i'
 alias gzip='gzip -v9N'
+alias gist='gist -c -p'
 if in_path nodejs; then
   alias js=nodejs
 elif in_path node; then
