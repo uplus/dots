@@ -33,12 +33,12 @@ class Cache # {{{
   end
 
   def save(name, str)
-    File.write(path(name), str, encoding: 'utf-8')
+    File.write(path(name), str)
     str
   end
 
   def load(name)
-    File.read(path(name), encoding: 'utf-8') rescue nil
+    File.read(path(name)) rescue nil
   end
 
   def remove(name)
