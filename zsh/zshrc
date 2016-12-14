@@ -359,39 +359,41 @@ bindkey "^]" insert-last-word
 # \ -
 bindkey "^_" undo
 # insert
-bindkey "^[[2~" overwrite-mode
+bindkey "[2~" overwrite-mode
 # delete
-bindkey "^[[3~" delete-char
+bindkey "[3~" delete-char
 # backspace
 bindkey "^?" backward-delete-char
 
 # <S-Tab>
-bindkey "^[[Z" reverse-menu-complete
+bindkey "[Z" reverse-menu-complete
 
 bindkey "^X^X" edit-command-line
 
 # cursor-key and other # {{{
-bindkey "^[[A" up-line-or-history
-bindkey "^[[B" down-line-or-history
-bindkey "^[[C" forward-char
-bindkey "^[[D" backward-char
-bindkey "^[OA" up-line-or-history
-bindkey "^[OB" down-line-or-history
-bindkey "^[OC" forward-char
-bindkey "^[OD" backward-char
-bindkey "^[OH" beginning-of-line
-bindkey "^[OF" end-of-line
+bindkey "[A" up-line-or-history
+bindkey "[B" down-line-or-history
+bindkey "[C" forward-char
+bindkey "[D" backward-char
+bindkey "[H" beginning-of-line
+bindkey "[F" end-of-line
+bindkey "OA" up-line-or-history
+bindkey "OB" down-line-or-history
+bindkey "OC" forward-char
+bindkey "OD" backward-char
+bindkey "OH" beginning-of-line
+bindkey "OF" end-of-line
 # }}}
 
 # alt-bind # {{{
-bindkey "^[b" backward-word
-bindkey "^[f" forward-word
-bindkey "^[n" history-search-forward
-bindkey "^[p" history-search-backward
+bindkey "b" backward-word
+bindkey "f" forward-word
+bindkey "n" history-search-forward
+bindkey "p" history-search-backward
 
-bindkey "^[w" kill-word
-bindkey "^[q" push-line
-bindkey "^[h" run-help
+bindkey "w" kill-word
+bindkey "q" push-line
+bindkey "h" run-help
 # }}}
 
   ## original keybind functions # {{{
