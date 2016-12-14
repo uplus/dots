@@ -6,17 +6,13 @@ relative(){ echo "${1:a}" | sed -e "s|^${PWD}/\?||" }
 warn(){ echo $* >&2 }
 is_num(){ expr "${1}" + 1 >&! /dev/null }
 is-elf(){ file ${1} | awk '$0=$2' | grep -q ELF }
-
-back() {
-  nohup $@ >&! /dev/null <&- &!
-}
+back() { nohup $@ >&! /dev/null <&- &! }
 
 echo-color(){
   color="${1}"
   shift
   echo -e "\e[38;5;${color}m${*}\e[00m"
 }
-
 
 autols(){
   [[ ${AUTOLS_DIR:-$PWD} != $PWD ]] && ls -F --color=always
@@ -54,7 +50,7 @@ show-src(){
   done
 }
 
-sticky-enable(){
+sticky-enable-gnome(){
   dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable false
   if ((${1:-1} != 0)); then
     dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable true
@@ -315,7 +311,7 @@ google_translate(){
 }
 
 # improved tree
-uree() {
+uree(){
   local s
   local -a opt
   for s in $@; do
@@ -333,7 +329,7 @@ enc-utf8(){
   done
 }
 
-sizes() {
+sizes(){
   dir="${1:+$(relative $1)/}"
   ls -A "${dir:-./}" | sed "s|^|${dir}|g" | xargs -I{} du -sm '{}' 2>/dev/null | sort -n
 }
@@ -423,6 +419,8 @@ gdb-disas(){
   gdb -q --batch --eval-command="disas ${2:-main}" "${1:-a.out}"
 }
 
+# trash # {{{
+
 # Verify write permission.
 # Ignore directory.
 trash-safe-file(){
@@ -454,7 +452,14 @@ trash-safe-dir(){
   fi
 }
 
-tops(){
+trash-elf(){
+  for i (*); do
+    is-elf "${i}" &&  trash "${i}"
+  done
+}
+# }}}
+
+tops(){ # TODO
   return
 
   top
@@ -467,7 +472,7 @@ tops(){
   jnettop   ホストとポートごとに表示
 }
 
-stats(){
+stats(){ # TODO
   return
 
   # https://blog.riywo.com/2011/02/20/192123/
@@ -490,7 +495,6 @@ lsmod(){
   else
     command lsmod | grep -E "${*}"
   fi
-
 }
 
 sl(){
@@ -522,17 +526,16 @@ elf-sec(){
 }
 
 proxy-on(){
-  proxy="${1:? server:port}"
-  export http_proxy="${proxy}"
-  export https_proxy="${proxy}"
-  export ftp_proxy="${proxy}"
-  export rsync_proxy="${proxy}"
-  export all_proxy="${proxy}"
-  export HTTP_PROXY="${proxy}"
-  export HTTPS_PROXY="${proxy}"
-  export FTP_PROXY="${proxy}"
-  export RSYNC_PROXY="${proxy}"
-  export ALL_PROXY="${proxy}"
+  export http_proxy="${1:? server:port}"
+  export https_proxy="${http_proxy}"
+  export ftp_proxy="${http_proxy}"
+  export rsync_proxy="${http_proxy}"
+  export all_proxy="${http_proxy}"
+  export HTTP_PROXY="${http_proxy}"
+  export HTTPS_PROXY="${http_proxy}"
+  export FTP_PROXY="${http_proxy}"
+  export RSYNC_PROXY="${http_proxy}"
+  export ALL_PROXY="${http_proxy}"
   export no_proxy='localhost,127.0.0.1,localaddress,.localdomain.com'
 }
 
@@ -549,12 +552,6 @@ proxy-off(){
     unset ALL_PROXY
     unset no_proxy
     echo -e 'Proxy env var unseted.'
-}
-
-trash-elf(){
-  for i (*); do
-    is-elf "${i}" &&  trash "${i}"
-  done
 }
 
 doko(){
