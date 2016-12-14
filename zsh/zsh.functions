@@ -571,3 +571,7 @@ cwget(){
   echo
   wget -O "${1:?filename}" "$(clip -o)"
 }
+
+gif-optimize(){
+  convert "${1:?gif path}" -fuzz 7% -layers Optimize "${1:r}.opt.gif"
+}
