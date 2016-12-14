@@ -14,8 +14,9 @@ back() {
 echo-color(){
   color="${1}"
   shift
-  echo -e "\e[${color}m${*}\e[00m"
+  echo -e "\e[38;5;${color}m${*}\e[00m"
 }
+
 
 autols(){
   [[ ${AUTOLS_DIR:-$PWD} != $PWD ]] && ls -F --color=always
