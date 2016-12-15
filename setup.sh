@@ -154,6 +154,9 @@ install_other(){
   # display images in the terminal
   go get -v github.com/ichinaski/pxl
 
+  # go completion
+  go get -v github.com/nsf/gocode
+  gocode set autobuild true
 }
 
 install_peco(){
