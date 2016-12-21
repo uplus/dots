@@ -1,22 +1,26 @@
-rb-readline
-pry
-pry-doc
-pry-byebug
-pry-coolline
-pry-stack_explorer
-bundler
-rfd
-fastri
-rcodetools
-rails_best_practices
-rak
-rspec
-guard
-sheet
-gist
-pwnlib
-pcoder
-color_echo
-nokogiri
-tty-pager
-neovim
+source 'rubygems'
+
+gem 'bundler'
+gem 'color_echo'
+gem 'fastri'
+gem 'gist'
+# gem 'guard'
+gem 'neovim'
+gem 'nokogiri'
+gem 'mechanize'
+gem 'pcoder'
+gem 'pry'
+gem 'pry-byebug'
+gem 'pry-coolline'
+gem 'pry-doc'
+gem 'pry-stack_explorer'
+gem 'pwnlib'
+# gem 'rails_best_practices'
+# gem 'rak'
+gem 'rb-readline'
+gem 'rcodetools'
+gem 'rfd'
+gem 'rake'
+gem 'rspec'
+gem 'sheet'
+# 'tty-pager'
