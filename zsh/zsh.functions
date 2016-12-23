@@ -575,3 +575,9 @@ cwget(){
 gif-optimize(){
   convert "${1:?gif path}" -fuzz 7% -layers Optimize "${1:r}.opt.gif"
 }
+
+json_format(){
+  tmpfile=`mktemp`
+  cat "${1:?JSON file}" | jq . > "${tmpfile}"
+  command mv "${tmpfile}" "${1}"
+}
