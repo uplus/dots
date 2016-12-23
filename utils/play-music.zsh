@@ -16,4 +16,5 @@ local -r songs=$(eval "cd '${music_dir}' && find -L -type f | ${ignore:-} sed 's
 [[ -z $songs ]] && exit
 
 vlc --daemon
-echo "${songs}" | xargs -I{@} vlc --daemon "${music_dir}/{@}" 2>/dev/null
+sleep 0.3
+echo "${songs}" | xargs -I{@} vlc "${music_dir}/{@}" 2>/dev/null
