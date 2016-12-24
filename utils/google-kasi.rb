@@ -48,10 +48,10 @@ end
 
 
 class Google < Scraping
-  @@baseurl = 'https://www.google.co.jp/search?q=site:%s+intitle:%s'.freeze
+  @@baseurl = 'https://www.google.co.jp/search?q=site:%s+intitle:%s&num=%d'.freeze
 
-  def initialize(site, word)
-    super(self.class.url(site, word))
+  def initialize(site, word, num=10)
+    super(self.class.url(site, word, num))
   end
 
   def each
@@ -87,8 +87,8 @@ class Google < Scraping
     end
   end
 
-  def self.url(site, word)
-    @@baseurl % [site, word]
+  def self.url(site, word, num=10)
+    @@baseurl % [site, word, num]
   end
 end
 
