@@ -92,7 +92,7 @@ class Google < Scraping
   end
 end
 
-def put_cand_verbose(cand)
+def put_cand_correct_info(cand)
   unless /^\/item/ =~ URI.parse(cand[:url]).path
     puts color_str(184, "%{title}(%{url})\n" % cand)
     return
@@ -104,6 +104,11 @@ def put_cand_verbose(cand)
 end
 
 def put_cand_default(cand)
+  unless /^\/item/ =~ URI.parse(cand[:url]).path
+    puts color_str(184, "%{title}(%{url})\n" % cand)
+    return
+  end
+
   title = cand[:title].sub(/\s*-\s*歌詞タイム\s*\z/, '')
   info,lyrics = cand[:desc].split('歌い出し:')
   info,lyrics = nil,info unless lyrics # 歌詞のみの場合がある
@@ -140,23 +145,14 @@ rescue => e
   binding.pry
 end
 
-=begin TODO
-option
-  quick-mode: Show raw cands(TODO to be default)
-  details:    (Now)
-  images:     Cannot use pager
 
-  length:     Length of part of lyrics
-  search-num: 表示数
 
-  cache
-
-  pagerがきれいな必要ないかも
-    Enterで一行づつだしてけばいか
-=end
 
 exit
 
 parser = OptionParser.new do |o|
-  o.on('')
+  o.on('-C', '--clear-cache')
+  o.on('-c', '--correct', 'Show correct information of candidates with to parse each web page.')
+  o.on('-n', '--number', 'Set candidates number of google')
+  o.on('-T', '--show-thumbnail', 'Show thumbnail in current terminal(Terminology only)')
 end
