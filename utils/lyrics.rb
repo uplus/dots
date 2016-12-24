@@ -140,16 +140,16 @@ class Kasitime < Scraping # {{{
     @lyrics = elem.text.sub(/\s*\z/, "\n")
   end
 
-  def save_lyrics
-    File.write(info[:title] +'.txt', lyrics)
+  def save_lyrics(base_dir='.')
+    File.write(File.join(base_dir, info[:title]) +'.txt', lyrics)
     lyrics
   end
 
-  def save_thumbnail
+  def save_thumbnail(base_dir='.')
     url     = doc.at_css('.song_image > a')['href']
     id      = URI.parse(url).path.split('/')[3]
     img_url = @@base_img_url % id
-    File.write(info[:title] +'.jpg', open_caching(img_url))
+    File.write(File.join(base_dir, info[:title]) +'.jpg', open_caching(img_url))
   end
 end # }}}
 
