@@ -5,6 +5,12 @@ require 'base64'
 require 'nokogiri'
 require 'pry'
 
+# module OpenURI
+#   def OpenURI.redirectable?(uri, redirect_uri)
+#     true
+#   end
+# end
+
 # one instance one directory
 class Cache # {{{
   @@base_cache_dir = File.join(Dir.home, '.cache').freeze
@@ -59,7 +65,7 @@ class Cache # {{{
   end
 end # }}}
 
-# auto caching
+# auto cache
 class Scraping # {{{
   @@user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/XXXXXX'.freeze
   attr_reader :doc
@@ -131,7 +137,7 @@ class Kasitime < Scraping # {{{
     html_text = doc.at_css('.center > script').child.text[/(?<=var lyrics = ').[^']*(?<!;'$)/]
     elem = Nokogiri::HTML.parse(html_text).at_xpath('//p')
     elem.search('br').each{|br| br.replace("\n")}
-    @lyrics = elem.text
+    @lyrics = elem.text.sub(/\s*\z/, "\n")
   end
 
   def save_lyrics

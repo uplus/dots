@@ -67,7 +67,6 @@ class Google < Scraping
   end
 end
 
-#TODO キャッシュが大量に増えるしむだ?
 def put_cand(cand)
   unless /^\/item/ =~ URI.parse(cand[:url]).path
     puts color_str(184, "%{title}(%{url})\n" % cand)
@@ -101,14 +100,15 @@ begin
     kasi.save_thumbnail
   end
 rescue => e
-  puts "Error"
+  puts 'Error'
   puts e, e.message, e.backtrace
   binding.pry
 end
 
 =begin TODO
 option
-  quick-mode: Show raw cands
+  quick-mode: Show raw cands(TODO to be default)
+  details:    (Now)
   images:     Cannot use pager
   length:     Length of part of lyrics
   search-num: 表示数
