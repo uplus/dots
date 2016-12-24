@@ -62,6 +62,16 @@ class Google < Scraping
     cands.size
   end
 
+  # return [{title: , url: , desc: }]
+  def cands
+    @cands ||= doc.css('#search .g').map do |cand|
+      title = cand.at_css('.r > a').text
+      url   = 'http://'+cand.at_css('.s > div > cite').text
+      desc  = cand.at_css('.st').text.gsub("\n", '')
+      {title: title, url: url, desc: desc}
+    end
+  end
+
   # show candidates and select it interactively
   def select_one
     return cands[0] if size <= 1
@@ -75,16 +85,6 @@ class Google < Scraping
 
     num = input_num("[0..#{size-1}]> ")
     cands[num] rescue nil
-  end
-
-  # return [{title: , url: , desc: }]
-  def cands
-    @cands ||= doc.css('#search .g').map do |cand|
-      title = cand.at_css('.r > a').text
-      url   = 'http://'+cand.at_css('.s > div > cite').text
-      desc  = cand.at_css('.st').text.gsub("\n", '')
-      {title: title, url: url, desc: desc}
-    end
   end
 
   def self.url(site, word, num=10)
