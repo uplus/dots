@@ -79,7 +79,7 @@ ench264(){
   out="${out}.mp4"
 
   echo "Encode '${input}' -> '${out}'"
-  ffmpeg -i "${input}" -vcodec h264 -loglevel warning "${out}"
+  ffmpeg -threads 0 -i "${input}" -vcodec h264 -loglevel warning "${out}"
 }
 
 vboxresize(){ VBoxManage modifymedium --resize $((1024*$1)) $2 }
