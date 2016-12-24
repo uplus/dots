@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 require_relative File.join(Dir.home, '.dots/utils/lyrics.rb')
 
+require 'optparse'
+
 def color_str(color_num, str)
   "\e[38;5;#{color_num}m#{str}\e[00m"
 end
@@ -19,6 +21,29 @@ def input_num(str)
   gets&.to_i
 rescue Interrupt
   nil
+end
+
+def get_pid_stat(pid)
+  pid, comm, state, ppid =  File.read("/proc/#{pid}/stat").split[0..3]
+  {pid: pid.to_i, comm: comm.sub(/\((.*)\)/, '\1'), state: state, ppid: ppid.to_i}
+end
+
+def list_parents(pid)
+  parents = [get_pid_stat(pid)]
+
+  loop do
+    p = parents.last
+    return parents if p[:pid] == 1
+    parents << get_pid_stat(p[:ppid])
+  end
+end
+
+def terminology?
+  list_parents(Process.pid).any?{|p| p[:cmd] = 'terminology' }
+end
+
+def show_img(path)
+  system('tycat -g 50x0', path) if terminology?
 end
 
 
@@ -57,7 +82,7 @@ class Google < Scraping
     @cands ||= doc.css('#search .g').map do |cand|
       title = cand.at_css('.r > a').text
       url   = 'http://'+cand.at_css('.s > div > cite').text
-      desc  = cand.at_css('.st').text
+      desc  = cand.at_css('.st').text.gsub("\n", '')
       {title: title, url: url, desc: desc}
     end
   end
@@ -67,7 +92,7 @@ class Google < Scraping
   end
 end
 
-def put_cand(cand)
+def put_cand_verbose(cand)
   unless /^\/item/ =~ URI.parse(cand[:url]).path
     puts color_str(184, "%{title}(%{url})\n" % cand)
     return
@@ -78,9 +103,18 @@ def put_cand(cand)
   puts kasi.lyrics.gsub("\n", ' ')[0..60], ''
 end
 
+def put_cand_default(cand)
+  title = cand[:title].sub(/\s*-\s*歌詞タイム\s*\z/, '')
+  info,lyrics = cand[:desc].split('歌い出し:')
+  info,lyrics = nil,info unless lyrics # 歌詞のみの場合がある
+
+  puts color_str(111, "#{title} -- #{info}")
+  puts lyrics, ''
+end
+
 begin
   res = Google.new('www.kasi-time.com', ARGV.shift)
-  cand = res.select_one(&method(:put_cand))
+  cand = res.select_one(&method(:put_cand_default))
   exit unless cand
 
   p cand
@@ -98,6 +132,7 @@ begin
   when 2
     # TODO show graphics in terminal
     kasi.save_thumbnail
+
   end
 rescue => e
   puts 'Error'
@@ -110,6 +145,7 @@ option
   quick-mode: Show raw cands(TODO to be default)
   details:    (Now)
   images:     Cannot use pager
+
   length:     Length of part of lyrics
   search-num: 表示数
 
@@ -118,3 +154,9 @@ option
   pagerがきれいな必要ないかも
     Enterで一行づつだしてけばいか
 =end
+
+exit
+
+parser = OptionParser.new do |o|
+  o.on('')
+end
