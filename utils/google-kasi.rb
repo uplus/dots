@@ -150,9 +150,10 @@ end
 
 exit
 
+opts = {}
 parser = OptionParser.new do |o|
-  o.on('-C', '--clear-cache')
   o.on('-c', '--correct', 'Show correct information of candidates with to parse each web page.')
   o.on('-n', '--number', 'Set candidates number of google')
   o.on('-T', '--show-thumbnail', 'Show thumbnail in current terminal(Terminology only)')
+  o.on('-C', '--clear-cache'){|v| opts[:clear_cache] = v}
 end
