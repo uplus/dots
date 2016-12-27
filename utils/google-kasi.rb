@@ -66,10 +66,9 @@ class Google < Scraping
   # return [{title: , url: , desc: }]
   def cands
     @cands ||= doc.css('#search .g').map do |cand|
-      title = cand.at_css('.r > a').text
-      url   = 'http://'+cand.at_css('.s > div > cite').text
-      desc  = cand.at_css('.st').text.gsub("\n", '')
-      {title: title, url: url, desc: desc}
+      {title: cand.at_css('.r > a').text,
+       url: 'http://'+cand.at_css('.s > div > cite').text,
+       desc: cand.at_css('.st').text.gsub("\n", ''),}
     end
   end
 
@@ -77,14 +76,20 @@ class Google < Scraping
   def select_one
     return cands[0] if size <= 1
 
-    pager do
-      each.with_index do |cand, i|
-        yield i, cand
-      end
+    strings = []
+    each.with_index do |cand, i|
+      strings.push(*yield(i, cand), '')
     end
 
-    num = input_num("[0..#{size-1}]> ")
-    cands[num] rescue nil
+    l = Less.new(strings, 1)
+    l.pad.step(8, 3)
+    l.header do |me|
+      me.scr.addcstr('Number> ', 214)
+      me.scr.addcstr(me.pad.input_num)
+    end
+
+    l.show
+    cands[l.pad.input_num] rescue nil
   end
 
   def self.url(site, word, num=10)
@@ -93,32 +98,26 @@ class Google < Scraping
 end
 
 def put_cand_correct_info(i, cand)
-  print "#{i} "
-
   unless /^\/item/ =~ URI.parse(cand[:url]).path
     puts color_str(184, "%{title}(%{url})\n" % cand)
     return
   end
 
   kasi = Kasitime.new(cand[:url])
-  puts color_str(111, kasi.info_str)
-  puts kasi.lyrics.gsub("\n", ' ')[0..60], ''
+  lyrics = kasi.lyrics.gsub("\n", ' ')[0..60]
+  return [["#{i} #{kasi.info_str}", 111], lyrics] # TODO test
 end
 
 def put_cand_default(i, cand)
-  print "#{i} "
-
   unless /^\/item/ =~ URI.parse(cand[:url]).path
-    puts color_str(184, "%{title}(%{url})\n" % cand)
-    return
+    return [["%{title}(%{url})\n" % cand, 184]]
   end
 
   title = cand[:title].sub(/\s*-\s*歌詞タイム\s*\z/, '')
   info,lyrics = cand[:desc].split('歌い出し:')
   info,lyrics = nil,info unless lyrics # 歌詞のみの場合がある
 
-  puts color_str(111, "#{title} -- #{info}")
-  puts lyrics, ''
+  return [["#{i} #{title} -- #{info}", 111], lyrics]
 end
 
 begin
@@ -132,16 +131,19 @@ begin
   binding.pry
 
   kasi = Kasitime.new(url)
-  case input_num('[0:all, 1:lyrics, 2:thumbnail, other: quit]> ')
+  # case input_num('[0:all, 1:lyrics, 2:thumbnail, other: quit]> ')
+  case input_num('[0:read lyrics, 1:save lyrics, 2:save thumbnail, 9:save all, other: quit]> ')
   when 0
-    puts kasi.save_lyrics
-    kasi.save_thumbnail
+    Less.new(kasi.lyrics.gsub(/^\n$/, ' ').split("\n")).show
   when 1
-    puts kasi.save_lyrics
+    kasi.save_lyrics
   when 2
     # TODO show graphics in terminal
     kasi.save_thumbnail
-
+  when 9
+    l = Less.new(kasi.save_lyrics.split)
+    l.show
+    kasi.save_thumbnail
   end
 rescue => e
   puts 'Error'
