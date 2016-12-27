@@ -108,7 +108,6 @@ mve(){ mv "${1}" "${1:r}.${2}" }
 #color {{{
 colorso(){
   local c
-  echo
   for c in {000..255}; do
     echo -n "\e[38;5;${c}m $c"
     [ $(($c%16)) -eq 15 ] && echo
@@ -118,7 +117,11 @@ colorso(){
 
 colorsv(){
   local c
-  echo
+  for c in {000..015}; do
+    echo -n "\e[38;5;${c}m $c"
+    [ $((($c+1)%8)) -eq 0 ] && echo
+  done
+
   for c in {016..255}; do
     echo -n "\e[38;5;${c}m $c"
     [ $(($((c-16))%6)) -eq 5 ] && echo
