@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require_relative File.join(Dir.home, '.dots/utils/lyrics.rb')
+require_relative File.join(Dir.home, 'codes/smp/ruby/curses-pad-less.rb')
 
 require 'optparse'
 
@@ -78,8 +79,7 @@ class Google < Scraping
 
     pager do
       each.with_index do |cand, i|
-        print "#{i} "
-        yield cand
+        yield i, cand
       end
     end
 
@@ -92,7 +92,9 @@ class Google < Scraping
   end
 end
 
-def put_cand_correct_info(cand)
+def put_cand_correct_info(i, cand)
+  print "#{i} "
+
   unless /^\/item/ =~ URI.parse(cand[:url]).path
     puts color_str(184, "%{title}(%{url})\n" % cand)
     return
@@ -103,7 +105,9 @@ def put_cand_correct_info(cand)
   puts kasi.lyrics.gsub("\n", ' ')[0..60], ''
 end
 
-def put_cand_default(cand)
+def put_cand_default(i, cand)
+  print "#{i} "
+
   unless /^\/item/ =~ URI.parse(cand[:url]).path
     puts color_str(184, "%{title}(%{url})\n" % cand)
     return
