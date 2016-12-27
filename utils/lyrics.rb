@@ -149,10 +149,40 @@ class Kasitime < Scraping # {{{
     url     = doc.at_css('.song_image > a')['href']
     id      = URI.parse(url).path.split('/')[3]
     img_url = @@base_img_url % id
-    File.write(File.join(base_dir, info[:title]) +'.jpg', open_caching(img_url))
+    path = File.join(base_dir, info[:title]) +'.jpg'
+    File.write(path, open_caching(img_url))
+    path
   end
 end # }}}
 
+class Google < Scraping # {{{
+  @@baseurl = 'https://www.google.co.jp/search?q=site:%s+intitle:%s&num=%d'.freeze
+
+  def initialize(site, word, num=10)
+    super(self.class.url(site, word, num))
+  end
+
+  def each
+    cands.each
+  end
+
+  def size
+    cands.size
+  end
+
+  # return [{title: , url: , desc: }]
+  def cands
+    @cands ||= doc.css('#search .g').map do |cand|
+      {title: cand.at_css('.r > a').text,
+       url: 'http://'+cand.at_css('.s > div > cite').text,
+       desc: cand.at_css('.st').text.gsub("\n", '')}
+    end
+  end
+
+  def self.url(site, word, num=10)
+    @@baseurl % [site, word, num]
+  end
+end # }}}
 
 # TODO: tmp
 Cache.app_dir = 'lyrics'
