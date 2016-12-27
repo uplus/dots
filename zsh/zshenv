@@ -78,4 +78,4 @@ fpath+=($ZSH_DOT_DIR/func)
 #   xmodmap ~/.xmodmap
 # fi
 
-[[ $- == *i* ]] && stty -ixon -ixoff
+# [[ $- == *i* ]] && stty -ixon -ixoff
