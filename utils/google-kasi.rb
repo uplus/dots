@@ -46,6 +46,22 @@ def show_img(path)
   system('tycat', '-g', '40x0', path) if terminology?
 end
 
+class Curses::Window # {{{
+  def addcstr(str, color=0)
+    attron(Curses.color_pair(color)){ self.addstr(str.to_s) }
+  end
+
+  def addstr_ansi(str)
+    parse_ansicolor(str).each do |elem|
+      if Integer === elem
+        self.attrset(Curses.color_pair(elem)|Curses::A_NORMAL)
+      else
+        self.addstr(elem)
+      end
+    end
+  end
+end # }}}
+
 class String # {{{
   def count_width
     each_char.map(&:width).inject(0, :+) # 初期値が無いと空文字のときnilになる
@@ -93,7 +109,7 @@ class Less # {{{
   end
 
   def addcstr(str, color=0)
-    Curses.attron(Curses.color_pair(color)){ Curses.addstr(str.to_s) }
+    scr.addcstr(str, color)
   end
 
   def show
@@ -111,6 +127,8 @@ class Less # {{{
     attr_reader :pad, :height, :width,
                 :win_area, :x, :y, :x_step, :y_step
 
+    @@MAX_WIDTH = 2000
+
     def initialize(strings, top,left, height,width)
       @input_num = ''
       @height,@width = height,width
@@ -121,20 +139,11 @@ class Less # {{{
     end
 
     def make_pad(strings)
-      strings.map!{|line| parse_ansicolor(line)}
-      @lines_length = strings.map{|line| line.grep(String).map(&:count_width).inject(:+)}
-      @pad = Curses::Pad.new(strings.size, @lines_length.max+2) # 改行記号の分
+      @pad = Curses::Pad.new(strings.size, @@MAX_WIDTH) # 改行記号の分
       pad.keypad = true
 
       strings.each do |line|
-        # addcstrとして切り出せる
-        line.each do |elem|
-          if Integer === elem
-            pad.attrset(Curses.color_pair(elem)|Curses::A_NORMAL)
-          else
-            pad.addstr(elem)
-          end
-        end
+        pad.addstr_ansi(line)
         pad.addstr("⏎\n")
         pad.attrset(Curses::A_NORMAL)
       end
@@ -198,25 +207,23 @@ class Less # {{{
   end # }}}
 end # }}}
 
-class GoogleSelect < Google # {{{
-  def select_one
-    return nil if size == 0
-    if size == 1
-      puts put_cand_default(0, cands[0]).join("\n")
-      return cands[0]
-    end
-
-    l = Less.new(yield(cands), 1)
-    l.pad.step(8, 3)
-    l.header do |me|
-      me.addcstr('Number> ', 214)
-      me.addcstr(me.pad.input_num)
-    end
-
-    l.show
-    cands[l.pad.input_num] rescue nil
+def select_one(cands)
+  return nil if cands.size == 0
+  if cands.size == 1
+    puts put_cand_default(0, cands[0]).join("\n")
+    return cands[0]
   end
-end # }}}
+
+  l = Less.new(yield(cands), 1)
+  l.pad.step(8, 3)
+  l.header do |me|
+    me.addcstr('Number> ', 214)
+    me.addcstr(me.pad.input_num)
+  end
+
+  l.show
+  cands[l.pad.input_num] rescue nil
+end
 
 def put_cand_correct_info(i, cand)
   unless /^\/item/ =~ URI.parse(cand[:url]).path
@@ -240,8 +247,9 @@ def put_cand_default(i, cand)
 end
 
 begin
-  google = GoogleSelect.new('www.kasi-time.com', ARGV.shift)
-  cand = google.select_one do |cands|
+  google = Google.new('www.kasi-time.com', ARGV.shift)
+
+  cand = select_one(google.cands) do |cands|
     cands.map.with_index{|cand, i| [*put_cand_default(i, cand), '']}.flatten
   end
   exit unless cand
