@@ -15,6 +15,15 @@ local -r filter='percol --match-method=migemo'
 local -r songs=$(eval "cd '${music_dir}' && find -L -type f | ${ignore:-} sed 's|^\./||' | ${filter}")
 [[ -z $songs ]] && exit
 
-vlc --daemon
-sleep 0.3
-echo "${songs}" | xargs -I{@} vlc "${music_dir}/{@}" 2>/dev/null
+
+# vlc --daemon
+# sleep 0.3
+# echo "${songs}" | xargs -I{@} vlc "${music_dir}/{@}" # 2>/dev/null
+echo "${songs}" | while read name; do
+  vlc --daemon "${music_dir}/${name}"
+
+  if [[ -z ${flag:-} ]]; then
+    flag=' '
+    sleep 0.2
+  fi
+done
