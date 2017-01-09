@@ -118,7 +118,7 @@ class Note # {{{
 
   def self.commit
     exec_git_cmd('add .')
-    mess = exec_git_cmd('status --short | sed -e "s/M //"').strip
+    mess = exec_git_cmd('status --short | sed -e "s/^..//"').strip
     exec_git_cmd("commit -m '#{mess}'")
   end
 
