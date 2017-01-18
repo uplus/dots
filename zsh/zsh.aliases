@@ -348,4 +348,5 @@ alias ur='cdr'
 alias twme='tw $(tw -user:default 2> /dev/null)'
 alias vg=vagrant
 alias mgrep=migemogrep
+alias gdic='goldendict'
 
