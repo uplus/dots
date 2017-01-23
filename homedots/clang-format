@@ -1,12 +1,12 @@
 ---
-BasedOnStyle: 'Google'
+BasedOnStyle: Google
 AccessModifierOffset: -2
 AlignEscapedNewlinesLeft: true
 AlignTrailingComments: true
 
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: 'Inline'
+AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 
@@ -17,8 +17,8 @@ AlwaysBreakTemplateDeclarations: true
 BinPackArguments: true
 BinPackParameters: true
 
-BreakBeforeBinaryOperators: 'NonAssignment'
-BreakBeforeBraces: 'Attach'
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBraces: Attach
 BreakConstructorInitializersBeforeComma: false
 
 ColumnLimit: 0
@@ -35,12 +35,12 @@ IndentWrappedFunctionNames: false
 
 KeepEmptyLinesAtTheStartOfBlocks: false
 MaxEmptyLinesToKeep: 1
-NamespaceIndentation: 'All'
-PointerAlignment: 'Left'
+NamespaceIndentation: All
+PointerAlignment: Left
 
 SpaceAfterCStyleCast: false
 SpaceBeforeAssignmentOperators: true
-SpaceBeforeParens: 'Never'
+SpaceBeforeParens: Never
 SpaceInEmptyParentheses: false
 SpacesBeforeTrailingComments: 1
 SpacesInAngles: false
@@ -48,6 +48,6 @@ SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 
-Standard: 'Cpp11'
+Standard: Cpp11
 TabWidth: 2
-UseTab: 'Never'
+UseTab: Never
