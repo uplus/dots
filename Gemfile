@@ -1,5 +1,5 @@
 
-source 'rubygems'
+source 'https://rubygems.org'
 
 gem 'bundler'
 gem 'color_echo'
