@@ -83,11 +83,14 @@ ench264(){
 }
 
 xopen(){
-  if [[ ! -e ${1:-.} ]]; then
-    warn "${1:-.} is not exists"
-    return 1
-  fi
-  xdg-open "${1:-.}" >/dev/null 2>&1
+  for i in ${@:-.}; do
+    if [[ ! -e ${i:-.} ]]; then
+      warn "${i:-.} is not exists"
+      return 1
+    fi
+    xdg-open ${i:-.} >/dev/null 2>&1
+  done
+
 }
 
 vboxresize(){ VBoxManage modifymedium --resize $((1024*$1)) $2 }
