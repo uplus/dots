@@ -165,6 +165,7 @@ hash -d dein=$HOME/.cache/dein/repos/github.com
 hash -d var=$HOME/works/@var/
 hash -d cbook=$HOME/codes/ctf/cbook/
 hash -d jprog=$HOME/codes/jprog/
+hash -d otaku=$HOME/codes/otaku-server
 
 #shell {{{1
 alias resh='unset fpath; exec ${SHELL:-zsh} -l'
