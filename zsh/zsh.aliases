@@ -248,6 +248,7 @@ alias youtube-ogg='noglob youtube-ogg'
 # }}}1
 
 #override
+alias watch='watch -c -n 1'
 alias sudo='sudo -E ' # use alias in sudo
 alias irb='irb --simple-prompt'
 alias pry='pry --simple-prompt'
