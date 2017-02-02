@@ -72,7 +72,7 @@ alias dki='docker images'
 alias dkp='docker ps'
 alias dkpa='docker ps -a'
 alias dkip='docker inspect --format {{ .NetworkSettings.IPAddress }}'
-alias dkrm-all='docker stop $(docker ps -a -q) && dkocker rm $(docker ps -a -q)'
+alias dkrm-all='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 dkrm(){ docker stop "${1}" && docker rm "${1}" }
 alias dkr='docker run'
 
