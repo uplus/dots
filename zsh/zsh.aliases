@@ -65,6 +65,18 @@ alias gst='git st'
 alias ge='git eda'
 alias ggrep='noglob git grep -iIn'
 
+#docker {{{1
+alias dk='docker'
+alias dke='docker exec -i -t'
+alias dki='docker images'
+alias dkp='docker ps'
+alias dkpa='docker ps -a'
+alias dkip='docker inspect --format {{ .NetworkSettings.IPAddress }}'
+alias dkrm-all='docker stop $(docker ps -a -q) && dkocker rm $(docker ps -a -q)'
+dkrm(){ docker stop "${1}" && docker rm "${1}" }
+alias dkr='docker run'
+
+
 #C/C++ gdb {{{1
 alias clang="clang $C_COMP_OPT"
 alias clang++="clang++ $CPP_COMP_OPT"
@@ -247,6 +259,7 @@ alias zmv='noglob zmv -W'
 alias youtube-mp3='noglob youtube-mp3'
 alias youtube-ogg='noglob youtube-ogg'
 
+
 # FOLDS END {{{1
 # }}}1
 
@@ -353,5 +366,4 @@ alias twme='tw $(tw -user:default 2> /dev/null)'
 alias vg=vagrant
 alias mgrep=migemogrep
 alias gdic='goldendict'
-alias dkr='docker'
 
