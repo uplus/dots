@@ -186,7 +186,6 @@ if [[ -d ${zgen_path:-} ]]; then
   source "${zgen_path}/zgen.zsh"
   if ! zgen saved; then
     zgen load m4i/cdd
-    zgen load tcnksm/docker-alias
     # zgen load junegunn/fzf      # command
     # zgen load Russell91/sshrc   # command
     # zgen load philovivero/distribution # command
