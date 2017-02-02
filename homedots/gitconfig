@@ -20,10 +20,14 @@
   tool = vimdiff
 [rebase]
   autostash = true
+[url "https://github.com/"]
+    insteadof = g:
+[url "https://bitbucket.org/"]
+    insteadof = b:
 [url "git@github.com:u10e10/"]
-    insteadof = gh:
+    insteadof = gu:
 [url "git@bitbucket.org:u10e10/"]
-    insteadof = bb:
+    insteadof = bu:
 [alias]
   a   = add
   s   = status --short --branch
