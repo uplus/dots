@@ -224,10 +224,12 @@ elif in_path dnf; then
   alias a.s='dnf search'
 elif in_path yum; then
   alias a.u='sudo yum update'
+  alias a.ud='sudo yum check-update'
   alias a.i='sudo yum install'
   alias a.r='sudo yum remove'
   alias a.c='sudo yum clean all'
   alias a.s='yum search'
+  alias a.sh='yum info'
 fi
 
 #not require sudo {{{1
