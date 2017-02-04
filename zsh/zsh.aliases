@@ -67,14 +67,17 @@ alias ggrep='noglob git grep -iIn'
 
 #docker {{{1
 alias dk='docker'
-alias dke='docker exec -i -t'
+alias dkr='docker run'
+alias dka='docker attach'
+alias dks='docker start'
+alias dkc='docker create'
 alias dki='docker images'
+alias dke='docker exec -i -t'
 alias dkp='docker ps'
 alias dkpa='docker ps -a'
 alias dkip='docker inspect --format {{ .NetworkSettings.IPAddress }}'
-alias dkrm-all='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
-dkrm(){ docker stop "${1}" && docker rm "${1}" }
-alias dkr='docker run'
+alias dkrm-all='docker stop -t 1 $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+dkrm(){ docker stop -t 1 "${1}" && docker rm "${1}" }
 
 
 #C/C++ gdb {{{1
