@@ -233,10 +233,12 @@ elif in_path pacman; then
   alias a.l='pacman -Ql'
 elif in_path dnf; then
   alias a.u='sudo dnf upgrade'
+  alias a.ud='sudo dnf check-update'
   alias a.i='sudo dnf install'
   alias a.r='sudo dnf remove'
   alias a.c='sudo dnf autoremove && sudo dnf clean all'
   alias a.s='dnf search'
+  alias a.sh='dnf info'
 elif in_path yum; then
   alias a.u='sudo yum update'
   alias a.ud='sudo yum check-update'
@@ -327,7 +329,6 @@ alias pip3-check='pip3 list -o --user'
 alias pip3-update='pip3 install --user -U $(pip3-check | awk "{print $1}")'
 alias dirsize='du -sh'
 alias here='ls -ld $PWD'
-alias dfh='{df -h | head -1; df -h | tail --lines=+2 | sort}'
 alias bigs='ls -A | xargs -I{} du -sm "{}" 2>/dev/null | awk "{if(9 < \$1) print}" | distribution'
 alias ::='echo $PWD && gs E'
 alias r='noglob ruby -r prime -e "include Math; puts eval ARGV.join(\" \")" --'
@@ -336,6 +337,7 @@ alias killall='killall -i -I'
 alias mounted="mount -l | grep '^/dev/' | sort"
 alias devinfo="sudo fdisk --color=always -l /dev/sd? | sed -e '/^$/d' -e 's/Disk \//\nDisk /g'"
 alias devs='df -hTx tmpfs'
+alias dfh='{df -h | head -1; df -h | tail --lines=+2 | sort}'
 alias _=sudo
 alias __=sudoedit
 alias mii-toolv='sudo mii-tool -vv'
