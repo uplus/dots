@@ -594,3 +594,16 @@ json_format(){
   cat "${1:?JSON file}" | jq . > "${tmpfile}"
   command mv "${tmpfile}" "${1}"
 }
+
+getimg(){
+  if (($# < 2)); then
+    echo 'getimg W H [name]'
+    return
+  fi
+
+  w="${1}"
+  h="${2}"
+  name="${3:-img.jpg}"
+  wget "https://unsplash.it/${w}/${h}/?random" -O "${name}"
+}
+
