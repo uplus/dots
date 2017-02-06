@@ -163,12 +163,16 @@ install_peco(){
   if in_path go; then
     go get github.com/peco/peco/cmd/peco
   else
-    req_url='https://api.github.com/repos/peco/peco/releases'
-    target='peco_linux_amd64'
-    get_url="$(curl -sS "${req_url}" | grep 'browser_download_url' | grep "${target}" | head -1 | awk '$0=$2' | tr -d '"')"
-    wget "${get_url}" -O - | tar zxf -
-    mv "${target}/peco" "$HOME/bin" && rm -r "${target}"
+    install_peco_wget
   fi
+}
+
+install_peco_wget(){
+  req_url='https://api.github.com/repos/peco/peco/releases'
+  target='peco_linux_amd64'
+  get_url="$(curl -sS "${req_url}" | grep 'browser_download_url' | grep "${target}" | head -1 | awk '$0=$2' | tr -d '"')"
+  wget "${get_url}" -O - | tar zxf -
+  mv "${target}/peco" "$HOME/bin" && rm -r "${target}"
 }
 
 install_rbenv() {
