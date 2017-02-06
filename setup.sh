@@ -166,9 +166,8 @@ install_peco(){
     req_url='https://api.github.com/repos/peco/peco/releases'
     target='peco_linux_amd64'
     get_url="$(curl -sS "${req_url}" | grep 'browser_download_url' | grep "${target}" | head -1 | awk '$0=$2' | tr -d '"')"
-    wget "${get_url}" -O - | tar zxf
-    mv "${target}/peco" "$HOME/bin"
-    rm -r "${target}"
+    wget "${get_url}" -O - | tar zxf -
+    mv "${target}/peco" "$HOME/bin" && rm -r "${target}"
   fi
 }
 
@@ -329,7 +328,7 @@ get_pkg_manager(){
 }
 
 help(){
-  grep -o "^[^ ]*()" setup.sh | sed "s/()//g"
+  grep -o "^[^ ]*()" "${current}/setup.sh" | sed "s/()//g"
 }
 
 if [ $# -eq 0 ]; then
