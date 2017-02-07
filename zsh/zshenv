@@ -50,6 +50,7 @@ export REPO_SSH='git@github.com:u10e10'
 export ZSH_DOT_DIR="$(dirname "$(readlink -f $HOME/.zshenv)")"
 export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
 export MOUNT='/run/media/uplus'
+export DOCKER_CONTENT_TRUST=1
 
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working
 export LC_COLLATE=C
