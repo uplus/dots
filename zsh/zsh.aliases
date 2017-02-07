@@ -173,8 +173,8 @@ hash -d templates=$HOME/Templates
 hash -d videos=$HOME/Videos
 hash -d pub=$HOME/Public
 
-hash -d mount=$MOUNT
-hash -d volume=$MOUNT/volume
+hash -d mnt=$MOUNT
+hash -d vol=$MOUNT/volume
 hash -d large=$MOUNT/volume/large
 hash -d vm=$MOUNT/volume/vm
 
