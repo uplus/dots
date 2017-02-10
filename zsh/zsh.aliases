@@ -354,6 +354,7 @@ alias pensay='cowsay -f tux'
 alias rmt=trash
 alias grep-href="grep -oP '(?<=href=\")[^\"]*'"
 alias clear-mem-cache='echo 1 | sudo tee /proc/sys/vm/drop_caches'
+alias vus='vagrant up && vagrant ssh'
 
 
 #shortening
