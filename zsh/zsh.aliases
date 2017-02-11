@@ -67,7 +67,7 @@ alias ggrep='noglob git grep -iIn'
 
 #docker {{{1
 alias dk='docker'
-alias dkr='docker run'
+alias dkr='docker run -i -t --rm'
 alias dks='docker stats'
 alias dka='docker attach'
 alias dkc='docker create'
