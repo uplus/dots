@@ -100,6 +100,39 @@ class Note # {{{
     end
   end # }}}
 
+  # alias,abbrev-dirsなどを考慮してパスを取得する
+  def self.solve_name(name)
+    return solve_alias(name) || search_name(name)
+  end
+
+  def self.solve_alias(name)
+    @@NOTE_DIR.join(@@aliases[name]) if @@aliases.has_key?(name)
+  end
+
+  # return the first matched path in @@NOTE_DIR and @@abbreviate_dirs.
+  def self.search_name(name)
+    (@@abbreviate_dirs << './').each do |dir|
+      path = @@NOTE_DIR.join(dir, name)
+      return path if File.file?(path)
+    end
+    nil
+  end
+
+  def self.read_config # {{{
+    @@aliases = {}
+    @@abbreviate_dirs = []
+    return unless File.file?(@@RC_FILE)
+
+    File.foreach(@@RC_FILE) do |line|
+      line.chomp!
+      if line.include?(' ')
+        @@aliases.update([line.split(' ', 2)].to_h)
+      else
+        @@abbreviate_dirs << line
+      end
+    end
+  end # }}}
+
   def self.ls
     system("ls --color=always #{@@NOTE_DIR}")
   end
@@ -137,44 +170,15 @@ class Note # {{{
   end
   # }}}
 
+  read_config()
+
   # pathを設定して処理を実行する
   def initialize(option)
-    path = expansion_name(option[:name])
+    path = self.class.solve_name(option[:name])
     path = ask_make_new_file(option) unless path
     send(option[:mode], path)
   rescue => ex
     error("code miss: #{ex.message}", 9, ex.backtrace)
-  end
-
-  # alias,abbrev-dirsなどを考慮してパスを取得する
-  def expansion_name(name)
-    read_aliases_and_abbreviates()
-    return @@NOTE_DIR.join(@aliases[name]) if @aliases.has_key?(name)
-    search_name(name)
-  end
-
-  def read_aliases_and_abbreviates
-    @aliases = {}
-    @abbreviates = []
-    return unless File.file?(@@RC_FILE)
-
-    File.foreach(@@RC_FILE) do |line|
-      line.chomp!
-      if line.include?(' ')
-        @aliases.update([line.split(' ', 2)].to_h)
-      else
-        @abbreviates << line
-      end
-    end
-  end
-
-  # return the first matched path in @@NOTE_DIR and @abbreviates.
-  def search_name(name)
-    (@abbreviates + ['./']).each do |dir|
-      path = @@NOTE_DIR.join(dir, name)
-      return path if File.file?(path)
-    end
-    nil
   end
 
   def ask_make_new_file(option)
@@ -275,11 +279,12 @@ OptionParser.new do |opt|
   opt.on('-l', '--less   NAME'){|name| Note.new({ mode: :less,   name: name }) }
   opt.on('-e', '--edit   NAME'){|name| Note.new({ mode: :edit,   name: name }) }
   opt.on('-d', '--delete NAME'){|name| Note.new({ mode: :delete, name: name }) }
-  opt.on('-g', '--git   [CMD]'){|cmd| Note.git(cmd); exit }
+  opt.on('-g', '--git    [CMD]'){|cmd| Note.git(cmd); exit }
   opt.on('-c', '--commit')  { Note.commit; exit }
   opt.on('-P', '--push')    { Note.push; exit }
   opt.on('-L', '--list')    { Note.ls; exit }
   opt.on('-T', '--tree')    { Note.tree; exit }
+  opt.on('-S', '--solve  NAME'){ |name| goodbye Note.solve_name(name) }
   opt.on('-D', '--dir')     { goodbye Note.note_dir }
   opt.on('-h', '--help')    { goodbye [opt, "", USAGE ] }
   opt.parse!(ARGV) rescue error("invalid argument", 25)
