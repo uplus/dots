@@ -78,7 +78,7 @@ class Note # {{{
   @@DOCMENTS_DIR = Dir.home.join("Documents")
   @@NOTE_DIR     = @@DOCMENTS_DIR.join("notes")
   @@RC_FILE      = Dir.home.join(".noterc")
-  @@GIT_CMD      = "git -C #{@@NOTE_DIR} "
+  @@GIT_CMD      = "git -C #{@@NOTE_DIR}"
 
   @@ERROR = {
     document_dir_not_exist: "#{@@DOCMENTS_DIR} is not exist, Please make it.",
@@ -133,8 +133,8 @@ class Note # {{{
     end
   end # }}}
 
-  def self.ls
-    system("ls --color=always #{@@NOTE_DIR}")
+  def self.ls(dir=nil)
+    system('ls', '-F', '--color=auto', File.join(@@NOTE_DIR, dir.to_s))
   end
 
   def self.tree
@@ -146,7 +146,7 @@ class Note # {{{
   end
 
   def self.exec_git_cmd(cmd)
-    `#{@@GIT_CMD+cmd}`
+    `#{@@GIT_CMD} #{cmd}`
   end
 
   def self.commit
@@ -162,8 +162,7 @@ class Note # {{{
 
   def self.git(cmd)
     unless cmd
-      exec_git_cmd('status --short --branch')
-      exec_git_cmd('sh')
+      exec_git_cmd('-c color.status=always status --short --branch')
     else
       exec_git_cmd(cmd)
     end
@@ -274,18 +273,18 @@ end
 # main routine # {{{
 OptionParser.new do |opt|
   opt.banner = 'Usage: note [option] [NAME]'
-  opt.on('-a', '--append NAME'){|name| Note.new({ mode: :append, name: name }) }
-  opt.on('-r', '--read   NAME'){|name| Note.new({ mode: :read,   name: name }) }
-  opt.on('-l', '--less   NAME'){|name| Note.new({ mode: :less,   name: name }) }
-  opt.on('-e', '--edit   NAME'){|name| Note.new({ mode: :edit,   name: name }) }
-  opt.on('-d', '--delete NAME'){|name| Note.new({ mode: :delete, name: name }) }
-  opt.on('-g', '--git    [CMD]'){|cmd| Note.git(cmd); exit }
-  opt.on('-c', '--commit')  { Note.commit; exit }
-  opt.on('-P', '--push')    { Note.push; exit }
-  opt.on('-L', '--list')    { Note.ls; exit }
-  opt.on('-T', '--tree')    { Note.tree; exit }
-  opt.on('-S', '--solve  NAME'){ |name| goodbye Note.solve_name(name) }
-  opt.on('-D', '--dir')     { goodbye Note.note_dir }
-  opt.on('-h', '--help')    { goodbye [opt, "", USAGE ] }
+  opt.on('-a', '--append NAME') {|name| Note.new({ mode: :append, name: name }) }
+  opt.on('-r', '--read   NAME') {|name| Note.new({ mode: :read,   name: name }) }
+  opt.on('-l', '--less   NAME') {|name| Note.new({ mode: :less,   name: name }) }
+  opt.on('-e', '--edit   NAME') {|name| Note.new({ mode: :edit,   name: name }) }
+  opt.on('-d', '--delete NAME') {|name| Note.new({ mode: :delete, name: name }) }
+  opt.on('-g', '--git    [CMD]'){|cmd| goodbye Note.git(cmd) }
+  opt.on('-c', '--commit')      { Note.commit; exit }
+  opt.on('-P', '--push')        { Note.push; exit }
+  opt.on('-L', '--list   [DIR]'){|dir| Note.ls(dir); exit }
+  opt.on('-T', '--tree')        { Note.tree; exit }
+  opt.on('-S', '--solve  NAME') { |name| goodbye Note.solve_name(name) }
+  opt.on('-D', '--dir')         { goodbye Note.note_dir }
+  opt.on('-h', '--help')        { goodbye [opt, "", USAGE ] }
   opt.parse!(ARGV) rescue error("invalid argument", 25)
 end # }}}
