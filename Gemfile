@@ -25,6 +25,7 @@ gem 'rake'
 gem 'rspec'
 gem 'sheet'
 # 'tty-pager'
+gem 'gem-browse'
 
 
 # gem 'kuport'
