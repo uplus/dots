@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+
+local dir="${1}"
+shift
+
+if [[ $# -eq 0 ]]; then
+  "${EDITOR}" "${dir}"
+  return
+fi
+
+case ${1} in
+  '-c') cd "${dir}" ;;
+  '-d') echo "${dir}" ;;
+  '-l') ls "${dir}" ;;
+  '-g')
+    shift
+    git -C "${dir}" ${@:-sh}
+    ;;
+  *)
+    if [[ -e $dir/$1 ]]; then
+      "${EDITOR}" "${dir}/${1}"
+    else
+      warn "${1} is not exists"
+    fi
+esac
+
+

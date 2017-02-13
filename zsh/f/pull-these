@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+local i
+for i in */; do
+  printf "%-20s" "${i}"
+  git -C "${i}" pull
+done

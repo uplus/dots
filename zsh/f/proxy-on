@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+
 export http_proxy="${1:? server:port}"
 export https_proxy="${http_proxy}"
 export ftp_proxy="${http_proxy}"

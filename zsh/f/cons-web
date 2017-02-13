@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+if [[ $# -ne 3 ]]; then
+  warn "usage: cons-web <url> <start-num> <last-num>"
+  warn "       open the consecutive web pages"
+  return 1
+fi
+
+local i
+for i in ({$2..$3}) opera-beta "$1$i"

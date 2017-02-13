@@ -58,37 +58,6 @@ show-src(){
   done
 }
 
-sticky-enable-gnome(){
-  dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable false
-  if ((${1:-1} != 0)); then
-    dconf write /org/gnome/desktop/a11y/keyboard/stickykeys-enable true
-  fi
-}
-
-countdown(){
-  for i in {${1:-5}..1}; do
-    echo -n "${i} "
-    sleep 1
-  done
-  echo -n 0
-}
-
-ench264(){
-  if (($# == 0)); then
-    echo "Argument is empty." 1>&2
-    return 1
-  fi
-
-  input="${1:?}"
-  out="${input%.*}"
-  while [[ -e $out.mp4 ]]; do
-    out="${out}.new"
-  done
-  out="${out}.mp4"
-
-  echo "Encode '${input}' -> '${out}'"
-  ffmpeg -threads 0 -i "${input}" -vcodec h264 -loglevel warning "${out}"
-}
 
 xopen(){
   for i in ${@:-.}; do
@@ -123,31 +92,6 @@ mve(){ mv "${1}" "${1:r}.${2}" }
 +x(){ chmod u+x $@ }
 -x(){ chmod a-x $@ }
 
-#color {{{
-colorso(){
-  local c
-  for c in {000..255}; do
-    echo -n "\e[38;5;${c}m $c"
-    [ $(($c%16)) -eq 15 ] && echo
-  done
-  echo
-}
-
-colorsv(){
-  local c
-  for c in {000..015}; do
-    echo -n "\e[38;5;${c}m $c"
-    [ $((($c+1)%8)) -eq 0 ] && echo
-  done
-
-  for c in {016..255}; do
-    echo -n "\e[38;5;${c}m $c"
-    [ $(($((c-16))%6)) -eq 5 ] && echo
-  done
-  echo
-}
-# }}}
-
 #link# {{{
 sln(){
   if (($# < 2)); then
@@ -167,44 +111,8 @@ binln(){
 }
 # }}}
 
-#rc commands {{{
-generic_rc(){
-  local dir="${1}"
-  shift
-
-  if [[ $# -eq 0 ]]; then
-    "${EDITOR}" "${dir}"
-    return
-  fi
-
-  case ${1} in
-    '-c') cd "${dir}" ;;
-    '-d') echo "${dir}" ;;
-    '-l') ls "${dir}" ;;
-    '-g')
-      shift
-      git -C "${dir}" ${@:-sh}
-      ;;
-    *)
-      if [[ -e $dir/$1 ]]; then
-        "${EDITOR}" "${dir}/${1}"
-      else
-        warn "${1} is not exists"
-      fi
-  esac
-}
-
 vimrc(){ generic_rc $HOME/.vim/ $@ }
 zshrc(){ generic_rc $ZSH_DOT_DIR $@ }
-# }}}
-
-pull-these(){
-  local i
-  for i in */; do
-    printf "%-20s" "${i}"
-    git -C "${i}" pull
-  done
-}
 
 set-pushurl(){
   git config remote.origin.pushurl "$(git config remote.origin.url)"
@@ -213,17 +121,6 @@ set-pushurl(){
 
 host-list(){
   sudo nmap -sP "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
-}
-
-cons-web(){
-  if [[ $# -ne 3 ]]; then
-    warn "usage: cons-web <url> <start-num> <last-num>"
-    warn "       open the consecutive web pages"
-    return 1
-  fi
-
-  local i
-  for i in ({$2..$3}) opera-beta "$1$i"
 }
 
 dump(){
@@ -238,42 +135,6 @@ dump(){
 dhmod(){
   ls -F | grep "/" | xargs chmod -R $@
 }
-
-#findstr # {{{
-#TODO: remake.
-#rubyとかで作りなおしたほうがいいかも
-#マッチした部分のon/off
-#特定ディレクトリの無視、検索条件指定
-#errorの表示 on/off
-findstr(){
-  if [ $# -lt 1 ]; then
-    echo "findstr [DIR] [OPTS] STR" 1>&2
-    return 1
-  fi
-
-  local location str opt
-
-  if [[ $# -eq 1 ]]; then
-    location="."
-  else
-    location=$1
-    shift
-  fi
-
-  while [ $# -gt 1 ]; do
-    opt="$opt $1"
-    shift
-  done
-
-  str=$1
-
-  # echo "location: $location"
-  # echo "opt: $opt"
-  # echo "str: $str"
-
-  find "${location}" ${opt} -type f -exec grep -iIHl "${str}" {} \; 2> /dev/null
-}
-# }}}
 
 #ud # {{{
 ud(){
@@ -321,15 +182,6 @@ pa(){
 pd(){ pa "$1" -type d }
 pf(){ pa "$1" -type f }
 # }}}
-
-google_translate(){
-  local arg en_jp opt
-
-  arg=$(echo ${@} | sed -e 's/  */+/g')
-  en_jp="?hl=ja&sl=en&tl=ja&ie=UTF-8&oe=UTF-8" # url
-  opt="${en_jp}&text=${arg}"
-  w3m "http://translate.google.com/${opt}" | block '\[\s+\]' '\[\s+\]' | tail --lines=+2
-}
 
 # improved tree
 uree(){
@@ -563,6 +415,16 @@ getimg(){
 }
 
 
+autoload -Uz ench264
 autoload -Uz proxy-on
 autoload -Uz proxy-off
 autoload -Uz clip
+autoload -Uz sticky-enable-gnome
+autoload -Uz generic_rc
+autoload -Uz cons-web
+autoload -Uz pull-these
+autoload -Uz countdown
+autoload -Uz colorso
+autoload -Uz colorsv
+autoload -Uz findstr
+autoload -Uz google_translate

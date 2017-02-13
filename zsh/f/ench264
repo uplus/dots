@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+
+if (($# == 0)); then
+  echo "Argument is empty." 1>&2
+  return 1
+fi
+
+input="${1:?}"
+out="${input%.*}"
+while [[ -e $out.mp4 ]]; do
+  out="${out}.new"
+done
+out="${out}.mp4"
+
+echo "Encode '${input}' -> '${out}'"
+ffmpeg -threads 0 -i "${input}" -vcodec h264 -loglevel warning "${out}"

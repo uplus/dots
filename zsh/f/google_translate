@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+local arg en_jp opt
+arg=$(echo ${@} | sed -e 's/  */+/g')
+en_jp="?hl=ja&sl=en&tl=ja&ie=UTF-8&oe=UTF-8" # url
+opt="${en_jp}&text=${arg}"
+w3m "http://translate.google.com/${opt}" | block '\[\s+\]' '\[\s+\]' | tail --lines=+2

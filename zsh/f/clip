@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+
 local arg="${1:-}"
 if in_path xclip; then
   if [[ $arg = '-o' ]]; then
