@@ -13,6 +13,7 @@ esac
 
 LC_COLLATE=C # Don't move to zshenv.
 DIRSTACKSIZE=100
+fpath+=($ZSH_DOT_DIR/f)
 disable r # zsh-builtin: 直前のコマンドを実効する
 # autoload -Uz add-zsh-hook # NOTE: call by zplug
 autoload -Uz zmv

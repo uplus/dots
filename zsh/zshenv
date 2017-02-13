@@ -4,7 +4,7 @@
 # zmodload zsh/zprof && zprof
 
 #unique属性を付加
-typeset -U path PATH MANPATH INFOPATH fpath
+typeset -U path PATH MANPATH INFOPATH fpath FPATH
 
 in_path(){
   which $@ &>! /dev/null
@@ -53,7 +53,7 @@ export MOUNT='/run/media/uplus'
 export DOCKER_CONTENT_TRUST=1
 
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working
-export LC_COLLATE=C
+# export LC_COLLATE=C
 
 # Order is important
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
@@ -71,8 +71,6 @@ export PATH="$GOPATH/bin:$PATH"
 if [[ -z $USER ]]; then
   export USER="$(whoami)"
 fi
-
-fpath+=($ZSH_DOT_DIR/func)
 
 # if [[ -n "${WINDOWID:-}" && -f $HOME/.xmodmap ]]; then
 #   xmodmap ~/.xmodmap
