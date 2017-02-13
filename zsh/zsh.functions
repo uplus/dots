@@ -370,31 +370,6 @@ rmhere() {
   rmdir "${dir}"
 }
 
-clip(){
-  local arg="${1:-}"
-  if in_path xclip; then
-    if [[ $arg = '-o' ]]; then
-      xclip -out -selection clipboard
-    elif [[ -z $arg ]]; then
-      xclip -in -selection clipboard
-    else
-      # xclip treat "" as filename.
-      xclip -in -selection clipboard "${arg}"
-    fi
-  elif in_path xsel; then
-    if [[ $arg = '-o' ]]; then
-      xsel --clipboard --output
-    elif [[ -z $arg ]]; then
-      xsel --clipboard --input
-    else
-      cat "${arg}" | xsel --clipboard --input
-    fi
-  else
-    echo "clip: This platform not installed clipboard command(xclip/xsel)." 1>&2
-    return 1
-  fi
-}
-
 kill(){
   if (($# != 0)); then
     command kill $@
@@ -546,34 +521,6 @@ elf-sec(){
   objdump -d -j ."${2:-init}" --no "${1:-a.out}"
 }
 
-proxy-on(){
-  export http_proxy="${1:? server:port}"
-  export https_proxy="${http_proxy}"
-  export ftp_proxy="${http_proxy}"
-  export rsync_proxy="${http_proxy}"
-  export all_proxy="${http_proxy}"
-  export HTTP_PROXY="${http_proxy}"
-  export HTTPS_PROXY="${http_proxy}"
-  export FTP_PROXY="${http_proxy}"
-  export RSYNC_PROXY="${http_proxy}"
-  export ALL_PROXY="${http_proxy}"
-  export no_proxy='localhost,127.0.0.1,localaddress,.localdomain.com'
-}
-
-proxy-off(){
-    unset http_proxy
-    unset https_proxy
-    unset ftp_proxy
-    unset rsync_proxy
-    unset all_proxy
-    unset HTTP_PROXY
-    unset HTTPS_PROXY
-    unset FTP_PROXY
-    unset RSYNC_PROXY
-    unset ALL_PROXY
-    unset no_proxy
-    echo -e 'Proxy env var unseted.'
-}
 
 doko(){
   find ${2:-} -iname "*${1}*"
@@ -615,3 +562,7 @@ getimg(){
   wget "https://unsplash.it/${w}/${h}/?random" -O "${name}"
 }
 
+
+autoload -Uz proxy-on
+autoload -Uz proxy-off
+autoload -Uz clip

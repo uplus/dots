@@ -1,0 +1,10 @@
+#compdef ud
+_ud(){
+  local -a candidates
+  ud list | while read d; do
+    candidates+="$d"
+  done
+  _describe -t commands "directories" candidates
+}
+
+_ud $@

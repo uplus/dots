@@ -1,0 +1,11 @@
+#compdef hub
+
+_rbenv() {
+  if [[ ${#words} -eq 2 ]]; then
+    compadd $(rbenv commands)
+  else
+    compadd $(rbenv completions ${words[2,-2]})
+  fi
+}
+
+_rbenv $@

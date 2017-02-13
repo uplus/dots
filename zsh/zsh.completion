@@ -39,33 +39,6 @@ _vw(){ _files -W ~works && return 0 }
 compdef _vw vw
 
 
-_rbenv() {
-  if [[ ${#words} -eq 2 ]]; then
-    compadd $(rbenv commands)
-  else
-    compadd $(rbenv completions ${words[2,-2]})
-  fi
-}
-compdef _rbenv rbenv
-
-_ud(){
-  local -a candidates
-  ud list | while read d; do
-    candidates+="$d"
-  done
-  _describe -t commands "directories" candidates
-}
-compdef _ud ud
-
-_xdotool(){
-  local -a candidates
-  xdotool --help | tail --lines=+2 | while read d; do
-    candidates+="$d"
-  done
-  _describe -t commands "directories" candidates
-}
-compdef _xdotool xdotool
-
 # pip # {{{
 ZSH_PIP_CACHE_FILE=~/.cache/pip/zsh-cache
 

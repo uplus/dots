@@ -1,0 +1,10 @@
+#compdef xdotool
+_xdotool(){
+  local -a candidates
+  xdotool --help | tail --lines=+2 | while read d; do
+    candidates+="$d"
+  done
+  _describe -t commands "directories" candidates
+}
+
+_xdotool $@
