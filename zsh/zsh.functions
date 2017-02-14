@@ -219,18 +219,21 @@ kill(){
 
 mac-vendor(){
   if (($# != 0)); then
-    curl --silent http://api.macvendors.com/$(echo "${1}" | sed -s 's/..:..:..$/00:00:00/g')
+    curl -sS http://api.macvendors.com/$(echo "${1:?Need mac address}" | sed -s 's/..:..:..$/00:00:00/g')
     echo
   else
     while read line; do
-      mac-vendor "${line}"
+      mac-vendor "${line:?Need mac address}"
     done
   fi
 }
 
 mac-arp(){
-  arp -n | awk '/:/{printf("%-15s %s\n", $1, $3)}' | \
-    xargs -I '{}' echo "{} $(echo "{}" | awk '{print $2}' | mac-vendor)"
+  arp -n | awk '/:/{printf("%-15s %s\n", $1, $3)}' | while read line
+  do
+    echo -n "${line}   "
+    mac-vendor "$(echo "${line}" | awk '$0=$2')"
+  done
 }
 
 google-asm(){
