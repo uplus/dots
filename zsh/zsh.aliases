@@ -379,3 +379,13 @@ alias vg=vagrant
 alias vbox=VBoxManage
 alias mgrep=migemogrep
 alias gdic='goldendict'
+
+if can_exec systemctl; then
+  if ! can_exec reboot; then
+    alias reboot='sudo systemctl reboot'
+  fi
+
+  if ! can_exec poweroff; then
+    alias poweroff='sudo systemctl poweroff'
+  fi
+fi
