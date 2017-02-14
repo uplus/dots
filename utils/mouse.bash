@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 mouse_pos(){
   export $(xdotool getmouselocation --shell | head -2)
