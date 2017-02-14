@@ -249,7 +249,7 @@ set_dark_theme(){
   echo '@import url("gtk3.css");'>> "$gtk_config/gtk.css"
 }
 
-disable-settings-daemon-keyboard(){
+disable_settings_daemon_keyboard(){
   dconf write /org/gnome/settings-daemon/plugins/keyboard/active false
 }
 
