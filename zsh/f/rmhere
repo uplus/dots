@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+if [[ -n $(ls -A) ]]; then
+  warn "Here directory is not empty."
+  return 1
+fi
+
+local dir="${PWD}"
+cd ..
+rmdir "${dir}"

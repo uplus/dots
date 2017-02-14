@@ -194,14 +194,6 @@ uree(){
   command tree -C -l ${opt} | less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
 }
 
-enc-utf8(){
-  output=$(mktemp)
-  for s in $@; do
-    nkf -Lu --utf8 "${s}" >! "${output}"
-    mv "${output}" "${s}"
-  done
-}
-
 sizes(){
   dir="${1:+$(relative $1)/}"
   ls -A "${dir:-./}" | sed "s|^|${dir}|g" | xargs -I{} du -sm '{}' 2>/dev/null | sort -n
@@ -211,16 +203,6 @@ lsize(){
   du -sh -- "${*:+$(relative $*)/}"*
 }
 
-rmhere() {
-  if [[ -n $(ls -A) ]]; then
-    warn "Here directory is not empty."
-    return 1
-  fi
-
-  local dir="${PWD}"
-  cd ..
-  rmdir "${dir}"
-}
 
 kill(){
   if (($# != 0)); then
@@ -247,16 +229,8 @@ mac-vendor(){
 }
 
 mac-arp(){
-  arp -n | awk '/:/{printf("%-15s %s \n", $1, $3)}' | xargs -I {} echo "{} $(echo "{}" | awk '{print $2}' | mac-vendor)"
-}
-
-google(){
-  if (($# == 0)); then
-    echo "usage: $* word"
-  else
-    arg="$(echo ${*} | sed -e 's/  */+/g')"
-    xdg-open "https://www.google.co.jp/search?q=${arg}&ie=utf-8&oe=utf-8&hl=ja"
-  fi
+  arp -n | awk '/:/{printf("%-15s %s\n", $1, $3)}' | \
+    xargs -I '{}' echo "{} $(echo "{}" | awk '{print $2}' | mac-vendor)"
 }
 
 google-asm(){
@@ -307,31 +281,6 @@ trash-elf(){
 }
 # }}}
 
-tops(){ # TODO
-  return
-
-  top
-  htop
-  nethogs
-  iftop
-  iotop
-  atop      アクティブなプロセスのみ?
-  slabtop   メモリ
-  jnettop   ホストとポートごとに表示
-}
-
-stats(){ # TODO
-  return
-
-  # https://blog.riywo.com/2011/02/20/192123/
-  ifstat
-  netstat -taopn
-  vmstat
-  iostat -x
-  dstat -f
-  mpstat
-}
-
 mirrorsort(){
   sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.cp
   sudo rankmirrors -m rank
@@ -373,7 +322,6 @@ elf-sec(){
   objdump -d -j ."${2:-init}" --no "${1:-a.out}"
 }
 
-
 doko(){
   find ${2:-} -iname "*${1}*"
 }
@@ -383,10 +331,12 @@ aslr(){
 }
 
 exzip(){
-  unzip -d "${*:r}" "${*}"
+  for i in ${@}; do
+    unzip -d "${i:r}" "${i}"
+  done
 }
 
-cwget(){
+wgetc(){
   clip -o
   echo
   wget -O "${1:?filename}" "$(clip -o)"
@@ -402,20 +352,38 @@ json_format(){
   command mv "${tmpfile}" "${1}"
 }
 
-getimg(){
-  if (($# < 2)); then
-    echo 'getimg W H [name]'
-    return
-  fi
 
-  w="${1}"
-  h="${2}"
-  name="${3:-img.jpg}"
-  wget "https://unsplash.it/${w}/${h}/?random" -O "${name}"
+# TODO Making
+tops(){
+  return
+
+  top
+  htop
+  nethogs
+  iftop
+  iotop
+  atop      アクティブなプロセスのみ?
+  slabtop   メモリ
+  jnettop   ホストとポートごとに表示
+}
+
+stats(){ # TODO
+  return
+
+  # https://blog.riywo.com/2011/02/20/192123/
+  ifstat
+  netstat -taopn
+  vmstat
+  iostat -x
+  dstat -f
+  mpstat
 }
 
 
-autoload -Uz ench264
+autoload -Uz ruby-calc
+autoload -Uz getimg
+autoload -Uz enc-utf8
+autoload -Uz enc264
 autoload -Uz proxy-on
 autoload -Uz proxy-off
 autoload -Uz clip
@@ -428,3 +396,5 @@ autoload -Uz colorso
 autoload -Uz colorsv
 autoload -Uz findstr
 autoload -Uz google_translate
+autoload -Uz google
+autoload -Uz rmhere

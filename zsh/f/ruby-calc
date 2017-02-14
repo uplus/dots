@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+if (($# == 0)); then
+  pry
+  return
+fi
+
+noglob ruby -r prime -r base64 \
+  -e "include Math, Base64
+      puts eval(ARGV.join(' '))" -- "${*}"
