@@ -9,7 +9,6 @@ mouse_move(){
 }
 
 mouse_click(){
-  echo "Click ${1}"
   xdotool mousedown "${1}"
   xdotool mouseup "${1}"
 }
@@ -22,12 +21,13 @@ speed_max="${1:-16}"
 speed="${speed_max}"
 
 while read -n 1 -s key; do
-  if [[ $key = ' ' ]]; then
+  if [[ $key = '' ]]; then
     if ((speed == speed_max)); then
       speed="${speed_min}"
     else
       speed="${speed_max}"
     fi
+    echo "Speed ${speed}"
   fi
 
   mouse_pos
