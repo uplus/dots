@@ -153,16 +153,17 @@ hash -d bin=$HOME/bin/
 hash -d src=$HOME/src/
 hash -d tmp=$HOME/tmp/
 hash -d works=$HOME/works/
+
 hash -d dots=$DOT_DIR/
 hash -d zsh=$ZSH_DOT_DIR/
 hash -d vim=$HOME/.vim/
 
 hash -d codes=$HOME/codes/
-hash -d smp=$HOME/codes/smp/
-hash -d utils=$DOT_DIR/utils
-hash -d ctf=$HOME/codes/ctf/
-hash -d ksnctf=$HOME/codes/ctf/ksnctf/
-hash -d ylibs=$HOME/codes/ylibs/
+hash -d smp=~codes/smp/
+hash -d var=~works/@var/
+hash -d utils=~dots/utils
+hash -d ctf=~codes/ctf/
+hash -d ksnctf=~ctf/ksnctf/
 
 hash -d desktop=$HOME/Desktop
 hash -d doc=$HOME/Documents
@@ -174,15 +175,15 @@ hash -d videos=$HOME/Videos
 hash -d pub=$HOME/Public
 
 hash -d mnt=$MOUNT
-hash -d vol=$MOUNT/volume
-hash -d large=$MOUNT/volume/large
-hash -d vm=$MOUNT/volume/vm
+hash -d vol=~mnt/volume
+hash -d large=~vol/large
+hash -d vm=~vol/vm
 
 hash -d dein=$HOME/.cache/dein/repos/github.com
-hash -d var=$HOME/works/@var/
-hash -d cbook=$HOME/codes/ctf/cbook/
-hash -d jprog=$HOME/codes/jprog/
-hash -d otaku=$HOME/codes/otaku-server
+hash -d cbook=~ctf/cbook/
+hash -d jprog=~codes/jprog/
+hash -d otaku=~codes/otaku-server
+hash -d judge=~works/vg-judge
 
 #shell {{{1
 alias resh='unset fpath; exec ${SHELL:-zsh} -l'
