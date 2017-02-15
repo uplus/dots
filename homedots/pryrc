@@ -2,6 +2,11 @@
 Pry.config.pager = true
 Pry.config.color = true
 Pry.config.editor = ENV['EDITOR']
+
 if defined?(PryStackExplorer)
   Pry.commands.alias_command 'bt', 'show-stack'
+end
+
+def mshow(obj)
+  obj.methods - Object.methods
 end
