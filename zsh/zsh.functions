@@ -382,6 +382,10 @@ stats(){ # TODO
   mpstat
 }
 
+docker-images-update(){
+  sudo docker images | awk 'NR>1 && $0=$1' | sort -u | egrep -v '^(<none>)$' | xargs -P0 -L1 -I@ sudo docker pull @
+}
+
 
 autoload -Uz ruby-calc
 autoload -Uz getimg
