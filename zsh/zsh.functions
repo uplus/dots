@@ -8,12 +8,13 @@ is_num(){ expr "${1}" + 1 >&! /dev/null }
 is-elf(){ file ${1} | awk '$0=$2' | grep -q ELF }
 back() { nohup $@ >&! /dev/null <&- &! }
 hide(){
-  out=$(mktemp)
-  err=$(mktemp)
+  out=$(mktemp --suffix=".$(date +%T).${1}.out")
+  err=$(mktemp --suffix=".$(date +%T).${1}.err")
 
   { $@ > "${out}"  2> "${err}" <&-
     cat "${out}"
-    cat "${err}" >&2 } &!
+    cat "${err}" >&2
+    echo } &!
 }
 
 echo-color(){
