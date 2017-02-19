@@ -292,27 +292,10 @@ alias source-highlight='source-highlight -f esc -i'
 alias gzip='gzip -v9N'
 alias gist='gist -c -p'
 alias killall='killall -i -I'
-in_path python && alias python='python -B'
-in_path python2 && alias python2='python2 -B'
-in_path python3 && alias python3='python3 -B'
-
 if in_path nodejs; then
   alias js=nodejs
 elif in_path node; then
   alias js=node
-fi
-
-if in_path google-chrome-stable; then
-  alias chrome='google-chrome-stable'
-fi
-
-if in_path rlwrap; then
-  alias nc='rlwrap nc'
-  alias telnet='rlwrap telnet'
-  alias ruby='rlwrap ruby'
-  alias python='rlwrap python'
-  alias python2='rlwrap python2'
-  alias python3='rlwrap python3'
 fi
 
 if in_path colordiff; then
@@ -320,6 +303,38 @@ if in_path colordiff; then
 else
   alias diff='diff -u'
 fi
+
+if in_path google-chrome-stable; then
+  alias chrome='google-chrome-stable'
+fi
+
+if in_path rlwrap; then
+  in_path nc      && alias nc='rlwrap nc'
+  in_path telnet  && alias telnet='rlwrap telnet'
+  in_path ruby    && alias ruby='rlwrap ruby'
+fi
+
+# Override python # {{{
+def_py_alias(){
+  if ! in_path "${2:=$1}"
+  in_path rlwrap && local wrap='rlwrap'
+  alias "${2}"="${wrap:-} ${1} -B"
+}
+
+def_py_alias python2
+def_py_alias python3
+if in_path python3; then
+  def_py_alias python3 python
+elif in_path python; then
+  def_py_alias python
+fi
+
+unfunction def_py_alias
+
+if in_path pip3; then
+  alias pip=pip3
+fi
+# }}}
 
 
 #utilities
