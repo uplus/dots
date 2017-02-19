@@ -28,7 +28,7 @@ setopt prompt_subst         # プロンプト定義で置き換えを使用す�
 setopt prompt_cr            # show prompt in new line, when after command finish.
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
-rprompt-git() {
+rprompt-git(){ # {{{
   git rev-parse --git-dir >&! /dev/null || return
 
   # branch name
@@ -61,17 +61,17 @@ rprompt-git() {
   [[ -n $stash ]] && stash=" %F{208}$stash%f"
 
   echo " [%F{$color}$name%f${ahead}${behind}${stash}]"
-}
+} # }}}
 
-prompt-return-value() {
-  echo " %(?,,%F{196} %?%f)"
+prompt-return-value(){
+  echo " %(?,,%F{197} %?%f)"
 }
 
 in-ssh(){
   [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]
 }
 
-PROMPT_SSH_COLOR=171
+PROMPT_SSH_COLOR=154
 prompt-ssh() {
   in-ssh && echo " %F{$PROMPT_SSH_COLOR}($HOST)%f"
 }
