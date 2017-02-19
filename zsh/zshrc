@@ -34,18 +34,20 @@ rprompt-git() {
   # branch name
   local name state color
   name=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  state=$(git status --short 2>/dev/null | awk '{print $1}')
+  state=$(git status --short 2>/dev/null | grep -o '^..')
   if [[ $PWD =~ "^$(git rev-parse --show-toplevel)/$(git rev-parse --git-dir)" ]]; then
-    color=165
+    color=171
     name="${name}/.git"
   elif [[ $state =~ U ]]; then
-    color=165 #magenta
+    color=171 #magenta
   elif [[ $state =~ '\?' ]]; then
     color=208 #yellow
   elif [[ -z $state ]]; then
-    color=36 #green
+    color=35 #green
+  elif [[ -z "$(echo $state | grep -o '[^ ]$')" ]]; then
+    color=75 #blue
   else
-    color=196 #red
+    color=197 #red
   fi
 
   # branch status
@@ -54,8 +56,8 @@ rprompt-git() {
   ahead=$(echo "${brace}" | grep -oe 'ahead [0-9]\+' | awk '{print $2}')
   behind=$(echo "${brace}" | grep -oe 'behind [0-9]\+' | awk '{print $2}')
   stash=$(git stash list 2>/dev/null | wc -l | sed -e 's/^0$//g')
-  [[ -n $ahead ]] && ahead=" %F{36}$ahead%f"
-  [[ -n $behind ]] && behind=" %F{196}$behind%f"
+  [[ -n $ahead ]] && ahead=" %F{35}$ahead%f"
+  [[ -n $behind ]] && behind=" %F{197}$behind%f"
   [[ -n $stash ]] && stash=" %F{208}$stash%f"
 
   echo " [%F{$color}$name%f${ahead}${behind}${stash}]"
