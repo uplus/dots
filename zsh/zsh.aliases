@@ -183,7 +183,7 @@ hash -d dein=$HOME/.cache/dein/repos/github.com
 hash -d cbook=~ctf/cbook/
 hash -d jprog=~codes/jprog/
 hash -d otaku=~codes/otaku-server
-hash -d judge=~works/KogJudge-Judge
+hash -d judge=~works/KogJudge-judge
 
 #shell {{{1
 alias resh='unset fpath; exec ${SHELL:-zsh} -l'
