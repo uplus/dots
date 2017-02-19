@@ -14,7 +14,7 @@ hide(){
   { eval $@ > "${out}"  2> "${err}" <&-
     cat "${out}"
     cat "${err}" >&2
-    echo } &!
+  } &!
 }
 
 echo-color(){
