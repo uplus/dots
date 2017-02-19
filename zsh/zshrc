@@ -71,7 +71,7 @@ in-ssh(){
   [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]
 }
 
-PROMPT_SSH_COLOR=154
+PROMPT_SSH_COLOR=220
 prompt-ssh() {
   in-ssh && echo " %F{$PROMPT_SSH_COLOR}($HOST)%f"
 }
