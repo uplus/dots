@@ -103,9 +103,17 @@ sln(){
   fi
 }
 
+dotln(){
+  local name
+  mkdir -p $HOME/bin
+  for name in $@; do
+    ln -svi "${name:a}" "$HOME/.${name:t:r}"
+  done
+}
+
 binln(){
   local name
-  [[ ! -d $HOME/bin ]] && mkdir $HOME/bin
+  mkdir -p $HOME/bin
   for name in $@; do
     ln -svi "${name:a}" "$HOME/bin/${name:t:r}"
   done
