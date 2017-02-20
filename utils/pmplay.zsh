@@ -2,7 +2,7 @@
 set -ue
 export LC_ALL=en_US.UTF-8
 local -r music_dir="$HOME/Music"
-local -r rc_file="$HOME/.play-music-rc"
+local -r rc_file="$HOME/.pmplayrc"
 [[ -f $rc_file ]] && local -r ignore="grep -vif '${rc_file}' |"
 
 local -r filter='percol --match-method=migemo'
