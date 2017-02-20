@@ -289,7 +289,7 @@ alias_over cp -i
 alias_over rm -v
 alias_over which -p
 alias_over jobs -ld
-alias_over sudo mii-tool -vv
+alias_over mii-tool -vv
 alias_over pgrep -l
 alias_over ag --smart-case --hidden
 alias_over less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
@@ -343,7 +343,7 @@ alias guirestart='sudo service lightdm restart'
 alias older='ls -Altr'
 alias whichis='which -aps'
 alias gor='cd $(git rev-parse --show-toplevel)'
-alias pip3-check='pip3 list -o --user'
+alias pip3-check='pip3 list -o -l'
 alias pip3-update='pip3 install --user -U $(pip3-check | awk "{print $1}")'
 alias dirsize='du -sh'
 alias here='ls -ld $PWD'
