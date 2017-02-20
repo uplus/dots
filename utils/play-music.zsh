@@ -12,7 +12,7 @@ local -r filter='percol --match-method=migemo'
 #   filter='percol --match-method=migemo'
 # fi
 
-local -r songs=$(eval "cd '${music_dir}' && find -L -type f | ${ignore:-} sed 's|^\./||' | ${filter}")
+local -r songs=$(eval "cd '${music_dir}' && find -L -type f | ${ignore:-} sort | sed 's|^\./||' | ${filter}")
 [[ -z $songs ]] && exit
 
 
