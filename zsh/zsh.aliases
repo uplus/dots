@@ -273,25 +273,42 @@ alias youtube-ogg='noglob youtube-ogg'
 # }}}1
 
 #override
-alias watch='watch -c -n 1'
-alias sudo='sudo -E ' # use alias in sudo
-alias irb='irb --simple-prompt'
-alias pry='pry --simple-prompt'
-alias mv='mv -i'
-alias cp='cp -i'
-alias rm='rm -v'
-alias which='which -p'
-alias jobs='jobs -ld'
-alias mii-toolv='sudo mii-tool -vv'
-alias pgrep='pgrep -l'
-alias ag='ag --smart-case --hidden'
-alias less='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init'
-alias dmesg='dmesg --color=always -e L' # -Hだとless動作が揃わない
-alias xtrlock='xtrlock -f'
-alias source-highlight='source-highlight -f esc -i'
-alias gzip='gzip -v9N'
-alias gist='gist -c -p'
-alias killall='killall -i -I'
+alias_over(){ in_path "${1}" && alias "${1}"="${*}" }
+alias_rlwrap(){
+  if in_path rlwrap; then
+    in_path "${1}" && alias "${1}"="rlwrap ${*}"
+  else
+    alias_over ${@}
+  fi
+}
+
+alias_over watch -c -n 1
+alias_over sudo -E
+alias_over mv -i
+alias_over cp -i
+alias_over rm -v
+alias_over which -p
+alias_over jobs -ld
+alias_over sudo mii-tool -vv
+alias_over pgrep -l
+alias_over ag --smart-case --hidden
+alias_over less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
+alias_over dmesg --color=always -e L # -Hだとless動作が揃わない
+alias_over xtrlock -f
+alias_over source-highlight -f esc -i
+alias_over gzip -v9N
+alias_over gist -c -p
+alias_over killall -i -I
+
+alias_rlwrap irb --simple-prompt
+alias_rlwrap pry --simple-prompt
+alias_rlwrap ruby
+alias_rlwrap nc
+alias_rlwrap telnet
+alias_rlwrap python2 -B
+alias_rlwrap python3 -B
+alias_rlwrap ipython --no-confirm-exit --no-banner
+
 if in_path nodejs; then
   alias js=nodejs
 elif in_path node; then
@@ -304,37 +321,14 @@ else
   alias diff='diff -u'
 fi
 
-if in_path google-chrome-stable; then
-  alias chrome='google-chrome-stable'
-fi
-
-if in_path rlwrap; then
-  in_path nc      && alias nc='rlwrap nc'
-  in_path telnet  && alias telnet='rlwrap telnet'
-  in_path ruby    && alias ruby='rlwrap ruby'
-fi
-
-# Override python # {{{
-def_py_alias(){
-  if ! in_path "${2:=$1}"
-  in_path rlwrap && local wrap='rlwrap'
-  alias "${2}"="${wrap:-} ${1} -B"
-}
-
-def_py_alias python2
-def_py_alias python3
 if in_path python3; then
-  def_py_alias python3 python
-elif in_path python; then
-  def_py_alias python
+  alias python=python3
 fi
-
-unfunction def_py_alias
 
 if in_path pip3; then
   alias pip=pip3
 fi
-# }}}
+
 
 
 #utilities
@@ -379,7 +373,7 @@ alias cd-swap='cd /home/uplus/.local/share/nvim/swap'
 
 #shortening
 alias p=pry
-alias ipy='ipython3 --no-confirm-exit --no-banner'
+alias ipy=ipython
 alias py=python
 alias py2=python2
 alias py3=python3
@@ -396,7 +390,9 @@ alias twme='tw $(tw -user:default 2> /dev/null)'
 alias vg=vagrant
 alias vbox=VBoxManage
 alias mgrep=migemogrep
-alias gdic='goldendict'
+alias dic='goldendict'
+
+in_path google-chrome-stable && alias chrome='google-chrome-stable'
 
 if can_exec systemctl; then
   if ! can_exec reboot; then
