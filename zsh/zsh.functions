@@ -23,6 +23,14 @@ echo-color(){
   echo -e "\e[38;5;${color}m${*}\e[00m"
 }
 
+echo-true(){
+  red="${1}"
+  green="${2}"
+  blue="${3}"
+  shift 3
+  echo -e "\x1b[38;2;${red};${green};${blue}m${*}\x1b[0m"
+}
+
 autols(){
   [[ ${AUTOLS_DIR:-$PWD} != $PWD ]] && ls -F --color=always
   AUTOLS_DIR="${PWD}"
