@@ -16,6 +16,14 @@ define d
   end
 end
 
+define de
+  if $argc == 0
+    x/16i $eip
+  else
+    x/16 $arg0
+  end
+end
+
 define ir
   if $argc == 0
     i r esp ebp eip
@@ -23,7 +31,5 @@ define ir
     i r $arg0
   end
 end
-
-
 
 source ~/.peda/peda.py
