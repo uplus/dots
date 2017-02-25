@@ -32,13 +32,13 @@ def hex_align(hex_str)
 end
 
 def to_little(hex_str)
-  hex_str = hex_align(hex_str)
+  hex_str = hex_align(hex_str.dup)
   return hex_str.scan(/../).map(&:to_bin).reverse.join
 end
 
 ARGV.map do |str|
   if str.int?
-    print to_little(str.dup)
+    print to_little(str)
   else
     print str
   end
