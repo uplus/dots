@@ -11,9 +11,7 @@
 
 class String
   def int?
-    Integer(self)
-  rescue # retry with convert to hex
-    Integer('0x'+self) && true rescue false
+    Integer(self) rescue return false
   end
 
   def to_bin
