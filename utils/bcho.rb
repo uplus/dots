@@ -36,10 +36,13 @@ def to_little(hex_str)
   return hex_str.scan(/../).map(&:to_bin).reverse.join
 end
 
-ARGV.map do |str|
-  if str.int?
-    print to_little(str)
-  else
-    print str
+if __FILE__ == $0
+  ARGV.map do |str|
+    if str.int?
+      print to_little(str)
+    else
+      print str
+    end
   end
 end
+
