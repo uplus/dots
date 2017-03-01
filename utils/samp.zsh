@@ -11,7 +11,7 @@ _EOF_
 }
 
 get_base_c(){
-  libs=(stdio stdlib math time)
+  libs=(stdio stdlib string math time)
   for s ($libs) echo "#include <$s.h>"
   echo -e "\nint main(){\n}"
 }
