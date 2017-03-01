@@ -1,13 +1,9 @@
 #!/usr/bin/env ruby
-case ARGV.size
+puts case ARGV.size
 when 0
 	exit(0)
 when 1
-  print '0x'
-  ARGV[0].each_char {|c| print c.ord.to_s(16) }
+  ARGV[0].unpack('H*')[0]
 else
-  print '0x'
-	ARGV.each {|c| print c.ord.to_s(16), ' ' }
+	ARGV.map{|c| c.ord.to_s(16)}.join(' ')
 end
-
-puts
