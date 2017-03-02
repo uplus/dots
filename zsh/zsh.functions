@@ -343,7 +343,8 @@ elf-sec(){
 }
 
 fork-server(){
-  socat "EXEC:${1}" "TCP-LISTEN:${2},reuseaddr,fork" 2>/dev/null &
+  # 引数の順序依存
+  socat "TCP-LISTEN:${2:?port},reuseaddr,fork" "EXEC:${${1:a}:?file}" &
 }
 
 doko(){
