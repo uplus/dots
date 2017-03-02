@@ -299,14 +299,16 @@ alias_over source-highlight -f esc -i
 alias_over gzip -v9N
 alias_over gist -c -p
 alias_over killall -i -I
+alias_over python2 -B
+alias_over python3 -B
 
 alias_rlwrap irb --simple-prompt
 alias_rlwrap pry --simple-prompt
-alias_rlwrap ruby
+# alias_rlwrap ruby
 alias_rlwrap nc
 alias_rlwrap telnet
-alias_rlwrap python2 -B
-alias_rlwrap python3 -B
+# alias_rlwrap python2 -B
+# alias_rlwrap python3 -B
 alias_rlwrap ipython --no-confirm-exit --no-banner
 
 if in_path nodejs; then
