@@ -11,7 +11,7 @@ echo "${1}" |  open_jtalk -m "${voice}" -x "${dict}" -ow "${out}" -s 48000 -z 12
 -r 1.3 \
 -fm 1 \
 
-cvlc --no-one-instance "${out}" >/dev/null 2>&1
+cvlc --no-daemon --no-one-instance "${out}" >/dev/null 2>&1
 
 # -p  i : frame period (point)       [auto][   1--    ] 単純な速度
 # -r  f : speech speed rate          [ 1.0][ 0.0--    ] スピーチ速度

@@ -27,4 +27,4 @@ f = open(output, 'wb')
 f.write(speech)
 f.close
 
-os.system("cvlc --no-one-instance '%s'" % output)
+os.system("cvlc --no-daemon --no-one-instance '%s'" % output)
