@@ -1,17 +1,17 @@
 #!/usr/bin/env zsh
 set -ue
 
-voice=$HOME/Documents/voices/miku-a.htsvoice
-dict=/usr/local/share/open_jtalk/open_jtalk_dic_utf_8-1.08/
-out=/tmp/jsay-voice.wav
-rm -f $out
+voice="${HOME}/Documents/voices/miku-a.htsvoice"
+dict='/usr/local/share/open_jtalk/open_jtalk_dic_utf_8-1.08/'
+out='/tmp/jsay-voice.wav'
+rm -f "${out}"
 
-echo "${1}" |  open_jtalk -m $voice -x $dict -ow $out -s 48000 -z 12000 \
+echo "${1}" |  open_jtalk -m "${voice}" -x "${dict}" -ow "${out}" -s 48000 -z 12000 \
 -g -25 \
 -r 1.3 \
 -fm 1 \
 
-aplay $out >/dev/null 2>&1
+cvlc --no-one-instance "${out}" >/dev/null 2>&1
 
 # -p  i : frame period (point)       [auto][   1--    ] 単純な速度
 # -r  f : speech speed rate          [ 1.0][ 0.0--    ] スピーチ速度
