@@ -224,6 +224,10 @@ install_psysh() {
 #}}}
 
 # misc {{{
+vul-env(){
+  docker pull citizenstig/dvwa
+}
+
 ime_vars(){
   cat <<- END | sudo tee -a /etc/profile
 
