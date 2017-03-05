@@ -43,7 +43,7 @@ execute() {
     \#*) print_comment "${1}" ;;
     %*)
       print_color "${1}" 2
-      eval "$(echo "${1#%}")" </dev/tty
+      zsh -ic "eval $(echo "${1#%}")" </dev/tty
       ;;
     *)
     simple_color $1
