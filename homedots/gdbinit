@@ -7,12 +7,16 @@ set print pretty on
 set print static-members off
 set charset UTF8
 set print asm-demangle on
+# set disable-randomization off
+
+# 機械語も表示
+# disas/r
 
 define d
   if $argc == 0
-    disassemble
+    disassemble/m
   else
-    disassemble $arg0
+    disassemble/m $arg0
   end
 end
 
