@@ -364,7 +364,11 @@ exzip(){
 wgetc(){
   clip -o
   echo
-  wget -O "${1:?filename}" "$(clip -o)"
+  if (($# == 0)); then
+    wget "$(clip -o)"
+  else
+    wget -O "${1:?filename}" "$(clip -o)"
+  fi
 }
 
 gif-optimize(){
