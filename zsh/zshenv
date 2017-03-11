@@ -65,6 +65,7 @@ elif in_path gem; then
   export PATH="${$(gem environment gempath)%%:*}/bin:$PATH"
 fi
 
+export RUBYLIB="$HOME/src/pwnlib:${RUBYLIB}"
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 
