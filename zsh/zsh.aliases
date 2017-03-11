@@ -302,14 +302,14 @@ alias_over killall -i -I
 alias_over python2 -B
 alias_over python3 -B
 
-alias_rlwrap irb --simple-prompt
-alias_rlwrap pry --simple-prompt
-# alias_rlwrap ruby
-alias_rlwrap nc
-alias_rlwrap telnet
+alias_over irb --simple-prompt
+alias_over pry --simple-prompt
+# alias_over ruby
+alias_over nc
+alias_over telnet
 # alias_rlwrap python2 -B
 # alias_rlwrap python3 -B
-alias_rlwrap ipython --no-confirm-exit --no-banner
+alias_over ipython --no-confirm-exit --no-banner
 
 if in_path nodejs; then
   alias js=nodejs
