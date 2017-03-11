@@ -3,6 +3,7 @@ set -u
 # TODO change to absolute
 current="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)"
 
+
 make_dirs_other(){ #{{{
   mkdir -vp $HOME/src
   mkdir -vpm 700 $HOME/codes
@@ -70,7 +71,6 @@ setup_vim(){ #{{{
   mkdri -p ~/.config
   ln -svi $HOME/.vim $HOME/.config/nvim
 } #}}}
-
 
 pkg_u(){ # {{{
   _pkg_u() {
@@ -147,7 +147,12 @@ install_dein(){
 }
 
 install_peda(){
-  git clone --depth 1 https://github.com/longld/peda.git ~/.peda
+  git clone --depth 1 https://github.com/scwuaptx/peda.git ~/src/peda
+  dotln ~/src/peda
+}
+
+install_pwnlib(){
+  git clone --depth 1 https://github.com/Charo-IT/pwnlib ~/src/pwnlib
 }
 
 install_other(){
@@ -224,7 +229,8 @@ install_psysh() {
 #}}}
 
 # misc {{{
-vul-env(){
+
+vul_env(){
   docker pull citizenstig/dvwa
 }
 
@@ -306,6 +312,25 @@ binln () {
     rpath="$(readlink -f "${name}")"
     bname="$(basename "${name}")"
     ln -svi "${rpath}" "${HOME}/bin/${bname%.*}"
+	done
+}
+
+sln () {
+	if (($# < 2))
+	then
+		warn "usage: sln <source> <target>"
+		return 1
+	else
+		ln -svi ${1:a} ${2:a}
+	fi
+}
+
+dotln () {
+	local name
+	mkdir -p $HOME/bin
+	for name in $@
+	do
+		ln -svi "${name:a}" "$HOME/.${name:t:r}"
 	done
 }
 
