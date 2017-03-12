@@ -89,3 +89,5 @@
   souji = clean -fd
   open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
   get = clone --depth 1
+[http "https://gopkg.in"]
+	followRedirects = true
