@@ -152,7 +152,15 @@ install_peda(){
 }
 
 install_pwnlib(){
+  mkdir ~/.rubylib
   git clone --depth 1 https://github.com/Charo-IT/pwnlib ~/src/pwnlib
+  sln ~/src/pwnlib/pwnlib.rb ~/.rubylib/
+}
+
+install_fsalib(){
+  mkdir ~/.rubylib
+  git clone --depth 1 https://github.com/owlinux1000/fsalib ~/src/fsalib
+  sln ~/src/fsalib/fsalib.rb ~/.rubylib/
 }
 
 install_other(){
