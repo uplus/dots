@@ -163,6 +163,12 @@ install_fsalib(){
   sln ~/src/fsalib/fsalib.rb ~/.rubylib/
 }
 
+install_pwntools(){
+  git clone --depth 1 https://github.com/peter50216/pwntools-ruby ~/src/pwntools
+  cd ~/src/pwntools
+  rake install
+}
+
 install_other(){
   # json incremental digger
   go get -v github.com/simeji/jid/cmd/jid
