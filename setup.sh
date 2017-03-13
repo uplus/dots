@@ -153,7 +153,7 @@ install_peda(){
 
 install_pwnlib(){
   mkdir ~/.rubylib
-  git clone --depth 1 https://github.com/Charo-IT/pwnlib ~/src/pwnlib
+  git clone --depth 1 https://github.com/owlinux1000/pwnlib ~/src/pwnlib
   sln ~/src/pwnlib/pwnlib.rb ~/.rubylib/
 }
 
@@ -330,13 +330,9 @@ binln () {
 }
 
 sln () {
-	if (($# < 2))
-	then
-		warn "usage: sln <source> <target>"
-		return 1
-	else
-		ln -svi ${1:a} ${2:a}
-	fi
+  abs_src="$(readlink -f "${1:?src}")"
+  abs_dest="$(readlink -f "${2:?dest}")"
+  ln -svi ${abs_src} ${abs_dest}
 }
 
 dotln () {
