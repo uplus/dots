@@ -355,6 +355,10 @@ aslr(){
   sudo sysctl -w kernel.randomize_va_space=${1:-2}
 }
 
+ptrace(){
+  sudo sysctl -w kernel.yama.ptrace_scope=${1:-2}
+}
+
 exzip(){
   for i in ${@}; do
     unzip -d "${i:r}" "${i}"

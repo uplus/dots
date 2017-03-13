@@ -37,3 +37,4 @@ define ir
 end
 
 source ~/.peda/peda.py
+pset option count 12
