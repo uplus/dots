@@ -26,6 +26,7 @@ gem 'rspec'
 gem 'sheet'
 # 'tty-pager'
 gem 'gem-browse'
+gem 'lazyeval'
 
 
 # gem 'kuport'
