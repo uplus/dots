@@ -6,10 +6,12 @@ class String
   end
 end
 
-s = (?A..?Z).map{|c|c*4}.join + (?a..?z).map{|c|c*4}.join
+s = ((?A..?Z).to_a+(?a..?z).to_a).map{|c| c*4}.join
+
+newline = ARGV.delete('-n')? "\n": ''
 
 if ARGV[0].int?
-  print(s[0...ARGV[0].to_i])
+  print(s[0...ARGV[0].to_i] + newline)
 else
   puts s.index ARGV[0]
 end
