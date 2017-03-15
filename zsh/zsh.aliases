@@ -49,7 +49,7 @@ alias vimopt='vim --version | \grep -E "^\+|^-"'
 alias t='tig'
 alias ts='tig status'
 alias g='git'
-alias ga='git a'
+ga(){git a ${@:-.}}
 alias gch='git ch'
 alias gd='git d'
 alias gdc='git dc'
@@ -305,8 +305,8 @@ alias_over python3 -B
 alias_over irb --simple-prompt
 alias_over pry --simple-prompt
 # alias_over ruby
-alias_over nc
-alias_over telnet
+# alias_over nc
+# alias_over telnet
 # alias_rlwrap python2 -B
 # alias_rlwrap python3 -B
 alias_over ipython --no-confirm-exit --no-banner

@@ -70,6 +70,7 @@
   reoh     = rebase -i origin/master
   continue = rebase --continue
   abort    = rebase --abort
+  del   = branch -d
   smerge = !"f(){ git merge --ff-only ${1}; git branch -d ${1}; }; f"
   fmerge = merge --ff-only
   aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'

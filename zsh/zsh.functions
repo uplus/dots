@@ -258,7 +258,7 @@ google-asm(){
 }
 
 gdb-disas(){
-  gdb -q --batch --eval-command="disas ${2:-main}" "${1:-a.out}"
+  gdb -q --nx --batch --eval-command="disas ${2:-main}" "${1:-a.out}"
 }
 
 # trash # {{{
