@@ -16,11 +16,10 @@ class String
   end
 
   def scan_num(num)
-    # scan(/.{#{num}}/)
     each_char.each_slice(num).map(&:join)
   end
 
-  alias to_hex to_ihex
+  alias hex to_ihex
 end
 
 class Integer
@@ -28,7 +27,7 @@ class Integer
     to_s 16
   end
 
-  alias to_hex to_shex
+  alias hex to_shex
 end
 
 class Solver < PwnTube
@@ -74,6 +73,7 @@ class Solver < PwnTube
   alias :read :recv
   alias :readnb :recvnb
   alias :r :recvnb
+  alias :p :puts
   alias :i :interact
 end
 
