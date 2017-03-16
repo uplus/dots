@@ -14,12 +14,21 @@ class String
   def to_bin
     unpack('H*').first.to_ihex
   end
+
+  def scan_num(num)
+    # scan(/.{#{num}}/)
+    each_char.each_slice(num).map(&:join)
+  end
+
+  alias to_hex to_ihex
 end
 
 class Integer
   def to_shex
     to_s 16
   end
+
+  alias to_hex to_shex
 end
 
 class Solver < PwnTube
@@ -64,6 +73,7 @@ class Solver < PwnTube
   alias :puts :sendline
   alias :read :recv
   alias :readnb :recvnb
+  alias :r :recvnb
   alias :i :interact
 end
 
@@ -73,6 +83,11 @@ end
 
 def unpack(hex_str)
   hex_str.unpack('V')[0]
+end
+
+def chpat(num)
+  $alphabets ||= ((?A..?Z).to_a+(?a..?z).to_a).map{|c| c*4}.join
+  $alphabets[0, num]
 end
 
 def fsa(pos, dest_addr, value)
