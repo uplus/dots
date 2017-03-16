@@ -416,6 +416,16 @@ docker-images-update(){
   sudo docker images | awk 'NR>1 && $0=$1' | sort -u | egrep -v '^(<none>)$' | xargs -P0 -L1 -I@ sudo docker pull @
 }
 
+sec(){
+  : "${1:?binary file}"
+
+  file "${1}" | tr ',' '\n'
+  echo
+  checksec -f "${1}" | awk 'NR==2{$20="";print}'
+  echo
+  readelf -h "${1}"
+  readelf -r "${1}"
+}
 
 autoload -Uz ruby-calc
 autoload -Uz getimg
