@@ -19,6 +19,11 @@ class String
     each_char.each_slice(num).map(&:join)
   end
 
+  # num文字目以降を返す
+  def from(num)
+    self[num..-1]
+  end
+
   alias hex to_ihex
 end
 
@@ -49,12 +54,14 @@ class Solver < PwnTube
 
   def io(str)
     puts str
-    gets + recvnb
+    gets + recvnb.to_s
   end
 
   def interact(terminate_string = "exit")
     $>.puts recvnb(1024*5)
-    $>.puts('Interactive')
+    $>.puts 'Interactive'
+    $>.puts io('id')
+
     socket.flush
     loop do
       $>.print '>> '
