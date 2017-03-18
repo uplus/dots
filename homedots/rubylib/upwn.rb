@@ -59,7 +59,7 @@ class Solver < PwnTube
 
   def interact(terminate_string = "exit")
     $>.puts recvnb(1024*5)
-    $>.puts 'Interactive'
+    $>.puts 'interactive'
     $>.puts io('id')
 
     socket.flush
@@ -67,7 +67,7 @@ class Solver < PwnTube
       $>.print '>> '
       s = $stdin.gets
       if !s || s.chomp == terminate_string
-        $>.puts 'End interactive mode'
+        $>.puts 'end interactive mode'
         break
       end
       socket.puts(s)
