@@ -97,8 +97,16 @@ def chpat(num)
   $alphabets[0, num]
 end
 
-def fsa(pos, dest_addr, value)
-  FSA.new.tap{|f| f[dest_addr] = value}.payload(pos)
+def fsa(pos, padding, startlen, dest_value_hash)
+  f = FSA.new
+  dest_value_hash.each{|k,v| f[k] = v}
+  f.payload(pos, padding, startlen)
+end
+
+# deprecated
+def fsa_word(pos, dest_addr, value, padding=0, startlen=0)
+  fsa(pos,padding, startlen, dest_addr => value)
+  # FSA.new.tap{|f| f[dest_addr] = value}.payload(pos, padding, startlen)
 
   # # 下位から書き込むためにsplit&reverse
   # data    = value.to_shex.reverse.scan(/.{1,4}/).map{|s| s.reverse.to_ihex}
@@ -110,10 +118,10 @@ def fsa(pos, dest_addr, value)
   # dests.inject(&:+) + payload
 end
 
-def fsa2split(pos, dest_addr, str, padding=0)
+def fsa2split(pos, dest_addr, str, padding=0, startlen=0)
   nums = str.scan(/.{1,2}/).map{|s| s.reverse.to_bin}
   nums.map.with_index do |n,i|
-    FSA.new.tap{|f| f[dest_addr+2*i] = n}.payload(pos, padding)
+    FSA.new.tap{|f| f[dest_addr+2*i] = n}.payload(pos, padding, startlen)
   end.tap{|s| p s}
 
   # nums = str.scan(/.{1,2}/).map{|s| s.reverse.to_bin}
