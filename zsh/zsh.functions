@@ -40,7 +40,7 @@ add-zsh-hook precmd autols
 ch(){ cd $HOME/${1:-} }
 
 mkd(){
-  mkdir $@
+  mkdir -p $@
   cd "${@:$#}"
 }
 
