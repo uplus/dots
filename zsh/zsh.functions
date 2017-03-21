@@ -427,6 +427,59 @@ sec(){
   readelf -r "${1}"
 }
 
+ps_get(){
+  ps --no-headers -o "${1:?format}" -p "${2:?pid}"
+}
+
+ps_stime(){
+  ps_get stime "${1:?pid}"
+}
+
+ps_time(){
+  ps_get time "${1:?pid}"
+}
+
+winfocus(){
+  : "${1:?app name}"
+  eval "$(xdotool search --shell --onlyvisible --class "${1}")"
+
+  if (($#WINDOWS == 0)); then
+    warn 'Not found'
+    return 1
+  fi
+
+  # only older
+  win_num="$(for i in ${WINDOWS}; do
+    ps_time "$(xdotool getwindowpid "${i}")" | tr '\n' ' '
+    echo "${i}"
+  done | sort -nr | head -1 | awk '$0=$2')"
+
+  xdotool windowactivate "${win_num}"
+}
+
+typeset -g -a my_precmd_funcs
+tmp_precmd(){
+  if (($# == 0)); then
+    echo "${my_precmd_funcs}" | tr ' ' '\n'
+    return 0
+  fi
+
+  if [[ "${1}" == '-d' ]]; then
+    shift
+    # TODO
+    return 0
+  fi
+
+  my_precmd_funcs+="${1}"
+}
+
+exec_my_precmd(){
+  for cmd in ${my_precmd_funcs}; do
+    eval "${cmd}"
+  done
+}
+add-zsh-hook precmd exec_my_precmd
+
 autoload -Uz ruby-calc
 autoload -Uz getimg
 autoload -Uz enc-utf8
