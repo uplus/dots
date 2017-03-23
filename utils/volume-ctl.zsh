@@ -24,6 +24,15 @@ set-player-sink(){
   pactl move-sink-input "${1:?player index}" "${2:?sink index}"
 }
 
+set-players-sink(){
+  sink="${1:?sink index}"
+  shift
+  players-compact | grep -iE "$(echo "${*}" | sed "s/ /|/g")" | awk '$0=$1' |
+    while read i; do
+      set-player-sink "${i}" "${sink}"
+    done
+}
+
 get-default-sink(){
   pactl list sinks short | grep "$(pactl info | grep -Po '(?<=Default Sink\:\s).*')"
 }
