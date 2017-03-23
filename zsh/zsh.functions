@@ -258,7 +258,11 @@ google-asm(){
 }
 
 gdb-disas(){
-  gdb -q --nx --batch --eval-command="disas ${2:-main}" "${1:-a.out}"
+  gdb -q --nx --batch --init-eval-command='set disassembly-flavor intel' --eval-command="disas ${2:-main}" "${1:-a.out}"
+}
+
+gots(){
+  readelf -r "${1:?ELF binary}" | egrep '^[0-9]' | sort -n | sed -e 's/@.*$//' -e 's/__\+//g' | awk '$0=$5 " = 0x" $1'
 }
 
 # trash # {{{
