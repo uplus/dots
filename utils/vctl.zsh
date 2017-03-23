@@ -27,10 +27,34 @@ set-player-sink(){
 set-players-sink(){
   sink="${1:?sink index}"
   shift
-  players-compact | grep -iE "$(echo "${*}" | sed "s/ /|/g")" | awk '$0=$1' |
+  find-players-index ${*:?names} | awk '{print $1}'|
     while read i; do
       set-player-sink "${i}" "${sink}"
     done
+}
+
+rotate-players-sink(){
+  tmp="$(find-players-index ${*:?names})"
+  now="$(echo "${tmp}" | awk 'NR<2{print $2}')"
+
+  ply_i=${(z)$(echo "${tmp}" | awk '{print $1}' | tr '\n' ' ')}
+  snk_i=${(z)$(get-sinks-index)}
+
+  now_pos="${snk_i[(i)${now}]}"
+  next_pos="$((${now_pos}+1))"
+  (($#snk_i < next_pos)) &&  next_pos=1
+
+  for i in ${ply_i}; do
+    set-player-sink "${i}" "${snk_i[next_pos]}"
+  done
+}
+
+find-players-index(){
+  players-compact | grep -iE "$(echo "${*}" | sed "s/ /|/g")" | awk '{print $1" "$2}'
+}
+
+get-sinks-index(){
+  pactl list sinks short | awk '{print $1}'
 }
 
 get-default-sink(){
@@ -48,10 +72,10 @@ info(){
   players
 }
 
+alias rotate=rotate-players-sink
 
-# TODO:
 if [[ $# -eq 0 ]]; then
-  cat $0
+  cat $0 | grep -o '^[^) ]*)'
 else
-  $@
+  eval $@
 fi
