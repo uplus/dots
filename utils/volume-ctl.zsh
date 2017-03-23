@@ -8,6 +8,10 @@ players(){
   pactl list sink-inputs | grep -E '^Sink Input|^\s*(Sink|Mute|Volume):|^\s*application\.(name|icon_name|process\.binary)|^$'
 }
 
+players-compact(){
+  players | grep -oP '(?<=Sink Input #)([0-9]+)|(?<=Sink: )[0-9]+|(?<=application.name = ).*' | sed 'N;N;s/\n/ /g'
+}
+
 set-volume(){
   pactl set-sink-volume "${1:?index}" "${2:?volume}%"
 }
@@ -16,12 +20,16 @@ set-player-volume(){
   pactl set-sink-input-volume "${1:?index}" "${2:?volume}%"
 }
 
+set-player-sink(){
+  pactl move-sink-input "${1:?player index}" "${2:?sink index}"
+}
+
 get-default-sink(){
   pactl list sinks short | grep "$(pactl info | grep -Po '(?<=Default Sink\:\s).*')"
 }
 
 get-default-sink-index(){
-  pactl list sinks short | grep "$(pactl info | grep -Po '(?<=Default Sink\:\s).*')" | awk '{print $1}'
+  get-default-sink | awk '{print $1}'
 }
 
 info(){
