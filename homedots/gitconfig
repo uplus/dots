@@ -1,11 +1,12 @@
+# vim: ft=gitconfig
 [user]
   email = uplus.e10@gmail.com
   name  = u10e10
 [core]
-  editor = $EDITOR
   excludesfile = ~/.gitignore
   pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
   quotepath = false
+  encodig = utf-8
 [color]
   ui = true
 [push]
