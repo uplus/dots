@@ -31,6 +31,7 @@ if in_path nvim; then
 else
   export EDITOR=vim
 fi
+export GIT_EDITOR="${EDITOR}"
 
 export VISUAL="${EDITOR}"
 export PAGER='less'
