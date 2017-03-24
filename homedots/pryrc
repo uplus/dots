@@ -8,5 +8,5 @@ if defined?(PryStackExplorer)
 end
 
 def mshow(obj)
-  obj.methods - Object.methods
+  obj.methods - obj.class.superclass.methods
 end
