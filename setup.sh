@@ -240,6 +240,11 @@ install_tig(){
 install_psysh() {
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 }
+
+install_qmk(){
+  pacman -S --no-confirm avr-gcc avr-libc dfu-util
+  yaourt -S --no-confirm dfu-programmer teensy-loader-cli
+}
 #}}}
 
 # misc {{{
