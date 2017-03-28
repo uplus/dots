@@ -234,6 +234,7 @@ elif in_path pacman; then
   alias a.ugf='yaourt -Sua'
   alias a.s='pacman -Ss'
   alias a.sh='pacman -Si'
+  alias a.sl='pacman -Ql'
   alias a.l='pacman -Qqe'
   alias a.orphan='pacman -Qtdq'
   alias a.export='{pacman -Qqen; pacman -Qqm >&2}'
@@ -396,6 +397,7 @@ alias vg=vagrant
 alias vbox=VBoxManage
 alias mgrep=migemogrep
 alias dic='goldendict'
+alias erun='electron .'
 
 in_path google-chrome-stable && alias chrome='google-chrome-stable'
 
