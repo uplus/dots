@@ -186,7 +186,7 @@ hash -d otaku=~codes/otaku-server
 hash -d judge=~works/KogJudge-judge
 
 #shell {{{1
-alias resh='unset fpath; exec ${SHELL:-zsh} -l'
+alias resh='unset fpath; exec ${SHELL:-bash} -i'
 alias realias="source $ZSH_DOT_DIR/zsh.aliases"
 alias z.=zshrc
 alias z.e='zshrc zshenv'

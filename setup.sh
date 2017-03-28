@@ -63,7 +63,7 @@ setup_zsh(){ #{{{
 } #}}}
 
 setup_vim(){ #{{{
-  git clone https://github.com/u10e10/vim $HOME/.vim
+  git clone https://github.com/u10e10/vimrc $HOME/.vim
   install_dein
   mkdir -p $HOME/.vim/tmp
 
@@ -135,7 +135,7 @@ clone_myrepos_tmp(){ #{{{
     my_repo='https://github.com/u10e10'
   fi
 
-  git clone $my_repo/vim.git $HOME/.vim/
+  git clone $my_repo/vimrc.git $HOME/.vim/
   install_dein
 
   git clone $my_repo/rbrn.git $HOME/codes/rbrn
