@@ -223,7 +223,7 @@ if in_path apt-get; then
   alias upgradable='apt list --upgradable'
   alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
 elif in_path pacman; then
-  alias a.i='sudo pacman -S'
+  alias a.i='sudo pacman -S --needed'
   alias a.r='sudo pacman -R'
   alias a.c='sudo pacman -Scc'
   alias a.u='sudo pacman -Syyu'
@@ -235,6 +235,7 @@ elif in_path pacman; then
   alias a.s='pacman -Ss'
   alias a.sh='pacman -Si'
   alias a.l='pacman -Ql'
+  alias a.export='{pacman -Qqen; pacman -Qqm >&2}'
 elif in_path dnf; then
   alias a.u='sudo dnf upgrade'
   alias a.ud='sudo dnf check-update'
