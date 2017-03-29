@@ -32,7 +32,6 @@ alias 8.='cd ../../../../../../../..'
 #vim {{{1
 alias v.='vimrc'
 alias v="${EDITOR}"
-alias vi='vim'
 alias gv='gvim'
 alias nv='nvim'
 alias vh='v .'
