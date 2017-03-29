@@ -130,7 +130,7 @@ case "${mode}" in
     done
     ;;
   edit) "${EDITOR}" $rc_file ;;
-  git) # {{{
+  each) # {{{
     for git_path in $(cat $rc_file); do
       simple_color $git_path
       local str="$(git -C $git_path -c color.status=always status --short)"
@@ -148,7 +148,7 @@ case "${mode}" in
     echo -e "\tpull"
     echo -e "\tlist"
     echo -e "\tedit"
-    echo -e "\tgit"
+    echo -e "\teach"
     echo -e "\thelp"
     ;; # }}}
   *) error "wrong $mode is not option" 60 ;;
