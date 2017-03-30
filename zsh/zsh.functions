@@ -55,11 +55,11 @@ rmd(){
 
 hat(){
   for i in ${@}; do
-    source-highlight-esc.sh "${i}" 2>/dev/null || cat "${i}"
+    pygmentize -O style=native -f terminal256 -g "${i}" 2>/dev/null || command cat "${i}"
   done
 }
 
-show-src(){
+cats(){
   for i in ${@}; do
     echo "---- ${i}"
     hat "${i}"
@@ -76,7 +76,6 @@ xopen(){
     fi
     xdg-open ${i:-.} >/dev/null 2>&1
   done
-
 }
 
 vboxresize(){ VBoxManage modifymedium --resize $((1024*$1)) $2 }

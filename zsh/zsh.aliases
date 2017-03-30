@@ -276,13 +276,32 @@ alias youtube-ogg='noglob youtube-ogg'
 
 #override
 alias_over(){ in_path "${1}" && alias "${1}"="${*}" }
-alias_rlwrap(){
+alias_rlwrap(){ # {{{
   if in_path rlwrap; then
     in_path "${1}" && alias "${1}"="rlwrap ${*}"
   else
     alias_over ${@}
   fi
-}
+} # }}}
+alias_exists(){ # {{{
+  lhs="${1}"
+  shift
+  opts=''
+  for i in $*; do
+    if [[ $i =~ '^-' ]]; then
+      opts+=" ${i}"
+      shift
+    else
+      break
+    fi
+  done
+
+  if in_path "${1}"; then
+    alias "${lhs}"="${1}${opts}"
+  elif in_path "${2:-}"; then
+    alias "${lhs}"="${2}${opts}"
+  fi
+} # }}}
 
 alias_over watch -c -n 1
 alias_over sudo -E
@@ -303,36 +322,25 @@ alias_over gist -c -p
 alias_over killall -i -I
 alias_over python2 -B
 alias_over python3 -B
-
 alias_over irb --simple-prompt
 alias_over pry --simple-prompt
-# alias_over ruby
-# alias_over nc
-# alias_over telnet
-# alias_rlwrap python2 -B
-# alias_rlwrap python3 -B
 alias_over ipython --no-confirm-exit --no-banner
+alias_exists js nodejs node
+alias_exists python python3
+alias_exists pip pip3
+alias_exists diff -u colordiff
+alias_exists chrome google-chrome-stable
+alias cat=hat
 
-if in_path nodejs; then
-  alias js=nodejs
-elif in_path node; then
-  alias js=node
+if can_exec systemctl; then
+  if ! can_exec reboot; then
+    alias reboot='sudo systemctl reboot'
+  fi
+
+  if ! can_exec poweroff; then
+    alias poweroff='sudo systemctl poweroff'
+  fi
 fi
-
-if in_path colordiff; then
-  alias diff='colordiff -u'
-else
-  alias diff='diff -u'
-fi
-
-if in_path python3; then
-  alias python=python3
-fi
-
-if in_path pip3; then
-  alias pip=pip3
-fi
-
 
 
 #utilities
@@ -397,15 +405,3 @@ alias vbox=VBoxManage
 alias mgrep=migemogrep
 alias dic='goldendict'
 alias erun='electron .'
-
-in_path google-chrome-stable && alias chrome='google-chrome-stable'
-
-if can_exec systemctl; then
-  if ! can_exec reboot; then
-    alias reboot='sudo systemctl reboot'
-  fi
-
-  if ! can_exec poweroff; then
-    alias poweroff='sudo systemctl poweroff'
-  fi
-fi
