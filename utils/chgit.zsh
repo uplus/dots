@@ -134,9 +134,9 @@ case "${mode}" in
     for git_path in $(cat $rc_file); do
       simple_color $git_path
       local str="$(git -C $git_path -c color.status=always status --short)"
-      [[ -z $str ]] && continue
+      # [[ -z $str ]] && continue
       echo -e "$str"
-      git -C $git_path sh
+      git -C $git_path $@
       echo
     done
     ;; # }}}
