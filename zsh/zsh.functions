@@ -90,7 +90,6 @@ vimgit() { git -C ~/.vim ${@:-sh} }
 md5text(){ echo -n "${1}" | md5sum | cut -f1 | cut -d \  -f 1 }
 youtube-mp3(){ youtube-dl -x --audio-format mp3 "${@:-$(clip -o)}" }
 youtube-ogg(){ youtube-dl -x --audio-format vorbis "${@:-$(clip -o)}" }
-sgrep(){ grep --color=auto --line-number ${@} **/{.,}* 2>/dev/null }
 setuid(){ sudo chown root: "${1}" && sudo chmod u+s "${1}" }
 mve(){ mv "${1}" "${1:r}.${2}" }
 
@@ -130,6 +129,11 @@ binln(){
 
 vimrc(){ generic_rc $HOME/.vim/ $@ }
 zshrc(){ generic_rc $ZSH_DOT_DIR $@ }
+
+sgrep(){
+  setopt dotglob # Need localloopts
+  grep --color=auto --line-number ${@} **/* 2>/dev/null
+}
 
 set-pushurl(){
   git config remote.origin.pushurl "$(git config remote.origin.url)"
