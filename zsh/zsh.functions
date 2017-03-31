@@ -150,7 +150,7 @@ zshrc(){ generic_rc $ZSH_DOT_DIR $@ }
 
 sgrep(){
   setopt dotglob # Need localloopts
-  grep --color=auto --line-number ${@} **/* 2>/dev/null
+  grep -i --color=auto --line-number ${@} **/* 2>/dev/null
 }
 
 set-pushurl(){
