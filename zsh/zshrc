@@ -424,6 +424,7 @@ bindkey "h" run-help
   zle -N zle_filter_cdr
   in_path peco && bindkey '' zle_filter_cdr
 
+  # TODO sort by shallow, ignore .git,
   zle_filter_select_file(){
     zle reset-prompt
     local -a array

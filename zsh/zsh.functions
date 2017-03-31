@@ -506,3 +506,11 @@ exec_my_precmd(){
 }
 add-zsh-hook precmd exec_my_precmd
 
+dein(){
+  save_pwd="${PWD}"
+  cd ~dein
+  # result=$(find -type d -name .git -prune -o -type d 2>/dev/null | grep -vw .git | peco)
+  result="$(command find */* -maxdepth 0 -type d | sort | peco)"
+  [[ -z $result ]] && cd "${save_pwd}"
+  cd "${result}"
+}
