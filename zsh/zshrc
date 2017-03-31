@@ -433,7 +433,7 @@ bindkey "h" run-help
 
     local dir file file_path
     dir="${$(relative "$array[-1]"):-.}"
-    file="$(cd "$dir" &>/dev/null && find -type f 2>/dev/null | sed 's|^\./||' | peco)"
+    file="$(cd "$dir" &>/dev/null && find -type d -name .git -prune -o -type f 2>/dev/null | sed 's|^\./||' | sort | peco)"
     file_path="$(relative "$dir/$file")"
 
     if [[ -n $file ]]; then
