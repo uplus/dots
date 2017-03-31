@@ -1,5 +1,24 @@
 #!/usr/bin/env zsh -u
 
+autoload -Uz ruby-calc
+autoload -Uz getimg
+autoload -Uz enc-utf8
+autoload -Uz enc264
+autoload -Uz proxy-on
+autoload -Uz proxy-off
+autoload -Uz clip
+autoload -Uz sticky-enable-gnome
+autoload -Uz generic_rc
+autoload -Uz cons-web
+autoload -Uz pull-these
+autoload -Uz countdown
+autoload -Uz colorso
+autoload -Uz colorsv
+autoload -Uz findstr
+autoload -Uz google_translate
+autoload -Uz google
+autoload -Uz rmhere
+
 getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
 relative(){ echo "${1:a}" | sed -e "s|^${PWD}/\?||" }
@@ -487,21 +506,3 @@ exec_my_precmd(){
 }
 add-zsh-hook precmd exec_my_precmd
 
-autoload -Uz ruby-calc
-autoload -Uz getimg
-autoload -Uz enc-utf8
-autoload -Uz enc264
-autoload -Uz proxy-on
-autoload -Uz proxy-off
-autoload -Uz clip
-autoload -Uz sticky-enable-gnome
-autoload -Uz generic_rc
-autoload -Uz cons-web
-autoload -Uz pull-these
-autoload -Uz countdown
-autoload -Uz colorso
-autoload -Uz colorsv
-autoload -Uz findstr
-autoload -Uz google_translate
-autoload -Uz google
-autoload -Uz rmhere
