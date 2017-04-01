@@ -31,6 +31,8 @@
     insteadof = b:
 [url "git@bitbucket.org:u10e10/"]
     insteadof = bgu:
+[http "https://gopkg.in"]
+	followRedirects = true
 [alias]
   a   = add
   s   = status --short --branch
@@ -94,7 +96,4 @@
   souji = clean -fd
   open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
   get = clone --depth 1
-  rename-to-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
-  pwd = !'pwd'
-[http "https://gopkg.in"]
-	followRedirects = true
+  rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
