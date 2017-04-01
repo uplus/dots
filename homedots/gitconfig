@@ -1,7 +1,7 @@
 # vim: ft=gitconfig
 [user]
   email = uplus.e10@gmail.com
-  name  = u10e10
+  name  = uplus
 [core]
   excludesfile = ~/.gitignore
   pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
@@ -23,20 +23,22 @@
   autostash = true
 [url "https://github.com/"]
     insteadof = g:
+[url "git@github.com:uplus/"]
+    insteadof = ggu:
+[url "https://github.com/uplus/"]
+    insteadof = ghu:
 [url "https://bitbucket.org/"]
     insteadof = b:
-[url "git@github.com:u10e10/"]
-    insteadof = gu:
 [url "git@bitbucket.org:u10e10/"]
-    insteadof = bu:
+    insteadof = bgu:
 [alias]
   a   = add
   s   = status --short --branch
-  d   = diff
-  dc  = diff --cached
-  dcw = diff --cached --color-words
-  dw  = diff --color-words
-  ds  = diff --stat
+  d   = diff .
+  dc  = diff --cached .
+  dcw = diff --cached --color-words .
+  dw  = diff --color-words .
+  ds  = diff --stat .
   l   = !git logline -20
   lh  = !git logline origin/master..@
   la  = logline
@@ -79,7 +81,7 @@
   merged  = !git branch --merged | grep -v master | grep -v '*'
   graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
   loggr = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
-  editl = config --edit --local
+  edit = config --edit --local
   editg = !$EDITOR ~/.gitconfig
   current-branch = rev-parse --abbrev-ref HEAD
   fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
@@ -92,5 +94,7 @@
   souji = clean -fd
   open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
   get = clone --depth 1
+  rename-to-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
+  pwd = !'pwd'
 [http "https://gopkg.in"]
 	followRedirects = true
