@@ -63,7 +63,7 @@ setup_zsh(){ #{{{
 } #}}}
 
 setup_vim(){ #{{{
-  git clone https://github.com/u10e10/vimrc $HOME/.vim
+  git clone https://github.com/uplus/vimrc $HOME/.vim
   install_dein
   mkdir -p $HOME/.vim/tmp
 
@@ -130,9 +130,9 @@ clone_myrepos_tmp(){ #{{{
   read -n 1 ssh
   echo
   if [[ $ssh =~ [yY] ]]; then
-    my_repo='git@github.com:u10e10'
+    my_repo='git@github.com:uplus'
   else
-    my_repo='https://github.com/u10e10'
+    my_repo='https://github.com/uplus'
   fi
 
   git clone $my_repo/vimrc.git $HOME/.vim/
