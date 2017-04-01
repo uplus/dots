@@ -183,6 +183,10 @@ hash -d cbook=~ctf/cbook/
 hash -d jprog=~codes/jprog/
 hash -d otaku=~codes/otaku-server
 hash -d judge=~works/KogJudge-judge
+hash -d rbrn=$HOME/codes/rbrn/src
+hash -d ez=~/src/qmk_firmware/keyboards/ergodox/ez
+hash -d kuport=~/codes/kuport
+hash -d docker-jail=~codes/docker-jail
 
 #shell {{{1
 alias resh='unset fpath; exec ${SHELL:-bash} -i'
