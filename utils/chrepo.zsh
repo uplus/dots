@@ -26,7 +26,7 @@ simple_color() {
 }
 
 print_comment(){
-  print_color "skip: ${1#\#%}" 3
+  print_color "skip: ${1#\#}" "${2:-118}"
 }
 
 add_rc(){

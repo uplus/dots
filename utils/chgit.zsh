@@ -34,7 +34,7 @@ simple_color() {
 }
 
 print_comment(){
-  print_color "skip: ${1#\#}" 3
+  print_color "skip: ${1#\#}" "${2:-118}"
 }
 
 has_ahead() {
@@ -49,8 +49,11 @@ check_repos() {
   local st
 
   cat "${rc_file}" | while read git_path; do
-    if is_comment $git_path; then
-      print_comment "${git_path}" 3
+    if is_comment "${git_path}"; then
+      print_comment "${git_path}" 118
+      continue
+    elif [[ ! -d $git_path ]]; then
+      print_comment "${git_path}" 220
       continue
     fi
 
