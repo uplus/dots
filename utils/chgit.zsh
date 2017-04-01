@@ -124,11 +124,11 @@ case "${mode}" in
 
     echo "$push_count/$count pulled"
     ;; # }}}
-  list)
+  list) # {{{
     cat "${rc_file}" | while read git_path; do
       simple $git_path
     done
-    ;;
+    ;; # }}}
   edit) "${EDITOR}" $rc_file ;;
   each) # {{{
     for git_path in $(cat $rc_file); do
