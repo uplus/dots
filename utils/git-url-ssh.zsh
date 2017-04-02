@@ -8,6 +8,7 @@ if [[ "$url" =~ ^https?:// ]]; then
     )"
 
     # to replace git protocol in remote URL with http protocol
+    url="$(echo "${url}" | sed 's/.git$//')"
     git remote set-url origin "${url}.git" 2>/dev/null
     if [[ $? != 0 ]]; then
         echo "Failed to change remote URL" >&2
