@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 set -u
+source helper-chgit
 
 #config
 local rc_file="$HOME/.chgitrc"
@@ -8,41 +9,8 @@ local -a g_status
 g_status=(status --short --branch)
 
 # functions {{{
-error() {
-  echo "error: $1" 1>&2
-  exit $2
-}
-
-has_git() {
-  git -C "$1" rev-parse --git-dir >/dev/null 2>&1
-  return $?
-}
-
-has_rc() { return $([[ -f $rc_file ]]) }
-
-simple() {
-  echo $@ | sed -e "s|^$HOME|~|g"
-}
-
-print_color(){
-  echo -e "\e[38;5;${2:-1}m$1\e[00m"
-}
-
-simple_color() {
-  1=$(printf "%-30s" $(simple $1))
-  print_color "${1}" 39
-}
-
-print_comment(){
-  print_color "skip: ${1#\#}" "${2:-118}"
-}
-
 has_ahead() {
   [[ -n $(git -C $1 $g_status | head -1 | grep -oe "\[.*]$") ]]
-}
-
-is_comment(){
-  [[ $1 =~ ^# ]]
 }
 
 check_repos() {
@@ -65,7 +33,7 @@ check_repos() {
 # }}}
 
 #Start
-! has_rc && touch $rc_file
+[[ ! -f $rc_file ]] && touch $rc_file
 
 local mode=${1:-}
 shift 2>/dev/null
