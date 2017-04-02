@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
-#TODO: remake.
-#rubyとかで作りなおしたほうがいいかも
+#TODO: rubyとかで作りなおしたほうがいいかも
 #マッチした部分のon/off
 #特定ディレクトリの無視、検索条件指定
 #errorの表示 on/off

@@ -18,6 +18,9 @@ disable r # zsh-builtin: 直前のコマンドを実効する
 # autoload -Uz add-zsh-hook # NOTE: call by zplug
 autoload -Uz zmv
 
+# 仮想端末でコマンドを実行(パスワードの自動入力とか ダメ絶対)
+# zmodload zsh/zpty
+
 eval "$(dircolors -b)"
 LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=..;../ln=03;94/g')
 # autoload -U colors && colors  # NOTE: call by zplug
