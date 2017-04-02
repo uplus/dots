@@ -3,15 +3,6 @@ set -u
 source helper-chgit
 
 # functions {{{
-add_rc(){
-  #Check duplicate path and add it to rc_file
-  if grep -q "^$1" $rc_file; then
-    simple "$1 already exists"
-  else
-    echo $1 >> $rc_file
-  fi
-}
-
 execute() {
   case "${1}" in
     \#*) print_comment "${1}" ;;
@@ -44,18 +35,12 @@ local mode="${1:=list}"
 shift
 case $mode in
   add) # {{{
-    [[ $# == 0 ]] && error "please more argument that repository path" 10
+    [[ $# == 0 ]] && error "Please repository path or cmd" 10
 
     if [[ $* =~ ^% ]]; then
-      add_rc "$*"
+      add_rc "${*}"
     else
-      local git_path=${*:a}
-      #check valid of path
-      if ! has_git $git_path; then
-        error "$(simple $git_path) is not git repository" 12
-      fi
-
-      add_rc "$git_path"
+      add_rc_git ${@}
     fi
     ;; # }}}
   pull) # {{{
@@ -83,7 +68,7 @@ case $mode in
       esac
     done < $rc_file
     ;; # }}}
-  edit) "${EDITOR}" $rc_file ;;
+  edit) action_edit ;;
   help) # {{{
     echo "Usage: chrepo [mode]"
     echo -e "\tnon-argument show list"

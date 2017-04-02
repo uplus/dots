@@ -40,20 +40,8 @@ shift 2>/dev/null
 case "${mode}" in
   '') check_repos ;;
   add) # {{{
-    [[ $# == 0 ]] && error "please more argument that repository path" 10
-    git_path=${*:a}
-
-    #check valid of path
-    if ! has_git $git_path; then
-      error "$(simple $git_path) is not git repository" 12
-    fi
-
-    #Check duplicate path and add it to rc_file
-    if grep -q "^$git_path" $rc_file; then
-      simple "$git_path already exists"
-    else
-      echo $git_path >> $rc_file
-    fi
+    [[ $# == 0 ]] && error "Please repository path" 10
+    add_rc_git ${@}
     ;; # }}}
   push) # {{{
     local count=0
@@ -100,7 +88,7 @@ case "${mode}" in
       simple $git_path
     done
     ;; # }}}
-  edit) "${EDITOR}" $rc_file ;;
+  edit) action_edit ;;
   each) # {{{
     for git_path in $(cat $rc_file); do
       simple_color $git_path

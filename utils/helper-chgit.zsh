@@ -31,3 +31,25 @@ is_comment(){
   [[ $1 =~ ^# ]]
 }
 
+action_edit(){
+  "${EDITOR}" "${rc_file}"
+}
+
+add_rc(){
+  #Check duplicate path and add it to rc_file
+  if grep -q "^$1" "${rc_file}"; then
+    simple "$1 already exists"
+  else
+    echo $1 >> "${rc_file}"
+  fi
+}
+
+add_rc_git(){
+  local git_path=${*:a}
+  #check valid of path
+  if ! has_git "${git_path}"; then
+    error "$(simple $git_path) is not git repository" 12
+  fi
+
+  add_rc "${git_path}"
+}
