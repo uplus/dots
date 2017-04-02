@@ -4,9 +4,6 @@ source helper-chgit
 
 #config
 local rc_file="$HOME/.chgitrc"
-local git_path
-local -a g_status
-g_status=(status --short --branch)
 
 # functions {{{
 has_ahead() {
@@ -18,7 +15,7 @@ check_repos() {
 
   cat "${rc_file}" | while read git_path; do
     if is_comment "${git_path}"; then
-      print_comment "${git_path}" 118
+      print_comment "${git_path}"
       continue
     elif [[ ! -d $git_path ]]; then
       print_comment "${git_path}" 220
@@ -40,7 +37,7 @@ shift 2>/dev/null
 case "${mode}" in
   '') check_repos ;;
   add) # {{{
-    [[ $# == 0 ]] && error "Please repository path" 10
+    [[ $# == 0 ]] && error "Please git repository path" 10
     add_rc_git ${@}
     ;; # }}}
   push) # {{{
@@ -49,14 +46,14 @@ case "${mode}" in
 
     cat "${rc_file}" | while read git_path; do
       if is_comment $git_path; then
-        print_comment "${git_path}" 3
+        print_comment "${git_path}"
         continue
       fi
+
       ! has_ahead $git_path && continue
       : $[count+=1]
-      simple_color $git_path
-      git -C $git_path $g_status
-      git -C $git_path push
+
+      git_status_and_cmd "${git_path}" push
       [[ $? == 0 ]] && : $[push_count+=1]
       echo
     done
@@ -70,13 +67,11 @@ case "${mode}" in
       : $[count+=1]
 
       if is_comment $git_path; then
-        print_comment "${git_path}" 3
+        print_comment "${git_path}"
         continue
       fi
 
-      simple_color $git_path
-      git -C $git_path $g_status
-      git -C $git_path pull --ff-only
+      git_status_and_cmd "${git_path}" pull --ff-only
       [[ $? == 0 ]] && : $[push_count+=1]
       echo
     done
@@ -85,18 +80,18 @@ case "${mode}" in
     ;; # }}}
   list) # {{{
     cat "${rc_file}" | while read git_path; do
-      simple $git_path
+      simple "${git_path}"
     done
     ;; # }}}
   edit) action_edit ;;
   each) # {{{
-    for git_path in $(cat $rc_file); do
-      simple_color $git_path
-      local str="$(git -C $git_path -c color.status=always status --short)"
-      # [[ -z $str ]] && continue
-      echo -e "$str"
-      git -C $git_path $@
-      echo
+    cat "${rc_file}" | while read git_path; do
+      action_each "${git_path}"
+    done
+    ;; # }}}
+  shell) # {{{
+    cat "${rc_file}" | peco  | while read git_path; do
+      action_shell "${git_path}"
     done
     ;; # }}}
   help) # {{{
@@ -108,6 +103,7 @@ case "${mode}" in
     echo -e "\tlist"
     echo -e "\tedit"
     echo -e "\teach"
+    echo -e "\tshell"
     echo -e "\thelp"
     ;; # }}}
   *) error "wrong $mode is not option" 60 ;;

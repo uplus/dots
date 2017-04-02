@@ -11,14 +11,11 @@ execute() {
       zsh -ic "eval $(echo "${1#%}")" </dev/tty
       ;;
     *)
-    simple_color $1
-    git -C $1 status --short --branch
-    git -C $1 pull --ff-only
-    echo
-    ;;
+      git_status_and_cmd "${1}" pull --ff-only
+      echo
+      ;;
   esac
 }
-
 # }}}
 
 #Start
@@ -29,13 +26,17 @@ local rc_file="$(
   done
   echo "${PWD}"
 )/.chreporc"
-echo "Load ${rc_file}"
+if [[ $rc_file == $HOME/.chreporc ]]; then
+  echo "Load ${rc_file}"
+else
+  print_color "Load ${rc_file}" 220
+fi
 
 local mode="${1:=list}"
 shift
 case $mode in
   add) # {{{
-    [[ $# == 0 ]] && error "Please repository path or cmd" 10
+    [[ $# == 0 ]] && error "Please git repository path or cmd" 10
 
     if [[ $* =~ ^% ]]; then
       add_rc "${*}"
@@ -44,9 +45,9 @@ case $mode in
     fi
     ;; # }}}
   pull) # {{{
-    while read line; do
+    cat "${rc_file}" | while read line; do
       execute "$line"
-    done < $rc_file
+    done
     ;; # }}}
   only) # {{{
     : "${1:?the only option need <PATTERN>}"
@@ -60,15 +61,33 @@ case $mode in
     fi
     ;; # }}}
   list) # {{{
-    while read line; do
+    cat "${rc_file}" | while read line; do
       case "${line}" in
         \#*) print_comment "${line}" ;;
         %*) echo $(echo "${line}" | sed s/^%//) ;;
         *) simple_color "${line}" ;;
       esac
-    done < $rc_file
+    done
     ;; # }}}
   edit) action_edit ;;
+  each) # {{{
+    cat "${rc_file}" | while read git_path; do
+      case "${git_path}" in
+        \#*) continue ;;
+        %*) continue ;;
+      esac
+      action_each "${git_path}"
+    done
+    ;; # }}}
+  shell) # {{{
+    cat "${rc_file}" | grep -v '^[%]' | peco  | while read git_path; do
+      case "${git_path}" in
+        \#*) continue ;;
+        %*) continue ;;
+      esac
+      action_shell "${git_path}"
+    done
+    ;; # }}}
   help) # {{{
     echo "Usage: chrepo [mode]"
     echo -e "\tnon-argument show list"
@@ -77,6 +96,8 @@ case $mode in
     echo -e "\tonly PATTERN"
     echo -e "\tlist"
     echo -e "\tedit"
+    echo -e "\teach"
+    echo -e "\tshell"
     echo -e "\thelp"
     ;; # }}}
   *) error "wrong $mode is not option" 60 ;;
