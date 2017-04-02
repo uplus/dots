@@ -34,10 +34,6 @@ is_comment(){
   [[ $1 =~ ^# ]]
 }
 
-action_edit(){
-  "${EDITOR}" "${rc_file}"
-}
-
 add_rc(){
   #Check duplicate path and add it to rc_file
   if grep -q "^$1" "${rc_file}"; then
@@ -65,19 +61,25 @@ git_status_and_cmd(){
   git -C "${git_path}" $@
 }
 
+action_edit(){
+  "${EDITOR}" "${rc_file}"
+}
+
 action_each(){
-  local git_path="${1}"
-  simple_color "${git_path}"
-  local str="$(git -C "${git_path}" -c color.status=always status --short)"
-  # [[ -z $str ]] && continue
-  echo -e "${str}"
-  git -C "${git_path}" $@
-  echo
+  cat "${rc_file}" | grep -v '^[%#]' | while read git_path; do
+    simple_color "${git_path}"
+    local str="$(git -C "${git_path}" -c color.status=always status --short)"
+    # [[ -z $str ]] && continue
+    echo -e "${str}"
+    git -C "${git_path}" $@
+    echo
+  done
 }
 
 action_shell(){
-  local git_path="${1}"
-  echo "Open ${SHELL} in ${git_path}"
-  cd "${git_path}"
-  "${SHELL}" -i
+  cat "${rc_file}" | grep -v '^[%#]' | peco  | while read git_path; do
+    echo "Open ${SHELL} in ${git_path}"
+    cd "${git_path}"
+    "${SHELL}" -i
+  done
 }

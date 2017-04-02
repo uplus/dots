@@ -84,18 +84,10 @@ case "${mode}" in
     done
     ;; # }}}
   edit) action_edit ;;
-  each) # {{{
-    cat "${rc_file}" | while read git_path; do
-      action_each "${git_path}"
-    done
-    ;; # }}}
-  shell) # {{{
-    cat "${rc_file}" | peco  | while read git_path; do
-      action_shell "${git_path}"
-    done
-    ;; # }}}
+  each) action_each ;;
+  shell) action_shell ;;
   help) # {{{
-    echo "Usage: chgit [mode]"
+    echo "Usage: ${0:t:r} [mode]"
     echo -e "\tnon-argument check status of git repositories"
     echo -e "\tadd PATH"
     echo -e "\tpush"

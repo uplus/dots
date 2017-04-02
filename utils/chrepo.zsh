@@ -70,26 +70,10 @@ case $mode in
     done
     ;; # }}}
   edit) action_edit ;;
-  each) # {{{
-    cat "${rc_file}" | while read git_path; do
-      case "${git_path}" in
-        \#*) continue ;;
-        %*) continue ;;
-      esac
-      action_each "${git_path}"
-    done
-    ;; # }}}
-  shell) # {{{
-    cat "${rc_file}" | grep -v '^[%]' | peco  | while read git_path; do
-      case "${git_path}" in
-        \#*) continue ;;
-        %*) continue ;;
-      esac
-      action_shell "${git_path}"
-    done
-    ;; # }}}
+  each) action_each ;;
+  shell) action_shell ;;
   help) # {{{
-    echo "Usage: chrepo [mode]"
+    echo "Usage: ${0:t:r} [mode]"
     echo -e "\tnon-argument show list"
     echo -e "\tadd PATH or %CMD"
     echo -e "\tpull"
