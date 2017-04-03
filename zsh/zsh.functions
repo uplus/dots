@@ -16,6 +16,8 @@ autoload -Uz colorsv
 autoload -Uz google_translate
 autoload -Uz google
 autoload -Uz rmhere
+autoload -Uz sym_solve
+autoload -Uz filter_select_file
 
 getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }

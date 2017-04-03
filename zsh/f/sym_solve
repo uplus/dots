@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+# use with 'ls -AF1'
+
+while read line; do
+  if [[ ! $line =~ '@$' ]]; then
+    echo "$line"
+  else
+    if [[ -d $line ]]; then
+      echo $line | sed 's|@$|/|'
+    else
+      echo $line | sed 's/@$//'
+    fi
+  fi
+done

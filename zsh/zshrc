@@ -427,7 +427,6 @@ bindkey "h" run-help
   zle -N zle_filter_cdr
   in_path peco && bindkey '' zle_filter_cdr
 
-  # TODO sort by shallow, ignore .git,
   zle_filter_select_file(){
     zle reset-prompt
     local -a array
@@ -447,14 +446,19 @@ bindkey "h" run-help
   zle -N zle_filter_select_file
   bindkey '' zle_filter_select_file
 
+  # TODO sort by shallow, ignore .git,
   zle_filter_open_file(){
-    zle_filter_select_file
-    if (($#BUFFER != 0)); then
-      BUFFER="v ${BUFFER}"
+    zle reset-prompt
+    # zleで呼ばれるとhookが呼ばれる
+    file="$({filter_select_file})"
+    if [[ -n $file ]]; then
+      BUFFER="${EDITOR} '${file}'"
+      CURSOR=${#BUFFER}
       zle accept-line
     fi
   }
   zle -N zle_filter_open_file
+  # Ctrl /
   bindkey '' zle_filter_open_file
 
   zle_git_hash(){

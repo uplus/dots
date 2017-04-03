@@ -1,0 +1,14 @@
+#!/usr/bin/zsh
+
+# deps sym_solve
+save_pwd="${PWD}"
+selected='.' # first directory
+
+until [[ -f $selected || -z $selected ]]; do
+  cd "${selected}" >/dev/null
+  selected="$({ls -AF1 | sym_solve | sort -n; echo '.\n..'} | peco)"
+  selected="${selected:a}"
+done
+
+cd "${save_pwd}" >/dev/null
+echo "${selected}"
