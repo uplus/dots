@@ -71,7 +71,7 @@ get_suffix() {
   esac
 }
 
-[[ $#  -eq 0 ]] &&   error "usage: samp TYPE [file]"
+[[ $#  -eq 0 ]] &&   error "usage: ${0:t:r} TYPE [file]"
 
 # parse file.type
 if [[ $1 =~ "^.+\..+$" ]]; then
