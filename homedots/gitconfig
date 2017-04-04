@@ -41,12 +41,14 @@
   dcw = diff --cached --color-words .
   dw  = diff --color-words .
   ds  = diff --stat .
-  l   = !git logline -20
-  lh  = !git logline origin/master..@
-  la  = logline
-  lo  = log --graph --decorate --stat --find-renames
+  l       = !git logline -20
+  lh      = !git logline origin/master..@
+  la      = logline
+  lo      = log --graph --decorate --stat --find-renames
   logline = log --graph --decorate --date=short --pretty='%C(yellow)%h %Cgreen[%cd]%Creset%C(cyan bold)%d%Creset %s'
-  today = log --graph --decorate --oneline --stat --since='16 hour ago'
+  today   = log --graph --decorate --oneline --stat --since='16 hour ago'
+  graph   = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+  loggr   = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
   ch   = checkout
   new  = checkout -b
   co   = commit
@@ -61,39 +63,38 @@
   fixa = commit --amend -va
   fixm = commit --amend -C HEAD
   fixam = commit --amend -a -C HEAD
-  eda  = branch -avv
-  save   = stash save --include-untracked --keep-index
-  ss     = stash save --include-untracked
-  spop   = stash pop
+  empty = commit --allow-empty -m
+  b     = branch
+  eda   = branch -avv
+  del   = branch -d
+  save  = stash save --include-untracked --keep-index
+  ss    = stash save --include-untracked
+  spop  = stash pop
   sdrop = stash drop
   slist = stash list --stat --oneline
   all    = add --all
   update = add --update
   patch  = add --patch
-  back   = "!f(){ git reset HEAD~${1}; }; f"
   ours   = checkout --ours
   theirs = checkout --theirs
   reoh     = rebase -i origin/master
   continue = rebase --continue
   abort    = rebase --abort
-  del   = branch -d
   smerge = !"f(){ git merge --ff-only ${1}; git branch -d ${1}; }; f"
   fmerge = merge --ff-only
   aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'
   merged  = !git branch --merged | grep -v master | grep -v '*'
-  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-  loggr = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
   edit = config --edit --local
-  editg = !$EDITOR ~/.gitconfig
+  editg = !"$EDITOR ~/.gitconfig"
+  back   = !"f(){ git reset HEAD~${1}; }; f"
   current-branch = rev-parse --abbrev-ref HEAD
   fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
-  pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+  souji = clean -fd
+  get = clone --depth 1
   inish = !"f(){ git init && [ $# -ne 0 ] && git add $1; git s && git sh; }; f"
   inic = !"git init && git add --all && git s && git com 'First commit.'"
-  empty = commit --allow-empty -m
   tmpc = !"git add --all && git commit -m \"TODO: temporary commit $(date +%F:%R)\""
-  merge-to-master = !"git checkout master && git merge --ff-only -"
-  souji = clean -fd
   open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
-  get = clone --depth 1
+  pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+  merge-to-master = !"git checkout master && git merge --ff-only -"
   rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
