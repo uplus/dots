@@ -27,6 +27,7 @@ gem 'sheet'
 # 'tty-pager'
 gem 'gem-browse'
 gem 'lazyeval'
+gem 'travis'
 
 
 # gem 'kuport'
