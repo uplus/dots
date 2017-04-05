@@ -31,40 +31,8 @@ setopt prompt_subst         # プロンプト定義で置き換えを使用す�
 setopt prompt_cr            # show prompt in new line, when after command finish.
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
-rprompt-git(){ # {{{
-  git rev-parse --git-dir >&! /dev/null || return
-
-  # branch name
-  local name state color
-  name="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
-  state_base="$(git status --short --branch 2>/dev/null)"
-
-  state="$(echo "${state_base}" | tail --lines=+2 | grep -o '^..')"
-
-  if [[ $state =~ U ]]; then
-    color=171 #magenta
-  elif [[ $state =~ '\?' ]]; then
-    color=208 #yellow
-  elif [[ -z $state ]]; then
-    color=35 #green
-  elif [[ -z "$(echo $state | grep -o '[^ ]$')" ]]; then
-    color=75 #blue
-  else
-    color=197 #red
-  fi
-
-  # # branch status
-  local brace ahead behind stash
-  brace=$(echo "${state_base}" | head -1 | grep -oe '\[.*]$')
-  ahead=$(echo "${brace}" | grep -oe 'ahead [0-9]\+' | awk '{print $2}')
-  behind=$(echo "${brace}" | grep -oe 'behind [0-9]\+' | awk '{print $2}')
-  # stash=$(git stash list 2>/dev/null | wc -l | sed -e 's/^0$//g')
-  [[ -n $ahead ]] && ahead=" %F{35}$ahead%f"
-  [[ -n $behind ]] && behind=" %F{197}$behind%f"
-  # [[ -n $stash ]] && stash=" %F{208}$stash%f"
-
-  echo " [%F{$color}$name%f${ahead}${behind}${stash}]"
-} # }}}
+# aliasなどの影響を受けない
+autoload -Uz rprompt-git
 
 prompt-return-value(){
   echo " %(?,,%F{197} %?%f)"
