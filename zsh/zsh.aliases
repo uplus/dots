@@ -180,6 +180,7 @@ hash -d vm=~vol/vm
 
 hash -d dein=$HOME/.cache/dein/repos/github.com
 hash -d nsni=~dein/uplus/neosnippet-snippets
+hash -d clurin=~dein/uplus/vim-clurin
 hash -d cbook=~ctf/cbook/
 hash -d jprog=~codes/jprog/
 hash -d otaku=~codes/otaku-server
