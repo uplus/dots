@@ -36,11 +36,11 @@
 [alias]
   a   = add
   s   = status --short --branch
-  d   = diff .
-  dc  = diff --cached .
-  dcw = diff --cached --color-words .
-  dw  = diff --color-words .
-  ds  = diff --stat .
+  d   = diff
+  dc  = diff --cached
+  dcw = diff --cached --color-words
+  dw  = diff --color-words
+  ds  = diff --stat
   l       = !git logline -20
   lh      = !git logline origin/master..@
   la      = logline
@@ -77,7 +77,8 @@
   patch  = add --patch
   ours   = checkout --ours
   theirs = checkout --theirs
-  reoh     = rebase -i origin/master
+  remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
+  reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
   continue = rebase --continue
   abort    = rebase --abort
   smerge = !"f(){ git merge --ff-only ${1}; git branch -d ${1}; }; f"
