@@ -18,6 +18,8 @@ autoload -Uz google
 autoload -Uz rmhere
 autoload -Uz sym_solve
 autoload -Uz filter_select_file
+autoload -Uz proxy-on
+autoload -Uz proxy-off
 
 getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
