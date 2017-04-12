@@ -84,7 +84,7 @@ case "${mode}" in
     done
     ;; # }}}
   edit) action_edit ;;
-  each) action_each ;;
+  each) action_each $@ ;;
   shell) action_shell ;;
   help) # {{{
     echo "Usage: ${0:t:r} [mode]"
