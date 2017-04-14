@@ -17,6 +17,7 @@
     ]
   },
   "Keymap": {
+    "C-m": "peco.ToggleSingleKeyJump",
     "C-j": "peco.Finish",
     "C-g": "peco.Cancel",
     "C-y": "peco.SelectAll"

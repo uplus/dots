@@ -414,7 +414,7 @@ bindkey "h" run-help
   zle -N zle_filter_select_file
   bindkey '' zle_filter_select_file
 
-  # TODO sort by shallow, ignore .git,
+  # TODO ディレクトリの浅さでソート
   zle_filter_open_file(){
     zle reset-prompt
     # zleで呼ばれるとhookが呼ばれる
@@ -445,7 +445,7 @@ bindkey "h" run-help
   bindkey '' zle_play_music
 
   zle_filter_commands(){
-    BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco)"
+    BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco --initial-filter=Fuzzy)"
     CURSOR=${#BUFFER}
   }
   zle -N zle_filter_commands
