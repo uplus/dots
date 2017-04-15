@@ -371,7 +371,7 @@ bindkey "h" run-help
 # }}}
 
   ## original keybind functions # {{{
-  zle_filter_history(){
+  zle_filter_history(){ # {{{
     zle reset-prompt
     local cmd="$(history -nr 0 | peco --query "${LBUFFER}")"
 
@@ -379,23 +379,23 @@ bindkey "h" run-help
       BUFFER="${cmd}"
       CURSOR=$#BUFFER
     fi
-  }
+  } # }}}
   zle -N zle_filter_history
   in_path peco && bindkey '' zle_filter_history
 
-  zle_filter_cdr(){
+  zle_filter_cdr(){ # {{{
     zle reset-prompt
-    local dir="$(cdr -l | sed 's/^[^ ]\+ \+//' | peco --query "${LBUFFER}")"
+    local dir="$(cdr -l | sed 's/^.....//' | peco --query "${LBUFFER}")"
 
     if [[ -n $dir ]]; then
       BUFFER="cd ${dir}"
       zle accept-line
     fi
-  }
+  } # }}}
   zle -N zle_filter_cdr
   in_path peco && bindkey '' zle_filter_cdr
 
-  zle_filter_select_file(){
+  zle_filter_select_file(){ # {{{
     zle reset-prompt
     local -a array
     array+=${(z)LBUFFER}
@@ -410,12 +410,12 @@ bindkey "h" run-help
       BUFFER="${BUFFER%"$array[-1]"}$file_path"
       CURSOR=${#BUFFER}
     fi
-  }
+  } # }}}
   zle -N zle_filter_select_file
   bindkey '' zle_filter_select_file
 
   # TODO ディレクトリの浅さでソート
-  zle_filter_open_file(){
+  zle_filter_open_file(){ # {{{
     zle reset-prompt
     # zleで呼ばれるとhookが呼ばれる
     file="$({filter_select_file})"
@@ -424,13 +424,13 @@ bindkey "h" run-help
       CURSOR=${#BUFFER}
       zle accept-line
     fi
-  }
+  } # }}}
   zle -N zle_filter_open_file
   # Ctrl /
   bindkey '' zle_filter_open_file
 
   zle_git_hash(){
-    BUFFER="${BUFFER} $(git log --oneline --branches | peco | awk '{print $1}')"
+    BUFFER="${BUFFER} $(git-hash)"
     CURSOR=${#BUFFER}
   }
   zle -N zle_git_hash
@@ -452,7 +452,7 @@ bindkey "h" run-help
   bindkey 'c' zle_filter_commands
   # bindkey '' zle_filter_commands # don't work
 
-  zle_filter_cd(){
+  zle_filter_cd(){ # {{{
     local str=' '
     while [[ -n $str && $str != '.' ]]; do
       str="$(find -maxdepth 1 -type d | sed 's|^./||'| peco)"
@@ -460,7 +460,7 @@ bindkey "h" run-help
     done
     BUFFER="cd $(pwd)"
     zle accept-line
-  }
+  } # }}}
   zle -N zle_filter_cd
   bindkey 'd' zle_filter_cd
   # bindkey '' zle_filter_cd # don't work

@@ -133,6 +133,10 @@ set-pushurl(){
   git config remote.origin.url "$(git config remote.origin.url | tr ':' '/' | sed -e 's|^git@|https://|')"
 }
 
+git-hash(){
+  git log --oneline --branches | peco | awk '$0=$1'
+}
+
 host-list(){
   sudo nmap -sP "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
 }
@@ -221,12 +225,7 @@ kill(){
   if (($# != 0)); then
     command kill $@
   else
-    local -a cands
-    cands=($(ps --no-headers -u "${USER}" -o pid,cmd | peco | awk '{printf("%s ", $1)}'))
-
-    if [[ -n $cands ]]; then
-      command kill $cands
-    fi
+    ps --no-headers -u "${USER}" -o pid,cmd | peco | awk '$0=$1' | xargs kill
   fi
 }
 
