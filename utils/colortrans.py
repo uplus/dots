@@ -28,18 +28,18 @@ CLUT = [  # color look-up table
 #    8-bit, RGB hex
 
     # Primary 3-bit (8 colors). Unique representation!
-    ('00',  '000000'),
-    ('01',  '800000'),
-    ('02',  '008000'),
-    ('03',  '808000'),
-    ('04',  '000080'),
-    ('05',  '800080'),
-    ('06',  '008080'),
-    ('07',  'c0c0c0'),
+    ('0',  '000000'),
+    ('1',  '800000'),
+    ('2',  '008000'),
+    ('3',  '808000'),
+    ('4',  '000080'),
+    ('5',  '800080'),
+    ('6',  '008080'),
+    ('7',  'c0c0c0'),
 
     # Equivalent "bright" versions of original 8 colors.
-    ('08',  '808080'),
-    ('09',  'ff0000'),
+    ('8',  '808080'),
+    ('9',  'ff0000'),
     ('10',  '00ff00'),
     ('11',  'ffff00'),
     ('12',  '0000ff'),
@@ -369,9 +369,7 @@ if __name__ == '__main__':
     arg = sys.argv[1]
     if len(arg) < 4 and int(arg) < 256:
         rgb = short2rgb(arg)
-        sys.stdout.write('xterm color \033[38;5;%sm%s\033[0m -> RGB exact \033[38;5;%sm%s\033[0m' % (arg, arg, arg, rgb))
-        sys.stdout.write("\033[0m\n")
+        print(rgb)
     else:
         short, rgb = rgb2short(arg)
-        sys.stdout.write('RGB %s -> xterm color approx \033[38;5;%sm%s (%s)' % (arg, short, short, rgb))
-        sys.stdout.write("\033[0m\n")
+        print(short)
