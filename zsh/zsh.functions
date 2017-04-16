@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh -u
 
 # TODO PATH通せばよくね
-  # ヘルパー関数への依存がある
+#      ヘルパー関数への依存がある
 autoload -Uz ruby-calc
 autoload -Uz enc-utf8
 autoload -Uz enc264
@@ -27,7 +27,7 @@ relative(){ echo "${1:a}" | sed -e "s|^${PWD}/\?||" }
 warn(){ echo $* >&2 }
 is_num(){ expr "${1}" + 1 >&! /dev/null }
 is_elf(){ file ${1} | awk '$0=$2' | grep -q ELF }
-back() { eval $@ >&! /dev/null <&- &! } # nohup?
+back(){ eval $@ >&! /dev/null <&- &! } # nohup?
 hide(){
   out=$(mktemp --suffix=".$(date +%T).${1}.out")
   err=$(mktemp --suffix=".$(date +%T).${1}.err")
@@ -128,13 +128,15 @@ sgrep(){
   grep -i --color=auto --line-number ${@} **/* 2>/dev/null
 }
 
-set-pushurl(){
+git-set-pushurl(){
   git config remote.origin.pushurl "$(git config remote.origin.url)"
   git config remote.origin.url "$(git config remote.origin.url | tr ':' '/' | sed -e 's|^git@|https://|')"
 }
 
 git-hash(){
-  git log --oneline --branches | peco | awk '$0=$1'
+  # --select-1
+  branch="$(git branch | peco | awk '$0=$NF')"
+  git log --oneline --branches "${branch}" | peco | awk '$0=$1'
 }
 
 host-list(){
@@ -178,7 +180,7 @@ ud-add(){
 add-zsh-hook precmd ud-add
 # }}}
 
-#interactive filter # {{{
+# peco cd # {{{
 pc(){
   if [[ $# -eq 0 ]]; then
     warn "usage: pc command"
@@ -198,6 +200,7 @@ pa(){
 }
 
 pd(){ pa "$1" -type d }
+# cd to file dir
 pf(){ pa "$1" -type f }
 # }}}
 
