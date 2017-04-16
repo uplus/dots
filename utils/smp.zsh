@@ -89,7 +89,7 @@ readonly suffix=$(get_suffix $1)
 # ファイルとパスを設定
 if [[ $# -lt 2 ]]; then
   file=$(mktemp  --suffix=.${suffix})
-  opt=(+ -c 'au u10ac QuitPre <buffer> nested update')
+  opt=(+ -c 'au QuitPre <buffer> nested update')
 else
   file="$PWD/$2.$suffix"
 
