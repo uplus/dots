@@ -60,6 +60,11 @@ add-zsh-hook precmd autols
 
 ch(){ cd $HOME/${1:-} }
 
+# for completion
+startvm(){
+  back VBoxManage startvm ${@}
+}
+
 mkd(){
   mkdir -p $@
   cd "${@:$#}"
@@ -87,7 +92,6 @@ cats(){
     echo
   done
 }
-
 
 xopen(){
   for i in ${@:-.}; do

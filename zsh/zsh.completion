@@ -24,13 +24,16 @@ _zshrc(){
 compdef _zshrc zshrc
 
 _startvm(){
-  _files -W $(vboxmanage list vms | grep -oP '(?<=").*(?=")') && return 0
+  vboxmanage list vms | grep -oP '(?<=").*(?=")' | while read line; do
+    compadd "${line}"
+  done
+  return 0
 }
 compdef _startvm startvm
 
-vg(){ v }
 _gitedit(){
-  compadd $(git status --short | sed 's/^\s*[^\s]*\s//') && return 0;
+  compadd $(git status --short | sed 's/^\s*[^\s]*\s//')
+  return 0
 }
 compdef _gitedit gv
 
