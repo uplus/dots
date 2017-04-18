@@ -400,14 +400,16 @@ bindkey "h" run-help
     local -a array
     array+=${(z)LBUFFER}
     shift array
-
-    local dir file file_path
     dir="${$(relative "$array[-1]"):-.}"
-    file="$(cd "$dir" &>/dev/null && find -type d -name .git -prune -o -type f 2>/dev/null | sed 's|^\./||' | sort | peco)"
-    file_path="$(relative "$dir/$file")"
+    opts=(-type d -name .git -prune -o)
 
-    if [[ -n $file ]]; then
-      BUFFER="${BUFFER%"$array[-1]"}$file_path"
+    local -a files
+    list_dirs_files "${dir}" $opts | sort -n | peco | while read file; do
+      files+="'$(relative "${dir}/${file}")'"
+    done
+
+    if (($#files != 0)); then
+      BUFFER="${BUFFER%"$array[-1]"}$files"
       CURSOR=${#BUFFER}
     fi
   } # }}}
