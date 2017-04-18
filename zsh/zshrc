@@ -412,13 +412,14 @@ bindkey "h" run-help
     fi
   } # }}}
   zle -N zle_filter_select_file
+  # Ctrl o
   bindkey '' zle_filter_select_file
 
   # TODO ディレクトリの浅さでソート
   zle_filter_open_file(){ # {{{
     zle reset-prompt
-    # zleで呼ばれるとhookが呼ばれる
-    file="$({filter_select_file})"
+    # dirs対策
+    file="$({ filter_select_file })"
     if [[ -n $file ]]; then
       BUFFER="${EDITOR} '${file}'"
       CURSOR=${#BUFFER}
