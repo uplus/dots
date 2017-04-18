@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
+# deps to sym_solve relative
 
-# deps sym_solve
 save_pwd="${PWD}"
 selected='.' # first directory
 
@@ -11,4 +11,5 @@ until [[ -f $selected || -z $selected ]]; do
 done
 
 cd "${save_pwd}" >/dev/null
+selected="$(relative "${selected}")"
 echo "${selected}"
