@@ -2,14 +2,17 @@
 # deps to sym_solve relative
 
 save_pwd="${PWD}"
-selected='.' # first directory
+selected=('.') # first directory
 
-until [[ -f $selected || -z $selected ]]; do
-  cd "${selected}" >/dev/null
-  selected="$({ls -AF1 | sym_solve | sort -n; echo '.\n..'} | peco)"
-  selected="${selected:a}"
+until [[ -f $selected[1] || -z $selected ]]; do
+  cd "${selected[1]}" >/dev/null
+  selected=() 
+  {ls -AF1 | sym_solve | sort -n; echo '.\n..'} | peco | while read line; do 
+    selected+="${line:a}"
+  done
 done
 
 cd "${save_pwd}" >/dev/null
-selected="$(relative "${selected}")"
-echo "${selected}"
+for fp in $selected; do
+  echo "'$(relative "${fp}")'"
+done

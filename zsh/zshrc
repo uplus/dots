@@ -420,10 +420,10 @@ bindkey "h" run-help
   # TODO ディレクトリの浅さでソート
   zle_filter_open_file(){ # {{{
     zle reset-prompt
-    # dirs対策
-    file="$({ filter_select_file })"
-    if [[ -n $file ]]; then
-      BUFFER="${EDITOR} '${file}'"
+    # サブシェルでdirs対策
+    files=( $({ filter_select_file }) )
+    if (($#files != 0)); then
+      BUFFER="${EDITOR} -p ${files}"
       CURSOR=${#BUFFER}
       zle accept-line
     fi
