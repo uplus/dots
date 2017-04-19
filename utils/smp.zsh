@@ -27,6 +27,19 @@ int main(){
 }
 _EOF_
 }
+
+get_base_go(){
+  cat <<_EOF_
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+}
+_EOF_
+}
 # }}}
 
 error(){
@@ -57,6 +70,7 @@ get_base_body(){
     java) get_base_java $2 ;;
     c) get_base_c ;;
     cpp) get_base_cpp ;;
+    go) get_base_go ;;
     python2|py2) get_base_python 'python2' ;;
     python|python3|py|py3) get_base_python 'python3' ;;
     *) get_shebang "$1" ;;
