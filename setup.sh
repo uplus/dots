@@ -124,6 +124,14 @@ pkg_u_utility(){ #{{{
   sudo _pkg_u_utility
 } #}}}
 
+pkg_go(){ #{{{
+  go get -v -u github.com/motemen/gore
+  go get -v -u github.com/peco/peco
+  go get -v -u github.com/peco/migemogrep
+  go get -v -u github.com/nfs/gocode
+  go get -v -u github.com/k0kubun/pp
+} #}}}
+
 clone_myrepos_tmp(){ #{{{
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
@@ -387,4 +395,3 @@ if [ $# -eq 0 ]; then
 else
   $1
 fi
-
