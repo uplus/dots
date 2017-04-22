@@ -13,6 +13,21 @@ has_git() {
   return $?
 }
 
+short_path(){
+  file="$(simple "${1}")"
+  max="${2}"
+
+  if (($#file <= $max)); then
+    echo "${file}"
+    return
+  fi
+
+  base="${file:t}"
+  dir=''
+  for s ($(echo ${file:h:gs/\// /})) dir+="${s[1]}/"
+  echo "${dir}${base}"
+}
+
 simple() {
   echo $@ | sed -e "s|^$HOME|~|g"
 }

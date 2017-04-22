@@ -23,6 +23,7 @@ check_repos() {
     fi
 
     st=$(git -C $git_path -c color.status=always $g_status)
+    git_path="$(short_path ${git_path} 30)"
     echo "$(simple_color $git_path) $st"
     [[ -n $(echo $st | sed -e 1d) ]] && echo
   done
