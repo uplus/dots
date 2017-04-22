@@ -1,0 +1,8 @@
+#!/usr/bin/zsh
+
+cmd='command find */* -maxdepth 0 -type d'
+[[ -n $@ ]] && cmd+=" | grep ${1}"
+cmd+=" | sort | peco --select-1"
+
+result="$(cd ~dein >&!/dev/null; eval "${cmd}")"
+[[ -n $result ]] && cd ~dein/"${result}"

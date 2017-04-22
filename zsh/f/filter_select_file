@@ -5,9 +5,9 @@ save_pwd="${PWD}"
 selected=('.') # first directory
 
 until [[ -f $selected[1] || -z $selected ]]; do
-  cd "${selected[1]}" >/dev/null
-  selected=() 
-  {ls -AF1 | sym_solve | sort -n; echo '.\n..'} | peco | while read line; do 
+  cd "${selected[1]}" >&!/dev/null
+  selected=()
+  {ls -AF1 | sym_solve | sort -n; echo '.\n..'} | peco | while read line; do
     selected+="${line:a}"
   done
 done
