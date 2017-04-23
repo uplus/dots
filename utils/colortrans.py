@@ -369,7 +369,7 @@ if __name__ == '__main__':
     arg = sys.argv[1]
     if len(arg) < 4 and int(arg) < 256:
         rgb = short2rgb(arg)
-        print(rgb)
+        print('#'+rgb)
     else:
         short, rgb = rgb2short(arg)
         print(short)
