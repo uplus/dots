@@ -390,6 +390,7 @@ alias clear-mem-cache='echo 1 | sudo tee /proc/sys/vm/drop_caches'
 alias vus='vagrant up && vagrant ssh'
 alias ls-swap='ls -l1 /home/uplus/.local/share/nvim/swap'
 alias cd-swap='cd /home/uplus/.local/share/nvim/swap'
+alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
 
 
 #shortening
