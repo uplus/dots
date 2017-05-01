@@ -130,6 +130,7 @@ pkg_go(){ #{{{
   go get -v -u github.com/peco/migemogrep
   go get -v -u github.com/nfs/gocode
   go get -v -u github.com/k0kubun/pp
+  go get -v -u github.com/jstemmer/gotags
 } #}}}
 
 clone_myrepos_tmp(){ #{{{
