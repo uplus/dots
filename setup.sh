@@ -136,6 +136,10 @@ pkg_go(){ #{{{
   go get -v -u golang.org/x/tools/cmd/gotype
 } #}}}
 
+pkg_python(){ #{{{
+  pip install vim-vint --upgrade --user
+} #}}}
+
 clone_myrepos_tmp(){ #{{{
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"

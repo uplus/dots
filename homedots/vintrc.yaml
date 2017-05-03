@@ -1,0 +1,23 @@
+# https://github.com/Kuniwak/vint/wiki/Vint-linting-policy-summary
+
+cmdargs:
+  # Checking more strictly
+  # severity: style_problem
+
+  # Enable coloring
+  color: true
+
+  # Enable Neovim syntax
+  env:
+    neovim: true
+
+policies:
+  ProhibitMissingScriptEncoding:
+    enabled: false
+
+  ProhibitUnnecessaryDoubleQuote:
+    enabled: true
+
+  ProhibitNoAbortFunction:
+    enabled: false
+
