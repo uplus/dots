@@ -393,6 +393,7 @@ alias cd-swap='cd /home/uplus/.local/share/nvim/swap'
 alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
 alias vim-power='git ls-files | grep -vE "^(colors|snippets)/" | xargs -I{} cat "{}" | grep -vE "^$|^\"" | wc -l'
 alias ignore='l1 | peco >>! .gitignore'
+alias themis='~dein/thinca/vim-themis/bin/themis --reporter spec'
 
 
 #shortening
