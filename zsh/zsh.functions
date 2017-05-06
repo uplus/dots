@@ -493,3 +493,28 @@ list_dirs_files(){
   shift
   find "${dir}" $@ -type f 2>/dev/null | sed -e  "s|^${dir}||"
 }
+
+vim-version(){ # {{{
+  install_dir="${HOME}/works/vim-versions"
+  if (($# == 0)); then
+    ls "${install_dir}"
+    return 0
+  fi
+  version="${1}"
+  dir="${install_dir}/${version}"
+
+  if ! [[ -d $dir ]]; then
+    cd ~/src/vim
+    gch "v${version}"
+    make distclean >&! /dev/null
+    make "-j $(nproc --ignore 1)"
+    ./configure --prefix="${dir}"
+    make && make install
+    make distclean >&! /dev/null
+    git ch -
+    cd -
+  fi
+
+  export PATH="${dir}/bin:$PATH"
+  echo "${dir}/bin"
+} # }}}

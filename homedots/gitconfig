@@ -43,7 +43,7 @@
   ds  = diff --stat
   l       = !git logline -20
   lh      = !git logline origin/master..@
-  la      = logline
+  la      = !git logline
   lo      = log --graph --decorate --stat --find-renames
   logline = log --graph --decorate --date=short --pretty='%C(yellow)%h %Cgreen[%cd]%Creset%C(cyan bold)%d%Creset %s'
   today   = log --graph --decorate --oneline --stat --since='16 hour ago'
