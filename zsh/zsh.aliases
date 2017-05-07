@@ -65,7 +65,7 @@ alias ge='git eda'
 alias ggrep='noglob git grep -iIn'
 alias gor='cd $(git rev-parse --show-toplevel)'
 alias gpush='hide git push'
-alias gcheck='git diff --check'
+alias gcheck='git diff --check; git grep -InE '\''^\s+$|\s+$'\'
 
 #docker {{{1
 alias dk='docker'
