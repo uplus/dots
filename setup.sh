@@ -131,6 +131,7 @@ pkg_go(){ #{{{
   go get -v -u github.com/nfs/gocode
   go get -v -u github.com/k0kubun/pp
   go get -v -u github.com/jstemmer/gotags
+  go get -v -u github.com/golang/lint/golang
   go get -v -u golang.org/x/tools/cmd/gorename
   go get -v -u golang.org/x/tools/cmd/goimports
   go get -v -u golang.org/x/tools/cmd/gotype
