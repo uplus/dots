@@ -34,6 +34,9 @@ link_files() { #{{{
 
   mkdir -p $HOME/.config/lilyterm/
   ln -svi $current/lilyterm-default.conf $HOME/.config/lilyterm/default.conf
+
+  mkdir -p $HOME/.config/pip/
+  sln $current/pip.conf $HOME/.config/pip/pip.conf
 } #}}}
 
 link_utils_partial(){ #{{{

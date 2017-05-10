@@ -365,8 +365,8 @@ alias guirestart='sudo service lightdm restart'
 alias older='ls -Altr'
 alias netstat-tcp='netstat -atpe --numeric-ports'
 alias whichis='which -aps'
-alias pip3-check='pip3 list -o -l'
-alias pip3-update='pip3 install --user -U $(pip3-check | awk "{print $1}")'
+alias pip3-check='pip3 list -o -l --format=legacy'
+alias pip3-update="pip3-check | awk '{\$0=\$1}' | xargs -I{} -- pip3 install --user -U '{}'"
 alias dirsize='du -sh'
 alias here='ls -ld $PWD'
 alias bigs='ls -A | xargs -I{} du -sm "{}" 2>/dev/null | awk "{if(9 < \$1) print}" | distribution'
@@ -394,6 +394,7 @@ alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
 alias vim-power='git ls-files | grep -vE "^(colors|snippets)/" | xargs -I{} cat "{}" | grep -vE "^$|^\"" | wc -l'
 alias ignore='l1 | peco >>! .gitignore'
 alias themis='~dein/thinca/vim-themis/bin/themis --reporter spec'
+alias build-neovim='make distclean clean && make CMAKE_BUILD_TYPE=Release -j $(nproc --ignore 1)'
 
 
 #shortening
