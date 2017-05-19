@@ -518,3 +518,13 @@ vim-version(){ # {{{
   export PATH="${dir}/bin:$PATH"
   echo "${dir}/bin"
 } # }}}
+
+docker(){
+  unfunction docker
+  if [ ! $(id | grep -q docker) ]; then
+    alias docker='sudo docker'
+    sudo docker ${@}
+    return 0
+  fi
+  docker ${@}
+}
