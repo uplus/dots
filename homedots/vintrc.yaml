@@ -20,4 +20,3 @@ policies:
 
   ProhibitNoAbortFunction:
     enabled: false
-
