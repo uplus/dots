@@ -287,9 +287,14 @@ alias youtube-ogg='noglob youtube-ogg'
 alias r-mig='rails db:migrate'
 alias r-s='rails server'
 alias r-c='rails console'
-alias r-t='rails test'
-alias r-bi='bundle install --path=vendor/bundle --without=product'
+alias r-bi='bundle install --path=.bundle --without=product'
 alias r-bu='bundle update'
+alias r-t='rails test'
+alias r-ti='rails test:integration'
+alias r-tc='rails test:controllers'
+alias r-th='rails test:helpers'
+alias r-tm='rails test:models'
+alias r-tf='rails test:fixtures'
 
 
 #override
