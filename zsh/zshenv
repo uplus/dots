@@ -2,7 +2,7 @@
 # zmodload zsh/zprof && zprof
 
 #add unique attr
-typeset -U path PATH MANPATH INFOPATH fpath FPATH RUBYLIB
+typeset -U path PATH MANPATH INFOPATH fpath FPATH # RUBYLIB
 
 in_path(){
   which $@ &>! /dev/null

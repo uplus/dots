@@ -283,6 +283,15 @@ alias youtube-ogg='noglob youtube-ogg'
 # Folds END {{{1
 # }}}1
 
+#rails
+alias r-mig='rails db:migrate'
+alias r-s='rails server'
+alias r-c='rails console'
+alias r-t='rails test'
+alias r-bi='bundle install --path=vendor/bundle --without=product'
+alias r-bu='bundle update'
+
+
 #override
 alias_over(){ in_path "${1}" && alias "${1}"="${*}" }
 alias_rlwrap(){ # {{{
