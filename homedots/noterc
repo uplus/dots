@@ -1,2 +1,3 @@
 pg
-vim vim/other
+vim vim/misc
+rails rails/misc
