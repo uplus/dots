@@ -284,6 +284,7 @@ alias youtube-ogg='noglob youtube-ogg'
 # }}}1
 
 #rails
+alias ra=rails
 alias r-mig='rails db:migrate'
 alias r-s='rails server'
 alias r-c='rails console'

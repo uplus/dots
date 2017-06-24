@@ -77,6 +77,7 @@
   patch  = add --patch
   ours   = checkout --ours
   theirs = checkout --theirs
+  tags = tag -l -n
   remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
   reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
   continue = rebase --continue
