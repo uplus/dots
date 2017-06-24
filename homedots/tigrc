@@ -200,11 +200,14 @@ bind stage  ] :toggle diff-context +1  # Increase the diff context
 bind diff   @ :/^@@                      # Jump to next (c)hunk
 bind diff   [ :toggle diff-context -1
 bind diff   ] :toggle diff-context +1
+bind diff   R ?git revert %(commit)
 
 bind main C ?git cherry-pick %(commit)
 bind main B ?git checkout %(commit)
-bind main V ?git revert %(commit)
+bind main R ?git revert %(commit)
 bind main F :toggle commit-title-graph # Toggle revision graph visualization
+
+bind blame R ?git revert %(commit)
 
 # Cursor navigation and Scrolling # {{{
 bind generic  j move-down
