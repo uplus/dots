@@ -528,3 +528,7 @@ docker(){
   fi
   docker ${@}
 }
+
+office2pdf(){
+  libreoffice --headless --invisible --convert-to pdf ${*:?Source files}
+}
