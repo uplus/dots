@@ -30,4 +30,8 @@ gem 'lazyeval'
 gem 'travis'
 
 
+# delete published gem
+gem 'gemcutter'
+
+
 # gem 'kuport'
