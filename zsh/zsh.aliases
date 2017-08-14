@@ -280,6 +280,7 @@ alias expr='noglob expr'
 alias zmv='noglob zmv -W'
 alias youtube-mp3='noglob youtube-mp3'
 alias youtube-ogg='noglob youtube-ogg'
+alias ri='noglob ri'
 
 
 # Folds END {{{1
@@ -391,7 +392,7 @@ alias ::='echo $PWD && gs E'
 alias mounted="mount -l | grep '^/dev/' | sort"
 alias devinfo="sudo fdisk --color=always -l /dev/sd? | sed -e '/^$/d' -e 's/Disk \//\nDisk /g'"
 alias devs='df -hTx tmpfs'
-alias dfh='{df -h | head -1; df -h | tail --lines=+2 | sort}'
+alias dfh='df -h | head -1; df -h | tail --lines=+2 | sort'
 alias _=sudo
 alias __=sudoedit
 alias odh='od -A x -t x1z -v '
