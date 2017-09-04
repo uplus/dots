@@ -1,0 +1,22 @@
+# https://github.com/rust-lang-nursery/rustfmt/blob/master/Configurations.md
+array_layout = "Block"
+array_width = 80
+reorder_imported_names = true
+array_horizontal_layout_threshold = 10
+chain_indent = "Block"
+chain_split_single_child = true
+condense_wildcard_suffixes = true
+control_style = "Legacy"
+control_brace_style = "ClosingNextLine"
+# fn_args_density = "Vertical"
+fn_args_layout = "Visual"
+
+fn_call_style = "Visual"
+fn_call_width = 60
+
+fn_empty_single_line = true
+fn_return_indent = "WithWhereClause"
+hard_tabs = false
+indent_match_arms = true
+imports_indent = "Visual"
+imports_layout = "Mixed"
