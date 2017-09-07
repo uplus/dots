@@ -51,7 +51,7 @@ export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
 export MOUNT='/run/media/uplus'
 # export DOCKER_CONTENT_TRUST=1
 
-export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables'
+export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
 
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working
 # export LC_COLLATE=C

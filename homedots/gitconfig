@@ -78,6 +78,7 @@
   ours   = checkout --ours
   theirs = checkout --theirs
   tags = tag -l -n
+  untrack = update-index --skip-worktree
   remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
   reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
   continue = rebase --continue
@@ -86,8 +87,8 @@
   fmerge = merge --ff-only
   aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'
   merged  = !git branch --merged | grep -v master | grep -v '*'
-  edit = config --edit --local
-  editg = !"$EDITOR ~/.gitconfig"
+  edit    = config --edit --local
+  editg   = config --edit --global
   back   = !"f(){ git reset HEAD~${1}; }; f"
   current-branch = rev-parse --abbrev-ref HEAD
   fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
