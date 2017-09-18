@@ -532,3 +532,9 @@ docker(){
 office2pdf(){
   libreoffice --headless --invisible --convert-to pdf ${*:?Source files}
 }
+
+show(){
+  db=${1:?db}
+  table=${2:?table}
+  echo "select * from ${table};" | sqlite3 "${db}"
+}
