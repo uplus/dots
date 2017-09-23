@@ -415,7 +415,7 @@ alias vcal=gcal
 alias vim-power='git ls-files | grep -vE "^(colors|snippets)/" | xargs -I{} cat "{}" | grep -vE "^$|^\"" | wc -l'
 alias ignore='l1 | peco >>! .gitignore'
 alias themis='~dein/thinca/vim-themis/bin/themis --reporter spec'
-alias build-neovim='make distclean clean && make CMAKE_BUILD_TYPE=Release -j $(nproc --ignore 1)'
+alias build-neovim='make distclean clean && make CMAKE_BUILD_TYPE=Release # -j $(nproc --ignore 1)'
 alias wdate='watch --no-title date'
 
 #shortening

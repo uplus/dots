@@ -538,3 +538,9 @@ show(){
   table=${2:?table}
   echo "select * from ${table};" | sqlite3 "${db}"
 }
+
+httpd(){
+  dir="${1:-.}"
+  port="${2:-8900}"
+  ruby -run -e httpd "${dir}" -p "${port}"
+}
