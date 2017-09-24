@@ -2,7 +2,7 @@
 # zmodload zsh/zprof && zprof
 
 #add unique attr
-typeset -U path PATH MANPATH INFOPATH fpath FPATH # RUBYLIB
+typeset -U path PATH MANPATH INFOPATH fpath FPATH MANPATH NODE_PATH # RUBYLIB
 
 in_path(){
   which $@ &>! /dev/null
@@ -68,9 +68,15 @@ fi
 
 export RUBYLIB="$HOME/.rubylib/:${RUBYLIB}"
 export GOPATH="$HOME/.go"
+export NPM_PACKAGES="$HOME/.npm-packages"
+
 export PATH="$GOPATH/bin:$PATH"
-export PATH="${HOME}/.cargo/bin/:${PATH}"
-export PATH="${HOME}/.cabal/bin/:${PATH}"
+export PATH="${HOME}/.cargo/bin:${PATH}"
+export PATH="${HOME}/.cabal/bin:${PATH}"
+export PATH="${NPM_PACKAGES}/bin:${PATH}"
+export NODE_PATH="${NPM_PACKAGES}/lib/node_modules:${NODE_PATH}"
+
+# export MANPATH="${NPM_PACKAGES}/share/man:$(manpath)"
 
 if [[ -z $USER ]]; then
   export USER="$(whoami)"
