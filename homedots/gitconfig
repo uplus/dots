@@ -18,6 +18,7 @@
   # rebase = true
   ff = only
 [merge]
+  ff = false
   tool = vimdiff
 [rebase]
   autostash = true
