@@ -162,6 +162,10 @@ clone_myrepos_tmp(){ #{{{
 } #}}}
 
 # installs {{{
+install_eslint(){
+  npm -g install eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint-config-airbnb-base eslint
+}
+
 install_dein(){
   git clone --depth 1 https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
 }
