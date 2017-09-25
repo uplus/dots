@@ -215,6 +215,10 @@ unset zplug_path
 #requrie after compinit
 source "$ZSH_DOT_DIR/zsh.completion"
 
+if [[ -n ${ZSH_VERSION-} ]]; then
+    autoload -U +X bashcompinit && bashcompinit
+fi
+
 can_exec _cdd_chpwd && add-zsh-hook chpwd _cdd_chpwd
 
 # title
