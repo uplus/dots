@@ -541,6 +541,6 @@ show(){
 
 httpd(){
   dir="${1:-.}"
-  port="${2:-8900}"
+  port="${2:-4000}"
   ruby -run -e httpd "${dir}" -p "${port}"
 }
