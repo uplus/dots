@@ -21,6 +21,7 @@
     "no-console": 1,
     "no-alert": 1,
     "arrow-body-style": 1,
+    "yoda": 0,
     "indent": 1
   }
 }
