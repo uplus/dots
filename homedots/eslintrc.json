@@ -21,6 +21,6 @@
     "no-console": 1,
     "no-alert": 1,
     "arrow-body-style": 1,
-    "indent": 0
+    "indent": 1
   }
 }

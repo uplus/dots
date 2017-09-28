@@ -454,7 +454,7 @@ bindkey "h" run-help
   bindkey '' zle_play_music
 
   zle_filter_commands(){
-    BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco --initial-filter=Fuzzy)"
+    BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco)"
     CURSOR=${#BUFFER}
   }
   zle -N zle_filter_commands
