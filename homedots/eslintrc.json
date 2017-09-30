@@ -18,8 +18,9 @@
     "no-unused-vars": 1,
     "no-undef": 1,
     "no-tabs": 0,
-    "no-console": 1,
-    "no-alert": 1,
+    "no-console": 0,
+    "no-alert": 0,
+    "no-empty": 0,
     "arrow-body-style": 1,
     "yoda": 0,
     "indent": 1
