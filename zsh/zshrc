@@ -437,10 +437,10 @@ bindkey "h" run-help
   bindkey '' zle_filter_open_file
 
   zle_git_hash(){ # {{{
-    str="$(git-hash)" 
-    [[ -z $str ]] && return 
-    BUFFER="${BUFFER} $str" 
-    CURSOR=${#BUFFER} 
+    str="$(git-hash)"
+    [[ -z $str ]] && return
+    BUFFER="${BUFFER} $str"
+    CURSOR=${#BUFFER}
   } # }}}
   zle -N zle_git_hash
   bindkey 'g' zle_git_hash
