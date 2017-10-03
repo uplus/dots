@@ -7,6 +7,7 @@ alias egrep='grep -E --color=auto'
 alias fgrep='fgrep --color=auto'
 
 #ls {{{1
+alias ls='ls -v'
 alias l='ls -Fv'
 alias l1='ls -F1v'
 alias la='ls -Av'
