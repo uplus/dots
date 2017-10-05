@@ -1,22 +1,21 @@
 #!/usr/bin/env zsh
 
 #color {{{1
-alias ls='ls  --color=auto'
+alias ls='ls  --color=auto -v'
 alias grep='grep --color=auto'
-alias egrep='grep -E --color=auto'
+alias egrep='grep --color=auto -E'
 alias fgrep='fgrep --color=auto'
 
 #ls {{{1
-alias ls='ls -v'
-alias l='ls -Fv'
-alias l1='ls -F1v'
-alias la='ls -Av'
-alias ll='ls -lhv'
-alias li='ls -iv'
-alias lld='ls -ldv'
-alias lla='ls -lAhv'
-alias lli='ls -liv'
-alias lai='ls -lAhiv'
+alias l='ls -F'
+alias l1='ls -F1'
+alias la='ls -A'
+alias ll='ls -lh'
+alias li='ls -i'
+alias lld='ls -ld'
+alias lla='ls -lAh'
+alias lli='ls -li'
+alias lai='ls -lAhi'
 
 #cd {{{1
 alias c='cd'
