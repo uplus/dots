@@ -544,3 +544,7 @@ httpd(){
   port="${2:-4000}"
   ruby -run -e httpd "${dir}" -p "${port}"
 }
+
+get-active-connection(){
+  nmcli connection show --active | grep -v 'NAME' | awk '$0=$1'
+}

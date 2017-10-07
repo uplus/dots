@@ -303,6 +303,11 @@ alias r-th='rails test:helpers'
 alias r-tm='rails test:models'
 alias r-tf='rails test:fixtures'
 
+#cargo
+alias c-r='cargo-smart-run'
+alias c-b='cargo build'
+
+
 
 #override
 alias_over(){ in_path "${1}" && alias "${1}"="${*}" }
