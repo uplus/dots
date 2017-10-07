@@ -15,7 +15,7 @@
   algorithm = histogram
   tool      = vimdiff
 [pull]
-  rebase = true
+  # rebase = true
   ff = only
 [merge]
   ff = false
