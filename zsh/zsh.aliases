@@ -304,9 +304,9 @@ alias r-tm='rails test:models'
 alias r-tf='rails test:fixtures'
 
 #cargo
-alias c-r='cargo-smart-run'
-alias c-b='cargo build'
-
+alias c-r='goback-run Cargo.toml cargo run'
+alias c-b='goback-run Cargo.toml cargo build'
+alias diesel='goback-run Cargo.toml diesel'
 
 
 #override
