@@ -422,6 +422,7 @@ alias ignore='l1 | peco >>! .gitignore'
 alias themis='~dein/thinca/vim-themis/bin/themis --reporter spec'
 alias build-neovim='make distclean clean && make CMAKE_BUILD_TYPE=Release # -j $(nproc --ignore 1)'
 alias wdate='watch --no-title date'
+alias nyaa='cat'
 
 #vim applications
 alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
