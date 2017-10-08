@@ -162,6 +162,11 @@ clone_myrepos_tmp(){ #{{{
 } #}}}
 
 # installs {{{
+install_tldr(){
+  cargo install tealdeer
+  tldr -olinux -u
+}
+
 install_eslint(){
   npm -g install eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint-config-airbnb-base eslint
 }
