@@ -548,3 +548,7 @@ httpd(){
 get-active-connection(){
   nmcli connection show --active | grep -v 'NAME' | awk '$0=$1'
 }
+
+gitkraken(){
+  back command gitkraken --path="${1:-./}"
+}
