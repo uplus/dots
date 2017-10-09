@@ -13,7 +13,6 @@ _diesel() {
             diesel)
                 cmd="diesel"
                 ;;
-            
             bash__completion)
                 cmd+="__bash__completion"
                 ;;
@@ -72,7 +71,6 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
                 --database-url)
                     COMPREPLY=("<DATABASE_URL>")
                     return 0
@@ -84,7 +82,7 @@ _diesel() {
             COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
             return 0
             ;;
-        
+
         diesel__bash__completion)
             opts=" -h -V  --help --version --database-url  "
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 2 ]] ; then
@@ -92,7 +90,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --database-url)
                     COMPREPLY=("<DATABASE_URL>")
                     return 0
@@ -111,7 +109,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -134,7 +132,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -157,7 +155,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -180,7 +178,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -203,7 +201,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -226,7 +224,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -249,7 +247,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --database-url)
                     COMPREPLY=("<DATABASE_URL>")
                     return 0
@@ -268,7 +266,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -291,7 +289,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --version)
                     COMPREPLY=("<MIGRATION_VERSION>")
                     return 0
@@ -318,7 +316,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -341,7 +339,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -364,7 +362,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -387,7 +385,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -410,7 +408,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -433,7 +431,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0
@@ -456,7 +454,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --schema)
                     COMPREPLY=("<schema>")
                     return 0
@@ -483,7 +481,7 @@ _diesel() {
                 return 0
             fi
             case "${prev}" in
-                
+
                 --migration-dir)
                     COMPREPLY=("<MIGRATION_DIRECTORY>")
                     return 0

@@ -5,9 +5,9 @@
   "StickySelection": true,
   "Style": {
     "Query": ["white", "bold"],
-    "Basic": ["on_default", "default"],
+    "Basic": ["on_default", "white"],
     "Matched": ["on_default", "yellow"],
-    "Selected": ["on_blue", "default"],
+    "Selected": ["on_black", "white"],
     "SavedSelection": ["on_cyan", "default"]
   },
   "Action": {
