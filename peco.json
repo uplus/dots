@@ -6,9 +6,9 @@
   "Style": {
     "Query": ["white", "bold"],
     "Basic": ["on_default", "default"],
-    "Selected": ["on_green", "black"],
-    "SavedSelection": ["on_blue", "black"],
-    "Matched": ["on_green", "black"]
+    "Matched": ["on_default", "yellow"],
+    "Selected": ["on_blue", "default"],
+    "SavedSelection": ["on_cyan", "default"]
   },
   "Action": {
     "selectAllAndFinish": [
