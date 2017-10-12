@@ -552,3 +552,17 @@ get-active-connection(){
 gitkraken(){
   back command gitkraken --path="${1:-./}"
 }
+
+click(){
+  startwait="${1:?start wait}"
+  timespan="${2:?time span}"
+  count="${3:?click count}"
+
+  sleep "${startwait}"
+  echo 'click start'
+
+  for ((i=0; i < ${count}; i++)) ; do
+    sleep "${timespan}"
+    xdotool click 1
+  done
+}
