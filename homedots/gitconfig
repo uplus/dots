@@ -82,7 +82,8 @@
   untrack = update-index --skip-worktree
   push-force = push --force-with-lease
   remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
-  reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
+  rei      = rebase -i
+  # reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
   continue = rebase --continue
   abort    = rebase --abort
   smerge = !"f(){ git merge --ff-only ${1}; git branch -d ${1}; }; f"
