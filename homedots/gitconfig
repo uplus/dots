@@ -12,7 +12,9 @@
 [push]
   default = current
 [diff]
-  algorithm = histogram
+  # algorithm = histogram
+  algorithm = minimal
+  # algorithm = patience
   tool      = vimdiff
 [pull]
   # rebase = true
@@ -68,8 +70,8 @@
   b     = branch
   eda   = branch -avv
   del   = branch -d
-  save  = stash save --include-untracked --keep-index
-  ss    = stash save --include-untracked
+  ss    = stash save --include-untracked --keep-index
+  save  = stash save --include-untracked
   spop  = stash pop
   sdrop = stash drop
   slist = stash list --stat --oneline
