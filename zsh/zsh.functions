@@ -130,7 +130,7 @@ zshrc(){ generic_rc $ZSH_DOT_DIR $@ }
 
 sgrep(){
   setopt dotglob # Need localloopts
-  grep -i --color=auto --line-number ${@} **/* 2>/dev/null
+  grep --color=auto --line-number ${@} **/* 2>/dev/null
 }
 
 git-set-pushurl(){

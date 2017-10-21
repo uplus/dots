@@ -303,6 +303,7 @@ setopt automenu
 # }}}
 
 #bindkey # {{{
+# man zshzle
 bindkey -e
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -318,8 +319,10 @@ bindkey "^H" backward-delete-char
 bindkey "^W" backward-kill-word
 bindkey "^K" kill-line
 bindkey "^U" backward-kill-line
-bindkey "^N" down-line-or-history
-bindkey "^P" up-line-or-history
+# bindkey "^N" down-line-or-history
+# bindkey "^P" up-line-or-history
+bindkey "^N" down-line-or-search
+bindkey "^P" up-line-or-search
 # }}}
 
 bindkey "^L" clear-screen
@@ -349,14 +352,14 @@ bindkey "[Z" reverse-menu-complete
 bindkey "^X^X" edit-command-line
 
 # cursor-key and other # {{{
-bindkey "[A" up-line-or-history
-bindkey "[B" down-line-or-history
+bindkey "[A" up-line-or-search
+bindkey "[B" down-line-or-search
 bindkey "[C" forward-char
 bindkey "[D" backward-char
 bindkey "[H" beginning-of-line
 bindkey "[F" end-of-line
-bindkey "OA" up-line-or-history
-bindkey "OB" down-line-or-history
+bindkey "OA" up-line-or-search
+bindkey "OB" down-line-or-search
 bindkey "OC" forward-char
 bindkey "OD" backward-char
 bindkey "OH" beginning-of-line
