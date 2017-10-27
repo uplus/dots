@@ -519,6 +519,10 @@ vim-version(){ # {{{
   echo "${dir}/bin"
 } # }}}
 
+vim-wl(){
+  cat $(git ls-files | grep -Ev 'colors/|snippets/|neobundle.vim') | grep -Ev '^\s*("|$)' | wc -l
+}
+
 docker(){
   unfunction docker
   if [ ! $(id | grep -q docker) ]; then
@@ -565,4 +569,10 @@ click(){
     sleep "${timespan}"
     xdotool click 1
   done
+}
+
+add() {
+  file="${1:?destination path}"
+  str="${2:?append string}"
+  echo "${str}" >> "${file}"
 }
