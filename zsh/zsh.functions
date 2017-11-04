@@ -144,7 +144,7 @@ git-hash(){
   git log --oneline "${branch}" | peco | awk '$0=$1'
 }
 
-host-list(){
+hosts(){
   sudo nmap -sP "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
 }
 
