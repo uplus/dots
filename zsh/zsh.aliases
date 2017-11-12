@@ -390,6 +390,11 @@ if can_exec systemctl; then
   fi
 fi
 
+if in_ssh; then
+  alias reboot='sudo systemctl reboot'
+  alias poweroff='sudo systemctl poweroff'
+fi
+
 
 #utilities
 alias histrank="history 1 | awk '{print \$2}' | sort | uniq -c | sort -nr"
