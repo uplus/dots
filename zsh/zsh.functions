@@ -235,6 +235,10 @@ lsize(){
   du -sh -- "${*:+$(relative $*)/}"*
 }
 
+pgrep(){
+  command pgrep "${*}" | xargs --no-run-if-empty ps -p
+}
+
 kill(){
   if (($# != 0)); then
     command kill $@
@@ -529,16 +533,6 @@ vim-wl(){
   cat $(git ls-files | grep -Ev 'colors/|snippets/|neobundle.vim') | grep -Ev '^\s*("|$)' | wc -l
 }
 
-docker(){
-  unfunction docker
-  if [ ! $(id | grep -q docker) ]; then
-    alias docker='sudo docker'
-    sudo docker ${@}
-    return 0
-  fi
-  docker ${@}
-}
-
 office2pdf(){
   libreoffice --headless --invisible --convert-to pdf ${*:?Source files}
 }
@@ -552,7 +546,12 @@ show(){
 httpd(){
   dir="${1:-.}"
   port="${2:-4000}"
-  ruby -run -e httpd "${dir}" -p "${port}"
+
+  if in_path ruby; then
+    ruby -run -e httpd "${dir}" -p "${port}"
+  else
+    (cd ../ && python3 -m http.server "${port}")
+  fi
 }
 
 get-active-connection(){

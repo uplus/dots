@@ -84,6 +84,17 @@ alias dkrm-all='docker rm -f $(docker ps -a -q)'
 # alias dkrm-all='docker stop -t 1 $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 # dkrm(){ docker stop -t 1 "${1}" && docker rm "${1}" }
 
+# auto alias
+docker(){
+  unfunction docker
+  if ! $(id | grep -q docker) ; then
+    alias docker='sudo docker'
+    sudo docker ${@}
+  else
+    docker ${@}
+  fi
+}
+
 
 #C/C++ gdb {{{1
 alias clang="clang $C_COMP_OPT"
@@ -347,7 +358,6 @@ alias_over rm -v
 alias_over which -p
 alias_over jobs -ld
 alias_over mii-tool -vv
-alias_over pgrep -l
 alias_over ag --smart-case --hidden
 alias_over less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
 alias_over dmesg --color=always -e L # -Hだとless動作が揃わない
