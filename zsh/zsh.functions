@@ -39,6 +39,12 @@ hide(){
   } &!
 }
 
+line(){
+  h="${1:?head}"
+  t="${2:?tail}"
+  cat - | head "-${h}" | tail "-${t}"
+}
+
 echo-color(){
   color="${1}"
   shift
