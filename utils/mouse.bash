@@ -36,7 +36,7 @@ while read -n 1 -s key; do
     'j') let Y+="${speed}" ;;
     'k') let Y-="${speed}" ;;
     'l') let X+="${speed}" ;;
-    'a'|' ') mouse_click 1 ;;
+    'a'|'') mouse_click 1 ;;
     'q'|';') mouse_click 2 ;;
     'z'|"'") mouse_click 3 ;;
   esac
