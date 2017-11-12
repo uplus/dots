@@ -21,7 +21,7 @@ speed_max="${1:-16}"
 speed="${speed_max}"
 
 while read -n 1 -s key; do
-  if [[ $key = '' ]]; then
+  if [[ $key = 's' ]]; then
     if ((speed == speed_max)); then
       speed="${speed_min}"
     else
