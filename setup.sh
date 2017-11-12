@@ -283,6 +283,10 @@ install_qmk(){
 
 # misc {{{
 
+set_cap_nmap(){
+  sudo setcap cap_net_raw,cap_net_admin,cap_net_bind_service,cap_net_broadcast+eip /usr/bin/nmap
+}
+
 vul_env(){
   docker pull citizenstig/dvwa
 }

@@ -145,7 +145,7 @@ git-hash(){
 }
 
 hosts(){
-  sudo nmap -sP "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
+  nmap -sP "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
 }
 
 dump(){

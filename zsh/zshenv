@@ -50,6 +50,7 @@ export ZSH_DOT_DIR="$(dirname "$(readlink -f $HOME/.zshenv)")"
 export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
 export MOUNT='/run/media/uplus'
 # export DOCKER_CONTENT_TRUST=1
+export NMAP_PRIVILEGED="" # set privilege mode to nmap
 
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
 
