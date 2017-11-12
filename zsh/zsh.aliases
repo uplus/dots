@@ -83,6 +83,7 @@ alias dkrm='docker rm -f'
 alias dkrm-all='docker rm -f $(docker ps -a -q)'
 # alias dkrm-all='docker stop -t 1 $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 # dkrm(){ docker stop -t 1 "${1}" && docker rm "${1}" }
+alias dkcmp='docker-compose'
 
 # auto alias
 docker(){
@@ -358,6 +359,7 @@ alias_over rm -v
 alias_over which -p
 alias_over jobs -ld
 alias_over mii-tool -vv
+alias_over pgrep -alf
 alias_over ag --smart-case --hidden
 alias_over less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
 alias_over dmesg --color=always -e L # -Hだとless動作が揃わない

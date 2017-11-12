@@ -235,9 +235,9 @@ lsize(){
   du -sh -- "${*:+$(relative $*)/}"*
 }
 
-pgrep(){
-  command pgrep "${*}" | xargs --no-run-if-empty ps -p
-}
+# pgrep(){
+#   command pgrep "${*}" | xargs --no-run-if-empty ps -p
+# }
 
 kill(){
   if (($# != 0)); then
