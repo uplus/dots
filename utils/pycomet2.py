@@ -28,11 +28,11 @@ import sys, os, string, array
 from optparse import OptionParser, OptionValueError
 import logging
 
-# argtype¤ËÍ¿¤¨¤ë°ú¿ô¤Î¼ïÎà
+# argtypeã«ä¸ãˆã‚‹å¼•æ•°ã®ç¨®é¡
 noarg, r, r1r2, adrx, radrx, ds, dc, strlen = [0, 1, 2, 3, 4, 5, 6, 7]
-# µ¡³£¸ìÌ¿Îá¤Î¥Ğ¥¤¥ÈÄ¹
+# æ©Ÿæ¢°èªå‘½ä»¤ã®ãƒã‚¤ãƒˆé•·
 inst_size = {noarg:1, r:1, r1r2:1, adrx:2, radrx:2, ds:-1, dc:-1, strlen:3}
-# ¥¹¥¿¥Ã¥¯¥İ¥¤¥ó¥¿¤Î½é´üÃÍ
+# ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿ã®åˆæœŸå€¤
 initSP = 0xff00
 
 ''' unsigned -> signed '''
@@ -53,7 +53,7 @@ def a2l(x):
         return x
     return x + 2**16
 
-''' x¤În¥Ó¥Ã¥ÈÌÜ¤ÎÃÍ¤òÊÖ¤¹ (ºÇ²¼°Ì¥Ó¥Ã¥È¤¬n = 0)'''
+''' xã®nãƒ“ãƒƒãƒˆç›®ã®å€¤ã‚’è¿”ã™ (æœ€ä¸‹ä½ãƒ“ãƒƒãƒˆãŒn = 0)'''
 def get_bit(x, n):
     if x & (0x01 << n) == 0:
         return 0
@@ -61,7 +61,7 @@ def get_bit(x, n):
         return 1
 
 '''
-Ì¿Îá¤Î´ğÄì¥¯¥é¥¹
+å‘½ä»¤ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 '''
 class Instruction:
     def __init__(self, machine, opcode=0x00, opname='None', argtype=noarg):
@@ -117,24 +117,24 @@ class Instruction:
         return s, l
 
     '''
-    ·×»»·ë²Ì¤Ë±ş¤¸¤Æ¥Õ¥é¥°¤òÎ©¤Æ¤ë
-    ¥Ç¥Õ¥©¥ë¥È¤Ï»»½Ñ±é»»ÍÑ
-    ÏÀÍı±é»»¤Î¾ì¹ç¤ÏÂèÆó°ú¿ô¤òTrue¤Ë¤¹¤ë
+    è¨ˆç®—çµæœã«å¿œã˜ã¦ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+    ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ç®—è¡“æ¼”ç®—ç”¨
+    è«–ç†æ¼”ç®—ã®å ´åˆã¯ç¬¬äºŒå¼•æ•°ã‚’Trueã«ã™ã‚‹
     '''
     def update_flags(self, result, isLogical = False):
-        # ¥¼¥í
+        # ã‚¼ãƒ­
         if result == 0:
             self.m.ZF = 1
         else:
             self.m.ZF = 0
 
-        # Éä¹æ
+        # ç¬¦å·
         if get_bit(result, 15) == 0:
             self.m.SF = 0
         else:
             self.m.SF = 1
 
-        # ¥ª¡¼¥Ğ¡¼¥Õ¥í¡¼
+        # ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼
         if isLogical == True:
             if result < 0 or 0xffff < result:
                 self.m.OF = 1
@@ -146,7 +146,7 @@ class Instruction:
             else:
                 self.m.OF = 0
 
-    ''' ¼Â¸ú¥¢¥É¥ì¥¹¤òÊÖ¤¹ '''
+    ''' å®ŸåŠ¹ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™ '''
     def get_effective_address(self, adr, x):
         if x == 0:
             return adr
@@ -154,7 +154,7 @@ class Instruction:
             return a2l(adr + self.m.GR[x])
 
 
-    ''' ¼Â¸ú¥¢¥É¥ì¥¹ÈÖÃÏ¤ÎÃÍ¤òÊÖ¤¹ '''
+    ''' å®ŸåŠ¹ã‚¢ãƒ‰ãƒ¬ã‚¹ç•ªåœ°ã®å€¤ã‚’è¿”ã™ '''
     def get_value_at_effective_address(self, adr, x):
         if x == 0:
             return self.m.memory[adr]
@@ -575,7 +575,7 @@ class SRL(Instruction):
         self.m.PR += 2
 
 ''' Jump on MInus
-SF = 1¤Î¤È¤­¥¸¥ã¥ó¥× '''
+SF = 1ã®ã¨ãã‚¸ãƒ£ãƒ³ãƒ— '''
 class JMI(Instruction):
     def __init__(self, machine):
         Instruction.__init__(self, machine, 0x61, 'JMI', adrx)
@@ -589,7 +589,7 @@ class JMI(Instruction):
             self.m.PR += 2
 
 ''' Jump on Non Zero
-ZF = 0¤Î¤È¤­¥¸¥ã¥ó¥× '''
+ZF = 0ã®ã¨ãã‚¸ãƒ£ãƒ³ãƒ— '''
 class JNZ(Instruction):
     def __init__(self, machine):
         Instruction.__init__(self, machine, 0x62, 'JNZ', adrx)
@@ -603,7 +603,7 @@ class JNZ(Instruction):
             self.m.PR += 2
 
 ''' Jump on ZEro
-ZF = 1¤Î¤È¤­¥¸¥ã¥ó¥× '''
+ZF = 1ã®ã¨ãã‚¸ãƒ£ãƒ³ãƒ— '''
 class JZE(Instruction):
     def __init__(self, machine):
         Instruction.__init__(self, machine, 0x63, 'JZE', adrx)
@@ -617,7 +617,7 @@ class JZE(Instruction):
             self.m.PR += 2
 
 ''' unconditional JUMP
-Ìµ¾ò·ï¤Ë¥¸¥ã¥ó¥× '''
+ç„¡æ¡ä»¶ã«ã‚¸ãƒ£ãƒ³ãƒ— '''
 class JUMP(Instruction):
     def __init__(self, machine):
         Instruction.__init__(self, machine, 0x64, 'JUMP', adrx)
@@ -627,7 +627,7 @@ class JUMP(Instruction):
         self.m.PR = self.get_effective_address(adr, x)
 
 ''' Jump on PLus
-OF = 0 and SF = 0 ¤Î¤È¤­¥¸¥ã¥ó¥× '''
+OF = 0 and SF = 0 ã®ã¨ãã‚¸ãƒ£ãƒ³ãƒ— '''
 class JPL(Instruction):
     def __init__(self, machine):
         Instruction.__init__(self, machine, 0x65, 'JPL', adrx)
@@ -641,7 +641,7 @@ class JPL(Instruction):
             self.m.PR += 2
 
 ''' Jump on OVerflow
-OF = 1¤Î¤È¤­¥¸¥ã¥ó¥× '''
+OF = 1ã®ã¨ãã‚¸ãƒ£ãƒ³ãƒ— '''
 class JOV(Instruction):
     def __init__(self, machine):
         Instruction.__init__(self, machine, 0x66, 'JOV', adrx)
@@ -852,10 +852,10 @@ class pyComet2:
         self.initialize()
 
     def initialize(self):
-        self.memory = array.array('H', [0]*65536) # ¼çµ­²± 1 word = 2 byte unsigned short
-        self.GR = array.array('H', [0]*9) # ¥ì¥¸¥¹¥¿ unsigned short
-        self.setSP(initSP) # ¥¹¥¿¥Ã¥¯¥İ¥¤¥ó¥¿ SP = GR[8]
-        self.PR = 0 # ¥×¥í¥°¥é¥à¥ì¥¸¥¹¥¿
+        self.memory = array.array('H', [0]*65536) # ä¸»è¨˜æ†¶ 1 word = 2 byte unsigned short
+        self.GR = array.array('H', [0]*9) # ãƒ¬ã‚¸ã‚¹ã‚¿ unsigned short
+        self.setSP(initSP) # ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿ SP = GR[8]
+        self.PR = 0 # ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ¬ã‚¸ã‚¹ã‚¿
         self.OF = 0 # Overflow Flag
         self.SF = 0 # Sign Flag
         self.ZF = 1 # Zero Flag
@@ -908,7 +908,7 @@ class pyComet2:
     def getFRasString(self):
         return str(self.OF) + str(self.SF) + str(self.ZF)
 
-    # PR¤¬»Ø¤¹Ì¿Îá¤òÊÖ¤¹
+    # PRãŒæŒ‡ã™å‘½ä»¤ã‚’è¿”ã™
     def getInstruction(self, adr = None):
         try:
             if adr == None:
@@ -917,7 +917,7 @@ class pyComet2:
         except KeyError:
             raise self.InvalidOperation(adr)
 
-    # Ì¿Îá¤ò1¤Ä¼Â¹Ô
+    # å‘½ä»¤ã‚’1ã¤å®Ÿè¡Œ
     def step(self):
         ret = self.getInstruction().execute()
         self.step_count += 1
@@ -954,7 +954,7 @@ class pyComet2:
                     self.dump(e.address)
                     break
 
-    # ¥ª¥Ö¥¸¥§¥¯¥È¥³¡¼¥É¤ò¼çµ­²±¤ËÆÉ¤ß¹ş¤à
+    # ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚³ãƒ¼ãƒ‰ã‚’ä¸»è¨˜æ†¶ã«èª­ã¿è¾¼ã‚€
     def load(self, filename, quiet=False):
         if not quiet:
             print >> sys.stderr, 'load %s ...' % filename,
@@ -995,7 +995,7 @@ class pyComet2:
             st += '%04x: %-39s %-8s\n' % (addr, to_hex(self.memory[addr:addr+8]), to_char(self.memory[addr:addr+8]))
         return st
 
-    # 8 * 16 words¥À¥ó¥×¤¹¤ë
+    # 8 * 16 wordsãƒ€ãƒ³ãƒ—ã™ã‚‹
     def dump(self, start_addr = 0x0000):
         print self.dump_memory(start_addr, 16),
 
