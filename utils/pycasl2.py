@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-# -*- coding: euc-jp -*-
+# -*- coding: utf-8 -*-
 
 '''
 PyCASL2, CASL II assembler implemented in Python.

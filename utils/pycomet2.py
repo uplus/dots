@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-# -*- coding: euc-jp -*-
+# -*- coding: utf-8 -*-
 
 '''
 PyCOMET2, COMET II emulator implemented in Python.
@@ -1073,7 +1073,13 @@ class pyComet2:
         while True:
             sys.stderr.write('pycomet2> ')
             sys.stderr.flush()
-            line = sys.stdin.readline()
+
+            try:
+                line = sys.stdin.readline()
+            except EOFError:
+                print("hello")
+                line = "quit"
+
             args = line.split()
             if line[0] == 'q':
                 break
