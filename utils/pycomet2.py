@@ -694,8 +694,10 @@ class RET(Instruction):
 
     def execute(self):
         if self.m.call_level == 0:
-            self.m.step_count += 1
-            self.m.exit()
+            # self.m.step_count += 1
+            # self.m.exit()
+            print('program finished')
+            return True;
         self.m.PR = self.m.memory[self.m.getSP()] + 2
         self.m.setSP(self.m.getSP()+1)
         self.m.call_level -= 1
@@ -917,8 +919,9 @@ class pyComet2:
 
     # 命令を1つ実行
     def step(self):
-        self.getInstruction().execute()
+        ret = self.getInstruction().execute()
         self.step_count += 1
+        return ret
 
     def watch(self, variables, decimalFlag=False):
         self.monitor.decimalFlag = decimalFlag
@@ -944,7 +947,8 @@ class pyComet2:
                 break
             else:
                 try:
-                    self.step()
+                    if self.step() is not None:
+                        break
                 except self.InvalidOperation, e:
                     print >> sys.stderr, e
                     self.dump(e.address)
