@@ -581,3 +581,9 @@ add() {
   str="${2:?append string}"
   echo "${str}" >> "${file}"
 }
+
+comet(){
+  f="${1:?casl file}"
+  pycasl2 "${f}"
+  pycomet2 "${f:r}.com" -d -c
+}
