@@ -1077,11 +1077,10 @@ class pyComet2:
             try:
                 line = sys.stdin.readline()
             except EOFError:
-                print("hello")
-                line = "quit"
+                pass
 
             args = line.split()
-            if line[0] == 'q':
+            if not line or line[0] == 'q':
                 break
             elif line[0] == 'b':
                 if 2 <= len(args):
