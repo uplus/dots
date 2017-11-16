@@ -410,19 +410,16 @@ class CASL2:
 
     def split_line(self, line, line_number):
         ''' 行からラベル、命令、オペランドを取り出す '''
-        result = re.match('^\s*$', line)
         # check empty line
-        if result != None:
+        if re.match('^\s*$', line) != None:
             return (None, None, None)
 
         re_label = "(?P<label>[A-Za-z_][A-Za-z0-9_]*)?"
-        re_op = "\s+(?P<op>[A-Z]+)"
+        re_op = "(?P<op>[A-Z]+)"
         re_arg1 = "(?P<arg1>=?(([-#]?[A-Za-z0-9_]+)|(\'.*\')))"
-        re_arg2 = "(?P<arg2>=?(([-#]?[A-Za-z0-9_]+)|(\'.*\')))"
-        re_arg3 = "(?P<arg3>=?(([-#]?[A-Za-z0-9_]+)|(\'.*\')))"
-        re_args = "(\s+%s(\s*,\s*%s(\s*,\s*%s)?)?)?" % (re_arg1, re_arg2, re_arg3)
-        re_comment = "(\s*(;(?P<comment>.+)?)?)?"
-        pattern = "(^" + re_label + re_op + re_args + ")?" + re_comment
+        re_argn = "\s*,\s*(?P<argn>=?(([-#]?[A-Za-z0-9_]+)|(\'.*\')))"
+        re_comment = '\s*;.+$'
+        pattern = '^%s\s+%s(\s+%s)?' % (re_label, re_op, re_arg1)
 
         result = re.match(pattern, line)
 
@@ -431,16 +428,15 @@ class CASL2:
             print >> sys.stderr,  line
             sys.exit()
 
-##        print result.group('label'), result.group('op'), result.group('arg1'), result.group('arg2'), result.group('arg3')
         label = result.group('label')
         op = result.group('op')
         args = None
         if result.group('arg1') != None:
             args = [result.group('arg1')]
-            if result.group('arg2') != None:
-                args.append(result.group('arg2'))
-            if result.group('arg3') != None:
-                args.append(result.group('arg3'))
+            line = line[result.end():]
+            line = re.sub(re_comment, '', line)
+            for m in re.finditer(re_argn, line):
+                args.append(m.group('argn'))
 
         return self.Instruction(label, op, args, line_number, line)
 
@@ -526,7 +522,8 @@ class CASL2:
         return code
 
     def gen_code_dc(self, op, args):
-        const = self.cast_literal(args[0])
+        consts = map(self.cast_literal, args)
+        const = consts[0]
         code = array.array('H', const)
         return code
 
