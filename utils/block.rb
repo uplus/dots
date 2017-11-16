@@ -19,6 +19,6 @@ while line = STDIN.gets
   end
 
   if out_on
-		puts line
+    puts line
   end
 end
