@@ -522,17 +522,8 @@ class CASL2:
         return code
 
     def gen_code_dc(self, op, args):
-        print('\ngen_code_dc')
-        print(args)
         consts = map(self.cast_literal, args)
-        # print(consts)
-        # const = self.cast_literal(args[0])
-        # print(const)
-        const = consts[0]
-        # print(const)
-
-        code = array.array('H', const)
-        print(code)
+        code = array.array('H', map(lambda x: x[0], consts))
         return code
 
     # IN,OUT用
