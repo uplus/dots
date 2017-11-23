@@ -587,3 +587,8 @@ comet(){
   pycasl2 "${f}"
   pycomet2 "${f:r}.com" -d -c
 }
+
+timer(){
+  ruby -e 'loop { print("\e[H\e[2J#{Time.now}"); sleep(0.1)}'
+  # ruby -e 'loop { print("\r#{Time.now}"); sleep(0.1)}'
+}
