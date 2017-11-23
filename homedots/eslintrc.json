@@ -22,6 +22,7 @@
     "no-alert": 0,
     "no-empty": 0,
     "no-continue": 0,
+    "no-use-before-define": 0,
     "func-names": 0,
     "no-mixed-operators": 0,
     "no-extend-native": 0,
