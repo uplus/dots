@@ -205,7 +205,8 @@ hash -d jprog=~codes/jprog/
 hash -d otaku=~codes/otaku-server
 hash -d judge=~works/KogJudge-judge
 hash -d rbrn=$HOME/codes/rbrn/src
-hash -d ez=~/src/qmk_firmware/keyboards/ergodox/ez
+hash -d qmk=~/src/qmk_firmware
+hash -d qmkmy=~qmk/keyboards/ergodox_ez/
 hash -d kuport=~/codes/kuport
 hash -d docker-jail=~codes/docker-jail
 hash -d cpaw_hp=~codes/cpaw_hp
@@ -443,6 +444,7 @@ alias build-neovim='make distclean clean && make CMAKE_BUILD_TYPE=Release # -j $
 alias wdate='watch --no-title date'
 alias nyaa='cat'
 alias restart-plasma-panel='killall plasmashell && kstart plasmashell'
+alias teensy-uplus='teensy_loader_cli --mcu=atmega32u4 -wv ~qmk/ergodox_ez_uplus.hex'
 
 #vim applications
 alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
