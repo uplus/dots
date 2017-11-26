@@ -435,6 +435,7 @@ alias wdate='watch --no-title date'
 alias nyaa='cat'
 alias restart-plasma-panel='killall plasmashell && kstart plasmashell'
 alias teensy-uplus='teensy_loader_cli --mcu=atmega32u4 -wv ~qmk/ergodox_ez_uplus.hex'
+alias show-path='echo $PATH | tr : \\n'
 
 #vim applications
 alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"

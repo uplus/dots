@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh
 # zmodload zsh/zprof && zprof
 
+# For ssh and tty
+[[ ! -z "${ZSHENV_LOADED:-}" ]] && return
+ZSHENV_LOADED="loaded"
+
 #add unique attr
 typeset -U path PATH MANPATH INFOPATH fpath FPATH MANPATH NODE_PATH # RUBYLIB
 
@@ -19,6 +23,10 @@ exists_source(){
 
 in_ssh(){
   [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]
+}
+
+in_tmux(){
+  [[ -n "${TMUX:-}" ]]
 }
 
 export skip_global_compinit=1
@@ -42,7 +50,7 @@ export MANPAGER='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines'
 export WWW_BROWSER=w3m
 export DOWNLOADER="wget -S"
 # export TERM=screen-256color-bce # italicが使えない
-[[ -z "$TMUX" ]] && export TERM='xterm-256color'
+in_tmux || export TERM='xterm-256color'
 
 export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value -Wno-unused-function -Wno-ignored-qualifiers'
 export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
@@ -58,7 +66,7 @@ export NMAP_PRIVILEGED="" # set privilege mode to nmap
 
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
 
-# export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working
+# export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working, evil /etc/profile
 # export LC_COLLATE=C
 
 # Order is important
@@ -92,3 +100,9 @@ fi
 # fi
 
 [[ $- == *i* ]] && stty -ixon -ixoff >&! /dev/null
+
+# /etc/zsh/profile -> /etc/profileで爆発しないようプロテクト
+# readonly PATH
+
+# for recover PATH
+PATH_keep="${PATH}"
