@@ -25,7 +25,7 @@ autoload -Uz dein
 is_num(){ expr "${1}" + 1 >&! /dev/null }
 is_elf(){ file ${1} | awk '$0=$2' | grep -q ELF }
 is_active(){ systemctl status "${1:?service}" | grep -Po '(?<=Active:).*' | grep -wq 'active' }
-in_group(){ id --groups --name | grep -q "${1:?group name}" }
+in_group(){ groups "${USER}" | grep -q "${1:?group name}" }
 
 getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
@@ -449,6 +449,7 @@ docker(){
   smart_docker docker
   docker ${@}
 }
+
 docker-compose(){
   smart_docker docker-compose
   docker-compose ${@}
@@ -616,4 +617,19 @@ comet(){
 timer(){
   ruby -e 'loop { print("\e[H\e[2J#{Time.now}"); sleep(0.1)}'
   # ruby -e 'loop { print("\r#{Time.now}"); sleep(0.1)}'
+}
+
+# docker-compose ictsc-score-server
+idc(){
+  cmd=${1:? back api}
+  case "${cmd}" in
+    'back')
+      docker-compose up -d --no-deps redis plasma db ui
+      [[ $? == 0 ]] && echo-color 45 'Start [redis plasma db ui] in background'
+      ;;
+    'api')
+      docker-compose up api
+      # sudo docker-compose up --build api
+      ;;
+  esac
 }
