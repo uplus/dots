@@ -11,8 +11,8 @@ if ! in_tmux && in_ssh; then
 fi
 
 case "${OSTYPE:-}" in
-linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
-darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
+  linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
+  darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
 esac
 
 LC_COLLATE=C # Don't move to zshenv.
@@ -39,42 +39,42 @@ setopt no_transient_rprompt # on: remove old rprompt when after execute a comman
 autoload -Uz rprompt-git
 
 prompt-return-value(){
-  echo " %(?,,%F{197} %?%f)"
+echo " %(?,,%F{197} %?%f)"
 }
 
 PROMPT_SSH_COLOR=220
 prompt-ssh() {
-  in_ssh && echo " %F{$PROMPT_SSH_COLOR}($HOST)%f"
+in_ssh && echo " %F{$PROMPT_SSH_COLOR}($HOST)%f"
 }
 
 # vimなど特定のbgコマンドを表示する
 rprompt-bg() {
-  local bg_cmds names
-  bg_cmds=$(ps -o comm -T)
-  names=$(echo "$bg_cmds" | grep -Eo "vim")
+local bg_cmds names
+bg_cmds=$(ps -o comm -T)
+names=$(echo "$bg_cmds" | grep -Eo "vim")
 
-  if [[ -n $names ]]; then
-    out=$(echo $names | head -1)
-    echo " [%F{99}$out%f]"
-  fi
+if [[ -n $names ]]; then
+  out=$(echo $names | head -1)
+  echo " [%F{99}$out%f]"
+fi
 }
 
 prompt-color(){
-  if (($UID == 0)); then
-    echo 249
-  elif in_ssh; then
-    echo $PROMPT_SSH_COLOR
-  else
-    echo 198
-  fi
+if (($UID == 0)); then
+  echo 249
+elif in_ssh; then
+  echo $PROMPT_SSH_COLOR
+else
+  echo 198
+fi
 }
 
 prompt-symb-color(){
-  if (( $UID == 0)); then
-    echo 160
-  else
-    echo 255
-  fi
+if (( $UID == 0)); then
+  echo 160
+else
+  echo 255
+fi
 }
 
 export PROMPT='%F{$(prompt-color)}%(6~|...|)%5~%F{$(prompt-symb-color)} %# %f'
@@ -216,7 +216,7 @@ unset zplug_path
 source "$ZSH_DOT_DIR/zsh.completion"
 
 if [[ -n ${ZSH_VERSION-} ]]; then
-    autoload -U +X bashcompinit && bashcompinit
+  autoload -U +X bashcompinit && bashcompinit
 fi
 
 can_exec _cdd_chpwd && add-zsh-hook chpwd _cdd_chpwd
@@ -377,121 +377,121 @@ bindkey "q" push-line
 bindkey "h" run-help
 # }}}
 
-  ## original keybind functions # {{{
-  zle_filter_history(){ # {{{
-    zle reset-prompt
-    local cmd="$(history -nr 0 | peco --query "${LBUFFER}")"
+## original keybind functions # {{{
+zle_filter_history(){ # {{{
+  zle reset-prompt
+  local cmd="$(history -nr 0 | peco --query "${LBUFFER}")"
 
-    if [[ -n $cmd ]]; then
-      BUFFER="${cmd}"
-      CURSOR=$#BUFFER
-    fi
-  } # }}}
-  zle -N zle_filter_history
-  in_path peco && bindkey '' zle_filter_history
+  if [[ -n $cmd ]]; then
+    BUFFER="${cmd}"
+    CURSOR=$#BUFFER
+  fi
+} # }}}
+zle -N zle_filter_history
+in_path peco && bindkey '' zle_filter_history
 
-  zle_filter_cdr(){ # {{{
-    zle reset-prompt
-    local dir="$(cdr -l | sed 's/^.....//' | peco --query "${LBUFFER}")"
+zle_filter_cdr(){ # {{{
+  zle reset-prompt
+  local dir="$(cdr -l | sed 's/^.....//' | peco --query "${LBUFFER}")"
 
-    if [[ -n $dir ]]; then
-      BUFFER="cd ${dir}"
-      zle accept-line
-    fi
-  } # }}}
-  zle -N zle_filter_cdr
-  in_path peco && bindkey '' zle_filter_cdr
-
-  zle_filter_select_file(){ # {{{
-    zle reset-prompt
-    local -a array
-    array+=${(z)LBUFFER}
-    shift array
-    dir="${$(relative "$array[-1]"):-.}"
-    opts=(-type d -name .git -prune -o)
-
-    local -a files
-    list_dirs_files "${dir}" $opts | sort -n | peco | while read file; do
-      files+="'$(relative "${dir}/${file}")'"
-    done
-
-    if (($#files != 0)); then
-      BUFFER="${BUFFER%"$array[-1]"}$files"
-      CURSOR=${#BUFFER}
-    fi
-  } # }}}
-  zle -N zle_filter_select_file
-  # Ctrl o
-  bindkey '' zle_filter_select_file
-
-  # TODO ディレクトリの浅さでソート
-  zle_filter_open_file(){ # {{{
-    zle reset-prompt
-    # サブシェルでdirs対策
-    files=( $({ filter_select_file }) )
-    if (($#files != 0)); then
-      BUFFER="${EDITOR} -p ${files}"
-      CURSOR=${#BUFFER}
-      zle accept-line
-    fi
-  } # }}}
-  zle -N zle_filter_open_file
-  # Ctrl /
-  bindkey '' zle_filter_open_file
-
-  zle_git_hash(){ # {{{
-    str="$(git-hash)"
-    [[ -z $str ]] && return
-    BUFFER="${BUFFER}$str"
-    CURSOR=${#BUFFER}
-  } # }}}
-  zle -N zle_git_hash
-  bindkey 'g' zle_git_hash
-
-  zle_play_music(){
-    zle reset-prompt
-    play-music </dev/tty
-  }
-  zle -N zle_play_music
-  bindkey 'm' zle_play_music
-  bindkey '' zle_play_music
-
-  zle_filter_commands(){
-    BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco)"
-    CURSOR=${#BUFFER}
-  }
-  zle -N zle_filter_commands
-  bindkey 'c' zle_filter_commands
-  # bindkey '' zle_filter_commands # don't work
-
-  zle_filter_cd(){ # {{{
-    local str=' '
-    while [[ -n $str && $str != '.' ]]; do
-      str="$(find -maxdepth 1 -type d | sed 's|^./||'| peco)"
-      cd "${str}"
-    done
-    BUFFER="cd $(pwd)"
+  if [[ -n $dir ]]; then
+    BUFFER="cd ${dir}"
     zle accept-line
-  } # }}}
-  zle -N zle_filter_cd
-  bindkey 'd' zle_filter_cd
-  # bindkey '' zle_filter_cd # don't work
+  fi
+} # }}}
+zle -N zle_filter_cdr
+in_path peco && bindkey '' zle_filter_cdr
 
-  zle_pry(){
-    BUFFER=pry
+zle_filter_select_file(){ # {{{
+  zle reset-prompt
+  local -a array
+  array+=${(z)LBUFFER}
+  shift array
+  dir="${$(relative "$array[-1]"):-.}"
+  opts=(-type d -name .git -prune -o)
+
+  local -a files
+  list_dirs_files "${dir}" $opts | sort -n | peco | while read file; do
+  files+="'$(relative "${dir}/${file}")'"
+done
+
+if (($#files != 0)); then
+  BUFFER="${BUFFER%"$array[-1]"}$files"
+  CURSOR=${#BUFFER}
+fi
+} # }}}
+zle -N zle_filter_select_file
+# Ctrl o
+bindkey '' zle_filter_select_file
+
+# TODO ディレクトリの浅さでソート
+zle_filter_open_file(){ # {{{
+  zle reset-prompt
+  # サブシェルでdirs対策
+  files=( $({ filter_select_file }) )
+  if (($#files != 0)); then
+    BUFFER="${EDITOR} -p ${files}"
+    CURSOR=${#BUFFER}
     zle accept-line
-  }
-  zle -N zle_pry
-  bindkey 'p' zle_pry
-  bindkey '' zle_pry
+  fi
+} # }}}
+zle -N zle_filter_open_file
+# Ctrl /
+bindkey '' zle_filter_open_file
 
-  zle_clip(){
-    echo -nE "${BUFFER}" | clip
-  }
-  zle -N zle_clip
-  bindkey 'y' zle_clip
+zle_git_hash(){ # {{{
+  str="$(git-hash)"
+  [[ -z $str ]] && return
+  BUFFER="${BUFFER}$str"
+  CURSOR=${#BUFFER}
+} # }}}
+zle -N zle_git_hash
+bindkey 'g' zle_git_hash
 
-  # }}}
+zle_play_music(){
+  zle reset-prompt
+  play-music </dev/tty
+}
+zle -N zle_play_music
+bindkey 'm' zle_play_music
+bindkey '' zle_play_music
+
+zle_filter_commands(){
+  BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco)"
+  CURSOR=${#BUFFER}
+}
+zle -N zle_filter_commands
+bindkey 'c' zle_filter_commands
+# bindkey '' zle_filter_commands # don't work
+
+zle_filter_cd(){ # {{{
+  local str=' '
+  while [[ -n $str && $str != '.' ]]; do
+    str="$(find -maxdepth 1 -type d | sed 's|^./||'| peco)"
+    cd "${str}"
+  done
+  BUFFER="cd $(pwd)"
+  zle accept-line
+} # }}}
+zle -N zle_filter_cd
+bindkey 'd' zle_filter_cd
+# bindkey '' zle_filter_cd # don't work
+
+zle_pry(){
+  BUFFER=pry
+  zle accept-line
+}
+zle -N zle_pry
+bindkey 'p' zle_pry
+bindkey '' zle_pry
+
+zle_clip(){
+  echo -nE "${BUFFER}" | clip
+}
+zle -N zle_clip
+bindkey 'y' zle_clip
+
+# }}}
 # }}}
 
 can_exec zprof && zprof
