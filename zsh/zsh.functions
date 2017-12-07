@@ -617,7 +617,7 @@ comet(){
 timer(){
   ruby -e '
     loop do
-      print("\e[H\e[2J#{Time.now.strftime("%T:%L")}")
+      print("\e[H\e[2J#{Time.now.strftime("%T.%L")}")
       sleep(0.05)
     end
     '
