@@ -615,12 +615,31 @@ comet(){
 }
 
 timer(){
-  ruby -e '
+  ruby -e "
     loop do
-      print("\e[H\e[2J#{Time.now.strftime("%T.%1L")}")
+      print(\"\e[H\e[2J#{Time.now.strftime('%T.%1L')}\")
       sleep(0.03)
     end
-    '
+    "
+}
+
+timer-click(){
+  ruby -e "
+    loop do
+      time = Time.now
+      print(\"\e[H\e[2J#{time.strftime('%T.%1L')}\")
+
+      if time.strftime('%S.%1L') == '${1:-15.7}'
+        system('xdotool mousedown 1')
+        sleep(0.02)
+        system('xdotool mouseup 1')
+        print(\"\e[H\e[2J#{Time.now.strftime('%T.%3L')}\")
+        break
+      end
+
+      sleep(0.03)
+    end
+    "
 }
 
 # docker-compose ictsc-score-server
