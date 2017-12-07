@@ -615,8 +615,12 @@ comet(){
 }
 
 timer(){
-  ruby -e 'loop { print("\e[H\e[2J#{Time.now}"); sleep(0.1)}'
-  # ruby -e 'loop { print("\r#{Time.now}"); sleep(0.1)}'
+  ruby -e '
+    loop do
+      print("\e[H\e[2J#{Time.now.strftime("%T:%L")}")
+      sleep(0.05)
+    end
+    '
 }
 
 # docker-compose ictsc-score-server
