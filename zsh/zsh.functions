@@ -617,14 +617,15 @@ comet(){
 timer(){
   ruby -e "
     loop do
-      time = Time.now
-      print(\"\e[H\e[2J#{time.strftime('%T.%1L')}\")
+      time = Time.now.strftime('%T.%1L')
+      print(\"\\r\\e[0J#{time}\")
+      # \e[H\e[2J
 
-      if /${1:-^}$/ =~ time.strftime('%M:%S.%1L')
+      if /${1:-^}$/ =~ time
         system('xdotool mousedown 1')
         sleep(0.03)
         system('xdotool mouseup 1')
-        print(\"\e[H\e[2J#{Time.now.strftime('%T.%3L')}\")
+        print(\"\\r\\e[0J#{Time.now.strftime('%T.%3L')}\")
         break
       end
 
