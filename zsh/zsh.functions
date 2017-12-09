@@ -629,7 +629,7 @@ timer-click(){
       time = Time.now
       print(\"\e[H\e[2J#{time.strftime('%T.%1L')}\")
 
-      if time.strftime('%S.%1L') == '${1:-15.7}'
+      if /${1:-02:15.7}$/ =~ time.strftime('%M:%S.%1L')
         system('xdotool mousedown 1')
         sleep(0.02)
         system('xdotool mouseup 1')
