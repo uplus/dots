@@ -39,42 +39,42 @@ setopt no_transient_rprompt # on: remove old rprompt when after execute a comman
 autoload -Uz rprompt-git
 
 prompt-return-value(){
-echo " %(?,,%F{197} %?%f)"
+  echo " %(?,,%F{197} %?%f)"
 }
 
 PROMPT_SSH_COLOR=220
 prompt-ssh() {
-in_ssh && echo " %F{$PROMPT_SSH_COLOR}($HOST)%f"
+  in_ssh && echo " %F{$PROMPT_SSH_COLOR}($HOST)%f"
 }
 
 # vimなど特定のbgコマンドを表示する
 rprompt-bg() {
-local bg_cmds names
-bg_cmds=$(ps -o comm -T)
-names=$(echo "$bg_cmds" | grep -Eo "vim")
+  local bg_cmds names
+  bg_cmds=$(ps -o comm -T)
+  names=$(echo "$bg_cmds" | grep -Eo "vim")
 
-if [[ -n $names ]]; then
-  out=$(echo $names | head -1)
-  echo " [%F{99}$out%f]"
-fi
+  if [[ -n $names ]]; then
+    out=$(echo $names | head -1)
+    echo " [%F{99}$out%f]"
+  fi
 }
 
 prompt-color(){
-if (($UID == 0)); then
-  echo 249
-elif in_ssh; then
-  echo $PROMPT_SSH_COLOR
-else
-  echo 198
-fi
+  if (($UID == 0)); then
+    echo 249
+  elif in_ssh; then
+    echo $PROMPT_SSH_COLOR
+  else
+    echo 198
+  fi
 }
 
 prompt-symb-color(){
-if (( $UID == 0)); then
-  echo 160
-else
-  echo 255
-fi
+  if (( $UID == 0)); then
+    echo 160
+  else
+    echo 255
+  fi
 }
 
 export PROMPT='%F{$(prompt-color)}%(6~|...|)%5~%F{$(prompt-symb-color)} %# %f'
