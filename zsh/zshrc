@@ -35,20 +35,22 @@ setopt prompt_subst         # プロンプト定義で置き換えを使用す�
 setopt prompt_cr            # show prompt in new line, when after command finish.
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
-# aliasなどの影響を受けない
-autoload -Uz rprompt-git
+export PROMPT='%F{$(prompt-color)}%(6~|...|)%5~%F{$(prompt-symb-color)} %# %f'
+export RPROMPT='$(prompt-return-value)$(prompt-bg)$(prompt-git)$(prompt-ssh)'
+export PROMPT_SSH_COLOR=220
+
+autoload -Uz prompt-git # aliasなどの影響を受けない
 
 prompt-return-value(){
   echo " %(?,,%F{197} %?%f)"
 }
 
-PROMPT_SSH_COLOR=220
 prompt-ssh() {
   in_ssh && echo " %F{$PROMPT_SSH_COLOR}($HOST)%f"
 }
 
 # vimなど特定のbgコマンドを表示する
-rprompt-bg() {
+prompt-bg() {
   local bg_cmds names
   bg_cmds=$(ps -o comm -T)
   names=$(echo "$bg_cmds" | grep -Eo "vim")
@@ -76,12 +78,12 @@ prompt-symb-color(){
     echo 255
   fi
 }
-
-export PROMPT='%F{$(prompt-color)}%(6~|...|)%5~%F{$(prompt-symb-color)} %# %f'
-export RPROMPT='$(prompt-return-value)$(rprompt-bg)$(rprompt-git)$(prompt-ssh)'
 # }}}
 
 #History # {{{
+
+# Show options `set -o`
+
 setopt share_history
 setopt inc_append_history       #on: 履歴を即座に書き込む
 setopt extended_history         #on: 履歴に時を刻む
