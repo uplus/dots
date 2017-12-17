@@ -357,7 +357,7 @@ alias_over xtrlock -f
 alias_over source-highlight -f esc -i
 alias_over gzip -v9N
 alias_over gist -c -p
-alias_over killall -i -I
+alias_over killall -i -I --verbose
 alias_over python2 -B
 alias_over python3 -B
 alias_over irb --simple-prompt
@@ -436,6 +436,7 @@ alias nyaa='cat'
 alias restart-plasma-panel='killall plasmashell && kstart plasmashell'
 alias teensy-uplus='teensy_loader_cli --mcu=atmega32u4 -wv ~qmk/ergodox_ez_uplus.hex'
 alias show-path='echo $PATH | tr : \\n'
+alias Kill='kill --verbose -KILL'
 
 #vim applications
 alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
