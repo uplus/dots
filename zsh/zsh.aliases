@@ -187,6 +187,7 @@ hash -d large=~vol/large
 hash -d vm=~vol/vm
 
 hash -d dein=$HOME/.cache/dein/repos/github.com
+hash -d cargo=$HOME/.cargo/registry/src/github.com-1ecc6299db9ec823
 hash -d nsni=~dein/uplus/neosnippet-snippets
 hash -d clurin=~dein/uplus/vim-clurin
 hash -d cbook=~ctf/cbook/

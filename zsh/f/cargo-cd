@@ -1,0 +1,8 @@
+#!/usr/bin/zsh
+
+cmd='ls ~cargo'
+[[ -n $@ ]] && cmd+=" | grep ${1}"
+cmd+=" | sort | peco --select-1"
+
+result="$(eval "${cmd}")"
+[[ -n $result ]] && cd ~cargo/"${result}"
