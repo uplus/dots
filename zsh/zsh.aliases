@@ -438,6 +438,7 @@ alias restart-plasma-panel='killall plasmashell && kstart plasmashell'
 alias teensy-uplus='teensy_loader_cli --mcu=atmega32u4 -wv ~qmk/ergodox_ez_uplus.hex'
 alias show-path='echo $PATH | tr : \\n'
 alias Kill='kill --verbose -KILL'
+alias \?='where'
 
 #vim applications
 alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"

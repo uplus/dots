@@ -650,3 +650,10 @@ idc(){
       ;;
   esac
 }
+
+unzip-recv() {
+  broken_zip="${1:?broken zip}"
+  tmp_zip="$(mktemp --suffix=.zip)"
+  echo 'y' | zip --fixfix "${broken_zip}" --out="${tmp_zip}"
+  unzip "${tmp_zip}"
+}
