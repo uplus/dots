@@ -439,6 +439,9 @@ alias teensy-uplus='teensy_loader_cli --mcu=atmega32u4 -wv ~qmk/ergodox_ez_uplus
 alias show-path='echo $PATH | tr : \\n'
 alias Kill='kill --verbose -KILL'
 alias \?='where'
+keymaps() { awk '/\/\*\s*Keymap/,/\*\//' ~qmkmy/keymap.c | sed -E 's|^\s*/?\*/?\s?||' }
+alias keys='watch -t -d -n3 zsh -ic keymaps'
+
 
 #vim applications
 alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
