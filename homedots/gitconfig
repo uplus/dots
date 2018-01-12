@@ -1,112 +1,114 @@
-# vim: ft=gitconfig
 [user]
-  email = uplus.e10@gmail.com
-  name  = uplus
+	email = uplus.e10@gmail.com
+	name  = uplus
 [core]
-  excludesfile = ~/.gitignore
-  pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
-  quotepath = false
-  encodig = utf-8
+	excludesfile = ~/.gitignore
+	pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+	quotepath = false
+	encodig = utf-8
 [color]
-  ui = true
+	ui = true
 [push]
-  default = current
+	default = current
 [diff]
-  # algorithm = histogram
-  algorithm = minimal
-  # algorithm = patience
-  tool      = vimdiff
+	tool      = vimdiff
+	algorithm = histogram
+	# algorithm = minimal
+	# algorithm = patience
+	renames = true
+	indentHeuristic = true
+	compactionHeuristic = true
 [pull]
-  # rebase = true
-  ff = only
+	# rebase = true
+	ff = only
 [merge]
-  ff = false
-  tool = vimdiff
+	ff = false
+	tool = vimdiff
 [rebase]
-  autostash = true
+	autostash = true
 [url "https://github.com/"]
-    insteadof = g:
+	insteadof = g:
 [url "git@github.com:uplus/"]
-    insteadof = ggu:
+	insteadof = ggu:
 [url "https://github.com/uplus/"]
-    insteadof = ghu:
+	insteadof = ghu:
 [url "https://bitbucket.org/"]
-    insteadof = b:
+	insteadof = b:
 [url "git@bitbucket.org:u10e10/"]
-    insteadof = bgu:
+	insteadof = bgu:
 [http "https://gopkg.in"]
 	followRedirects = true
 [alias]
-  a   = add
-  s   = status --short --branch
-  d   = diff
-  dc  = diff --cached
-  dcw = diff --cached --color-words
-  dw  = diff --color-words
-  ds  = diff --stat
-  l       = !git logline -20
-  lh      = !git logline origin/master..@
-  la      = !git logline
-  lo      = log --graph --decorate --stat --find-renames
-  logline = log --graph --decorate --date=short --pretty='%C(yellow)%h %Cgreen[%cd]%Creset%C(cyan bold)%d%Creset %s'
-  today   = log --graph --decorate --oneline --stat --since='16 hour ago'
-  graph   = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-  loggr   = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
-  ch   = checkout
-  new  = checkout -b
-  co   = commit
-  coa  = commit -a
-  cov  = commit -v
-  com  = commit -m
-  cav  = commit -av
-  cam  = commit -am
-  coav = commit -av
-  coam = commit -am
-  fix  = commit --amend -v
-  fixa = commit --amend -va
-  fixm = commit --amend -C HEAD
-  fixam = commit --amend -a -C HEAD
-  empty = commit --allow-empty -m
-  b     = branch
-  eda   = branch -avv
-  del   = branch -d
-  ss    = stash save --include-untracked --keep-index
-  save  = stash save --include-untracked
-  spop  = stash pop
-  sdrop = stash drop
-  slist = stash list --stat --oneline
-  all    = add --all
-  update = add --update
-  patch  = add --patch
-  ours   = checkout --ours
-  theirs = checkout --theirs
-  ch-original = checkout --theirs # 元の方を採用する
-  ch-current = checkout --ours
-  tags = tag -l -n
-  untrack = update-index --skip-worktree
-  push-force = push --force-with-lease
-  remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
-  rprune = !"f(){ git remote prune ${1:-origin}; }; f"
-  rei      = rebase -i
-  # reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
-  continue = rebase --continue
-  abort    = rebase --abort
-  smerge = !"f(){ git merge --ff-only ${1}; git branch -d ${1}; }; f"
-  fmerge = merge --ff-only
-  aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'
-  merged  = !git branch --merged | grep -v master | grep -v '*'
-  edit    = config --edit --local
-  editg   = config --edit --global
-  back   = !"f(){ git reset HEAD~${1}; }; f"
-  current-branch = rev-parse --abbrev-ref HEAD
-  fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
-  souji = clean -fd
-  get = clone --depth 1
-  inish = !"f(){ git init && [ $# -ne 0 ] && git add $1; git s && git sh; }; f"
-  inic = !"git init && git add --all && git s && git com 'First commit.'"
-  ctodo = !"git commit -m \"TODO: temporary commit $(date +%F:%R)\""
-  tmpc = !"git add --all && git ctodo"
-  open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
-  pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
-  merge-to-master = !"git checkout master && git merge --ff-only -"
-  rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
+	a   = add
+	s   = status --short --branch
+	d   = diff
+	dc  = diff --cached
+	dcw = diff --cached --color-words
+	dw  = diff --color-words
+	ds  = diff --stat
+	l       = !git logline -20
+	lh      = !git logline origin/master..@
+	la      = !git logline
+	lo      = log --graph --decorate --stat --find-renames
+	logline = log --graph --decorate --date=short --pretty='%C(yellow)%h %Cgreen[%cd]%Creset%C(cyan bold)%d%Creset %s'
+	today   = log --graph --decorate --oneline --stat --since='16 hour ago'
+	graph   = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+	loggr   = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
+	ch   = checkout
+	new  = checkout -b
+	co   = commit
+	coa  = commit -a
+	cov  = commit -v
+	com  = commit -m
+	cav  = commit -av
+	cam  = commit -am
+	coav = commit -av
+	coam = commit -am
+	fix  = commit --amend -v
+	fixa = commit --amend -va
+	fixm = commit --amend -C HEAD
+	fixam = commit --amend -a -C HEAD
+	empty = commit --allow-empty -m
+	b     = branch
+	eda   = branch -avv
+	del   = branch -d
+	ss    = stash save --include-untracked --keep-index
+	save  = stash save --include-untracked
+	spop  = stash pop
+	sdrop = stash drop
+	slist = stash list --stat --oneline
+	all    = add --all
+	update = add --update
+	patch  = add --patch
+	ours   = checkout --ours
+	theirs = checkout --theirs
+	ch-original = checkout --theirs # 元の方を採用する
+	ch-current = checkout --ours
+	tags = tag -l -n
+	untrack = update-index --skip-worktree
+	push-force = push --force-with-lease
+	remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
+	rprune = !"f(){ git remote prune ${1:-origin}; }; f"
+	rei      = rebase -i
+	# reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
+	continue = rebase --continue
+	abort    = rebase --abort
+	smerge = !"f(){ git merge --ff-only ${1}; git branch -d ${1}; }; f"
+	fmerge = merge --ff-only
+	aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//g'
+	merged  = !git branch --merged | grep -v master | grep -v '*'
+	edit    = config --edit --local
+	editg   = config --edit --global
+	back   = !"f(){ git reset HEAD~${1}; }; f"
+	current-branch = rev-parse --abbrev-ref HEAD
+	fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
+	souji = clean -fd
+	get = clone --depth 1
+	inish = !"f(){ git init && [ $# -ne 0 ] && git add $1; git s && git sh; }; f"
+	inic = !"git init && git add --all && git s && git com 'First commit.'"
+	ctodo = !"git commit -m \"TODO: temporary commit $(date +%F:%R)\""
+	tmpc = !"git add --all && git ctodo"
+	open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
+	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+	merge-to-master = !"git checkout master && git merge --ff-only -"
+	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
