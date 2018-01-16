@@ -1,0 +1,188 @@
+# man zshzle
+bindkey -e
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -r "^T"
+
+# emacs bind
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey "^F" forward-char
+bindkey "^B" backward-char
+bindkey "^D" delete-char
+bindkey "^H" backward-delete-char
+bindkey "^W" backward-kill-word
+bindkey "^K" kill-line
+bindkey "^U" backward-kill-line
+# bindkey "^N" down-line-or-history
+# bindkey "^P" up-line-or-history
+bindkey "^N" down-line-or-search
+bindkey "^P" up-line-or-search
+
+bindkey "^L" clear-screen
+bindkey "^M" accept-line
+bindkey "^J" accept-line
+bindkey "^G" send-break
+bindkey "^Q" push-line
+bindkey "^V" quoted-insert
+
+bindkey "^I" expand-or-complete
+bindkey "^O" accept-line-and-down-history
+bindkey "^Y" yank
+bindkey "^]" insert-last-word
+
+# \ -
+bindkey "^_" undo
+# insert
+bindkey "[2~" overwrite-mode
+# delete
+bindkey "[3~" delete-char
+# backspace
+bindkey "^?" backward-delete-char
+
+# <S-Tab>
+bindkey "[Z" reverse-menu-complete
+
+bindkey "^X^X" edit-command-line
+
+# cursor-key and other # {{{
+bindkey "[A" up-line-or-search
+bindkey "[B" down-line-or-search
+bindkey "[C" forward-char
+bindkey "[D" backward-char
+bindkey "[H" beginning-of-line
+bindkey "[F" end-of-line
+bindkey "OA" up-line-or-search
+bindkey "OB" down-line-or-search
+bindkey "OC" forward-char
+bindkey "OD" backward-char
+bindkey "OH" beginning-of-line
+bindkey "OF" end-of-line
+# }}}
+
+# alt-bind # {{{
+bindkey "b" backward-word
+bindkey "f" forward-word
+bindkey "n" history-search-forward
+bindkey "p" history-search-backward
+
+bindkey "w" kill-word
+bindkey "q" push-line
+bindkey "h" run-help
+# }}}
+
+## original keybind functions # {{{
+zle_filter_history(){ # {{{
+  zle reset-prompt
+  local cmd="$(history -nr 0 | peco --query "${LBUFFER}")"
+
+  if [[ -n $cmd ]]; then
+    BUFFER="${cmd}"
+    CURSOR=$#BUFFER
+  fi
+} # }}}
+zle -N zle_filter_history
+in_path peco && bindkey '' zle_filter_history
+
+zle_filter_cdr(){ # {{{
+  zle reset-prompt
+  local dir="$(cdr -l | sed 's/^.....//' | peco --query "${LBUFFER}")"
+
+  if [[ -n $dir ]]; then
+    BUFFER="cd ${dir}"
+    zle accept-line
+  fi
+} # }}}
+zle -N zle_filter_cdr
+in_path peco && bindkey '' zle_filter_cdr
+
+zle_filter_select_file(){ # {{{
+  zle reset-prompt
+  local -a array
+  array+=${(z)LBUFFER}
+  shift array
+  dir="${$(relative "$array[-1]"):-.}"
+  opts=(-type d -name .git -prune -o)
+
+  local -a files
+  list_dirs_files "${dir}" $opts | sort -n | peco | while read file; do
+  files+="'$(relative "${dir}/${file}")'"
+done
+
+if (($#files != 0)); then
+  BUFFER="${BUFFER%"$array[-1]"}$files"
+  CURSOR=${#BUFFER}
+fi
+} # }}}
+zle -N zle_filter_select_file
+# Ctrl o
+bindkey '' zle_filter_select_file
+
+# TODO ディレクトリの浅さでソート
+zle_filter_open_file(){ # {{{
+  zle reset-prompt
+  # サブシェルでdirs対策
+  files=( $({ filter_select_file }) )
+  if (($#files != 0)); then
+    BUFFER="${EDITOR} -p ${files}"
+    CURSOR=${#BUFFER}
+    zle accept-line
+  fi
+} # }}}
+zle -N zle_filter_open_file
+# Ctrl /
+bindkey '' zle_filter_open_file
+
+zle_git_hash(){ # {{{
+  str="$(git-hash)"
+  [[ -z $str ]] && return
+  BUFFER="${BUFFER}$str"
+  CURSOR=${#BUFFER}
+} # }}}
+zle -N zle_git_hash
+bindkey 'g' zle_git_hash
+
+zle_play_music(){
+  zle reset-prompt
+  play-music </dev/tty
+}
+zle -N zle_play_music
+bindkey 'm' zle_play_music
+bindkey '' zle_play_music
+
+zle_filter_commands(){
+  BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco)"
+  CURSOR=${#BUFFER}
+}
+zle -N zle_filter_commands
+bindkey 'c' zle_filter_commands
+# bindkey '' zle_filter_commands # don't work
+
+zle_filter_cd(){ # {{{
+  local str=' '
+  while [[ -n $str && $str != '.' ]]; do
+    str="$(find -maxdepth 1 -type d | sed 's|^./||'| peco)"
+    cd "${str}"
+  done
+  BUFFER="cd $(pwd)"
+  zle accept-line
+} # }}}
+zle -N zle_filter_cd
+bindkey 'd' zle_filter_cd
+# bindkey '' zle_filter_cd # don't work
+
+zle_pry(){
+  BUFFER=pry
+  zle accept-line
+}
+zle -N zle_pry
+bindkey 'p' zle_pry
+bindkey '' zle_pry
+
+zle_clip(){
+  echo -nE "${BUFFER}" | clip
+}
+zle -N zle_clip
+bindkey 'y' zle_clip
+
+# }}}
