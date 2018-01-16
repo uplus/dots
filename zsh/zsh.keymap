@@ -71,7 +71,32 @@ bindkey "q" push-line
 bindkey "h" run-help
 # }}}
 
-## original keybind functions # {{{
+in_path peco && bindkey '' zle_filter_history
+in_path peco && bindkey '' zle_filter_cdr
+
+# Ctrl o
+bindkey '' zle_filter_select_file
+
+# Ctrl /
+bindkey '' zle_filter_open_file
+
+bindkey 'g' zle_git_hash
+
+bindkey 'm' zle_play_music
+bindkey '' zle_play_music
+
+bindkey 'c' zle_filter_commands
+# bindkey '' zle_filter_commands # don't work
+
+bindkey 'd' zle_filter_cd
+# bindkey '' zle_filter_cd # don't work
+
+bindkey 'p' zle_pry
+bindkey '' zle_pry
+
+bindkey 'y' zle_clip
+
+## original keybind functions
 zle_filter_history(){ # {{{
   zle reset-prompt
   local cmd="$(history -nr 0 | peco --query "${LBUFFER}")"
@@ -82,7 +107,6 @@ zle_filter_history(){ # {{{
   fi
 } # }}}
 zle -N zle_filter_history
-in_path peco && bindkey '' zle_filter_history
 
 zle_filter_cdr(){ # {{{
   zle reset-prompt
@@ -94,7 +118,6 @@ zle_filter_cdr(){ # {{{
   fi
 } # }}}
 zle -N zle_filter_cdr
-in_path peco && bindkey '' zle_filter_cdr
 
 zle_filter_select_file(){ # {{{
   zle reset-prompt
@@ -115,8 +138,6 @@ if (($#files != 0)); then
 fi
 } # }}}
 zle -N zle_filter_select_file
-# Ctrl o
-bindkey '' zle_filter_select_file
 
 # TODO ディレクトリの浅さでソート
 zle_filter_open_file(){ # {{{
@@ -130,8 +151,6 @@ zle_filter_open_file(){ # {{{
   fi
 } # }}}
 zle -N zle_filter_open_file
-# Ctrl /
-bindkey '' zle_filter_open_file
 
 zle_git_hash(){ # {{{
   str="$(git-hash)"
@@ -140,23 +159,18 @@ zle_git_hash(){ # {{{
   CURSOR=${#BUFFER}
 } # }}}
 zle -N zle_git_hash
-bindkey 'g' zle_git_hash
 
 zle_play_music(){
   zle reset-prompt
   play-music </dev/tty
 }
 zle -N zle_play_music
-bindkey 'm' zle_play_music
-bindkey '' zle_play_music
 
 zle_filter_commands(){
   BUFFER="$(hash -L | awk -F'[= ]' '{print $2}' | peco)"
   CURSOR=${#BUFFER}
 }
 zle -N zle_filter_commands
-bindkey 'c' zle_filter_commands
-# bindkey '' zle_filter_commands # don't work
 
 zle_filter_cd(){ # {{{
   local str=' '
@@ -168,21 +182,14 @@ zle_filter_cd(){ # {{{
   zle accept-line
 } # }}}
 zle -N zle_filter_cd
-bindkey 'd' zle_filter_cd
-# bindkey '' zle_filter_cd # don't work
 
 zle_pry(){
   BUFFER=pry
   zle accept-line
 }
 zle -N zle_pry
-bindkey 'p' zle_pry
-bindkey '' zle_pry
 
 zle_clip(){
   echo -nE "${BUFFER}" | clip
 }
 zle -N zle_clip
-bindkey 'y' zle_clip
-
-# }}}

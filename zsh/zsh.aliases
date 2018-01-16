@@ -212,6 +212,7 @@ alias z.l='zshrc zshrc.local'
 alias z.a='zshrc zsh.aliases && realias'
 alias z.f='zshrc zsh.functions'
 alias z.c='zshrc zsh.completion'
+alias z.k='zshrc zsh.keymap'
 alias z.h='$EDITOR $HISTFILE'
 
 #pkg {{{1
