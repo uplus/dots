@@ -152,7 +152,7 @@ git-set-pushurl(){
 git-hash(){
   branch="$(git branch | peco --select-1 | awk '$0=$NF')"
   [[ -z $branch ]] && return
-  git log --oneline "${branch}" | peco | awk '$0=$1'
+  git log --oneline --decorate=short "${branch}" | peco | awk '$0=$1'
 }
 
 hosts(){

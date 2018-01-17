@@ -110,6 +110,7 @@
 	tmpc = !"git add --all && git ctodo"
 	open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
 	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
-	merge-to-master = !"git checkout master && git merge --ff-only -"
+	merge-to = !"f(){ current=\"$(git current-branch)\" && git checkout \"${1:?target branch}\" && git merge \"${current}\" && git branch -d \"${current}\"; }; f"
 	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
 	ch-pr = !"f(){ git fetch origin pull/${1:?PR Number}/head:${2:?branch name} && git ch \"${2}\"; }; f"
+	pick = cherry-pick
