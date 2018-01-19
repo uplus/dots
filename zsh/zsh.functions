@@ -657,3 +657,9 @@ unzip-recv() {
   echo 'y' | zip --fixfix "${broken_zip}" --out="${tmp_zip}"
   unzip "${tmp_zip}"
 }
+
+gotty-term(){
+  gotty -w tmux attach -t gotty >&! /dev/null <&- &
+  IGNOREEOF=1 tmux new -E -s gotty
+  pkill gotty
+}

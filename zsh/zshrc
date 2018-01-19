@@ -112,6 +112,9 @@ setopt no_flow_control    # C-s, C-qを無効にする。
 setopt clobber            # リダイレクトで上書きする事を許可
 setopt rm_star_silent     # rm *の警告を無効にする
 setopt ZLE                #use zsh line editor
+if [[ "${IGNOREEOF:-}" -ne 0 ]]; then
+  setopt ignoreeof
+fi
 # setopt cdablevars             #on: if arguments of cd is not directory, expand as variable.
 
 #jobs
