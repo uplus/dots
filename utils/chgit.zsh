@@ -35,9 +35,7 @@ local mode="${1:-list}"
 shift 2>/dev/null
 
 case "${mode}" in
-  add) # {{{
-    action_add "${@}"
-    ;; # }}}
+  add) action_add "${@}" ;;
   push) # {{{
     local count=0
     local push_count=0
@@ -76,9 +74,7 @@ case "${mode}" in
 
     echo "$push_count/$count pulled"
     ;; # }}}
-  list) # {{{
-    list
-    ;; # }}}
+  list) list ;;
   edit) action_edit ;;
   each) action_each $@ ;;
   shell) action_shell ;;

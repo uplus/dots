@@ -40,9 +40,7 @@ local mode="${1:-list}"
 shift 2>/dev/null
 
 case $mode in
-  add) # {{{
-    action_add "${@}"
-    ;; # }}}
+  add) action_add "${@}" ;;
   pull) # {{{
     cat "${rc_file}" | while read line; do
       execute "$line"
@@ -59,9 +57,7 @@ case $mode in
       execute "$matched"
     fi
     ;; # }}}
-  list) # {{{
-    list
-    ;; # }}}
+  list) list ;;
   edit) action_edit ;;
   each) action_each $@ ;;
   shell) action_shell ;;
