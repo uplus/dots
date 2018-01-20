@@ -143,6 +143,12 @@ action_add() {
   fi
 }
 
+action_pull() {
+  cat "${rc_file}" | while read line; do
+    execute "$line"
+  done
+}
+
 action_edit(){
   "${EDITOR}" "${rc_file}"
 }

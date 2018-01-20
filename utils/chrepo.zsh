@@ -18,11 +18,7 @@ shift 2>/dev/null
 
 case $mode in
   add) action_add "${@}" ;;
-  pull) # {{{
-    cat "${rc_file}" | while read line; do
-      execute "$line"
-    done
-    ;; # }}}
+  pull) action_pull ;;
   only) # {{{
     : "${1:?the only option need <PATTERN>}"
     matched=$(grep "${1}" "$rc_file" | head -1)
