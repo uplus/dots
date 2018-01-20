@@ -30,17 +30,9 @@ done
 # }}}
 
 #Start
-local rc_file="$(
-  while [[ $PWD != $HOME && ! -f $PWD/.${cmdname}rc ]]; do
-    cd ..
-    [[ $PWD == $OLDPWD ]] && cd
-  done
-  echo "${PWD}"
-)/.${cmdname}rc"
+local rc_file="$(find_rc "${cmdname}")"
 
-if [[ $rc_file == $HOME/.${cmdname}rc ]]; then
-  echo "[+] Load ${rc_file}"
-else
+if [[ $rc_file != $HOME/.${cmdname}rc ]]; then
   print_color "[+] Load ${rc_file}" 220
 fi
 

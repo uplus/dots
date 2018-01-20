@@ -3,6 +3,23 @@
 typeset -a g_status
 g_status=(status --short --branch)
 
+find_rc() {
+  cmdname="${1:?command name}"
+
+  filepath="$(
+  while [[ $PWD != $HOME && ! -f $PWD/.${cmdname}rc ]]; do
+    cd ..
+    [[ $PWD == $OLDPWD ]] && cd
+  done
+  echo "${PWD}"
+  )/.${cmdname}rc"
+
+  # ~/ にも無いなら生成
+  [[ ! -f $filepath ]] && touch $filepath
+
+  echo "${filepath}"
+}
+
 error() {
   echo "[!] $1" 1>&2
   exit $2

@@ -25,8 +25,11 @@ list() {
 # }}}
 
 #Start
-local rc_file="$HOME/.${cmdname}rc"
-[[ ! -f $rc_file ]] && touch $rc_file
+local rc_file="$(find_rc "${cmdname}")"
+
+if [[ $rc_file != $HOME/.${cmdname}rc ]]; then
+  print_color "[+] Load ${rc_file}" 220
+fi
 
 local mode="${1:-list}"
 shift 2>/dev/null
