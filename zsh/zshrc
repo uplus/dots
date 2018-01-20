@@ -307,7 +307,7 @@ setopt autolist
 setopt automenu
 # }}}
 
-source "$ZSH_DOT_DIR/zsh.keymap"
+source "$ZSH_DOT_DIR/zsh.keymaps"
 
 can_exec zprof && zprof
 
