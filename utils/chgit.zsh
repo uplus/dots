@@ -1,10 +1,8 @@
 #!/usr/bin/env zsh
 set -u
+
 source helper-chgit
 local cmdname="${0:t:r}"
-
-# functions {{{
-# }}}
 
 #Start
 local rc_file="$(find_rc "${cmdname}")"
