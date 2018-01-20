@@ -16,44 +16,14 @@ shift 2>/dev/null
 
 case "${mode}" in
   add) action_add "${@}" ;;
-  push) # {{{
-    local count=0
-    local push_count=0
-
-    cat "${rc_file}" | while read git_path; do
-      if is_comment $git_path; then
-        print_comment "${git_path}"
-        continue
-      fi
-
-      ! has_ahead $git_path && continue
-      : $[count+=1]
-
-      git_status_and_cmd "${git_path}" push
-      [[ $? == 0 ]] && : $[push_count+=1]
-      echo
-    done
-    echo "$push_count/$count pushed"
-    ;; # }}}
+  push) action_push ;;
   pull) action_pull ;;
+  only) action_only "${1}" ;;
   list) action_list ;;
   edit) action_edit ;;
   each) action_each $@ ;;
   shell) action_shell ;;
-  help) # {{{
-    echo "Usage: ${cmdname} [mode]"
-    echo -e "\tdefault subcommand is list"
-    echo -e "\tadd PATH or %CMD"
-    echo -e "\tpush"
-    echo -e "\tpull"
-    echo -e "\tlist"
-    echo -e "\tedit"
-    echo -e "\teach"
-    echo -e "\tonly PATTERN"
-    echo -e "\tshell"
-    echo -e "\thelp"
-
-    ;; # }}}
+  help) action_help ;;
   *) action_not_subcommand ;;
 esac
 

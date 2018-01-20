@@ -143,6 +143,26 @@ action_add() {
   fi
 }
 
+action_push() {
+  local count=0
+  local push_count=0
+
+  cat "${rc_file}" | while read git_path; do
+    if is_comment $git_path; then
+      print_comment "${git_path}"
+      continue
+    fi
+
+    ! has_ahead $git_path && continue
+    : $[count+=1]
+
+    git_status_and_cmd "${git_path}" push
+    [[ $? == 0 ]] && : $[push_count+=1]
+    echo
+  done
+  echo "$push_count/$count pushed"
+}
+
 action_pull() {
   cat "${rc_file}" | while read line; do
     execute "$line"
@@ -174,12 +194,38 @@ action_each(){
   done
 }
 
+action_only() {
+  : "${1:?the only option need <PATTERN>}"
+  matched=$(grep "${1}" "$rc_file" | head -1)
+  [[ -z $matched ]] && error "not matched: ${1}" 20
+
+  read -k key"?$matched (Y/n)"
+  [[ $key != $'\n' ]] && echo
+  if [[ ! $key =~ [nN] ]]; then
+    execute "$matched"
+  fi
+}
+
 action_shell(){
   cat "${rc_file}" | grep -v '^[%#]' | peco  | while read git_path; do
     echo "Open ${SHELL} in ${git_path}"
     cd "${git_path}"
     "${SHELL}" -i
   done
+}
+
+action_help() {
+  echo "Usage: ${cmdname} [mode]"
+  echo -e "\tdefault subcommand is list"
+  echo -e "\tadd PATH or %CMD"
+  echo -e "\tpush"
+  echo -e "\tpull"
+  echo -e "\tlist"
+  echo -e "\tedit"
+  echo -e "\teach"
+  echo -e "\tonly PATTERN"
+  echo -e "\tshell"
+  echo -e "\thelp"
 }
 
 action_not_subcommand() {

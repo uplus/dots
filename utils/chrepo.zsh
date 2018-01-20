@@ -14,36 +14,16 @@ fi
 local mode="${1:-list}"
 shift 2>/dev/null
 
-case $mode in
+case "${mode}" in
   add) action_add "${@}" ;;
+  push) action_push ;;
   pull) action_pull ;;
-  only) # {{{
-    : "${1:?the only option need <PATTERN>}"
-    matched=$(grep "${1}" "$rc_file" | head -1)
-    [[ -z $matched ]] && error "not matched: ${1}" 20
-
-    read -k key"?$matched (Y/n)"
-    [[ $key != $'\n' ]] && echo
-    if [[ ! $key =~ [nN] ]]; then
-      execute "$matched"
-    fi
-    ;; # }}}
+  only) action_only "${1}" ;;
   list) action_list ;;
   edit) action_edit ;;
   each) action_each $@ ;;
   shell) action_shell ;;
-  help) # {{{
-    echo "Usage: ${cmdname} [mode]"
-    echo -e "\tdefault subcommand is list"
-    echo -e "\tadd PATH or %CMD"
-    echo -e "\tpull"
-    echo -e "\tlist"
-    echo -e "\tedit"
-    echo -e "\teach"
-    echo -e "\tonly PATTERN"
-    echo -e "\tshell"
-    echo -e "\thelp"
-    ;; # }}}
+  help) action_help ;;
   *) action_not_subcommand ;;
 esac
 
