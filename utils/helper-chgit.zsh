@@ -66,6 +66,21 @@ print_comment(){
   print_color "skip: ${1#\#}" "${2:-118}"
 }
 
+print_git() {
+  git_path="${1:-git repository path}"
+
+  # 存在しない
+  if [[ ! -d $git_path ]]; then
+    print_comment "${git_path}" 220
+    return
+  fi
+
+  st=$(git -C $git_path -c color.status=always $g_status)
+  git_path="$(short_path ${git_path} 30)"
+  echo "$(simple_color $git_path) $st"
+  [[ -n $(echo $st | sed -e 1d) ]] && echo
+}
+
 is_comment(){
   [[ $1 =~ ^# ]]
 }
@@ -111,6 +126,16 @@ action_add() {
 
 action_edit(){
   "${EDITOR}" "${rc_file}"
+}
+
+action_list() {
+  cat "${rc_file}" | while read line; do
+    case "${line}" in
+      \#*) print_comment "${line}" ;;
+      %*) echo $(echo "${line}" | sed s/^%//) ;;
+      *) print_git "${line}" ;;
+    esac
+  done
 }
 
 action_each(){

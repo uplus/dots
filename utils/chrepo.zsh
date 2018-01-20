@@ -17,16 +17,6 @@ execute() {
       ;;
   esac
 }
-
-list() {
-  cat "${rc_file}" | while read line; do
-  case "${line}" in
-    \#*) print_comment "${line}" ;;
-    %*) echo $(echo "${line}" | sed s/^%//) ;;
-    *) simple_color "${line}" ;;
-  esac
-done
-}
 # }}}
 
 #Start
@@ -57,7 +47,7 @@ case $mode in
       execute "$matched"
     fi
     ;; # }}}
-  list) list ;;
+  list) action_list ;;
   edit) action_edit ;;
   each) action_each $@ ;;
   shell) action_shell ;;

@@ -4,24 +4,6 @@ source helper-chgit
 local cmdname="${0:t:r}"
 
 # functions {{{
-list() {
-  local st
-
-  cat "${rc_file}" | while read git_path; do
-    if is_comment "${git_path}"; then
-      print_comment "${git_path}"
-      continue
-    elif [[ ! -d $git_path ]]; then
-      print_comment "${git_path}" 220
-      continue
-    fi
-
-    st=$(git -C $git_path -c color.status=always $g_status)
-    git_path="$(short_path ${git_path} 30)"
-    echo "$(simple_color $git_path) $st"
-    [[ -n $(echo $st | sed -e 1d) ]] && echo
-  done
-}
 # }}}
 
 #Start
@@ -74,7 +56,7 @@ case "${mode}" in
 
     echo "$push_count/$count pulled"
     ;; # }}}
-  list) list ;;
+  list) action_list ;;
   edit) action_edit ;;
   each) action_each $@ ;;
   shell) action_shell ;;
