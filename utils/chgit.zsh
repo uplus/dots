@@ -10,7 +10,7 @@ has_ahead() {
   [[ -n $(git -C $1 $g_status | head -1 | grep -oe "\[.*]$") ]]
 }
 
-check_repos() {
+list() {
   local st
 
   cat "${rc_file}" | while read git_path; do
@@ -33,10 +33,9 @@ check_repos() {
 #Start
 [[ ! -f $rc_file ]] && touch $rc_file
 
-local mode=${1:-}
+local mode="${1:-list}"
 shift 2>/dev/null
 case "${mode}" in
-  '') check_repos ;;
   add) # {{{
     [[ $# == 0 ]] && error "Please git repository path" 10
     add_rc_git ${@}
@@ -80,9 +79,7 @@ case "${mode}" in
     echo "$push_count/$count pulled"
     ;; # }}}
   list) # {{{
-    cat "${rc_file}" | while read git_path; do
-      simple "${git_path}"
-    done
+    list
     ;; # }}}
   edit) action_edit ;;
   each) action_each $@ ;;

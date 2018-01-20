@@ -16,6 +16,16 @@ execute() {
       ;;
   esac
 }
+
+list() {
+  cat "${rc_file}" | while read line; do
+  case "${line}" in
+    \#*) print_comment "${line}" ;;
+    %*) echo $(echo "${line}" | sed s/^%//) ;;
+    *) simple_color "${line}" ;;
+  esac
+done
+}
 # }}}
 
 #Start
@@ -32,8 +42,8 @@ else
   print_color "Load ${rc_file}" 220
 fi
 
-local mode="${1:=list}"
-shift
+local mode="${1:-list}"
+shift 2>/dev/null
 case $mode in
   add) # {{{
     [[ $# == 0 ]] && error "Please git repository path or cmd" 10
@@ -61,13 +71,7 @@ case $mode in
     fi
     ;; # }}}
   list) # {{{
-    cat "${rc_file}" | while read line; do
-      case "${line}" in
-        \#*) print_comment "${line}" ;;
-        %*) echo $(echo "${line}" | sed s/^%//) ;;
-        *) simple_color "${line}" ;;
-      esac
-    done
+    list
     ;; # }}}
   edit) action_edit ;;
   each) action_each $@ ;;
