@@ -38,9 +38,9 @@ local rc_file="$(
 )/.chreporc"
 
 if [[ $rc_file == $HOME/.chreporc ]]; then
-  echo "Load ${rc_file}"
+  echo "[+] Load ${rc_file}"
 else
-  print_color "Load ${rc_file}" 220
+  print_color "[+] Load ${rc_file}" 220
 fi
 
 local mode="${1:-list}"
