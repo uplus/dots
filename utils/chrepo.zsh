@@ -84,7 +84,7 @@ case $mode in
     echo -e "\tshell"
     echo -e "\thelp"
     ;; # }}}
-  *) error "wrong $mode is not option" 60 ;;
+  *) action_not_subcommand ;;
 esac
 
 exit 0

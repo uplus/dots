@@ -4,7 +4,7 @@ typeset -a g_status
 g_status=(status --short --branch)
 
 error() {
-  echo "error: $1" 1>&2
+  echo "[!] $1" 1>&2
   exit $2
 }
 
@@ -113,4 +113,8 @@ action_shell(){
     cd "${git_path}"
     "${SHELL}" -i
   done
+}
+
+action_not_subcommand() {
+  error "wrong $mode is not subcommand" 60
 }
