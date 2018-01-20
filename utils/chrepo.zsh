@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 set -u
 source helper-chgit
+local cmdname="${0:t:r}"
 
 # functions {{{
 execute() {
@@ -30,14 +31,14 @@ done
 
 #Start
 local rc_file="$(
-  while [[ $PWD != $HOME && ! -f $PWD/.chreporc ]]; do
+  while [[ $PWD != $HOME && ! -f $PWD/.${cmdname}rc ]]; do
     cd ..
     [[ $PWD == $OLDPWD ]] && cd
   done
   echo "${PWD}"
-)/.chreporc"
+)/.${cmdname}rc"
 
-if [[ $rc_file == $HOME/.chreporc ]]; then
+if [[ $rc_file == $HOME/.${cmdname}rc ]]; then
   echo "[+] Load ${rc_file}"
 else
   print_color "[+] Load ${rc_file}" 220
@@ -73,7 +74,7 @@ case $mode in
   each) action_each $@ ;;
   shell) action_shell ;;
   help) # {{{
-    echo "Usage: ${0:t:r} [mode]"
+    echo "Usage: ${cmdname} [mode]"
     echo -e "\tnon-argument show list"
     echo -e "\tadd PATH or %CMD"
     echo -e "\tpull"

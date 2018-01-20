@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 set -u
 source helper-chgit
+local cmdname="${0:t:r}"
 
 # functions {{{
 list() {
@@ -24,7 +25,7 @@ list() {
 # }}}
 
 #Start
-local rc_file="$HOME/.chgitrc"
+local rc_file="$HOME/.${cmdname}rc"
 [[ ! -f $rc_file ]] && touch $rc_file
 
 local mode="${1:-list}"
@@ -79,7 +80,7 @@ case "${mode}" in
   each) action_each $@ ;;
   shell) action_shell ;;
   help) # {{{
-    echo "Usage: ${0:t:r} [mode]"
+    echo "Usage: ${cmdname} [mode]"
     echo -e "\tnon-argument check status of git repositories"
     echo -e "\tadd PATH"
     echo -e "\tpush"
