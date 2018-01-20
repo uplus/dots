@@ -13,6 +13,10 @@ has_git() {
   return $?
 }
 
+has_ahead() {
+  [[ -n $(git -C $1 $g_status | head -1 | grep -oe "\[.*]$") ]]
+}
+
 short_path(){
   file="$(simple "${1}")"
   max="${2}"

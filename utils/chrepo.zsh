@@ -36,6 +36,7 @@ local rc_file="$(
   done
   echo "${PWD}"
 )/.chreporc"
+
 if [[ $rc_file == $HOME/.chreporc ]]; then
   echo "Load ${rc_file}"
 else
@@ -44,6 +45,7 @@ fi
 
 local mode="${1:-list}"
 shift 2>/dev/null
+
 case $mode in
   add) # {{{
     action_add "${@}"

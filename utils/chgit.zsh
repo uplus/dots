@@ -2,14 +2,7 @@
 set -u
 source helper-chgit
 
-#config
-local rc_file="$HOME/.chgitrc"
-
 # functions {{{
-has_ahead() {
-  [[ -n $(git -C $1 $g_status | head -1 | grep -oe "\[.*]$") ]]
-}
-
 list() {
   local st
 
@@ -31,10 +24,12 @@ list() {
 # }}}
 
 #Start
+local rc_file="$HOME/.chgitrc"
 [[ ! -f $rc_file ]] && touch $rc_file
 
 local mode="${1:-list}"
 shift 2>/dev/null
+
 case "${mode}" in
   add) # {{{
     action_add "${@}"
