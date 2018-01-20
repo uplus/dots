@@ -44,15 +44,17 @@ case "${mode}" in
   shell) action_shell ;;
   help) # {{{
     echo "Usage: ${cmdname} [mode]"
-    echo -e "\tnon-argument check status of git repositories"
-    echo -e "\tadd PATH"
+    echo -e "\tdefault subcommand is list"
+    echo -e "\tadd PATH or %CMD"
     echo -e "\tpush"
     echo -e "\tpull"
     echo -e "\tlist"
     echo -e "\tedit"
     echo -e "\teach"
+    echo -e "\tonly PATTERN"
     echo -e "\tshell"
     echo -e "\thelp"
+
     ;; # }}}
   *) action_not_subcommand ;;
 esac

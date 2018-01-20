@@ -36,13 +36,13 @@ case $mode in
   shell) action_shell ;;
   help) # {{{
     echo "Usage: ${cmdname} [mode]"
-    echo -e "\tnon-argument show list"
+    echo -e "\tdefault subcommand is list"
     echo -e "\tadd PATH or %CMD"
     echo -e "\tpull"
-    echo -e "\tonly PATTERN"
     echo -e "\tlist"
     echo -e "\tedit"
     echo -e "\teach"
+    echo -e "\tonly PATTERN"
     echo -e "\tshell"
     echo -e "\thelp"
     ;; # }}}
