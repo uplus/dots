@@ -37,8 +37,7 @@ local mode="${1:-list}"
 shift 2>/dev/null
 case "${mode}" in
   add) # {{{
-    [[ $# == 0 ]] && error "Please git repository path" 10
-    add_rc_git ${@}
+    action_add "${@}"
     ;; # }}}
   push) # {{{
     local count=0

@@ -59,13 +59,16 @@ add_rc(){
 }
 
 add_rc_git(){
-  local git_path="${*:a}"
-  #check valid of path
-  if ! has_git "${git_path}"; then
-    error "$(simple $git_path) is not git repository" 12
-  fi
+  for str in ${@}; do
+    local git_path="${str:a}"
 
-  add_rc "${git_path}"
+    #check valid of path
+    if ! has_git "${git_path}"; then
+      error "$(simple $git_path) is not git repository" 12
+    fi
+
+    add_rc "${git_path}"
+  done
 }
 
 git_status_and_cmd(){
@@ -74,6 +77,15 @@ git_status_and_cmd(){
   simple_color "${git_path}"
   git -C "${git_path}" $g_status
   git -C "${git_path}" $@
+}
+
+action_add() {
+  [[ $# == 0 ]] && error "Please git repository path or cmd" 10
+  if [[ $* =~ ^% ]]; then
+    add_rc "${*}"
+  else
+    add_rc_git ${@}
+  fi
 }
 
 action_edit(){

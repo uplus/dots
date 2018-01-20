@@ -46,13 +46,7 @@ local mode="${1:-list}"
 shift 2>/dev/null
 case $mode in
   add) # {{{
-    [[ $# == 0 ]] && error "Please git repository path or cmd" 10
-
-    if [[ $* =~ ^% ]]; then
-      add_rc "${*}"
-    else
-      add_rc_git ${@}
-    fi
+    action_add "${@}"
     ;; # }}}
   pull) # {{{
     cat "${rc_file}" | while read line; do
