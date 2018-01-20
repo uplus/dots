@@ -4,19 +4,6 @@ source helper-chgit
 local cmdname="${0:t:r}"
 
 # functions {{{
-execute() {
-  case "${1}" in
-    \#*) print_comment "${1}" ;;
-    %*)
-      print_color "${1}" 2
-      zsh -ic "eval $(echo "${1#%}")" </dev/tty
-      ;;
-    *)
-      git_status_and_cmd "${1}" pull --ff-only
-      echo
-      ;;
-  esac
-}
 # }}}
 
 #Start

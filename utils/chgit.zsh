@@ -4,6 +4,19 @@ source helper-chgit
 local cmdname="${0:t:r}"
 
 # functions {{{
+pull() {
+  local count=0
+  local pull_count=0
+
+  cat "${rc_file}" | while read git_path; do
+    : $[count+=1]
+
+    execute "${git_path}"
+    [[ $? == 0 ]] && : $[pull_count+=1]
+  done
+
+  echo "$pull_count/$count pulled"
+}
 # }}}
 
 #Start
@@ -37,25 +50,7 @@ case "${mode}" in
     done
     echo "$push_count/$count pushed"
     ;; # }}}
-  pull) # {{{
-    local count=0
-    local push_count=0
-
-    cat "${rc_file}" | while read git_path; do
-      : $[count+=1]
-
-      if is_comment $git_path; then
-        print_comment "${git_path}"
-        continue
-      fi
-
-      git_status_and_cmd "${git_path}" pull --ff-only
-      [[ $? == 0 ]] && : $[push_count+=1]
-      echo
-    done
-
-    echo "$push_count/$count pulled"
-    ;; # }}}
+  pull) pull ;;
   list) action_list ;;
   edit) action_edit ;;
   each) action_each $@ ;;
