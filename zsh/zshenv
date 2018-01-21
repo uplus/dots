@@ -63,6 +63,7 @@ export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
 export MOUNT='/run/media/uplus'
 # export DOCKER_CONTENT_TRUST=1
 export NMAP_PRIVILEGED="" # set privilege mode to nmap
+export GIT_EXEC_PATH="$(git --exec-path):${DOT_DIR}/git-subcommands"
 
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
 

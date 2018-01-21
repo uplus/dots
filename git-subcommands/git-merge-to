@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+
+current="$(git current-branch)"
+git checkout "${1:?target branch}"
+git merge "${current}"
+
+if [[ "${current}" != "develop" ]]; then
+  git branch -d "${current}"
+fi
