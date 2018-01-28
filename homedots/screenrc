@@ -1,0 +1,7 @@
+escape ^Qq
+startup_message off
+vbell off
+defscrollback 3000
+
+hardstatus alwayslastline "%{= rw} %H %{= wk}%-Lw%{= bw}%n%f* %t%{= wk}%+Lw %{= wk}%=%{= gk} %y/%m/%d %c "
+logfile "$HOME/screen-%Y%m%d-%n.log"
