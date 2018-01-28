@@ -8,6 +8,8 @@
 	encodig = utf-8
 [color]
 	ui = true
+[web]
+	browser = xdg-open
 [push]
 	default = current
 [diff]

@@ -1,37 +1,51 @@
-
 source 'https://rubygems.org'
 
 gem 'bundler'
-gem 'color_echo'
-gem 'fastri'
-gem 'gist'
-# gem 'guard'
-gem 'neovim'
-gem 'nokogiri'
-gem 'mechanize'
-gem 'pcoder'
+gem 'rake'
+gem 'rspec'
+gem 'guard'
+gem 'yard'
+
 gem 'pry'
 gem 'pry-byebug'
 gem 'pry-coolline'
 gem 'pry-doc'
 gem 'pry-stack_explorer'
+
+gem 'neovim'
+gem 'gist'
+gem 'travis'
+
+gem 'nokogiri'
+gem 'mechanize'
+
 # gem 'pwnlib'
 # gem 'rails_best_practices'
 # gem 'rak'
+# gem 'tty-pager'
+# gem 'rcodetools'
 gem 'rb-readline'
-gem 'rcodetools'
-gem 'rfd'
-gem 'rake'
-gem 'rspec'
 gem 'sheet'
-# 'tty-pager'
-gem 'gem-browse'
 gem 'lazyeval'
-gem 'travis'
+gem 'color_echo'
 
+# Open a library file. gem {edit | open | browse | clone}
+# https://github.com/tpope/gem-browse
+gem 'gem-browse'
+
+# TUI filesystem explorer
+gem 'rfd'
+
+# gitリポジトリからインストール
+gem 'specific_install'
+
+# rcodetoolsの代替
+gem 'solargraph'
 
 # delete published gem
 gem 'gemcutter'
 
+# Submit local file to AtCoder
+gem 'pcoder'
 
 # gem 'kuport'
