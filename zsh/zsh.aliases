@@ -417,7 +417,6 @@ alias _=sudo
 alias __=sudoedit
 alias odh='od -A x -t x1z -v '
 alias vlc-clear='rm -r ~/.cache/vlc/'
-alias uri-encode="ruby -r erb -e 'puts ERB::Util.url_encode(ARGV.empty? ? gets.rstrip : ARGV.join(\" \"))'"
 alias ip-sub='ip a show dev $(ip route | awk "/^default/{print \$5}") | awk "/inet/{print \$2}"'
 alias tyy='tee $(tty)'
 alias gip='curl --silent --show-error httpbin.org/ip | awk -F\" "/origin/{print \$4}"'
