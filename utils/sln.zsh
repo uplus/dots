@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
+
 if (($# < 2)); then
-  warn "usage: sln <source> <target>"
+  echo "usage: sln <source> <target>" >&2
   return 1
 else
   ln -svi ${1:a} ${2:a}

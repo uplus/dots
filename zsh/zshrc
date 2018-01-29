@@ -52,8 +52,8 @@ prompt-ssh() {
 # vimなど特定のbgコマンドを表示する
 prompt-bg() {
   local bg_cmds names
-  bg_cmds=$(ps -o comm -T)
-  names=$(echo "$bg_cmds" | grep -Eo "vim")
+  bg_cmds=$(ps -o comm --no-headers)
+  names=$(echo "$bg_cmds" | grep -E "vim")
 
   if [[ -n $names ]]; then
     out=$(echo $names | head -1)
