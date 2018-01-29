@@ -26,8 +26,8 @@ autoload -Uz zmv
 # zmodload zsh/zpty
 
 eval "$(dircolors -b)"
-LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=..;../ln=03;94/g')
-# autoload -U colors && colors  # NOTE: call by zplug
+LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=[^:]\+/ln=38;5;81/g')
+autoload -U colors && colors  # NOTE: call by zplug
 
 #Prompt # {{{
 autoload -Uz promptinit && promptinit
