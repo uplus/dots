@@ -156,6 +156,19 @@ pkg_python(){ #{{{
   done
 } #}}}
 
+pkg_rust(){
+  pkgs=(
+    tealdeer
+    cargo-update
+  )
+
+  for name in ${pkgs[@]}; do
+    cargo install "${name}"
+  done
+
+  tldr --os=linux --update
+}
+
 clone_myrepos_tmp(){ #{{{
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
@@ -174,11 +187,6 @@ clone_myrepos_tmp(){ #{{{
 } #}}}
 
 # installs {{{
-install_tldr(){
-  cargo install tealdeer
-  tldr -olinux -u
-}
-
 install_echo_sd(){
   wget https://raw.githubusercontent.com/fumiyas/home-commands/master/echo-sd -O ~/bin/echo-sd
   chmod +x ~/bin/echo-sd
