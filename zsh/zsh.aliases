@@ -365,7 +365,7 @@ alias_over python3 -B
 alias_over irb --simple-prompt
 alias_over pry --simple-prompt
 alias_over ipython --no-confirm-exit --no-banner
-alias_over ccat --bg=light -G Plaintext=lightgray -G Keyword=teal
+alias_over ccat --bg=light -G Plaintext=lightgray -G Keyword=teal --color=always
 alias_exists js nodejs node
 alias_exists python python3
 alias_exists pip pip3
