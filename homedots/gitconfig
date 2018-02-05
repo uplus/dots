@@ -115,3 +115,5 @@
 	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
 	ch-pr = !"f(){ git fetch origin pull/${1:?PR Number}/head:${2:?branch name} && git ch \"${2}\"; }; f"
 	pick = cherry-pick
+	browse = !hub browse
+	foresta = !git-foresta --style=10

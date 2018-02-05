@@ -128,20 +128,32 @@ pkg_u_utility(){ #{{{
 } #}}}
 
 pkg_go(){ #{{{
-  go get -v -u github.com/motemen/gore
-  go get -v -u github.com/peco/peco
-  go get -v -u github.com/peco/migemogrep
-  go get -v -u github.com/nfs/gocode
-  go get -v -u github.com/k0kubun/pp
-  go get -v -u github.com/jstemmer/gotags
-  go get -v -u github.com/golang/lint/golang
-  go get -v -u golang.org/x/tools/cmd/gorename
-  go get -v -u golang.org/x/tools/cmd/goimports
-  go get -v -u golang.org/x/tools/cmd/gotype
+  pkgs=(
+    github.com/motemen/gore # REPL
+    github.com/peco/peco
+    github.com/peco/migemogrep
+    github.com/jingweno/ccat # color cat
+    github.com/nfs/gocode
+    github.com/k0kubun/pp
+    github.com/jstemmer/gotags
+    github.com/golang/lint/golang
+    golang.org/x/tools/cmd/gorename
+    golang.org/x/tools/cmd/goimports
+    golang.org/x/tools/cmd/gotype
+  )
+
+  for name in ${pkgs[@]}; do
+    go get -v -u "${name}"
+  done
 } #}}}
 
 pkg_python(){ #{{{
-  pip install vim-vint --upgrade --user
+  pkgs=(vim-vint ipython)
+
+  for name in ${pkgs[@]}; do
+    echo "${name}"
+    pip install --upgrade --user "${name}"
+  done
 } #}}}
 
 clone_myrepos_tmp(){ #{{{
@@ -269,6 +281,11 @@ install_tig(){
   sudo make install prefix=/usr/local
   # sudo make install-doc prefix=/usr/local
   popd $current
+}
+
+install_git_foresta(){
+  git clone https://github.com/takaaki-kasai/git-foresta $HOME/src/git-foresta/
+  binln $HOME/src/git-foresta/git-foresta
 }
 
 install_psysh() {
@@ -425,3 +442,5 @@ if [ $# -eq 0 ]; then
 else
   $1
 fi
+
+# vim: fdm=marker
