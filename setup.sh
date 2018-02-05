@@ -160,6 +160,8 @@ pkg_rust(){
   pkgs=(
     tealdeer
     cargo-update
+    cargo-tree
+    # cargo-modules
   )
 
   for name in ${pkgs[@]}; do
