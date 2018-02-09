@@ -6,3 +6,4 @@ tags
 core
 .vimrc.local
 .yardoc
+.bundle
