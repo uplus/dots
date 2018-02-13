@@ -444,6 +444,7 @@ alias \?='where'
 keymaps() { awk '/\/\*\s*Keymap/,/\*\//' ~qmkmy/keymap.c | sed -E 's|^\s*/?\*/?\s?||' }
 alias keys='watch -t -d -n3 zsh -ic keymaps'
 alias con-cisco='screen /dev/ttyUSB0'
+alias ssh-fingerprint='ssh-keygen -lf'
 
 
 #vim applications
