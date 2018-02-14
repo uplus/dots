@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 # zmodload zsh/zprof && zprof
 
-# For ssh and tty
+## For ssh and tty
 [[ ! -z "${ZSHENV_LOADED:-}" ]] && return
 ZSHENV_LOADED="loaded"
 
-#add unique attr
+## add unique attr
 typeset -U path PATH MANPATH INFOPATH fpath FPATH MANPATH NODE_PATH # RUBYLIB
 
 in_path(){
@@ -36,19 +36,28 @@ export LANG=en_US.UTF-8 # Provides default value for LC_* variables.
 
 export WORDCHARS='*?!#%[]{}<>()~`\' # ^$&@_+-:;|.
 
+## Editer config
 if in_path nvim; then
   export EDITOR=nvim
 else
   export EDITOR=vim
 fi
-
 export GIT_EDITOR="${EDITOR}"
 export VISUAL="${EDITOR}"
-export PAGER='less'
-export MANPAGER='less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines'
+
+## Pager config
+export PAGER='less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT'
+export MANPAGER="${PAGER} --chop-long-lines"
+export GIT_PAGER="${PAGER} --chop-long-lines --quit-if-one-screen --no-init"
+
+## Directories
+export ZSH_DOT_DIR="$(dirname "$(readlink -f $HOME/.zshenv)")"
+export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
+export MOUNT='/run/media/uplus'
+
 
 export WWW_BROWSER=w3m
-export DOWNLOADER="wget -S"
+export DOWNLOADER='wget -S'
 # export TERM=screen-256color-bce # italicが使えない
 in_tmux || export TERM='xterm-256color'
 
@@ -56,15 +65,10 @@ export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable 
 export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
 export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
 export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector"
-export REPO_HTTPS='https://github.com/uplus'
-export REPO_SSH='git@github.com:uplus'
-export ZSH_DOT_DIR="$(dirname "$(readlink -f $HOME/.zshenv)")"
-export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
-export MOUNT='/run/media/uplus'
 # export DOCKER_CONTENT_TRUST=1
 export NMAP_PRIVILEGED="" # set privilege mode to nmap
-
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
+
 
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working, evil /etc/profile
 # export LC_COLLATE=C

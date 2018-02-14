@@ -353,7 +353,7 @@ alias_over jobs -ld
 alias_over mii-tool -vv
 alias_over pgrep -al
 alias_over ag --smart-case --hidden
-alias_over less -i --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
+alias_over less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
 alias_over dmesg --color=always -e L # -Hだとless動作が揃わない
 alias_over xtrlock -f
 alias_over source-highlight -f esc -i
