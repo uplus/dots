@@ -9,7 +9,7 @@ loop do
 
   if /#{finish_time}$/ =~ time
     system('xdotool mousedown 1')
-    sleep(0.025)
+    sleep(0.03)
     system('xdotool mouseup 1')
     print("\r\e[0J#{Time.now.strftime('%T.%3L')}")
     break
