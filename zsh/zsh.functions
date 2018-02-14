@@ -20,6 +20,8 @@ autoload -Uz sym_solve
 autoload -Uz filter_select_file
 autoload -Uz proxy-on
 autoload -Uz proxy-off
+
+# Cd to package directory with peco
 autoload -Uz dein
 autoload -Uz cargo-cd
 
@@ -407,33 +409,6 @@ json_format(){
   command mv "${tmpfile}" "${1}"
 }
 
-
-# TODO
-tops(){
-  return
-
-  top
-  htop
-  nethogs
-  iftop
-  iotop
-  atop      アクティブなプロセスのみ?
-  slabtop   メモリ
-  jnettop   ホストとポートごとに表示
-}
-
-stats(){ # TODO
-  return
-
-  # https://blog.riywo.com/2011/02/20/192123/
-  ifstat
-  netstat -taopn
-  vmstat
-  iostat -x
-  dstat -f
-  mpstat
-}
-
 smart_docker(){
   unfunction "${1}"
 
@@ -642,4 +617,34 @@ gotty-term(){
   gotty -w tmux attach -t gotty >&! /dev/null <&- &
   IGNOREEOF=1 tmux new -E -s gotty
   pkill gotty
+}
+
+
+
+
+# TODO
+
+tops(){
+  return
+
+  top
+  htop
+  nethogs
+  iftop
+  iotop
+  atop      アクティブなプロセスのみ?
+  slabtop   メモリ
+  jnettop   ホストとポートごとに表示
+}
+
+stats(){
+  return
+
+  # https://blog.riywo.com/2011/02/20/192123/
+  ifstat
+  netstat -taopn
+  vmstat
+  iostat -x
+  dstat -f
+  mpstat
 }
