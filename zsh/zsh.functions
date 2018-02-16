@@ -90,6 +90,13 @@ dotln(){
   done
 }
 
+binln(){
+  mkdir -p $HOME/bin
+  for name in $@; do
+    ln -svi "${name:a}" "$HOME/bin/${name:t:r}"
+  done
+}
+
 # for completion
 startvm(){
   back VBoxManage startvm ${@}
