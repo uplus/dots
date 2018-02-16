@@ -74,6 +74,22 @@ add-zsh-hook precmd autols
 
 ch(){ cd $HOME/${1:-} }
 
+sln(){
+  if (($# < 2)); then
+    echo "usage: sln <source> <target>" >&2
+    return 1
+  else
+    ln -svi ${1:a} ${2:a}
+  fi
+}
+
+dotln(){
+  mkdir -p $HOME/bin
+  for name in $@; do
+    ln -svi "${name:a}" "$HOME/.${name:t}"
+  done
+}
+
 # for completion
 startvm(){
   back VBoxManage startvm ${@}
