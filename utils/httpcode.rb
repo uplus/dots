@@ -1,9 +1,21 @@
 #!/usr/bin/env ruby
 require 'net/http/status'
 
+if ARGV.empty?
+  Net::HTTP::STATUS_CODES.each do |key, value|
+    puts "#{key} #{value}"
+  end
+
+  exit
+end
+
 puts Net::HTTP::STATUS_CODES[ARGV[0].to_i]
 
 __END__
+require 'yaml'で管理する?
+
+1xx Informational 情報
+リクエストは受け取られた。処理は継続される
   100 Continue
     継続。クライアントはリクエストを継続できる。サーバがリクエストの最初の部分を受け取り、まだ拒否していないことを示す。
     例として、クライアントがExpect: 100-continueヘッダをつけたリクエストを行い、それをサーバが受理した場合に返される。
