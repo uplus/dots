@@ -191,5 +191,6 @@ zle -N zle_pry
 
 zle_clip(){
   echo -nE "${BUFFER}" | clip
+  notify "Cliped: ${BUFFER}"
 }
 zle -N zle_clip
