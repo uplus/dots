@@ -1,0 +1,10 @@
+#!/usr/bin/zsh
+ruby_version="$(ls -1 ${HOME}/.gem/ruby/ | tail -1)"
+gem_dir="${HOME}/.gem/ruby/${ruby_version}/gems"
+
+cmd="ls -1 ${gem_dir}"
+[[ -n $@ ]] && cmd+=" | grep ${1}"
+cmd+=" | sort | peco --select-1"
+
+result="$(eval "${cmd}")"
+[[ -n $result ]] && cd "${gem_dir}/${result}"
