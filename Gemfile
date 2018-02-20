@@ -49,3 +49,5 @@ gem 'gemcutter'
 gem 'pcoder'
 
 # gem 'kuport'
+
+gem 'sqlint'
