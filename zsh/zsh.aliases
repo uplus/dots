@@ -84,6 +84,8 @@ alias dkrm-all='docker rm -f $(docker ps -a -q)'
 # alias dkrm-all='docker stop -t 1 $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 # dkrm(){ docker stop -t 1 "${1}" && docker rm "${1}" }
 alias dkcmp='docker-compose'
+alias dk-clean-images='docker images --filter "dangling=true" --quiet | xargs docker rmi'
+alias dk-prune='docker system prune -af && docker volume prune'
 
 
 #C/C++ gdb {{{1
