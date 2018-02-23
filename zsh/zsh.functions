@@ -672,3 +672,9 @@ stats(){
   dstat -f
   mpstat
 }
+
+sourceenv(){
+  envfile="${1:?env file}"
+  shift
+  is source "${envfile}" '&&' eval ${@}
+}
