@@ -363,12 +363,13 @@ lsmod(){
 }
 
 sl(){
-  sleep 0.4
+  sleep 1.0
   echo 'l「もしかして」'
-  sleep 1.2
+  sleep 1.5
   echo 's「私たち」'
-  sleep 1.4
-  echo '「「入れ替わってる！？！？！？」」'
+  sleep 1.5
+  echo '「「入れ替わってる〜！？」」'
+  sleep 1.5
 }
 
 test-build(){
