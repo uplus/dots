@@ -363,6 +363,7 @@ lsmod(){
 }
 
 sl(){
+  trap '' 1 2 3 15
   sleep 1.0
   echo 'l「もしかして」'
   sleep 1.5
