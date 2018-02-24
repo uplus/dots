@@ -620,11 +620,11 @@ idc(){
   cmd=${1:? back api}
   case "${cmd}" in
     'back')
-      docker-compose up -d --no-deps redis plasma db ui
+      docker-compose up -d --no-deps redis plasma db
       [[ $? == 0 ]] && echo-color 45 'Start [redis plasma db ui] in background'
       ;;
     'api')
-      docker-compose up api
+      docker-compose up api ui
       # sudo docker-compose up --build api
       ;;
   esac

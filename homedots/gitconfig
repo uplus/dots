@@ -117,4 +117,4 @@
 	pick = cherry-pick
 	browse = !hub browse
 	foresta = !git-foresta --style=10
-	wta = !"f(){ git worktree add \"git-worktree-${1}\" \"${1}\"; }; f"
+	wta = !"f(){ git worktree add \"git-worktree-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
