@@ -293,6 +293,14 @@ alias youtube-mp3='noglob youtube-mp3'
 alias youtube-ogg='noglob youtube-ogg'
 alias ri='noglob ri'
 
+# systemd
+if in_path systemctl; then
+  alias start='sudo systemctl start'
+  alias restart='sudo systemctl restart'
+  alias stop='sudo systemctl stop'
+  alias status='systemctl status'
+fi
+
 
 # Folds END {{{1
 # }}}1
