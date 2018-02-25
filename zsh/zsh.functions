@@ -625,7 +625,7 @@ idc(){
       docker-compose up -d --no-deps redis plasma db
       [[ $? == 0 ]] && echo-color 45 'Start [redis plasma db ui] in background'
       ;;
-    'api')
+    'up')
       docker-compose up api ui
       # sudo docker-compose up --build api
       ;;
