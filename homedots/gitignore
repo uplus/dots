@@ -7,4 +7,5 @@ core
 .vimrc.local
 .yardoc
 .bundle
+yarn-error.log
 git-worktree-*/
