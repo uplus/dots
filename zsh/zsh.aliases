@@ -449,7 +449,7 @@ alias build-neovim='make distclean clean && make CMAKE_BUILD_TYPE=RelWithDebInfo
 alias wdate='watch --no-title date'
 alias nyaa='cat'
 alias restart-plasma-panel='killall plasmashell && kstart plasmashell'
-alias teensy-uplus='teensy_loader_cli --mcu=atmega32u4 -wv ~qmk/ergodox_ez_uplus.hex'
+alias teensy-uplus='echo "make ergodox_ez:uplus:teensy"'
 alias build-qmkmy='cd ~qmk && make ergodox_ez:uplus && teensy-uplus; cd -'
 alias show-path='echo $PATH | tr : \\n'
 alias Kill='kill --verbose -KILL'

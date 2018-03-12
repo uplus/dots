@@ -1,0 +1,140 @@
+#compdef dfu-programmer
+
+# autocomplete script
+# code sourced from dfu_completion, DO NOT EDIT IN THIS FILE
+
+TARGET_INFO=" at89c51snd1c::0 at89c51snd2c::0 at89c5130::0x0400 at89c5131::0x0400 at89c5132::0 at90usb1287::0x1000 at90usb1286::0x1000 at90usb1287-4k::0x1000 at90usb1286-4k::0x1000 at90usb647::0x0800 at90usb646::0x0800 at90usb162::0x0200 at90usb82::0x0200 atmega32u6::0x0400 atmega32u4::0x0400 atmega32u2::0x0400 atmega16u4::0x0200 atmega16u2::0x0200 atmega8u2::0x0200 at32uc3a0128::0 at32uc3a1128::0 at32uc3a0256::0 at32uc3a1256::0 at32uc3a0512::0 at32uc3a1512::0 at32uc3a0512es::0 at32uc3a1512es::0 at32uc3a364::0 at32uc3a364s::0 at32uc3a3128::0 at32uc3a3128s::0 at32uc3a3256::0 at32uc3a3256s::0 at32uc3a4256s::0 at32uc3b064::0 at32uc3b164::0 at32uc3b0128::0 at32uc3b1128::0 at32uc3b0256::0 at32uc3b1256::0 at32uc3b0256es::0 at32uc3b1256es::0 at32uc3b0512::0 at32uc3b1512::0 at32uc3c064::0 at32uc3c0128::0 at32uc3c0256::0 at32uc3c0512::0 at32uc3c164::0 at32uc3c1128::0 at32uc3c1256::0 at32uc3c1512::0 at32uc3c264::0 at32uc3c2128::0 at32uc3c2256::0 at32uc3c2512::0 atxmega64a1u::0x0800 atxmega128a1u::0x0800 atxmega64a3u::0x0800 atxmega128a3u::0x0800 atxmega192a3u::0x0800 atxmega256a3u::0x1000 atxmega16a4u::0x0400 atxmega32a4u::0x0400 atxmega64a4u::0x0800 atxmega128a4u::0x0800 atxmega256a3bu::0x1000 atxmega64b1::0x0800 atxmega128b1::0x0800 atxmega64b3::0x0800 atxmega128b3::0x0800 atxmega64c3::0x0800 atxmega128c3::0x0800 atxmega256c3::0x1000 atxmega384c3::0x1000 atxmega16c4::0x400 atxmega32c4::0x400 stm32f4_B::0 stm32f4_C::0 stm32f4_E::0 stm32f4_G::0 "
+
+
+# dfu_completion file, partial of dfu_programmer script
+
+TARGETS=$( echo $TARGET_INFO | sed 's/::[xX0-9A-Fa-f]*//g' )
+
+COMMANDS=(launch read erase flash setsecure config get getfuse setfuse hex2bin bin2hex)
+
+_dfu-programmer () {
+  local i filetype
+  local cur cmd prev target
+  local flags
+  local eeprom_size
+
+  export cur=${COMP_WORDS[COMP_CWORD]}
+  export target=${COMP_WORDS[1]}
+  export cmd=${COMP_WORDS[2]}
+  export prev=${COMP_WORDS[COMP_CWORD - 1]}
+
+  COMPREPLY=()   # Array variable storing the possible completions.
+
+  if [[ "$COMP_CWORD" == "1" ]]; then
+    COMPREPLY=( $( compgen -W "$TARGETS" -- $cur ) )
+  fi
+
+  if [[ "$COMP_CWORD" == "2" ]]; then
+    COMPREPLY=( $( compgen -W "${COMMANDS[*]}" -- $cur ) )
+  fi
+
+  if [[ "$COMP_CWORD" > "2" ]]; then
+
+    case "$cmd" in
+      hex2bin)
+        filetype="hex"
+
+        if [[ $filetype != none ]]; then
+          #COMPREPLY+=( $( compgen -f -X "!*.$filetype" -- $cur ) )
+          COMPREPLY+=( $( compgen -o plusdirs -f -X "!*.$filetype" -- $cur ) )
+        fi
+
+        # make sure there isn't a trailing space for directories
+        if [[ ${#COMPREPLY[@]} == 1 ]]; then
+          if [[ -d ${COMPREPLY[0]} ]]; then
+            COMPREPLY[0]=$( echo ${COMPREPLY[0]} | sed 's/$/\//' )
+            # If there's only one option, without =, then allow a space
+            compopt -o nospace
+          fi
+          if [[ ${COMPREPLY[0]} == "--"*"=" ]]; then
+            compopt -o nospace
+          fi
+        fi
+        ;;
+      bin2hex)
+        ;;
+      launch)
+        if [[ "$COMP_CWORD" == "3" ]]; then
+          COMPREPLY=( $( compgen -W '--no-reset' -- $cur ) )
+        fi
+        ;;
+      read)
+        # only either user or eeprom should be displayed based on if device has
+        # either feature -- or either one is selected when both features exist
+        flags="--force --user --eeprom --bin"
+        eeprom_size=$( echo $TARGET_INFO | sed "s/.* $target:://" | sed 's/ .*//' )
+        if [[ "$eeprom_size" == 0 ]]; then
+          flags=$( echo $flags | sed 's/--eeprom//' )
+        fi
+        COMPREPLY=( $( compgen -W "$flags" -- $cur ) )
+        ;;
+      erase)
+        COMPREPLY=( $( compgen -W '--force --suppress-validation' -- $cur ) )
+        ;;
+      flash)
+        filetype="hex"
+        flags="--force --user --eeprom --bin --suppress-validation --suppress-bootloader-mem --serial="
+        eeprom_size=$( echo $TARGET_INFO | sed "s/.* $target:://" | sed 's/ .*//' )
+        if [[ "$eeprom_size" == 0 ]]; then
+          flags=$( echo $flags | sed 's/--eeprom//' )
+        fi
+        for (( i = 3; i < COMP_CWORD; i++ )); do
+          if [[ "${COMP_WORDS[i]}" == *.@(bin|hex) ]]; then
+            filetype="none"
+            flags=$( echo $flags | sed 's/--bin//' )
+          elif [[ "${COMP_WORDS[i]}" == --bin ]]; then
+            if [[ filetype != none ]]; then
+              filetype="bin"
+            fi
+            flags=$( echo $flags | sed 's/--bin//' )
+          elif [[ "${COMP_WORDS[i]}" == --@(user|eeprom) ]]; then
+            flags=$( echo $flags | sed 's/--user//' )
+            flags=$( echo $flags | sed 's/--eeprom//' )
+          else
+            flags=$( echo $flags | sed "s/${COMP_WORDS[i]}//" )
+          fi
+        done
+        COMPREPLY=( $( compgen -W "$flags" -- $cur ) )
+        if [[ $filetype != none ]]; then
+          #COMPREPLY+=( $( compgen -f -X "!*.$filetype" -- $cur ) )
+          COMPREPLY+=( $( compgen -o plusdirs -f -X "!*.$filetype" -- $cur ) )
+        fi
+
+        #if [[ ${#COMPREPLY[@]} == 1 && ${COMPREPLY[0]} != "--"*"=" ]] ; then
+        # make sure there isn't a trailing space for directories
+        if [[ ${#COMPREPLY[@]} == 1 ]]; then
+          if [[ -d ${COMPREPLY[0]} ]]; then
+            COMPREPLY[0]=$( echo ${COMPREPLY[0]} | sed 's/$/\//' )
+            # If there's only one option, without =, then allow a space
+            compopt -o nospace
+          fi
+          if [[ ${COMPREPLY[0]} == "--"*"=" ]]; then
+            compopt -o nospace
+          fi
+        fi
+
+        ;;
+      setsecure)
+        ;;
+      configure)
+        ;;
+      get)
+        ;;
+      getfuse)
+        COMPREPLY=( $( compgen -W 'LOCK EPFL BOOTPROT BODLEVEL BODHYST BODEN ISP_BOD_EN ISP_IO_COND_EN ISP_FORCE' -- $cur ) )
+        ;;
+      setfuse)
+        COMPREPLY=( $( compgen -W 'LOCK EPFL BOOTPROT BODLEVEL BODHYST BODEN ISP_BOD_EN ISP_IO_COND_EN ISP_FORCE' -- $cur ) )
+        ;;
+    esac
+  fi
+
+  return 0
+}
+
+complete -F _dfu-programmer dfu-programmer
