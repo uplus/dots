@@ -645,6 +645,10 @@ gotty-term(){
   pkill gotty
 }
 
+# vendor:product -> bus,num
+prod2bus(){
+  lsusb -d ${1:?Please vendor:product (e.g 03eb:2ff4)} | awk '{printf("%d,%d", $2, $4)}'
+}
 
 
 
