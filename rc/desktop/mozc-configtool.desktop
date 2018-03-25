@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Mozc Configuration
+Exec=/usr/lib/mozc/mozc_tool --mode=config_dialog
+Icon=/usr/share/fcitx/mozc/icon/mozc.png
+Type=Application
+Categories=Settings;
+X-KDE-StartupNotify=false
+StartupNotify=false
