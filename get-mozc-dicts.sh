@@ -2,7 +2,7 @@
 current="$(cd -- "$(dirname -- "${0}")" && pwd)"
 
 niconico(){
-  wget http://tkido.com/data/nicoime.zip -O niconico
+  wget http://tkido.com/data/nicoime.zip -O niconico.zip
   unzip -p niconico.zip nicoime_atok.txt | nkf -Lu --utf8 > niconico.txt
 }
 
