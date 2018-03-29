@@ -86,6 +86,7 @@
 	theirs = checkout --theirs
 	ch-original = checkout --theirs # 元の方を採用する
 	ch-current = checkout --ours
+	ls = ls-files
 	tags = tag -l -n
 	untrack = update-index --skip-worktree
 	push-force = push --force-with-lease
