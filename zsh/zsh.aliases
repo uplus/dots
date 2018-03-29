@@ -163,17 +163,8 @@ hash -d bin=$HOME/bin/
 hash -d src=$HOME/src/
 hash -d tmp=$HOME/tmp/
 hash -d works=$HOME/works/
-
-hash -d dots=$DOT_DIR/
-hash -d zsh=$ZSH_DOT_DIR/
-hash -d vim=$HOME/.vim/
-
-hash -d codes=$HOME/codes/
-hash -d smp=~codes/smp/
-hash -d var=~works/@var/
-hash -d utils=~dots/utils
-hash -d ctf=~codes/ctf/
-hash -d ksnctf=~ctf/ksnctf/
+hash -d config=$HOME/.config
+hash -d cache=$HOME/.cache
 
 hash -d desktop=$HOME/Desktop
 hash -d doc=$HOME/Documents
@@ -184,11 +175,21 @@ hash -d templates=$HOME/Templates
 hash -d videos=$HOME/Videos
 hash -d pub=$HOME/Public
 
+hash -d dots=$DOT_DIR/
+hash -d zsh=$ZSH_DOT_DIR/
+hash -d vim=$HOME/.vim/
+hash -d codes=$HOME/codes/
+hash -d smp=~codes/smp/
+hash -d var=~works/@var/
+hash -d utils=~dots/utils
+
 hash -d mnt=$MOUNT
 hash -d vol=~mnt/volume
 hash -d large=~vol/large
 hash -d vm=~vol/vm
 
+hash -d ctf=~codes/ctf/
+hash -d ksnctf=~ctf/ksnctf/
 hash -d dein=$HOME/.cache/dein/repos/github.com
 hash -d cargo=$HOME/.cargo/registry/src/github.com-1ecc6299db9ec823
 hash -d nsni=~dein/uplus/neosnippet-snippets
