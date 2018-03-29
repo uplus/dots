@@ -443,7 +443,7 @@ alias vus='vagrant up && vagrant ssh'
 alias ls-swap='ls -l1 /home/uplus/.local/share/nvim/swap'
 alias cd-swap='cd /home/uplus/.local/share/nvim/swap'
 alias vcal=gcal
-alias vim-power='git ls-files | grep -vE "^(colors|snippets)/" | xargs -I{} cat "{}" | grep -vE "^$|^\s*\"" | wc -l'
+alias vim-power='git ls-files | grep -vE "^(colors|snippets|doc)/" | xargs -I{} cat "{}" | grep -vE "^$|^\s*\"" | wc -l'
 alias ignore='ls -1 | peco >>! .gitignore'
 alias themis='~dein/thinca/vim-themis/bin/themis --reporter spec'
 alias build-neovim='make distclean clean && make CMAKE_BUILD_TYPE=RelWithDebInfo # -j $(nproc --ignore 1)'
