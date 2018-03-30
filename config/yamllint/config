@@ -1,6 +1,8 @@
 ---
-
 extends: default
 rules:
   line-length: disable
   document-start: disable
+  colons: disable
+...
+# vim: ft=yaml
