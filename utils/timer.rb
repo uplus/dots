@@ -1,13 +1,14 @@
 #!/usr/bin/env ruby
 
-finish_time = ARGV[0] || '^'
+finish_time = ARGV[0] || '^$'
 
 loop do
-  time = Time.now.strftime('%T.%1L')
+  # Timeとして比較したほうが良い
+  time = Time.now.strftime('%T.%2L')
   print("\r\e[0J#{time}")
   # \e[H\e[2J
 
-  if /#{finish_time}$/ =~ time
+  if /#{finish_time}/ =~ time
     system('xdotool mousedown 1')
     sleep(0.03)
     system('xdotool mouseup 1')
@@ -15,5 +16,5 @@ loop do
     break
   end
 
-  sleep(0.03)
+  sleep(0.01)
 end

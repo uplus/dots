@@ -171,6 +171,19 @@ pkg_rust(){
   tldr --os=linux --update
 }
 
+pkg_npm(){
+  pkgs=(
+    write-good
+    neovim
+    tern
+    underscore
+  )
+
+  for name in ${pkgs[@]}; do
+    npm install -g "${name}"
+  done
+}
+
 clone_myrepos_tmp(){ #{{{
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
