@@ -10,3 +10,8 @@ end
 def mshow(obj)
   obj.methods - obj.class.superclass.methods
 end
+
+# require 'awesome_print' rescue nil
+# if defined?(AwesomePrint)
+#   AwesomePrint.pry!
+# end

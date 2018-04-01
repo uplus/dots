@@ -51,3 +51,9 @@ gem 'pcoder'
 # gem 'kuport'
 
 gem 'sqlint'
+
+# 出力を綺麗にする
+gem 'awesome_print'
+
+# activerecordの出力を綺麗にする
+gem 'hirb'
