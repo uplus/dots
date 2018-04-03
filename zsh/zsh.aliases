@@ -51,7 +51,7 @@ alias g='git'
 ga(){git a ${@:-.}}
 alias gch='git ch'
 alias gb='git b'
-alias gd='git d'
+alias gd='{ git s && git d }'
 alias gdc='git dc'
 alias gdw='git dw'
 alias gds='git ds'
