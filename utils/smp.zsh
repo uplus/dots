@@ -4,8 +4,8 @@
 get_base_java(){
   cat <<_EOF_
 public class ${1} {
-  public static void main(String[] args){
-  }
+    public static void main(String[] args){
+    }
 }
 _EOF_
 }
