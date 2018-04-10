@@ -109,6 +109,7 @@ alias -s {gif,jpg,jpeg,png,bmp}='display'
 alias -s {html,htm,xhtml}='opera-beta'
 alias -s c='runc'
 alias -s cpp='runcpp'
+alias -s rs='runrust'
 alias -s js='js'
 alias -s zsh='zsh'
 alias -s bash='bash'
@@ -120,6 +121,7 @@ alias -s json=showjson
 alias -s db=sqlite3
 runcpp() { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
 runc()   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
+runrust()  { rustc "${1}" && "./${1%.*}" "${@:2}" }
 showjson(){ cat "${1}" | jq "${2:-.}" }
 
 #global {{{1

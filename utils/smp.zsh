@@ -40,6 +40,14 @@ func main() {
 }
 _EOF_
 }
+
+get_base_rust(){
+  cat <<_EOF_
+fn main() {
+}
+_EOF_
+}
+
 # }}}
 
 error(){
@@ -71,6 +79,7 @@ get_base_body(){
     c) get_base_c ;;
     cpp) get_base_cpp ;;
     go) get_base_go ;;
+    rust|rs) get_base_rust ;;
     python2|py2) get_base_python 'python2' ;;
     python|python3|py|py3) get_base_python 'python3' ;;
     *) get_shebang "$1" ;;
