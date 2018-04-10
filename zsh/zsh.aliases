@@ -119,9 +119,11 @@ alias -s {tgz,gz}="zcat -dc"
 alias -s {tbz,bz2}=bzcat
 alias -s json=showjson
 alias -s db=sqlite3
+alias -s java=runjava
 runcpp() { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
 runc()   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
 runrust()  { rustc "${1}" && "./${1%.*}" "${@:2}" }
+runjava() { javac "${1}" && java "${1%.*}" }
 showjson(){ cat "${1}" | jq "${2:-.}" }
 
 #global {{{1
