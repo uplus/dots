@@ -583,8 +583,8 @@ httpd(){
   fi
 }
 
-get-active-connection(){
-  nmcli connection show --active | grep -v 'NAME' | awk '$0=$1'
+get-active-connections(){
+  nmcli -t -f name connection show --active
 }
 
 gitkraken(){
