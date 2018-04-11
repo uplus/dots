@@ -19,7 +19,7 @@
 	# algorithm = patience
 	renames = true
 	indentHeuristic = true
-	compactionHeuristic = true
+	# compactionHeuristic = false
 [pull]
 	# rebase = true
 	ff = only
@@ -120,3 +120,4 @@
 	browse = !hub browse
 	foresta = !git-foresta --style=10
 	wta = !"f(){ git worktree add \"git-worktree-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
+	grepf = grep --function-context
