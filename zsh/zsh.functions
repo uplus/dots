@@ -280,7 +280,7 @@ kill(){
 
 mac-vendor(){
   if (($# != 0)); then
-    curl -sS http://api.macvendors.com/$(echo "${1:?Need mac address}" | sed -s 's/..:..:..$/00:00:00/g')
+    curl -L -sS http://api.macvendors.com/$(echo "${1:?Need mac address}" | sed -s 's/..:..:..$/00:00:00/g')
     echo
   else
     while read line; do
