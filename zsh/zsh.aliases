@@ -122,7 +122,7 @@ alias -s db=sqlite3
 alias -s java=runjava
 runcpp() { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
 runc()   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
-runrust()  { rustc "${1}" && "./${1%.*}" "${@:2}" }
+runrust()  { rustc -O "${1}" && "./${1%.*}" "${@:2}" }
 runjava() { javac "${1}" && java "${1%.*}" }
 showjson(){ cat "${1}" | jq "${2:-.}" }
 
