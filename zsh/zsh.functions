@@ -23,7 +23,7 @@ autoload -Uz proxy-off
 
 # Cd to package directory with peco
 autoload -Uz dein-cd
-autoload -Uz cargo-c-cdd
+autoload -Uz cargo-cd
 autoload -Uz gem-cd
 
 is_num(){ expr "${1}" + 1 >&! /dev/null }
