@@ -73,7 +73,7 @@ alias dk='docker'
 alias dkr='docker run -i -t --rm'
 alias dks='docker stats'
 alias dka='docker attach'
-alias dkc='docker create'
+# alias dkc='docker create'
 alias dki='docker images'
 alias dke='docker exec -i -t'
 alias dkp='docker ps'
@@ -84,9 +84,10 @@ alias dkrm-all='docker rm -f $(docker ps -a -q)'
 # alias dkrm-all='docker stop -t 1 $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 # dkrm(){ docker stop -t 1 "${1}" && docker rm "${1}" }
 alias dkcmp='docker-compose'
+alias dkc='docker-compose'
+alias d-c='docker-compose'
 alias dk-clean-images='docker images --filter "dangling=true" --quiet | xargs docker rmi'
 alias dk-prune='docker system prune -af; docker volume prune'
-alias d-c='docker-compose'
 
 
 #C/C++ gdb {{{1
@@ -120,9 +121,9 @@ alias -s {tbz,bz2}=bzcat
 alias -s json=showjson
 alias -s db=sqlite3
 alias -s java=runjava
-runcpp() { clang++ "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
-runc()   { clang   "${1}" -o "${1%.*}" && "./${1%.*}" "${@:2}" }
-runrust()  { rustc -O "${1}" && "./${1%.*}" "${@:2}" }
+runcpp() { clang++ "${1}" -o "${1%.*}" && time "./${1%.*}" "${@:2}" }
+runc()   { clang   "${1}" -o "${1%.*}" && time "./${1%.*}" "${@:2}" }
+runrust()  { rustc -O "${1}" && time "./${1%.*}" "${@:2}" }
 runjava() { javac "${1}" && java "${1%.*}" }
 showjson(){ cat "${1}" | jq "${2:-.}" }
 
