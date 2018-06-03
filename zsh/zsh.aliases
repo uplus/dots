@@ -466,6 +466,7 @@ alias con-cisco='screen /dev/ttyUSB0'
 alias ssh-fingerprint='ssh-keygen -lf'
 alias mysql-ictsc='mysql --host=127.0.0.1 --port=3306 --user=ictsc_score_server --database=ictsc_score_server --password'
 alias journalctl-boot='journalctl -ax -b'
+alias ipa="ip a | block '^\d+:\s[ew]' '^\d+:\s[^ew]'"
 
 
 #vim applications
