@@ -279,6 +279,7 @@ kill(){
 }
 
 mac-vendor(){
+  # TODO: /usr/share/nmap/nmap-mac-prefixes
   if (($# != 0)); then
     curl -L -sS http://api.macvendors.com/$(echo "${1:?Need mac address}" | sed -s 's/..:..:..$/00:00:00/g')
     echo
