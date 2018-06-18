@@ -1,6 +1,9 @@
 export CPP_COMP_OPT="$(echo $CPP_COMP_OPT | sed s/c++1z/c++14/)"
 
-export PATH="/usr/local/bin:${PATH}"
-export PATH="/usr/local/Homebrew/bin:${PATH}"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/bin:/usr/local/opt/diffutils/bin:/usr/local/opt/binutils/bin:/usr/local/opt/findutils/libexec/gnubin:${PATH}"
+path=(
+  '/usr/local/Homebrew/bin'
+  '/usr/local/opt/bin'
+  '/usr/local/opt/coreutils/libexec/gnubin'
+  '/usr/local/Homebrew/bin'
+  $path
+  )

@@ -74,7 +74,7 @@ export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working, evil /etc/profile
 # export LC_COLLATE=C
 
-export PATH="${HOME}/.local/bin:${PATH}:${DOT_DIR}/git-subcommands"
+export PATH="${HOME}/.local/bin:${PATH}:/usr/local/bin:${DOT_DIR}/git-subcommands"
 
 if [[ -d $HOME/.rbenv/bin ]]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
