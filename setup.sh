@@ -163,6 +163,7 @@ pkg_rust(){
     cargo-update
     cargo-tree
     cargo-asm # クレート::関数でディスアセンブル
+    cargo-script
     # cargo-modules
   )
 
