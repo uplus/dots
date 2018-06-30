@@ -47,6 +47,7 @@ alias vimopt='vim --version | \grep -E "^\+|^-"'
 #git {{{1
 alias t='tig'
 alias ts='tig status'
+alias tb='tig blame'
 alias g='git'
 ga(){git a ${@:-.}}
 alias gch='git ch'
