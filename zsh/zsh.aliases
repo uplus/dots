@@ -361,7 +361,7 @@ alias_exists(){ # {{{
   fi
 } # }}}
 
-alias_over watch -c -n 1
+alias_over watch -c -n 1 is
 alias_over sudo -E
 alias_over mv -i
 alias_over cp -i
