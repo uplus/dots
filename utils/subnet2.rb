@@ -20,7 +20,7 @@ def slashnum_to_wildcard(slashnum)
   converter_base(false, slashnum)
 end
 
-slashnum = 4
+slashnum = ARGV.first.to_i
 
 pp slashnum_to_subnetmask(slashnum)
 pp slashnum_to_wildcard(slashnum)
