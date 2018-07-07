@@ -1,2 +1,8 @@
 AllCops:
   TargetRubyVersion: 2.5
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
