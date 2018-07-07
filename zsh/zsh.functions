@@ -651,6 +651,16 @@ prod2bus(){
   lsusb -d ${1:?Please vendor:product (e.g 03eb:2ff4)} | awk '{printf("%d,%d", $2, $4)}'
 }
 
+sourceenv(){
+  envfile="${1:?env file}"
+  shift
+  is source "${envfile}" '&&' eval ${@}
+}
+
+dkc-exec() {
+  docker-compose exec --env COLUMNS=$COLUMNS --env LINES=$LINES ${@}
+}
+
 
 
 # TODO
@@ -678,10 +688,4 @@ stats(){
   iostat -x
   dstat -f
   mpstat
-}
-
-sourceenv(){
-  envfile="${1:?env file}"
-  shift
-  is source "${envfile}" '&&' eval ${@}
 }
