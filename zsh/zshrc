@@ -6,9 +6,10 @@ if [[ ${PATH} != ${PATH_keep:=} ]]; then
   export PATH="${PATH_keep}:${PATH}"
 fi
 
-if ! in_tmux && in_ssh; then
+if ! in_tmux && in_ssh && [[ ! -f ~/.notmux ]]; then
   in_path tmux && exec tmux
 fi
+rm ~/.notmux >&! /dev/null
 
 case "${OSTYPE:-}" in
   linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
