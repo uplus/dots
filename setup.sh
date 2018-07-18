@@ -141,6 +141,7 @@ pkg_go(){ #{{{
     golang.org/x/tools/cmd/goimports
     golang.org/x/tools/cmd/gotype
     github.com/itchyny/bed/cmd/bed # binary editor
+    github.com/monochromegane/the_platinum_searcher/cmd/pt
   )
 
   for name in ${pkgs[@]}; do
