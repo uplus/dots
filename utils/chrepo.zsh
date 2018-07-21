@@ -1,1 +1,1 @@
-/home/uplus/.dots/utils/chgit.zsh
+chgit.zsh
