@@ -302,10 +302,11 @@ alias ri='noglob ri'
 
 # systemd
 if in_path systemctl; then
-  alias start='sudo systemctl start'
-  alias restart='sudo systemctl restart'
-  alias stop='sudo systemctl stop'
-  alias status='systemctl status'
+  alias s.start='sudo systemctl start'
+  alias s.restart='sudo systemctl restart'
+  alias s.stop='sudo systemctl stop'
+  alias s.status='systemctl status'
+  alias s.enable='sudo systemctl enable'
 fi
 
 
