@@ -55,7 +55,8 @@ escaped_files  = selected_files.map {|f| f.shellescape }
 puts selected_files.sort
 
 begin
-  Open3.capture3("%s %s >/dev/null 2>&1 &" % [option[:play], escaped_files.join(' ')])
+  # Open3.capture3("%s %s >/dev/null 2>&1 &" % [option[:play], escaped_files.join(' ')])
+  Open3.capture3(option[:play], *selected_files)
 rescue => e
   puts e, e.backtrace
   puts "\n#arg files"
