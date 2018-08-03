@@ -470,6 +470,7 @@ alias ssh-fingerprint='ssh-keygen -lf'
 alias mysql-ictsc='mysql --host=127.0.0.1 --port=3306 --user=ictsc_score_server --database=ictsc_score_server --password'
 alias journalctl-boot='journalctl -ax -b'
 alias ipa="ip a | block '^\d+:\s[ew]' '^\d+:\s[^ew]'"
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
 #vim applications

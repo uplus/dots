@@ -131,7 +131,7 @@ cats(){
   done
 }
 
-xopen(){
+open(){
   for i in ${@:-.}; do
     if [[ ! -e ${i:-.} ]]; then
       warn "${i:-.} is not exists"
@@ -684,6 +684,27 @@ ssh-portbind() {
   # footstool_host="${4:? footstool host}"
   # shift 4
   # ssh -f -N -L "${listen_port}:${target_host}:${target_port}" "${footstool_host}" ${@}
+}
+
+textimg(){
+  text="${1:-$(read -E)}"
+  out="textimg-${text}.png"
+  fsize=64
+  font='/usr/share/fonts/TTF/DejaVuSansMono.ttf'
+  convert -background white -fill black -font "${font}" -pointsize "${fsize}" label:"${text}" "${out}"
+}
+
+show-vm-port(){
+  vboxmanage list vms | grep -oP '(?<=").*(?=")' | xargs -I {} vboxmanage showvminfo --machinereadable {} | grep -e '^name' -e '^Forwarding'
+}
+
+binskip(){
+  IN="${1:?}"
+  OUT="${2:?}"
+
+  SKIP="${3:?}"
+
+  dd if="${IN}" of="${OUT}" bs=1 skip="${SKIP}"
 }
 
 
