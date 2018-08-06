@@ -11,11 +11,6 @@ if ! in_tmux && in_ssh && [[ ! -f ~/.notmux ]]; then
 fi
 rm ~/.notmux >&! /dev/null
 
-case "${OSTYPE:-}" in
-  linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
-  darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
-esac
-
 LC_COLLATE=C # Don't move to zshenv.
 DIRSTACKSIZE=100
 fpath+=($ZSH_DOT_DIR/f)

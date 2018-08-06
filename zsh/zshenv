@@ -29,6 +29,18 @@ in_tmux(){
   [[ -n "${TMUX:-}" ]]
 }
 
+export PATH="${HOME}/.local/bin:${PATH}:/usr/local/bin:${DOT_DIR}/git-subcommands"
+
+## Directories
+export ZSH_DOT_DIR="$(dirname "$(readlink $HOME/.zshenv)")"
+export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
+export MOUNT='/run/media/uplus'
+
+case "${OSTYPE:-}" in
+  linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
+  darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
+esac
+
 export skip_global_compinit=1
 
 # export LANGUAGE=en # don't need?
@@ -50,11 +62,6 @@ export PAGER='less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT'
 export MANPAGER="${PAGER} --chop-long-lines"
 export GIT_PAGER="${PAGER} --chop-long-lines --quit-if-one-screen --no-init"
 
-## Directories
-export ZSH_DOT_DIR="$(dirname "$(readlink -f $HOME/.zshenv)")"
-export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
-export MOUNT='/run/media/uplus'
-
 
 export WWW_BROWSER=w3m
 export DOWNLOADER='wget -S'
@@ -73,8 +80,6 @@ export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_
 
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working, evil /etc/profile
 # export LC_COLLATE=C
-
-export PATH="${HOME}/.local/bin:${PATH}:/usr/local/bin:${DOT_DIR}/git-subcommands"
 
 if [[ -d $HOME/.rbenv/bin ]]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
