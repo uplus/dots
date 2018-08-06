@@ -18,6 +18,14 @@ elif in_path xsel; then
   else
     cat "${arg}" | xsel --clipboard --input
   fi
+elif in_path pbcopy; then
+  if [[ $arg = '-o' ]]; then
+    pbpaste
+  elif [[ -z $arg ]]; then
+    pbcopy
+  else
+    cat "${arg}" | pbcopy
+  fi
 else
   echo "clip: This platform not installed clipboard command(xclip/xsel)." 1>&2
   return 1
