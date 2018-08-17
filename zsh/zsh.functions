@@ -707,6 +707,11 @@ binskip(){
   dd if="${IN}" of="${OUT}" bs=1 skip="${SKIP}"
 }
 
+filter-exists-dir(){
+  while read dir; do
+    [[ -d $dir ]] && echo "${dir}"
+  done
+}
 
 # TODO
 

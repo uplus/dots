@@ -160,7 +160,7 @@ fi
 if [[ -d ${zgen_path:-} ]]; then
   source "${zgen_path}/zgen.zsh"
   if ! zgen saved; then
-    zgen load m4i/cdd
+    # zgen load m4i/cdd
     # zgen load junegunn/fzf      # command
     # zgen load Russell91/sshrc   # command
     # zgen load philovivero/distribution # command
@@ -174,7 +174,7 @@ if [[ -d ${zgen_path:-} ]]; then
     zgen oh-my-zsh plugins/docker
     zgen save
   fi
-  source $HOME/.zgen/m4i/cdd-master/cdd
+  # source $HOME/.zgen/m4i/cdd-master/cdd
   # source $HOME/.zgen/tcnksm/docker-alias-master/zshrc
 fi
 unset zgen_path
@@ -220,7 +220,7 @@ if [[ -n ${ZSH_VERSION-} ]]; then
   autoload -U +X bashcompinit && bashcompinit
 fi
 
-can_exec _cdd_chpwd && add-zsh-hook chpwd _cdd_chpwd
+# can_exec _cdd_chpwd && add-zsh-hook chpwd _cdd_chpwd
 
 # title
 title-cmd(){ title "${1}" }
@@ -234,7 +234,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-pushd true
-zstyle ':chpwd:*' recent-dirs-file "$HOME/.zsh/chpwd-recent-dirs"
+zstyle ':chpwd:*' recent-dirs-file "$HOME/.zsh/dirs"
 zstyle ':completion:*:*:cdr:*' menu select
 # }}}
 
