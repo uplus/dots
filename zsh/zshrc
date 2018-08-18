@@ -229,6 +229,7 @@ add-zsh-hook preexec title-cmd
 add-zsh-hook chpwd title-dir
 
 # cdr # {{{
+# if is-at-least 4.3.11; then
 autoload -Uz chpwd_recent_dirs cdr
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 500
