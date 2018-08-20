@@ -29,7 +29,7 @@ in_tmux(){
   [[ -n "${TMUX:-}" ]]
 }
 
-export PATH="${HOME}/.local/bin:${PATH}:/usr/local/bin:${DOT_DIR}/git-subcommands"
+export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}:${DOT_DIR}/git-subcommands"
 
 ## Directories
 export ZSH_DOT_DIR="$(dirname "$(readlink $HOME/.zshenv)")"
