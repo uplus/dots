@@ -130,7 +130,7 @@ pkg_u_utility(){ #{{{
 pkg_go(){ #{{{
   pkgs=(
     github.com/motemen/gore # REPL
-    github.com/peco/peco
+    github.com/peco/peco/cmd/peco
     github.com/peco/migemogrep
     github.com/jingweno/ccat # color cat
     github.com/nfs/gocode
