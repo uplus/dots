@@ -25,18 +25,6 @@ link_files() { #{{{
   done
 
   lesskey
-
-  mkdir -p $HOME/.peco/
-  ln -svi $current/peco.json $HOME/.peco/config.json
-
-  mkdir -p $HOME/.percol.d/
-  ln -svi $current/percol.rc.py $HOME/.percol.d/rc.py
-
-  mkdir -p $HOME/.config/lilyterm/
-  ln -svi $current/lilyterm-default.conf $HOME/.config/lilyterm/default.conf
-
-  mkdir -p $HOME/.config/pip/
-  sln $current/pip.conf $HOME/.config/pip/pip.conf
 } #}}}
 
 link_utils_partial(){ #{{{
