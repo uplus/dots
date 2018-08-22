@@ -59,7 +59,7 @@ setup_vim(){ #{{{
   mkdir -p $HOME/.vim/tmp
 
   #nvim
-  mkdri -p ~/.config
+  mkdir -p ~/.config
   ln -svi $HOME/.vim $HOME/.config/nvim
 } #}}}
 
