@@ -104,7 +104,7 @@ alias lldba='lldb a.out'
 alias objdump='objdump -M intel'
 
 #suffix {{{1
-alias -s py='python3'
+# alias -s py='python3'
 alias -s rb='ruby'
 alias -s php='php -f'
 alias -s {gif,jpg,jpeg,png,bmp}='display'
