@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Breeze
-Font=Source Code Pro,11,-1,5,50,0,0,0,0,0,Regular
+Font=Hack,12,-1,0,50,0,0,0,0,0,Regular
 UseFontLineChararacters=false
 
 [Encoding Options]
