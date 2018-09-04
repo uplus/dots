@@ -740,8 +740,24 @@ stats(){
   mpstat
 }
 
-copy_config(){
+scp_config(){
   hostname="${1:? hostname}"
   title="${2:? title}"
   scp "${hostname}":startup-config "./${hostname}--$(date +%F)--${2}.txt"
+}
+
+build-qmk() {
+  name=${1:? keyboard name}
+  cd ~qmk
+
+  case "${name}" in
+    ergodox_ez)
+      make ergodox_ez:uplus:teensy
+      ;;
+    preonic)
+      make preonic:uplus:dfu
+      ;;
+  esac
+
+  cd -
 }
