@@ -12,8 +12,8 @@ Icon=xterm-color
 Name=Desktop
 Parent=FALLBACK/
 ShowTerminalSizeHint=false
-TerminalColumns=80
-TerminalRows=24
+TerminalColumns=100
+TerminalRows=25
 
 [Interaction Options]
 AutoCopySelectedText=true

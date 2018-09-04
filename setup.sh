@@ -130,6 +130,7 @@ pkg_go(){ #{{{
     golang.org/x/tools/cmd/gotype
     github.com/itchyny/bed/cmd/bed # binary editor
     github.com/monochromegane/the_platinum_searcher/cmd/pt
+    github.com/orisano/rget # parallel download
   )
 
   for name in ${pkgs[@]}; do
