@@ -13,7 +13,7 @@ Name=Default
 Parent=FALLBACK/
 ShowTerminalSizeHint=false
 TerminalColumns=124
-TerminalRows=30
+TerminalRows=31
 
 [Interaction Options]
 AutoCopySelectedText=true
