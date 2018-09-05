@@ -12,8 +12,8 @@ Icon=xterm-color
 Name=Default
 Parent=FALLBACK/
 ShowTerminalSizeHint=false
-TerminalColumns=100
-TerminalRows=24
+TerminalColumns=124
+TerminalRows=30
 
 [Interaction Options]
 AutoCopySelectedText=true
