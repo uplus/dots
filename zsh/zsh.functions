@@ -735,14 +735,21 @@ build-qmk() {
   cd -
 }
 
+socks() {
+  port="${1:? port}"
+  user_host="${2:? user@host}"
+  ssh -TND "${port}" "${user_host}"
+}
+
 cat-thermal(){
   # cat /sys/class/thermal/thermal_zone*/temp
   find /sys/class/thermal/ -name 'thermal_zone*' | while read filepath; do
     {
       echo "$(basename "${filepath}")"
-      cat $filepath/type $filepath/temp
-    }
-  done
+      cat  "${filepath}/temp" "${filepath}/type"
+    } | tr '\n' ' '
+    echo
+  done | sort -n -r -k2
 }
 
 # TODO
