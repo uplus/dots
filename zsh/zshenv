@@ -105,6 +105,12 @@ export PATH="${HOME}/.cabal/bin:${PATH}"
 export PATH="${NPM_PACKAGES}/bin:${PATH}"
 export NODE_PATH="${NPM_PACKAGES}/lib/node_modules:${NODE_PATH}"
 
+## enable high speed compile with compile cache
+export PATH="/usr/lib/ccache/bin:${PATH}"
+# export CCACHE_DISABLE=1
+
+# vim: ft=sh
+
 # export MANPATH="${NPM_PACKAGES}/share/man:$(manpath)"
 
 if [[ -z $USER ]]; then
