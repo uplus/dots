@@ -80,6 +80,10 @@ export NMAP_PRIVILEGED="" # set privilege mode to nmap
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
 # export RUBYOPT='-w'
 
+## Neovim
+# prefix
+export NVIM_PYTHON_LOG_FILE="$HOME/.vim/tmp/log"
+export NVIM_PYTHON_LOG_LEVEL=DEBUG
 
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working, evil /etc/profile
 # export LC_COLLATE=C
