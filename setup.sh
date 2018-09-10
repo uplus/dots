@@ -395,29 +395,29 @@ in_path(){
 }
 
 binln () {
-	local name rpath bname
-	[[ ! -d $HOME/bin ]] && mkdir $HOME/bin
-	for name in $@
-	do
+  local name rpath bname
+  [[ ! -d $HOME/bin ]] && mkdir $HOME/bin
+  for name in $@
+  do
     rpath="$(readlink -f "${name}")"
     bname="$(basename "${name}")"
     ln -svi "${rpath}" "${HOME}/bin/${bname%.*}"
-	done
+  done
 }
 
 sln () {
   abs_src="$(readlink -f "${1:?src}")"
   abs_dest="$(readlink -f "${2:?dest}")"
-  ln -svi ${abs_src} ${abs_dest}
+  ln -svin ${abs_src} ${abs_dest}
 }
 
 dotln () {
-	local name
-	mkdir -p $HOME/bin
-	for name in $@
-	do
-		ln -svi "${name:a}" "$HOME/.${name:t:r}"
-	done
+  local name
+  mkdir -p $HOME/bin
+  for name in $@
+  do
+    ln -svin "${name:a}" "$HOME/.${name:t:r}"
+  done
 }
 
 # TODO making
