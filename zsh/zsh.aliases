@@ -258,15 +258,18 @@ elif in_path pacman; then
   alias a.u='sudo pacman -Syyu'
   alias a.ud='sudo pacman -Syy'
   alias a.ug='sudo pacman -Su'
-  alias a.uf='pikaur -Syyua'
-  alias a.uf-noconfirm='pikaur -S --noconfirm'
-  alias a.ugf='pikaur -Sua'
   alias a.s='pacman -Ss'
   alias a.sh='pacman -Si'
   alias a.sl='pacman -Ql'
   alias a.l='pacman -Qqe'
   alias a.orphan='pacman -Qtdq'
   alias a.export='{pacman -Qqen; pacman -Qqm >&2}'
+
+  # AUR package manager
+  alias a.uf='pikaur -Syyua'
+  alias a.uf-noconfirm='pikaur -S --noconfirm'
+  alias a.ugf='pikaur -Sua'
+  alias a.ss='pikaur -Ss'
 elif in_path dnf; then
   alias a.u='sudo dnf upgrade'
   alias a.ud='sudo dnf check-update'
