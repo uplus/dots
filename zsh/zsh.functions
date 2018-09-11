@@ -752,6 +752,21 @@ cat-thermal(){
   done | sort -n -r -k2
 }
 
+backup(){
+  target="${1:? backup target file path}"
+  filename="${1:t}"
+  backup_dir="${1:h}/.backup"
+  mkdir -p "${backup_dir}"
+  backup_file="${backup_dir}/${filename}--$(date +%F--%H:%M)"
+
+  cp "${target}" "${backup_file}"
+
+  if (($? == 0)); then
+    echo "saved to ${backup_file}"
+  fi
+}
+
+
 # TODO
 
 tops(){
