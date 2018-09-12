@@ -1,11 +1,12 @@
 #!/usr/bin/env zsh -u
 
-# TODO PATH通せばよくね
-#      ヘルパー関数への依存がある
+# カレントシェルの環境変数を変更するものなど
+autoload -Uz proxy-on
+autoload -Uz proxy-off
+
 autoload -Uz ruby-calc
 autoload -Uz enc-utf8
 autoload -Uz enc264
-autoload -Uz clip
 autoload -Uz sticky-enable-gnome
 autoload -Uz generic_rc
 autoload -Uz cons-web
@@ -18,8 +19,6 @@ autoload -Uz google
 autoload -Uz rmhere
 autoload -Uz sym_solve
 autoload -Uz filter_select_file
-autoload -Uz proxy-on
-autoload -Uz proxy-off
 
 # Cd to package directory with peco
 autoload -Uz dein-cd
