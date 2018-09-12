@@ -12,4 +12,3 @@ unset all_proxy
 unset ALL_PROXY
 unset no_proxy
 unset NO_PROXY
-echo -e 'Proxy env var unseted.'
