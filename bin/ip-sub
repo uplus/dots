@@ -1,2 +1,8 @@
 #!/bin/sh
-ip -4 a show dev "$(ip route show default | awk '{print $5}')" | grep -m1 'inet' | awk '{print $2}'
+default_dev="$(ip -4 route show default | awk '{print $5}')"
+
+if [[ -z $default_dev ]]; then
+  exit 1
+fi
+
+ip -4 a show dev "${default_dev}" | grep -m1 'inet' | awk '{print $2}'
