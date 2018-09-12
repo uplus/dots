@@ -29,7 +29,7 @@ in_tmux(){
   [[ -n "${TMUX:-}" ]]
 }
 
-export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}:${DOT_DIR}/git-subcommands"
+export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 ## Directories
 export ZSH_DOT_DIR="$(dirname "$(readlink $HOME/.zshenv)")"
@@ -104,6 +104,8 @@ export PATH="${HOME}/.cargo/bin:${PATH}"
 export PATH="${HOME}/.cabal/bin:${PATH}"
 export PATH="${NPM_PACKAGES}/bin:${PATH}"
 export NODE_PATH="${NPM_PACKAGES}/lib/node_modules:${NODE_PATH}"
+
+export PATH="${DOT_DIR}/bin:${PATH}:${DOT_DIR}/git-subcommands"
 
 ## enable high speed compile with compile cache
 export PATH="/usr/lib/ccache/bin:${PATH}"

@@ -185,10 +185,6 @@ hosts(){
   nmap -sP "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
 }
 
-ip-sub(){
-  ip -4 a show dev "$(ip route show default | awk '{print $5}')" | grep -m1 'inet' | awk '{print $2}'
-}
-
 dump(){
   if [[ $# -eq 0 ]]; then
     echo "usage: dump BIN [SYMBOL] [OUTPUT_FILE]" >&2
