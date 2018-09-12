@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# https://qiita.com/ryo0301/items/7c7b3571d71b934af3f8
+
+# hoge_hoge -> HogeHoge
+pascal_case(){
+  sed -r 's/(^|_+|\s+)(.)/\U\2\E/g'
+}
+
+# hoge_hoge -> hogeHoge
+camel_case(){
+  pascal_case | sed -r 's/^./\L\0\E/'
+}
+
+# hogeHoge -> hoge_hoge
+# HogeHoge -> hoge_hoge
+snake_case(){
+  sed -r -e 's/\s+/_/g' -e 's/([A-Z])/_\L\1\E/g' -e 's/_+/_/g' -e 's/^_//'
+}
+
+mode="${1:? p c s}"
+
+case "${mode}" in
+  p) pascal_case ;;
+  c) camel_case ;;
+  s) snake_case ;;
+esac
+
+# echo 'hogeHoge' | pascal_case
+# echo 'HogeHoge' | pascal_case
+# echo 'hoge_hoge' | pascal_case
+# echo 'Hoge_Hoge' | pascal_case
+# echo
+#
+# echo 'hogeHoge' | camel_case
+# echo 'HogeHoge' | camel_case
+# echo 'hoge_hoge' | camel_case
+# echo 'Hoge_Hoge' | camel_case
+# echo
+#
+# echo 'hogeHoge' | snake_case
+# echo 'HogeHoge' | snake_case
+# echo 'hoge_hoge' | snake_case
+# echo 'Hoge_Hoge' | snake_case
+# echo
