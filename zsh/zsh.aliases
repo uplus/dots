@@ -445,7 +445,6 @@ alias _=sudo
 alias __=sudoedit
 alias odh='od -A x -t x1z -v '
 alias vlc-clear='rm -r ~/.cache/vlc/'
-alias ip-sub='ip a show dev $(ip route | awk "/^default/{print \$5}") | awk "/inet\>/{print \$2}"'
 alias tyy='tee $(tty)'
 alias gip='curl --silent --show-error ifconfig.io'
 alias pensay='cowsay -f tux'

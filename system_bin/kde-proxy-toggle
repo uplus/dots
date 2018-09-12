@@ -1,4 +1,4 @@
 #!/bin/sh
 
 mode="${1:? 0 or 1}"
-sed -i -E "s/(ProxyType=)(.)/\1${mode}/" /home/uplus/.config/kioslaverc
+sudo --user=uplus --group=uplus sed -i -E "s/(ProxyType=)(.)/\1${mode}/" /home/uplus/.config/kioslaverc
