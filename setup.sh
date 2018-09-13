@@ -139,7 +139,7 @@ pkg_go(){ #{{{
 } #}}}
 
 pkg_python(){ #{{{
-  pkgs=(vim-vint ipython yamllint)
+  pkgs=(vim-vint ipython yamllint s-tui)
 
   for name in ${pkgs[@]}; do
     echo "${name}"
