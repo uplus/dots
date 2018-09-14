@@ -180,6 +180,11 @@ git-hash(){
   git log --oneline --decorate=short "${branch}" | peco | awk '$0=$1' | tr '\n' ' '
 }
 
+gpush(){
+  echo 'pushing...'
+  hide git push '&&' notify "git\ pushed\ ${PWD:t}"
+}
+
 hosts(){
   nmap -sP "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
 }
