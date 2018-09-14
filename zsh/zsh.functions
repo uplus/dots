@@ -4,6 +4,11 @@
 autoload -Uz proxy-on
 autoload -Uz proxy-off
 
+# cd to package directory with peco
+autoload -Uz dein-cd
+autoload -Uz cargo-cd
+autoload -Uz gem-cd
+
 autoload -Uz ruby-calc
 autoload -Uz enc-utf8
 autoload -Uz enc264
@@ -11,6 +16,7 @@ autoload -Uz sticky-enable-gnome
 autoload -Uz generic_rc
 autoload -Uz cons-web
 autoload -Uz pull-these
+autoload -Uz countup
 autoload -Uz countdown
 autoload -Uz colorso
 autoload -Uz colorsv
@@ -19,11 +25,6 @@ autoload -Uz google
 autoload -Uz rmhere
 autoload -Uz sym_solve
 autoload -Uz filter_select_file
-
-# Cd to package directory with peco
-autoload -Uz dein-cd
-autoload -Uz cargo-cd
-autoload -Uz gem-cd
 
 is_num(){ expr "${1}" + 1 >&! /dev/null }
 is_elf(){ file ${1} | awk '$0=$2' | grep -q ELF }

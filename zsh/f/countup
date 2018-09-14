@@ -1,7 +1,10 @@
 #!/usr/bin/env zsh
 
-for i in {${1:-5}..1}; do
+i=0
+
+while :; do
   sleep 1
-  echo -n "${i} "
+  echo -n "$((i++)) "
 done
+
 echo -n 0
