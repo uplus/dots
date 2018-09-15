@@ -310,6 +310,7 @@ if in_path systemctl; then
   alias s.stop='sudo systemctl stop'
   alias s.status='systemctl status'
   alias s.enable='sudo systemctl enable'
+  alias s.disable='sudo systemctl disable'
 fi
 
 
