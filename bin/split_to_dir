@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+# 連番のファイルをチャプター毎にディレクトリ分けする
+
+require 'fileutils'
+
+def build_file_format(digit_num, ext)
+  "%0#{digit_num}d.#{ext}"
+end
+
+def mv_to_dir(range, dir, file_format)
+  FileUtils.mkdir(dir)
+
+  range.each do |file_num|
+    FileUtils.mv((file_format % file_num) , dir)
+  end
+end
+
+if ARGV.size < 2
+  warn "[digit num] [ext] [chapter heads...]"
+  exit 1
+end
+
+digit_num = ARGV.shift
+ext = ARGV.shift
+segments = ARGV.map(&:to_i) << nil
+file_format = build_file_format(digit_num, ext)
+
+segments.each_cons(2).with_index do |(head, next_head), dir_num|
+  next_head = Float::INFINITY if next_head.nil?
+  mv_to_dir(head...next_head, dir_num.to_s, file_format)
+end
