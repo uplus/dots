@@ -183,7 +183,7 @@ git-hash(){
 
 gpush(){
   echo 'pushing...'
-  hide git push '&&' notify "git\ pushed\ ${PWD:t}"
+  back git push '&&' notify "git\ pushed\ ${PWD:t}"
 }
 
 hosts(){
