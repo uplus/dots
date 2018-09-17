@@ -5,11 +5,12 @@ local -r music_dir="$HOME/Music"
 local -r rc_file="$HOME/.pmplayrc"
 [[ -f $rc_file ]] && local -r ignore="grep -vif '${rc_file}' |"
 
-local -r filter='percol --match-method=migemo'
+local filter='percol --match-method=migemo'
+
 # if type migemogrep &>! /dev/null; then
-#   filter='peco --initial-filter Migemo'
+#   local filter='peco --initial-filter=Migemo'
 # else
-#   filter='percol --match-method=migemo'
+#   local filter='percol --match-method=migemo'
 # fi
 
 local -r songs=$(eval "cd '${music_dir}' && find -L -type f | ${ignore:-} sort | sed 's|^\./||' | ${filter}")
