@@ -1,5 +1,5 @@
 #!/bin/sh
-default_dev="$(ip -4 route show default | awk '{print $5}')"
+default_dev="$(ip -4 route show default | awk '{print $5}' | head -1)"
 
 if [[ -z $default_dev ]]; then
   exit 1
