@@ -771,6 +771,10 @@ backup(){
   fi
 }
 
+rm-deadlinks(){
+  find "${dir:-./}" -xtype l | xargs rm
+}
+
 # TODO
 
 tops(){
