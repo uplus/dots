@@ -235,7 +235,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-pushd true
-zstyle ':chpwd:*' recent-dirs-file "$HOME/.zsh/dirs"
+zstyle ':chpwd:*' recent-dirs-file "${CHPWD_DIR}"
 zstyle ':completion:*:*:cdr:*' menu select
 # }}}
 

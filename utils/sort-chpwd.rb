@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-chpwd_file = File.expand_path(ARGV[0] || '~/.zsh/chpwd-recent-dirs')
+chpwd_file = File.expand_path(ARGV[0] || ENV['CHPWD_DIR'])
 lines = File.readlines(chpwd_file)
           .map{|line| line.chomp[2..-2]}
           .select{|line| File.exist?(line)}
