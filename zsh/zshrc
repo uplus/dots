@@ -171,7 +171,7 @@ if [[ -d ${zgen_path:-} ]]; then
     zgen load zsh-users/zsh-completions src
 
     zgen oh-my-zsh plugins/gem
-    zgen oh-my-zsh plugins/docker
+    # zgen oh-my-zsh plugins/docker
     zgen save
   fi
   # source $HOME/.zgen/m4i/cdd-master/cdd

@@ -44,7 +44,19 @@ alias v.min='v -N -u NONE -U NONE -i NONE --noplugin'
 alias v.sjis='v -c ":e ++enc=cp932"'
 alias vimopt='vim --version | \grep -E "^\+|^-"'
 
-#git {{{1
+## vim utils
+alias ls-swap='ls -l1 /home/uplus/.local/share/nvim/swap'
+alias cd-swap='cd /home/uplus/.local/share/nvim/swap'
+alias rm-swap='rm /home/uplus/.local/share/nvim/swap/*'
+alias vim-power='git ls-files | grep -vE "^(colors|snippets|doc)/" | xargs -I{} cat "{}" | grep -vE "^$|^\s*\"" | wc -l'
+
+## vim applications
+alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
+alias vcal=gcal
+alias gista="v +'Gista list'"
+
+
+# git {{{1
 alias t='tig'
 alias ts='tig status'
 alias tb='tig blame'
@@ -67,6 +79,7 @@ alias ge='git eda'
 alias ggrep='noglob git grep -P -I --line-number --ignore-case'
 alias gor='cd $(git rev-parse --show-toplevel)'
 alias gcheck='git diff --check; git grep -InE '\''^\s+$|\s+$'\'
+alias ignore='ls -1 | peco >>! .gitignore'
 
 #docker {{{1
 alias dk='docker'
@@ -269,6 +282,7 @@ elif in_path pacman; then
   alias a.uf='pikaur -Syyua'
   alias a.uf-noconfirm='pikaur -S --noconfirm'
   alias a.ugf='pikaur -Sua'
+  alias a.uq='pikaur -Qua'
 elif in_path dnf; then
   alias a.u='sudo dnf upgrade'
   alias a.ud='sudo dnf check-update'
@@ -451,12 +465,6 @@ alias rmt=trash
 alias grep-href="grep -oP '(?<=href=\")[^\"]*'"
 alias clear-mem-cache='echo 1 | sudo tee /proc/sys/vm/drop_caches'
 alias vus='vagrant up && vagrant ssh'
-alias ls-swap='ls -l1 /home/uplus/.local/share/nvim/swap'
-alias cd-swap='cd /home/uplus/.local/share/nvim/swap'
-alias rm-swap='rm /home/uplus/.local/share/nvim/swap/*'
-alias vcal=gcal
-alias vim-power='git ls-files | grep -vE "^(colors|snippets|doc)/" | xargs -I{} cat "{}" | grep -vE "^$|^\s*\"" | wc -l'
-alias ignore='ls -1 | peco >>! .gitignore'
 alias themis='~dein/thinca/vim-themis/bin/themis --reporter spec'
 alias build-neovim='make distclean clean && make CMAKE_BUILD_TYPE=RelWithDebInfo # -j $(nproc --ignore 1)'
 alias wdate='watch --no-title date'
@@ -476,10 +484,6 @@ alias ipa="ip a | block '^\d+:\s[ew]' '^\d+:\s[^ew]'"
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias acpi-supports='dmesg | grep -i acpi | grep -i supports'
 
-
-#vim applications
-alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
-alias gista="v +'Gista list'"
 
 #shortening
 alias p=pry
