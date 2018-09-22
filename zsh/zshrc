@@ -31,14 +31,14 @@ setopt prompt_subst         # プロンプト定義で置き換えを使用す�
 setopt prompt_cr            # show prompt in new line, when after command finish.
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
-export PROMPT='%F{0}%K{$(prompt-color)}%(6~|...|)%5~ %F{$(prompt-symb-color)}%#%k%F{$(prompt-color)%f%k'
-export RPROMPT='$(prompt-return-value)$(prompt-bg)$(prompt-git)$(prompt-ssh)'
+export PROMPT='%F{0}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%#%f%k%F{$(prompt-color)}%f%k'
+export RPROMPT='$(prompt-return-value)$(prompt-bg-cmds)$(prompt-git)$(prompt-ssh)'
 export PROMPT_SSH_COLOR=220
 
 autoload -Uz prompt-git # aliasなどの影響を受けない
 
 prompt-return-value(){
-  echo " %(?,,%F{197} %?%f)"
+  echo -n ' %(?,,%F{197} %?%f)'
 }
 
 prompt-ssh() {
@@ -46,26 +46,28 @@ prompt-ssh() {
 }
 
 # vimなど特定のbgコマンドを表示する
-prompt-bg() {
-  local bg_cmds names
-  bg_cmds=$(ps -o comm | tail --lines=+2)
-  names=$(echo "$bg_cmds" | grep -E "vim")
+prompt-bg-cmds() {
+  bg_cmds=$(ps -o comm | tail --lines=+2 | grep -E 'vim')
 
-  if [[ -n $names ]]; then
-    out=$(echo $names | head -1)
-    echo " [%F{99}$out%f]"
+  if [[ -n ${bg_cmds} ]]; then
+    out=$(echo "${bg_cmds}" | head -1)
+    echo -n " [%F{141}${out}%f]"
   fi
+}
+
+prompt-dir(){
+  echo -n '%(6~|...|)%5~'
 }
 
 prompt-color(){
   if (($UID == 0)); then
-    echo 253
+    echo -n '%(?.253.244)'
   elif in_ssh; then
-    echo $PROMPT_SSH_COLOR
+    echo -n "%(?.${PROMPT_SSH_COLOR}.197)"
   else
     # ecoh 39
     # echo 154
-    echo 112
+    echo -n '%(?.112.197)'
   fi
 }
 
