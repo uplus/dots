@@ -31,7 +31,7 @@ setopt prompt_subst         # プロンプト定義で置き換えを使用す�
 setopt prompt_cr            # show prompt in new line, when after command finish.
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
-export PROMPT='%F{$(prompt-color)}%(6~|...|)%5~%F{$(prompt-symb-color)} %# %f'
+export PROMPT='%F{0}%K{$(prompt-color)}%(6~|...|)%5~ %F{$(prompt-symb-color)}%#%k%F{$(prompt-color)%f%k'
 export RPROMPT='$(prompt-return-value)$(prompt-bg)$(prompt-git)$(prompt-ssh)'
 export PROMPT_SSH_COLOR=220
 
@@ -59,11 +59,13 @@ prompt-bg() {
 
 prompt-color(){
   if (($UID == 0)); then
-    echo 249
+    echo 253
   elif in_ssh; then
     echo $PROMPT_SSH_COLOR
   else
-    echo 198
+    # ecoh 39
+    # echo 154
+    echo 112
   fi
 }
 
@@ -71,7 +73,8 @@ prompt-symb-color(){
   if (( $UID == 0)); then
     echo 160
   else
-    echo 255
+    # echo 255
+    echo 0
   fi
 }
 # }}}
