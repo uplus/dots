@@ -317,6 +317,7 @@ alias youtube-mp3='noglob youtube-mp3'
 alias youtube-ogg='noglob youtube-ogg'
 alias youtube-opus='noglob youtube-opus'
 alias ri='noglob ri'
+alias sgrep='noglob sgrep'
 
 # systemd
 if in_path systemctl; then
@@ -429,6 +430,18 @@ fi
 if in_ssh; then
   alias reboot='sudo systemctl reboot'
   alias poweroff='sudo systemctl poweroff'
+fi
+
+if can_exec exa; then
+  alias l='exa -F'
+  alias la='exa -a'
+  alias l1='exa -F1'
+  alias ll='exa -lh'
+  alias li='exa -i'
+  alias lld='exa -ld'
+  alias lla='exa -lah'
+  alias lli='exa -li'
+  alias lai='exa -lahi'
 fi
 
 
