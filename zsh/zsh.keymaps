@@ -162,7 +162,7 @@ zle -N zle_git_hash
 
 zle_play_music(){
   zle reset-prompt
-  play-music </dev/tty
+  play-filter </dev/tty
 }
 zle -N zle_play_music
 
