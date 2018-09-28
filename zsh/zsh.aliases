@@ -436,12 +436,12 @@ if can_exec exa; then
   alias l='exa -F'
   alias la='exa -a'
   alias l1='exa -F1'
-  alias ll='exa -lh'
+  alias ll='exa -lhg'
   alias li='exa -i'
-  alias lld='exa -ld'
-  alias lla='exa -lah'
-  alias lli='exa -li'
-  alias lai='exa -lahi'
+  alias lld='ll -d'
+  alias lla='ll -a'
+  alias lli='ll -i'
+  alias lai='lla -i'
 fi
 
 

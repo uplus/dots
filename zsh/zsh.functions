@@ -37,6 +37,7 @@ gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
 relative(){ echo "${1:a}" | sed -e "s|^${PWD}/\?||" }
 warn(){ echo $* >&2 }
 back(){ eval $@ >&! /dev/null <&- &! } # nohup?
+
 hide(){
   out=$(mktemp --suffix=".$(date +%T).${1}.out")
   err=$(mktemp --suffix=".$(date +%T).${1}.err")
@@ -45,6 +46,18 @@ hide(){
     cat "${out}"
     cat "${err}" >&2
   } &!
+}
+
+notify_result(){
+  result=${?}
+  success_msg="${1:? success message}"
+  failed_msg="${2:-failed: ${success_msg}}"
+
+  if (("${result}" == 0)); then
+    notify "${success_msg}"
+  else
+    notify "${failed_msg}"
+  fi
 }
 
 line(){
@@ -184,7 +197,7 @@ git-hash(){
 
 gpush(){
   echo 'pushing...'
-  back git push '&&' notify "git\ pushed\ ${PWD:t}"
+  back git push ';' notify_result "'git pushed ${PWD:t}'"
 }
 
 hosts(){
