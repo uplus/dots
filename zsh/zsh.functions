@@ -53,7 +53,7 @@ notify_result(){
   success_msg="${1:? success message}"
   failed_msg="${2:-failed: ${success_msg}}"
 
-  if (("${result}" == 0)); then
+  if ((${result} == 0)); then
     notify "${success_msg}"
   else
     notify "${failed_msg}"
