@@ -68,7 +68,11 @@ alias gd='git d'
 alias gdc='git dc'
 alias gdw='git dw'
 alias gds='git ds'
-alias gl='git l'
+if can_exec git-foresta; then
+  alias gl='git lf'
+else
+  alias gl='git l'
+fi
 alias gla='git la'
 alias glh='git lh'
 alias glo='git lo'
@@ -247,6 +251,7 @@ if in_path apt-get; then
     alias a.r='sudo apt remove'
     alias a.s='apt --names-only search'
     alias a.sh='apt show'
+    alias a.l='apt list'
   else
     alias a.ud='sudo apt-get update'
     alias a.ug='sudo apt-get upgrade'

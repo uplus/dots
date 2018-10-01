@@ -49,6 +49,7 @@
 	dw  = diff --color-words
 	ds  = diff --stat
 	l       = !git logline -20
+	lf      = foresta -20
 	lh      = !git logline origin/master..@
 	la      = !git logline
 	lo      = log --graph --decorate --stat --find-renames
