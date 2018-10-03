@@ -131,6 +131,7 @@ pkg_go(){ #{{{
     github.com/itchyny/bed/cmd/bed # binary editor
     github.com/monochromegane/the_platinum_searcher/cmd/pt
     github.com/orisano/rget # parallel download
+    github.com/yudai/gotty
   )
 
   for name in ${pkgs[@]}; do
