@@ -1,8 +1,12 @@
 ---
+# https://github.com/adrienverge/yamllint
+# https://yamllint.readthedocs.io/en/stable/
 extends: default
 rules:
   line-length: disable
   document-start: disable
   colons: disable
+  empty-lines:
+    max: 1
 ...
 # vim: ft=yaml
