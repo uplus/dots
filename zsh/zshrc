@@ -67,7 +67,7 @@ prompt-color(){
   else
     # ecoh 39
     # echo 154
-    echo -n '%(?.112.197)'
+    echo -n '%(?.106.196)'
   fi
 }
 
