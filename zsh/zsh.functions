@@ -790,6 +790,11 @@ rm-deadlinks(){
   find "${dir:-./}" -xtype l | xargs rm
 }
 
+wifi-status() {
+  device=${1:? device}
+  iw "${1}" station dump
+}
+
 # TODO
 
 tops(){
