@@ -389,6 +389,7 @@ alias_exists(){ # {{{
   fi
 } # }}}
 
+alias_over dd status=progress
 alias_over watch -c -n 1
 alias_over sudo -E
 alias_over mv -i
