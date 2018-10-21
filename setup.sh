@@ -132,6 +132,7 @@ pkg_go(){ #{{{
     github.com/monochromegane/the_platinum_searcher/cmd/pt
     github.com/orisano/rget # parallel download
     github.com/yudai/gotty
+    github.com/sacloud/usacloudy
   )
 
   for name in ${pkgs[@]}; do
