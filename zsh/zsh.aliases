@@ -531,3 +531,4 @@ alias mgrep=migemogrep
 alias dic='goldendict'
 alias erun='electron .'
 alias cr=gor
+alias xl=xbacklight
