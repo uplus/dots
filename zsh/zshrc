@@ -123,6 +123,7 @@ setopt auto_resume            # background jobをそのコマンド名で再開�
 setopt notify                 # background jobが終了したらプロンプトの表示を待たずに知らせる
 setopt check_jobs             # report the background  and suspendedjobs before exit.
 setopt long_list_jobs         # jobs -l
+# setopt nohup                 # exit時にbgプロセスを殺さない
 
 #glob
 setopt extended_glob
