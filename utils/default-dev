@@ -1,0 +1,1 @@
+ip -4 route show default | awk '{print $5}' | head -1

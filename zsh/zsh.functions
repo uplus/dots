@@ -795,6 +795,21 @@ wifi-status() {
   iw "${1}" station dump
 }
 
+wifi-scan() {
+  watch --color --no-title nmcli --colors=y device wifi list
+}
+
+default-route() {
+  mode="${1:?mode add, delete or change}"
+  shift
+
+  case "${mode}" in
+    add) sudo ip route add default via "${1:? default gateway address}" dev "${2:? device}" ;;
+    change) sudo ip route change default via ${1:? default gateway address} dev "${2:-$(default-dev)}" ;;
+    delete) sudo ip route delete default ;;
+  esac
+}
+
 # TODO
 
 tops(){
