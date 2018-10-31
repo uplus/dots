@@ -750,6 +750,9 @@ build-qmk() {
     preonic)
       make preonic:uplus:dfu
       ;;
+    helix)
+      make helix:uplus:avrdude
+      ;;
   esac
 
   cd -
