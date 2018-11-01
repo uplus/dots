@@ -373,7 +373,7 @@ trash-elf(){
 
 pacman-mirrorsort(){
   sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.cp
-  sudo rankmirrors -n 6
+  sudo rankmirrors -f 6
 }
 
 lsmod(){
