@@ -507,6 +507,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias acpi-supports='dmesg | grep -i acpi | grep -i supports'
 alias wis='watch is'
 alias pwgen-simp='pwgen -1 -B -s'
+alias mount_iso='udisksctl loop-setup -r -f'
 
 
 #shortening
