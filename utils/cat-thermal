@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+cat-thermal(){
+  # cat /sys/class/thermal/thermal_zone*/temp
+  find /sys/class/thermal/ -name 'thermal_zone*' | while read filepath; do
+    {
+      echo "$(basename "${filepath}")"
+      cat  "${filepath}/temp" "${filepath}/type"
+    } | tr '\n' ' '
+    echo
+  done | sort -n -r -k2
+}
+
+cat-thermal $@
