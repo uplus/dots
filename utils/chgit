@@ -216,6 +216,18 @@ action_shell(){
   done
 }
 
+action_clone() {
+  cat "${rc_file}" | while read git_path; do
+    if is_comment $git_path || [[ -d $git_path ]]; then
+      print_comment "${git_path}"
+      continue
+    fi
+
+    # echo $git_path
+    # TODO: 現状のコンフィグだとリモートレポジトリを保存できない
+  done
+}
+
 action_help() {
   echo "Usage: ${cmdname} [mode]"
   echo -e "\tdefault subcommand is list"
@@ -253,6 +265,7 @@ case "${mode}" in
   edit) action_edit ;;
   each) action_each $@ ;;
   shell) action_shell ;;
+  # clone) action_clone ;;
   help) action_help ;;
   *) action_not_subcommand ;;
 esac
