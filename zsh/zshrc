@@ -219,7 +219,7 @@ unset zplug_path
 
 # compdef _cdd cdd # NOTE: call by zplug.
 
-#requrie after compinit
+# require after compinit
 source "$ZSH_DOT_DIR/zsh.completion"
 
 if [[ -n ${ZSH_VERSION-} ]]; then

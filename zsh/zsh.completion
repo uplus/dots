@@ -3,7 +3,7 @@
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/home/uplus/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
-in_path note && eval "$(note --complete)"
+in_path ruby && in_path note && eval "$(note --complete)"
 
 compdef _virtualbox vboxmanage
 compdef _tree uree
