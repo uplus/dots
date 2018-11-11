@@ -269,7 +269,7 @@ if in_path apt-get; then
 elif in_path pacman; then
   alias a.i='sudo pacman -S --needed'
   alias a.r='sudo pacman -R'
-  alias a.c='paccache --remove --keep=2'
+  alias a.c='paccache --remove --uninstalled --keep=2'
   alias a.cc='sudo pacman -Scc'
   alias a.u='sudo pacman -Syyu'
   alias a.ud='sudo pacman -Syy'
