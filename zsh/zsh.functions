@@ -679,7 +679,7 @@ sourceenv(){
 }
 
 dkc-exec() {
-  docker-compose exec --env COLUMNS=$COLUMNS --env LINES=$LINES ${@}
+  docker-compose exec --env COLUMNS="${COLUMNS}" --env LINES="${LINES}" --env WORDCHARS="${WORDCHARS}" ${@}
 }
 
 save-cisco-config() {

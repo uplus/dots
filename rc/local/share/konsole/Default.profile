@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Breeze
-Font=Hack,12,-1,0,50,0,0,0,0,0,Regular
+Font=Hack,10,-1,0,50,0,0,0,0,0,Regular
 UseFontLineChararacters=false
 
 [Encoding Options]
@@ -12,8 +12,8 @@ Icon=xterm-color
 Name=Default
 Parent=FALLBACK/
 ShowTerminalSizeHint=false
-TerminalColumns=124
-TerminalRows=31
+TerminalColumns=125
+TerminalRows=29
 
 [Interaction Options]
 AutoCopySelectedText=true
