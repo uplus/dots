@@ -509,6 +509,8 @@ alias acpi-supports='dmesg | grep -i acpi | grep -i supports'
 alias wis='watch --no-title is' # heavy
 alias pwgen-simp='pwgen -1 -B -s'
 alias mount_iso='udisksctl loop-setup -r -f'
+alias dmount='udisksctl mount -b'
+alias dunmount='udisksctl unmount -b'
 
 
 #shortening
