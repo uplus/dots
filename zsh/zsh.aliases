@@ -506,8 +506,7 @@ alias journalctl-boot='journalctl -ax -b'
 alias ipa="ip a | block '^\d+:\s[ew]' '^\d+:\s[^ew]'"
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias acpi-supports='dmesg | grep -i acpi | grep -i supports'
-# heavy
-alias wis='watch --no-title is'
+alias wis='watch --no-title is' # heavy
 alias pwgen-simp='pwgen -1 -B -s'
 alias mount_iso='udisksctl loop-setup -r -f'
 

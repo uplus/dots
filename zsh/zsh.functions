@@ -606,6 +606,7 @@ httpd(){
 }
 
 get-active-connections(){
+  # iwgetid -r
   nmcli -t -f name connection show --active
 }
 
