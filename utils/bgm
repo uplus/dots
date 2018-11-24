@@ -15,7 +15,7 @@ def regexps_from_file(path)
 end
 
 def get_option
-  opt = ARGV.getopts('', "num:20", "dir:~/Music", "play:vlc").symbolize_keys
+  opt = ARGV.getopts('', "num:40", "dir:~/Music", "play:vlc").symbolize_keys
   opt[:num] = opt[:num].to_i
   opt[:dir] = File.expand_path(opt[:dir]) + '/'
   opt
@@ -25,13 +25,13 @@ def is_ignore?(file)
   IGNORE_PATTERNS.any? {|regexp| regexp =~ file}
 end
 
-def getmusics(dir)
-  musics = Find.find(dir).select {|f| /\.(mp3|wav)$/ =~ f }
+def get_musics(dir)
+  musics = Find.find(dir).select {|f| /\.(mp3|wav|ogg|opus)$/ =~ f }
   musics.reject {|file| is_ignore?(file) }
 end
 
 def music_select(files, num)
-  files.shuffle.sample(num)
+  files.sample(num)
 end
 
 def escape(files)
@@ -49,7 +49,7 @@ IGNORE_PATTERNS = (File.file?(IGNORE_FILE)? regexps_from_file(IGNORE_FILE) : [])
 
 
 option         = get_option()
-all_files      = getmusics(option[:dir])
+all_files      = get_musics(option[:dir])
 selected_files = music_select(all_files, option[:num])
 escaped_files  = selected_files.map {|f| f.shellescape }
 player_options = (option[:play] == 'vlc') ? ['--daemon'] : []
