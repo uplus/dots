@@ -105,6 +105,7 @@ alias dkc='docker-compose'
 alias d-c='docker-compose'
 alias dk-clean-images='docker images --filter "dangling=true" --quiet | xargs docker rmi'
 alias dk-prune='docker system prune -af; docker volume prune'
+alias dkc-logs='docker-compose logs --follow --tail=10'
 
 
 #C/C++ gdb {{{1
@@ -477,8 +478,8 @@ alias mounted="mount -l | grep '^/dev/' | sort"
 alias devinfo="sudo fdisk --color=always -l /dev/sd? | sed -e '/^$/d' -e 's/Disk \//\nDisk /g'"
 alias devs='df -hTx tmpfs'
 alias dfh='df -h | head -1; df -h | tail --lines=+2 | sort'
-alias _=sudo
-alias __=sudoedit
+alias _='sudo'
+alias __='sudo $EDITOR'
 alias odh='od -A x -t x1z -v '
 alias vlc-clear='rm -r ~/.cache/vlc/'
 alias tyy='tee $(tty)'
