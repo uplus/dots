@@ -105,7 +105,10 @@ alias dkc='docker-compose'
 alias d-c='docker-compose'
 alias dk-clean-images='docker images --filter "dangling=true" --quiet | xargs docker rmi'
 alias dk-prune='docker system prune -af; docker volume prune'
-alias dkc-logs='docker-compose logs --follow --tail=10'
+alias dkc-l='docker-compose logs --follow --tail=10'
+dkc-e() { docker-compose exec --env COLUMNS="${COLUMNS}" --env LINES="${LINES}" --env WORDCHARS="${WORDCHARS}" ${@} }
+dkc-r() { docker-compose run --rm --env COLUMNS="${COLUMNS}" --env LINES="${LINES}" --env WORDCHARS="${WORDCHARS}" ${@}  }
+
 
 
 #C/C++ gdb {{{1

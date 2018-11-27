@@ -679,10 +679,6 @@ sourceenv(){
   is source "${envfile}" '&&' eval ${@}
 }
 
-dkc-exec() {
-  docker-compose exec --env COLUMNS="${COLUMNS}" --env LINES="${LINES}" --env WORDCHARS="${WORDCHARS}" ${@}
-}
-
 save-cisco-config() {
   scp cisco-router:startup-config "./$(date +%F)--$(read -E).txt"
 }
