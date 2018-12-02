@@ -141,7 +141,7 @@ pkg_go(){ #{{{
 } #}}}
 
 pkg_python(){ #{{{
-  pkgs=(vim-vint ipython yamllint s-tui)
+  pkgs=(vim-vint ipython yamllint s-tui pynvim)
 
   for name in ${pkgs[@]}; do
     echo "${name}"
@@ -157,6 +157,7 @@ pkg_rust(){
     cargo-asm # クレート::関数でディスアセンブル
     cargo-script
     # cargo-modules
+    fd-find
   )
 
   for name in ${pkgs[@]}; do

@@ -552,6 +552,7 @@ list_dirs_files(){
   dir="${1:-.}"
   dir="${dir:a}/"
   shift
+
   find "${dir}" $@ -type f 2>/dev/null | sed -e  "s|^${dir}||"
 }
 
