@@ -102,6 +102,7 @@ export GOPATH="$HOME/.go"
 export NPM_PACKAGES="$HOME/.npm-packages"
 
 export PATH="$GOPATH/bin:${PATH}"
+## rusutpを使ってると無いほうが良い?
 export PATH="${HOME}/.cargo/bin:${PATH}"
 export PATH="${HOME}/.cabal/bin:${PATH}"
 export PATH="${NPM_PACKAGES}/bin:${PATH}"
