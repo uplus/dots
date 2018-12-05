@@ -129,7 +129,7 @@ zle_filter_select_file(){ # {{{
   opts=(-type d -name .git -prune -o -type d -name .bundle -prune -o)
 
   local -a files
-  list_dirs_files "${dir}" $opts | sort -n | peco | while read file; do
+  list_dirs_files "${dir}" ${opts} | sort -n | peco | while read file; do
     files+="'$(relative "${dir}/${file}")'"
   done
 
@@ -142,11 +142,10 @@ zle -N zle_filter_select_file
 
 # TODO ディレクトリの浅さでソート
 zle_filter_open_file(){ # {{{
-  zle reset-prompt
-  # サブシェルでdirs対策
-  files=( $({ filter_select_file }) )
-  if (($#files != 0)); then
-    BUFFER="${EDITOR} -p ${files}"
+  zle_filter_select_file
+
+  if (($#BUFFER != 0)); then
+    BUFFER="${EDITOR} ${BUFFER}"
     CURSOR=${#BUFFER}
     zle accept-line
   fi
