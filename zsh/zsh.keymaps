@@ -121,12 +121,13 @@ zle -N zle_filter_cdr
 
 zle_filter_select_file(){ # {{{
   zle reset-prompt
+  opts=(-type d -name .git -prune -o -type d -name .bundle -prune -o)
 
   local -a array
-  array+=${(z)LBUFFER}
+  array+=(${(z)LBUFFER})
   shift array
-  dir="${$(relative "$array[-1]"):-.}"
-  opts=(-type d -name .git -prune -o -type d -name .bundle -prune -o)
+  dir="$array[-1]"
+  dir="$(relative "${dir:-.}")"
 
   local -a files
   list_dirs_files "${dir}" ${opts} | sort -n | peco | while read file; do
@@ -134,7 +135,7 @@ zle_filter_select_file(){ # {{{
   done
 
   if (($#files != 0)); then
-    BUFFER="${BUFFER%"$array[-1]"}$files"
+    BUFFER="${LBUFFER%"${array[-1]}"}${files}${RBUFFER}"
     CURSOR=${#BUFFER}
   fi
 } # }}}
