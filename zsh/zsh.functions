@@ -210,7 +210,7 @@ gpush(){
 }
 
 v.mod() {
-  file=$(git-modified-files-rel | peco  --on-cancel=error)
+  file=$(git-modified-files-rel | peco --select-1 --on-cancel=error)
 
   if [[ -s $file ]]; then
     "${EDITOR}" "${file}"
