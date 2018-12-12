@@ -125,7 +125,7 @@ zle_filter_select_file(){ # {{{
 
   local -a array
   array+=(${(z)LBUFFER})
-  shift array
+  shift array 2>/dev/null
   dir="$array[-1]"
   dir="$(relative "${dir:-.}")"
 
