@@ -112,6 +112,8 @@ alias dk-prune='docker system prune -af; docker volume prune'
 alias dkc-l='docker-compose logs --follow --tail=10'
 alias dkc-e='docker-compose exec -e COLUMNS="${COLUMNS}" -e LINES="${LINES}" -e WORDCHARS="${WORDCHARS}"'
 alias dkc-r='docker-compose run --rm -e COLUMNS="${COLUMNS}" -e LINES="${LINES}" -e WORDCHARS="${WORDCHARS}"'
+alias dk-stop='docker stop $(dkp-select)'
+
 
 
 #C/C++ gdb {{{1
