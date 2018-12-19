@@ -43,14 +43,14 @@ setup_zsh(){ #{{{
   zshlocal="${current}/zsh/zshrc.local"
   [[ ! -e $zshlocal ]] && touch "${zshlocal}"
 
-  # zgen
-  git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-  zsh -ic ''
-
   if [[ ! ${SHELL:-} =~ '/zsh' ]]; then
     echo 'Set zsh as default shell'
     chsh -s "$(grep -m 1 zsh /etc/shells)"
   fi
+
+  # zgen
+  git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+  zsh -ic ''
 } #}}}
 
 setup_vim(){ #{{{
