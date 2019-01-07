@@ -172,8 +172,8 @@ if [[ -d ${zgen_path:-} ]]; then
     # zgen load philovivero/distribution # command
 
     # zgen load mollifier/zload # reload zsh completion function.
-    # zgen load b4b4r07/auto-fu.zsh
-    zgen load zsh-users/zsh-syntax-highlighting
+    zgen load b4b4r07/auto-fu.zsh
+    # zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-completions src
 
     # zgen oh-my-zsh plugins/gem
@@ -313,6 +313,18 @@ setopt automenu
 # }}}
 
 source "$ZSH_DOT_DIR/zsh.keymaps"
+
+# auto-fu
+# キーマップの干渉がひどい
+zstyle ':auto-fu:highlight' input bold
+zstyle ':auto-fu:highlight' completion fg=black,bold
+zstyle ':auto-fu:highlight' completion/one fg=white,bold,underline
+zstyle ':auto-fu:var' postdisplay $'\n-auto-'
+zstyle ':auto-fu:var' track-keymap-skip opp
+# zle-line-init () { auto-fu-init };
+# zle -N zle-line-init
+# zle -N zle-keymap-select auto-fu-zle-keymap-select
+
 
 can_exec zprof && zprof
 
