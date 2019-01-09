@@ -2,6 +2,6 @@
 
 for i in {${1:-5}..1}; do
   sleep 1
-  echo -n "${i} "
+  echo -n "\r\e[K${i}"
 done
 echo -n 0
