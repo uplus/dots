@@ -57,3 +57,5 @@ gem 'awesome_print'
 
 # activerecordの出力を綺麗にする
 gem 'hirb'
+
+# gem install $(cat Gemfile | grep '^gem' | sed "s/gem\s//" | tr -d "' " | tr '\n' ' ')
