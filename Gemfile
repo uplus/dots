@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'bundler'
+# gem 'bundler'
 gem 'rake'
 gem 'rspec'
 gem 'guard'
@@ -11,6 +11,7 @@ gem 'pry-byebug'
 gem 'pry-coolline'
 gem 'pry-doc'
 gem 'pry-stack_explorer'
+gem 'irb'
 
 gem 'neovim'
 gem 'gist'
@@ -43,7 +44,7 @@ gem 'specific_install'
 gem 'solargraph'
 
 # delete published gem
-gem 'gemcutter'
+# gem 'gemcutter'
 
 # Submit local file to AtCoder
 gem 'pcoder'
