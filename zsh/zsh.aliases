@@ -82,7 +82,7 @@ alias gst='git st'
 alias ge='git eda'
 alias ggrep='noglob git grep -P -I --line-number --ignore-case'
 alias git-root='git rev-parse --show-toplevel'
-alias gor='cd $(git-root)'
+alias cd-root='cd $(git-root)'
 alias gcheck='git diff --check; git grep -InE '\''^\s+$|\s+$'\'
 alias ignore='ls -1 | peco >>! .gitignore'
 alias git-modified-files='git status --short --porcelain=v1 | sed "s/^...//"'
@@ -548,6 +548,6 @@ alias vbox=VBoxManage
 alias mgrep=migemogrep
 alias dic='goldendict'
 alias erun='electron .'
-alias cr=gor
+alias cr=cd-root
 alias xl=xbacklight
-alias cle='time circleci local execute'
+alias cle='cd-root && time circleci local execute'
