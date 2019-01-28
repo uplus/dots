@@ -1,18 +1,7 @@
 #!/usr/bin/zsh
-# deps to sym_solve relative
 
-save_pwd="${PWD}"
-selected=('.') # first directory
+dir="$(relative "${1:-.}")"
 
-until [[ -f $selected[1] || -z $selected ]]; do
-  cd "${selected[1]}" >&!/dev/null
-  selected=()
-  {ls -AF1 | sym_solve | sed 's/\*$//' | sort -n; echo '.\n..'} | peco | while read line; do
-    selected+="${line:a}"
-  done
-done
-
-cd "${save_pwd}" >/dev/null
-for fp in $selected; do
-  echo "'$(relative "${fp}")'"
+list_dirs_files "${dir}" -type d -name .git -prune -o -type d -name .bundle -prune -o | sort -n | peco | while read file; do
+  echo "$(relative "${dir}/${file}")"
 done

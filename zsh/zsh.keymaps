@@ -97,6 +97,15 @@ bindkey '' zle_pry
 bindkey 'y' zle_clip
 
 ## original keybind functions
+get_buffer_current_word() { echo "${LBUFFER/* /}${RBUFFER/ */}" }
+
+replace_buffer_current_word() {
+  LBUF="$(echo ${LBUFFER} | sed "s/${LBUFFER/* /}\$//")"
+  RBUF="$(echo ${RBUFFER} | sed "s/^${RBUFFER/ */}//")"
+  BUFFER="${LBUF}${*}${RBUF}"
+  CURSOR="$(expr length "${LBUF}${*}")"
+}
+
 zle_filter_history(){ # {{{
   zle reset-prompt
   local cmd="$(history -nr 0 | peco --query "${LBUFFER}")"
@@ -121,32 +130,28 @@ zle -N zle_filter_cdr
 
 zle_filter_select_file(){ # {{{
   zle reset-prompt
-  opts=(-type d -name .git -prune -o -type d -name .bundle -prune -o)
-
-  local -a array
-  array+=(${(z)LBUFFER})
-  shift array 2>/dev/null
-  dir="$array[-1]"
-  dir="$(relative "${dir:-.}")"
 
   local -a files
-  list_dirs_files "${dir}" ${opts} | sort -n | peco | while read file; do
-    files+="'$(relative "${dir}/${file}")'"
+  filter_select_file "$(get_buffer_current_word)" | while read file; do
+    files+="'${file}'"
   done
 
   if (($#files != 0)); then
-    BUFFER="${LBUFFER%"${array[-1]}"}${files}${RBUFFER}"
-    CURSOR=${#BUFFER}
+    replace_buffer_current_word ${files}
   fi
 } # }}}
 zle -N zle_filter_select_file
 
-# TODO ディレクトリの浅さでソート
 zle_filter_open_file(){ # {{{
-  zle_filter_select_file
+  zle reset-prompt
 
-  if (($#BUFFER != 0)); then
-    BUFFER="${EDITOR} ${BUFFER}"
+  local -a files
+  filter_select_file | while read file; do
+    files+="'${file}'"
+  done
+
+  if (($#files != 0)); then
+    BUFFER="${EDITOR} ${files}"
     CURSOR=${#BUFFER}
     zle accept-line
   fi
