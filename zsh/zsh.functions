@@ -826,6 +826,16 @@ os-console() {
   xdg-open $(os console url show -c url -f value ${1:? server name})
 }
 
+wis(){
+  tempfile="$(mktemp)"
+  while :; do
+    $@ > "${tempfile}"
+    clear
+    cat "${tempfile}"
+    sleep 1
+  done
+}
+
 # TODO
 
 tops(){
