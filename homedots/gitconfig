@@ -93,7 +93,7 @@
 	push-force = push --force-with-lease
 	remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
 	rprune = !"f(){ git remote prune ${1:-origin}; }; f"
-	rei      = rebase -i
+	rei      = !"f(){ git rebase -i ${1:-$(git parent-branch)}; }; f"
 	# reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
 	continue = rebase --continue
 	abort    = rebase --abort
@@ -122,3 +122,5 @@
 	foresta = !git-foresta --style=10
 	wta = !"f(){ git worktree add \"git-worktree-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
 	grepf = grep --function-context
+	log-branch = !"git log --oneline --pretty=format:%D | grep -v '^$' | grep -v '^tag:' | sed 's|origin/[^ ]*\\s*||g'"
+	parent-branch = !"git log-branch | awk 'NR==2'"
