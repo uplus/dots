@@ -200,11 +200,16 @@ clone_myrepos_tmp(){ #{{{
 # installs {{{
 install_echo_sd(){
   wget https://raw.githubusercontent.com/fumiyas/home-commands/master/echo-sd -O ~/bin/echo-sd
-  chmod +x ~/bin/echo-sd
+  chmod +x !$
 }
 
 install_eslint(){
   npm -g install eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint-config-airbnb-base eslint
+}
+
+install_ctop() {
+  wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O ~/bin/ctop
+  chmod +x !$
 }
 
 install_dein(){
