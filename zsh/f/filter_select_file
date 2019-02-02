@@ -1,7 +1,15 @@
 #!/usr/bin/zsh
 
-dir="$(relative "${1:-.}")"
+local -a ignore_dirs ignores
+local dirname file
 
-list_dirs_files "${dir}" -type d -name .git -prune -o -type d -name .bundle -prune -o | sort -n | peco | while read file; do
-  echo "$(relative "${dir}/${file}")"
+ignore_dirs=(.git .bundle)
+for dirname in ${ignore_dirs}; do
+  ignores+=(-type d -name "${dirname}" -prune -o)
+done
+
+target_dir="$(relative "${1:-.}")"
+
+list_dirs_files "${target_dir}" ${ignores} | sort -n | peco | while read file; do
+  echo "$(relative "${target_dir}/${file}")"
 done

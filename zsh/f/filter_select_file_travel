@@ -1,6 +1,9 @@
 #!/usr/bin/zsh
 # deps to sym_solve relative
 
+local save_pwd line fp
+local -a selected
+
 save_pwd="${PWD}"
 selected=('.') # first directory
 

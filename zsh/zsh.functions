@@ -502,7 +502,8 @@ docker-images-update(){
 }
 
 dkp-select() {
-  docker ps --format='table {{.ID}}\t{{.Image}}\t{{.Names}}' ${@} | tail --lines=+2 | peco | awk '$0=$1'
+  docker ps ${@} | tail --lines=+2 | peco | awk '$0=$1'
+  # --format='table {{.ID}}\t{{.Image}}\t{{.Names}}'
 }
 
 sec(){
@@ -747,7 +748,7 @@ binskip(){
   dd if="${IN}" of="${OUT}" bs=1 skip="${SKIP}"
 }
 
-filter-exists-dir(){
+filter_exists_dir(){
   while read dir; do
     [[ -d $dir ]] && echo "${dir}"
   done
