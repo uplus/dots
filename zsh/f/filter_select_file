@@ -3,7 +3,7 @@
 local -a ignore_dirs ignores
 local dirname file
 
-ignore_dirs=(.git .bundle)
+ignore_dirs=(.git .bundle __pycache__)
 for dirname in ${ignore_dirs}; do
   ignores+=(-type d -name "${dirname}" -prune -o)
 done
