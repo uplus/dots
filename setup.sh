@@ -77,7 +77,7 @@ pkg_u(){ # {{{
       vim-gtk exuberant-ctags silversearcher-ag \
       libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
       patchutils pbuilder x11-xfs-utils terminology iotop htop \
-      apt-file gufw gnome-session gwenview xclip rlwrap
+      apt-file gufw gnome-session gwenview xsel rlwrap
 
   }
 

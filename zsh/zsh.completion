@@ -8,6 +8,7 @@ in_path ruby && in_path note && eval "$(note --complete)"
 compdef _virtualbox vboxmanage
 compdef _tree uree
 compdef _gnu_generic objdump
+compdef _gnu_generic spectacle
 
 #CDPATHに値を設定すると補完候補に追加できる
 _ch(){
