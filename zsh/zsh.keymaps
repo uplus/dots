@@ -43,6 +43,7 @@ bindkey "^?" backward-delete-char
 # <S-Tab>
 bindkey "[Z" reverse-menu-complete
 
+bindkey "^XX" edit-command-line
 bindkey "^X^X" edit-command-line
 
 # cursor-key and other # {{{
