@@ -124,3 +124,6 @@
 	grepf = grep --function-context
 	log-branch = !"git log --oneline --pretty=format:%D | grep -v '^$' | grep -v '^tag:' | sed 's|origin/[^ ]*\\s*||g'"
 	parent-branch = !"git log-branch | awk 'NR==2'"
+	merge-to = merge-to
+	remote-change = remote-change
+	url-ssh = url-ssh

@@ -448,8 +448,8 @@ fi
 if in_ssh; then
   alias reboot='sudo systemctl reboot'
   alias poweroff='sudo systemctl poweroff'
-  alias suspend='sudo systemctl suspend'
 fi
+alias suspend='sudo systemctl suspend'
 
 if can_exec exa; then
   # alias l='exa -F'
