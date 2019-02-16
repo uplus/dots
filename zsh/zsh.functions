@@ -837,6 +837,13 @@ wis(){
   done
 }
 
+endless() {
+  while :; do
+    eval "${*}"
+    read
+  done
+}
+
 # TODO
 
 tops(){
