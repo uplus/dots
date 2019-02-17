@@ -127,3 +127,4 @@
 	merge-to = merge-to
 	remote-change = remote-change
 	url-ssh = url-ssh
+	make-pr = !"git push -u && hub compare"

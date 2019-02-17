@@ -59,6 +59,8 @@ gem 'awesome_print'
 # activerecordの出力を綺麗にする
 gem 'hirb'
 
-gem 'google-api-client
+gem 'google-api-client'
+
+gem 'octokit'
 
 # gem install $(cat Gemfile | grep '^gem' | sed "s/gem\s//" | tr -d "' " | tr '\n' ' ')
