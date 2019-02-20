@@ -21,7 +21,8 @@ TrimTrailingSpacesInSelectedText=true
 UnderlineFilesEnabled=false
 
 [Scrolling]
-HistoryMode=2
+HistoryMode=1
+HistorySize=4000
 
 [Terminal Features]
 BidiRenderingEnabled=false

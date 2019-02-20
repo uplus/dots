@@ -23,7 +23,8 @@ Bundler/OrderedGems:
   Enabled: false
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
-
+Style/RescueStandardError:
+  Enabled: false
 Lint/UnusedMethodArgument:
   Enabled: false
 Lint/UnusedBlockArgument:
@@ -50,6 +51,8 @@ Metrics/ClassLength:
 Metrics/LineLength:
   Enabled: false
 Metrics/BlockLength:
+  Enabled: false
+Metrics/ParameterLists:
   Enabled: false
 
 Style/IfUnlessModifier:
@@ -92,7 +95,6 @@ Style/FormatString:
   Enabled: false
 Style/TrivialAccessors:
   Enabled: false
-
 
 # Documentation:
 #   Enabled: false
