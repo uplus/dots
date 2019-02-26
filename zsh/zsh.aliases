@@ -235,6 +235,7 @@ hash -d qmkmy=~qmk/keyboards/ergodox_ez/keymaps/uplus
 hash -d kuport=~/codes/kuport
 hash -d docker-jail=~codes/docker-jail
 hash -d iss=~codes/ictsc/score-server
+hash -d ictsc=~codes/ictsc
 
 #shell {{{1
 alias resh='unset fpath; exec ${SHELL:-bash} -i'
