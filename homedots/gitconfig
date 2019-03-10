@@ -93,7 +93,7 @@
 	push-force = push --force-with-lease
 	remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
 	rprune = !"f(){ git remote prune ${1:-origin}; }; f"
-	rei      = !"f(){ git rebase -i ${1:-$(git parent-branch)}; }; f"
+	rei      = !"f(){ git rebase -pi ${1:-$(git parent-branch)}; }; f"
 	# reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
 	continue = rebase --continue
 	abort    = rebase --abort

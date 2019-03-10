@@ -530,7 +530,7 @@ alias ssh-config='v ~/.ssh/config'
 alias ssh-tmp='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 
-#shortening
+# shortening
 alias p=pry
 alias ipy=ipython
 alias py=python
@@ -553,4 +553,4 @@ alias dic='goldendict'
 alias erun='electron .'
 alias cr=cd-root
 alias xl=xbacklight
-alias cle='cd-root && time circleci local execute; cd -'
+alias cle='( cd-root && time circleci local execute )'
