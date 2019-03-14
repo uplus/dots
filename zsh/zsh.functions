@@ -312,7 +312,7 @@ kill(){
   if (($# != 0)); then
     command kill --verbose $@
   else
-    ps --no-headers -u "${USER}" -o pid,cmd | peco | awk '$0=$1' | xargs kill --verbose
+    ps --no-headers -u "${USER}" -o pid,cmd | peco | awk '$0=$1' | xargs kill -KILL --verbose
   fi
 }
 
@@ -843,6 +843,12 @@ endless() {
     read
   done
 }
+
+# -() {
+# }
+#
+# +() {
+# }
 
 # TODO
 
