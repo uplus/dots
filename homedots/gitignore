@@ -1,9 +1,9 @@
 .*.sw?
+core
 tags
 .tags
 .clang_complete
 .tern-port
-core
 .vimrc.local
 .yardoc
 .bundle
