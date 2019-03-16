@@ -39,7 +39,7 @@ alias vb='v -c Vinarise'
 alias vp='v -p'
 alias vo='v -o'
 alias vr='v -R'
-alias vl="vim -c 'normal \`0' -c 'bwipeout #'"
+alias vl="v -c 'normal \`0' -c 'bwipeout #'"
 alias v.min='v -N -u NONE -U NONE -i NONE --noplugin'
 alias v.sjis='v -c ":e ++enc=cp932"'
 alias vimopt='vim --version | \grep -E "^\+|^-"'
@@ -332,6 +332,7 @@ alias youtube-mp3='noglob youtube-mp3'
 alias youtube-ogg='noglob youtube-ogg'
 alias youtube-opus='noglob youtube-opus'
 alias ri='noglob ri'
+alias yri='noglob yri'
 alias sgrep='noglob sgrep'
 
 # systemd

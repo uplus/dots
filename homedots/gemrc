@@ -6,6 +6,5 @@
 - https://rubygems.org/
 :update_sources: true
 :verbose: true
-gem: "--user-install"
-install: "--user-install --document=yri"
-update: "--user-install --document=yri"
+:concurrent_downloads: 8
+gem: "--user-install --document=yri"
