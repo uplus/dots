@@ -1,0 +1,7 @@
+--recurse=yes
+-f .tags
+--sort=yes
+--exclude=*Makefile*
+--exclude=.git
+--exclude=.svn
+--exclude=.hg

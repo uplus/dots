@@ -1,4 +1,0 @@
---recurse=yes
--f .tags
---exclude=*Makefile*
---sort=yes
