@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-finish_time = ARGV[0] || '^$'
+finish_time = ARGV.shift || '^$'
 
 loop do
   # Timeとして比較したほうが良い
@@ -18,3 +18,5 @@ loop do
 
   sleep(0.01)
 end
+
+system('notify "time is now!"')
