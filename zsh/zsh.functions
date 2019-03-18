@@ -189,6 +189,11 @@ mve(){ mv "${1}" "${1:r}.${2}" }
 vimrc(){ generic_rc $HOME/.vim/ $@ }
 zshrc(){ generic_rc $ZSH_DOT_DIR $@ }
 
+tmp(){
+  new_tmp_filename="${1:? tmp filename}"
+  ${EDITOR} "${HOME}/${new_tmp_filename}"
+}
+
 sgrep(){
   setopt dotglob # Need localloopts
   grep --color=auto --line-number ${@} **/* 2>/dev/null
@@ -884,4 +889,4 @@ enable_network_share(){
 # iptables -A FORWARD -i net0 -o internet0 -j ACCEPT
 }
 
-# finish TODO
+# end TODO
