@@ -835,7 +835,7 @@ os-console() {
 wis(){
   tempfile="$(mktemp)"
   while :; do
-    $@ > "${tempfile}"
+    eval "$@" > "${tempfile}"
     clear
     cat "${tempfile}"
     sleep 1

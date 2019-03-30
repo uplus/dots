@@ -555,5 +555,5 @@ alias dic='goldendict'
 alias erun='electron .'
 alias cr=cd-root
 alias xl=xbacklight
-alias umm='udiskctl mount -b'
-alias umu='udiskctl unmount -b'
+alias umm='udisksctl mount -b'
+alias umu='udisksctl unmount -b'
