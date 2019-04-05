@@ -759,7 +759,7 @@ filter_exists_dir(){
   done
 }
 
-scp_config(){
+scp-config(){
   hostname="${1:? hostname}"
   title="${2:? title}"
   scp "${hostname}":startup-config "./${hostname}--$(date +%F)--${2}.txt"
