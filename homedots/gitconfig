@@ -19,7 +19,7 @@
 	# algorithm = patience
 	renames = true
 	indentHeuristic = true
-	# compactionHeuristic = false
+	compactionHeuristic = false
 [pull]
 	# rebase = true
 	ff = only

@@ -6,4 +6,4 @@ if [[ -z $default_dev ]]; then
 fi
 
 # ip -4 a show dev "${default_dev}" | grep -m1 'inet' | awk '{print $2}'
-ip r show dev "${default_dev}" | grep -v 'default' | awk '{print $1}'
+ip r show dev "${default_dev}" | grep -wv 'via' | awk '{print $1}'
