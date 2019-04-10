@@ -1,0 +1,5 @@
+#!/bin/sh
+
+url="${1}"
+echo -n "${url}"
+curl -LI -o /dev/null -w ' %{http_code}\n' -sS "${url}"
