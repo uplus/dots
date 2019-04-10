@@ -2,7 +2,7 @@
 set -ue
 
 if [[ $# -lt 4 ]]; then
-  echo "usage: webseri <browser> <url> <start> <last>" 2>/dev/null
+  echo "usage: $(basename $0) <browser> <url> <start> <last>" 2>/dev/null
   echo "        <url> include {@} to replace the number." 2>/dev/null
   return
 fi
