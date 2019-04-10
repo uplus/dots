@@ -50,7 +50,7 @@ setup_zsh(){ #{{{
 
   # zgen
   git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-  zsh -ic ''
+  zsh -ic 'exit'
 } #}}}
 
 setup_vim(){ #{{{
