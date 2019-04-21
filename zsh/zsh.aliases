@@ -130,6 +130,7 @@ alias objdump='objdump -M intel'
 
 #suffix {{{1
 # alias -s py='python3'
+alias -s go='go run'
 alias -s rb='ruby'
 alias -s php='php -f'
 alias -s {gif,jpg,jpeg,png,bmp}='display'
@@ -196,6 +197,7 @@ hash -d tmp=$HOME/tmp/
 hash -d works=$HOME/works/
 hash -d config=$HOME/.config
 hash -d cache=$HOME/.cache
+hash -d ssh=$HOME/.ssh
 
 hash -d desktop=$HOME/Desktop
 hash -d doc=$HOME/Documents
