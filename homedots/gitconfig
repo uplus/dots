@@ -57,6 +57,7 @@
 	today   = log --graph --decorate --oneline --stat --since='16 hour ago'
 	graph   = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	loggr   = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d'
+	deletes = log --diff-filter=D --summary --oneline
 	ch   = checkout
 	new  = checkout -b
 	co   = commit
