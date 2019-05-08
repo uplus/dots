@@ -336,6 +336,7 @@ alias youtube-opus='noglob youtube-opus'
 alias ri='noglob ri'
 alias yri='noglob yri'
 alias sgrep='noglob sgrep'
+alias curl='noglob curl'
 
 # systemd
 if in_path systemctl; then
