@@ -10,3 +10,4 @@ tags
 .session.vim
 yarn-error.log
 git-worktree-*/
+.git-wt-*/
