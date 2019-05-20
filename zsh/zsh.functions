@@ -774,7 +774,7 @@ build-qmk() {
       make ergodox_ez:uplus:teensy
       ;;
     preonic)
-      make preonic:uplus:dfu
+      make preonic/rev2:uplus:dfu
       ;;
     helix)
       make helix:uplus:avrdude
