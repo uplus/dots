@@ -780,7 +780,7 @@ build-qmk() {
       make helix:uplus:avrdude
       ;;
     ergodash)
-      make ergodash/rev2:uplus:avrdude
+      make ergodash/rev1:uplus:avrdude
       ;;
   esac
 
