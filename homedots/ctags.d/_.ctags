@@ -5,3 +5,6 @@
 --exclude=.git
 --exclude=.svn
 --exclude=.hg
+--exclude=log/**/*
+--exclude=logs/**/*
+--exclude=tmp/**/*
