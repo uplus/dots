@@ -72,6 +72,10 @@
 	fixa = commit --amend -va
 	fixm = commit --amend -C HEAD
 	fixam = commit --amend -a -C HEAD
+	f     = flow
+	ff    = flow feature
+	ffs   = flow feature start
+	ffc   = flow feature checkout
 	empty = commit --allow-empty -m
 	b     = branch
 	eda   = branch -avv
