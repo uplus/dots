@@ -511,6 +511,12 @@ dkp-select() {
   # --format='table {{.ID}}\t{{.Image}}\t{{.Names}}'
 }
 
+
+dkc-rm() {
+  docker-compose stop -t1 "${1}"
+  docker-compose rm -f "${1}"
+}
+
 sec(){
   : "${1:?binary file}"
 
