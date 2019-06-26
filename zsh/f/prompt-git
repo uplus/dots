@@ -31,4 +31,4 @@ behind=$(echo "${brace}" | grep -oe 'behind [0-9]\+' | awk '{print $2}')
 [[ -n $behind ]] && behind=" %F{197}$behind%f"
 # [[ -n $stash ]] && stash=" %F{208}$stash%f"
 
-echo " [%F{$color}$name%f${ahead}${behind}${stash}]"
+echo "[%F{$color}$name%f${ahead}${behind}${stash}] "

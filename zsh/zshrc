@@ -31,18 +31,18 @@ setopt prompt_subst         # プロンプト定義で置き換えを使用す�
 setopt prompt_cr            # show prompt in new line, when after command finish.
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
-export PROMPT='%F{0}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%#%f%k%F{$(prompt-color)}%f%k'
-export RPROMPT='$(prompt-return-value)$(prompt-bg-cmds)$(prompt-git)$(prompt-ssh)'
+export PROMPT='$(prompt-return-value)$(prompt-bg-cmds)$(prompt-git)$(prompt-ssh)
+%F{0}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%#%f%k%F{$(prompt-color)}%f%k'
 export PROMPT_SSH_COLOR=220
 
 autoload -Uz prompt-git # aliasなどの影響を受けない
 
 prompt-return-value(){
-  echo -n ' %(?,,%F{197} %?%f)'
+  echo -n '%(?,,%F{197}%?%f )'
 }
 
 prompt-ssh() {
-  in_ssh && echo " %F{$PROMPT_SSH_COLOR}($HOST)%f"
+  in_ssh && echo "%F{$PROMPT_SSH_COLOR}($HOST)%f"
 }
 
 # vimなど特定のbgコマンドを表示する
@@ -51,7 +51,7 @@ prompt-bg-cmds() {
 
   if [[ -n ${bg_cmds} ]]; then
     out=$(echo "${bg_cmds}" | head -1)
-    echo -n " [%F{141}${out}%f]"
+    echo -n "[%F{141}${out}%f] "
   fi
 }
 
