@@ -1,0 +1,2 @@
+#!/usr/bin/ruby
+ARGV.first.to_i.downto(0) {|n| sleep(1) ; print "\r\e[0J%02d:%02d" % [n/60, n%60] }
