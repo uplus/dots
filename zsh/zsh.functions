@@ -882,6 +882,7 @@ iss-tag() {
     image_name="upluse10/ictsc-score-server:${service}-${commit}"
     docker tag "${src_image_hash}"  "${image_name}"
     docker push "${image_name}"
+    echo "${image_name}"
   fi
 }
 
