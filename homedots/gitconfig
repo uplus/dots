@@ -76,6 +76,8 @@
 	ff    = flow feature
 	ffs   = flow feature start
 	ffc   = flow feature checkout
+	frs   = flow release start
+	fhs   = flow hotfix start
 	wt    = worktree
 	empty = commit --allow-empty -m
 	b     = branch
