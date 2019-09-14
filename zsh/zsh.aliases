@@ -32,17 +32,19 @@ alias 8.='cd ../../../../../../../..'
 #vim {{{1
 alias v.='vimrc'
 alias v="${EDITOR}"
-alias gv='gvim'
-alias nv='nvim'
 alias vh='v .'
-alias vb='v -c Vinarise'
-alias vp='v -p'
-alias vo='v -o'
+# alias vb='v -c Vinarise'
+# alias gv='gvim'
+# alias vp='v -p'
+# alias vo='v -o'
 alias vr='v -R'
 alias vl="v -c 'normal \`0' -c 'bwipeout #'"
 alias v.min='v -N -u NONE -U NONE -i NONE --noplugin'
+v.one() {
+  v.min -e -s /dev/stdin "+normal ${*:?}"  +%p +q!
+}
 alias v.sjis='v -c ":e ++enc=cp932"'
-alias vimopt='vim --version | \grep -E "^\+|^-"'
+alias vim.opt='vim --version | \grep -E "^\+|^-"'
 
 ## vim utils
 alias ls-swap='ls -l1 /home/uplus/.local/share/nvim/swap'
