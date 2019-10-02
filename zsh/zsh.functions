@@ -871,9 +871,9 @@ iss-tag() {
   src_image_hash="$(docker image ls | grep 'score-server' | grep "${service}-develop" | awk '$0=$3')"
   echo
 
-  echo "service: ${service}"
-  echo "commit hash: ${commit}"
-  echo "src_image_hash hash: ${src_image_hash}"
+  echo "service:\t${service}"
+  echo "commit hash:\t${commit}"
+  echo "src image hash:\t${src_image_hash}"
 
   echo
   echo -n 'OK(y/n)? '
