@@ -115,8 +115,6 @@
 	back   = !"f(){ git reset HEAD~${1}; }; f"
 	current-branch = rev-parse --abbrev-ref HEAD
 	# fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
-	ch-pr = !"f(){ git fetch origin pull/${1}/head:pr${1} && git checkout pr${1}; }; f"
-	# ch-pr = !"f(){ git fetch origin pull/${1:?PR Number}/head:${2:?branch name} && git ch \"${2}\"; }; f"
 	souji = clean -fd
 	get = clone --depth 1
 	inish = !"f(){ git init && [ $# -ne 0 ] && git add $1; git s && git sh; }; f"

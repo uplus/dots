@@ -1,0 +1,8 @@
+#!/usr/bin/sh -eu
+
+remote="pull/${1}/head"
+branch="pr${1}"
+
+git fetch origin "${remote}:${branch}" 
+git branch --set-upstream-to=origin/"${remote}" "${branch}"
+git checkout "${branch}"
