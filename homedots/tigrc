@@ -1,4 +1,4 @@
-# http://jonas.nitro.dk/tig/manual.html
+# https://github.com/jonas/tig/blob/master/tigrc
 # Please see 'man tigrc' for a complete reference.
 
 # Settings
@@ -98,9 +98,9 @@ set show-notes            = yes   # When non-bool passed as `--show-notes=...` (
 # set mailmap               = yes   # Use .mailmap to show canonical name and email address
 
 # Misc
-set refresh-mode       = auto   # Enum: manual, auto, after-command, periodic
+set refresh-mode       = after-command   # Enum: manual, auto, after-command, periodic
 set refresh-interval   = 10     # Interval in seconds between refreshes
-set ignore-case        = no     # Ignore case when searching?
+set ignore-case        = smart-case     # Ignore case when searching?
 # set wrap-search        = yes    # Wrap around to top/bottom of view when searching
 set focus-child        = yes    # Move focus to child view when opened?
 set horizontal-scroll  = 50%    # Number of columns to scroll as % of width
