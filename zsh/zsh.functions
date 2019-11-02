@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh -u
+#!/usr/bin/env zsh -ue
 
 # カレントシェルの環境変数を変更するものなど
 autoload -Uz proxy-on
