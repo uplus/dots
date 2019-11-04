@@ -29,6 +29,10 @@ in_tmux(){
   [[ -n "${TMUX:-}" ]]
 }
 
+in_alacritty() {
+  [[ $- == *i* ]] && [[ -n "${ALACRITTY_LOG:-}" ]]
+}
+
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 ## Directories
