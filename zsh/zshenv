@@ -89,7 +89,7 @@ export CHPWD_DIR="${HOME}/.zsh/dirs"
 ## Neovim
 # prefix
 export NVIM_PYTHON_LOG_FILE="$HOME/.vim/tmp/log"
-export NVIM_PYTHON_LOG_LEVEL=DEBUG
+export NVIM_PYTHON_LOG_LEVEL=INFO
 
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working, evil /etc/profile
 # export LC_COLLATE=C
