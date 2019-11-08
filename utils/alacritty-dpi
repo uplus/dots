@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+external_display_connected() {
+  xrandr | grep -w connected | grep -vq 'eDP1'
+}
+
+if external_display_connected ; then
+  WINIT_HIDPI_FACTOR=2 alacritty
+else
+  alacritty
+fi
