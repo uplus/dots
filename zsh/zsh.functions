@@ -858,6 +858,10 @@ endless() {
   done
 }
 
+ping-mtu() {
+  ping -M do -s "${1:?MTU size}" -c 3 yahoo.co.jp
+}
+
 iss-tag() {
   git checkout develop
   service="${1:? api or ui}"
