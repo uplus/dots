@@ -7,7 +7,7 @@
     "Query": ["white", "bold"],
     "Basic": ["on_default", "white"],
     "Matched": ["on_default", "yellow"],
-    "Selected": ["on_black", "white"],
+    "Selected": ["on_black", "white", "reverse"],
     "SavedSelection": ["on_cyan", "default"]
   },
   "Action": {
@@ -20,7 +20,9 @@
     "M-k": "peco.ToggleSingleKeyJump",
     "C-j": "peco.Finish",
     "C-g": "peco.Cancel",
-    "C-y": "peco.SelectAll"
+    "C-v": "peco.ToggleSelectionAndSelectNext",
+    "C-y": "peco.SelectAll",
+    "C-z": "peco.SelectNone"
   },
   "CustomFilter": {
     "Migemo": {
