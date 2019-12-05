@@ -399,8 +399,8 @@ mouse:
 # And optionally:
 #
 # - `mods` (see key bindings)
-mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
+# mouse_bindings:
+  # - { mouse: Middle, action: PasteSelection }
 
 # Key bindings
 #
@@ -545,7 +545,7 @@ key_bindings:
   - { key: PageDown, mods: Control, chars: "\x1b[6;5~"                       }
   - { key: PageDown, mods: Alt,     chars: "\x1b[6;3~"                       }
   - { key: PageDown,                chars: "\x1b[6~"                         }
-  - { key: Tab,      mods: Shift,   chars: "\x1b[Z"                          }
+  # - { key: Tab,      mods: Shift,   chars: "\x1b[Z"                          }
   # - { key: Tab,      mods: Control, chars: "\x01n",                          }
   - { key: Back,                    chars: "\x7f"                            }
   - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                        }
