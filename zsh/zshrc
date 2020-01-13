@@ -152,8 +152,9 @@ setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示し�
 
 # }}}
 
-#zgen # {{{
+# zgen # {{{
 zgen_path="$HOME/.zgen"
+
 if [[ ! -e ${zgen_path:-} ]]; then
   local key
   if read -q key'?install zgen?(y/N) '; then
@@ -166,7 +167,6 @@ fi
 if [[ -d ${zgen_path:-} ]]; then
   source "${zgen_path}/zgen.zsh"
   if ! zgen saved; then
-    # zgen load m4i/cdd
     # zgen load junegunn/fzf      # command
     # zgen load Russell91/sshrc   # command
     # zgen load philovivero/distribution # command
@@ -175,14 +175,10 @@ if [[ -d ${zgen_path:-} ]]; then
     zgen load b4b4r07/auto-fu.zsh
     # zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-completions src
-
-    # zgen oh-my-zsh plugins/gem
-    # zgen oh-my-zsh plugins/docker
     zgen save
   fi
-  # source $HOME/.zgen/m4i/cdd-master/cdd
-  # source $HOME/.zgen/tcnksm/docker-alias-master/zshrc
 fi
+
 unset zgen_path
 # }}}
 
@@ -326,7 +322,7 @@ zstyle ':auto-fu:var' track-keymap-skip opp
 # zle -N zle-keymap-select auto-fu-zle-keymap-select
 
 
-can_exec zprof && zprof
+can_exec zprof && zprof | tee ~/zsh.log
 
 #Load local config
 exists_source "$ZSH_DOT_DIR/zshrc.local"
