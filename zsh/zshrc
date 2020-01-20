@@ -32,7 +32,7 @@ setopt prompt_cr            # show prompt in new line, when after command finish
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
 export PROMPT='$(prompt-return-value)$(prompt-bg-cmds)$(prompt-git)$(prompt-ssh)
-%F{0}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%#%f%k%F{$(prompt-color)}%f%k'
+%F{0}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%#%f%k%F{$(prompt-color)}%f%k '
 export PROMPT_SSH_COLOR=220
 
 autoload -Uz prompt-git # aliasなどの影響を受けない
