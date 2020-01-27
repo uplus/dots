@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # gem 'bundler'
 gem 'rake'
-gem 'rspec'
+# gem 'rspec'
 gem 'guard'
 gem 'yard'
 
@@ -62,5 +62,3 @@ gem 'hirb'
 gem 'google-api-client'
 
 gem 'octokit'
-
-# gem install $(cat Gemfile | grep '^gem' | sed "s/gem\s//" | tr -d "' " | tr '\n' ' ')

@@ -180,6 +180,10 @@ pkg_npm(){
   done
 }
 
+pkg_gem() {
+  gem install $(cat Gemfile | grep '^gem' | sed "s/gem\s//" | tr -d "' " | tr '\n' ' ')
+}
+
 clone_myrepos_tmp(){ #{{{
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
