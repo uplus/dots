@@ -33,6 +33,10 @@ in_alacritty() {
   [[ $- == *i* ]] && [[ -n "${ALACRITTY_LOG:-}" ]]
 }
 
+is_parent() {
+  ps --no-header "${PPID}" | grep -q "${1:? parent process name}"
+}
+
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 ## Directories
