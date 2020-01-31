@@ -17,6 +17,8 @@ loop do
   end
 
   sleep(0.01)
+rescue Interrupt
+  exit
 end
 
 system('notify "time is now!"')
