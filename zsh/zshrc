@@ -145,7 +145,7 @@ setopt magic_equal_subst  # --prefix=/usr/など = 以降も補完
 setopt list_rows_first    # 候補を移動するとき横に進む
 setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示しない
 
-if is_parent yakuake ; then
+if is_parent yakuake || is_parent nvim ; then
   setopt ignore_eof # 行が空の時にCtrl-Dで終了
 fi
 

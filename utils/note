@@ -38,7 +38,12 @@ def error(message, num, other=nil)
 end
 
 def goodbye(message=nil)
-  puts message
+  if $stdout.tty?
+    puts message
+  else
+    print message
+  end
+
   exit(0)
 end
 
