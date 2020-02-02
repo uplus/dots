@@ -7,4 +7,6 @@ while :; do
   echo -n "\r\e[K$((i++))"
 done
 
-echo -n 0
+echo "\r\e[K0"
+
+notify "time is now!"
