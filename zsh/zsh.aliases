@@ -344,12 +344,15 @@ alias curl='noglob curl'
 if in_path systemctl; then
   alias s.start='sudo systemctl start'
   alias s.restart='sudo systemctl restart'
+  alias s.reload='sudo systemctl reload'
   alias s.stop='sudo systemctl stop'
   alias s.status='systemctl status'
   alias s.enable='sudo systemctl enable'
   alias s.disable='sudo systemctl disable'
   alias s.list='systemctl list-units'
   alias s.list-files='systemctl list-unit-files'
+  alias s.dreload='sudo systemctl dreload'
+  alias s.j='journalctl -x'
 fi
 
 
