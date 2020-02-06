@@ -1,6 +1,8 @@
 [Appearance]
+AntiAliasFonts=false
+BoldIntense=false
 ColorScheme=Breeze
-Font=Source Code Pro,11,-1,5,50,0,0,0,0,0,Regular
+Font=Source Code Pro,10,-1,5,50,0,0,0,0,0,Regular
 
 [General]
 Icon=xterm-color
