@@ -881,7 +881,7 @@ iss-tag() {
 
   echo
   echo -n 'OK(y/n)? '
-  if read -q; then
+  # if read -q; then
     echo
     image_name="upluse10/ictsc-score-server:${service}-${commit}"
     docker tag "${src_image_hash}" "${image_name}"
@@ -889,7 +889,7 @@ iss-tag() {
     echo "docker push ${image_name}"
     docker push "${image_name}"
     echo "${image_name}"
-  fi
+  # fi
 }
 
 # -() {
