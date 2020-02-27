@@ -863,7 +863,7 @@ ping-mtu() {
 }
 
 iss-tag() {
-  git checkout develop
+  cd ~iss
   service="${1:? api or ui}"
   echo
 
@@ -890,6 +890,18 @@ iss-tag() {
     docker push "${image_name}"
     echo "${image_name}"
   # fi
+}
+
+iss-build-tag() {
+  cd ~iss
+  git checkout develop
+  git pull
+
+  service="${1:? api or ui}"
+  echo
+
+  docker-compose build "${service}"
+  iss-tag "${service}"
 }
 
 # -() {
