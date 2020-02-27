@@ -14,9 +14,9 @@
 	default = current
 [diff]
 	tool      = vimdiff
-	algorithm = histogram
+	# algorithm = histogram
 	# algorithm = minimal
-	# algorithm = patience
+	algorithm = patience
 	renames = true
 	indentHeuristic = true
 	compactionHeuristic = false
