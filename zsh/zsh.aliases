@@ -351,7 +351,7 @@ if in_path systemctl; then
   alias s.disable='sudo systemctl disable'
   alias s.list='systemctl list-units'
   alias s.list-files='systemctl list-unit-files'
-  alias s.dreload='sudo systemctl dreload'
+  alias s.dreload='sudo systemctl daemon-reload'
   alias s.j='journalctl -x'
 fi
 
