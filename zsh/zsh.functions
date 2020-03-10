@@ -859,7 +859,7 @@ endless() {
 }
 
 ping-mtu() {
-  ping -M do -s "${1:?MTU size}" -c 3 yahoo.co.jp
+  ping -M do -s "${2:?MTU size}" -c 2 "${1:?host or ip}"
 }
 
 iss-tag() {

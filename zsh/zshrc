@@ -25,6 +25,10 @@ eval "$(dircolors -b)"
 LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=[^:]\+/ln=38;5;81/g')
 autoload -U colors && colors  # NOTE: call by zplug
 
+# fallback
+[[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
+
+
 #Prompt # {{{
 autoload -Uz promptinit && promptinit
 setopt prompt_subst         # プロンプト定義で置き換えを使用する
@@ -34,16 +38,17 @@ setopt no_transient_rprompt # on: remove old rprompt when after execute a comman
 export PROMPT='$(prompt-return-value)$(prompt-bg-cmds)$(prompt-git)$(prompt-ssh)
 %F{0}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%#%f%k%F{$(prompt-color)}%f%k '
 # 
-export PROMPT_SSH_COLOR=220
+export PROMPT_COLOR_SSH=220
+export PROMPT_COLOR_ERROR='#FF6A84'
 
 autoload -Uz prompt-git # aliasなどの影響を受けない
 
 prompt-return-value(){
-  echo -n '%(?,,%F{197}%?%f )'
+  echo -n "%(?,,%F{${PROMPT_COLOR_ERROR}}%?%f )"
 }
 
 prompt-ssh() {
-  in_ssh && echo "%F{$PROMPT_SSH_COLOR}($HOST)%f"
+  in_ssh && echo "%F{$PROMPT_COLOR_SSH}($HOST)%f"
 }
 
 # vimなど特定のbgコマンドを表示する
@@ -64,16 +69,14 @@ prompt-color(){
   if (($UID == 0)); then
     echo -n '%(?.253.244)'
   elif in_ssh; then
-    echo -n "%(?.${PROMPT_SSH_COLOR}.197)"
+    echo -n "%(?.${PROMPT_COLOR_SSH}.${PROMPT_COLOR_ERROR})"
   else
-    # ecoh 39
-    # echo 154
-    echo -n '%(?.106.196)'
+    echo -n "%(?.#6EA4FF.${PROMPT_COLOR_ERROR})"
   fi
 }
 
 prompt-symb-color(){
-  if (( $UID == 0)); then
+  if (($UID == 0)); then
     echo 160
   else
     # echo 255
