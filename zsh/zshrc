@@ -6,11 +6,6 @@ if [[ ${PATH} != ${PATH_keep:=} ]]; then
   export PATH="${PATH_keep}:${PATH}"
 fi
 
-if ! in_tmux && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
-  exec tmux
-fi
-rm ~/.notmux >&! /dev/null
-
 LC_COLLATE=C # Don't move to zshenv.
 DIRSTACKSIZE=100
 fpath+=($ZSH_DOT_DIR/f)
@@ -38,7 +33,7 @@ setopt no_transient_rprompt # on: remove old rprompt when after execute a comman
 export PROMPT='$(prompt-return-value)$(prompt-bg-cmds)$(prompt-git)$(prompt-ssh)
 %F{0}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%# %f%k%F{$(prompt-color)}%f%k '
 # 
-export PROMPT_COLOR_SSH=220
+export PROMPT_COLOR_SSH='#FFF38F'
 export PROMPT_COLOR_ERROR='#FF6A84'
 
 autoload -Uz prompt-git # aliasなどの影響を受けない

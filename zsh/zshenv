@@ -37,6 +37,12 @@ is_parent() {
   ps --no-header "${PPID}" | grep -q "${1:? parent process name}"
 }
 
+if ! in_tmux && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
+  exec tmux
+fi
+rm ~/.notmux >&! /dev/null
+
+
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 ## Directories
