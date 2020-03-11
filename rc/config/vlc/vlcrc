@@ -4367,10 +4367,10 @@ advanced=1
 #key-leave-fullscreen=Esc
 
 # Play/Pause (string)
-#global-key-play-pause=
+global-key-play-pause=Media Play Pause
 
 # Play/Pause (string)
-key-play-pause=
+# key-play-pause=space	Media Play Pause
 
 # Pause only (string)
 #global-key-pause=
