@@ -4370,7 +4370,7 @@ advanced=1
 global-key-play-pause=Media Play Pause
 
 # Play/Pause (string)
-# key-play-pause=space	Media Play Pause
+#key-play-pause=Space	Media Play Pause
 
 # Pause only (string)
 #global-key-pause=
@@ -4739,7 +4739,7 @@ key-audiodelay-down=
 #key-intf-popup-menu=Menu
 
 # Take video snapshot (string)
-#global-key-snapshot=
+global-key-snapshot=Ctrl+Alt+Shift+Meta+e
 
 # Take video snapshot (string)
 #key-snapshot=Shift+s
