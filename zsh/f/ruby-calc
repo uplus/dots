@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 if (($# == 0)); then
-  pry --simple-prompt
+  irb --simple-prompt
   return
 fi
 

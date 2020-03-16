@@ -326,6 +326,7 @@ alias dsuspend='dbus-send --system --print-reply=literal --dest=org.freedesktop.
 alias dlock='dbus-send --system --print-reply=literal --dest=org.freedesktop.login1 /org/freedesktop/login1 org.freedesktop.login1.Manager.LockSession string:'
 
 #noglob {{{1
+alias git='noglob git'
 alias find='noglob find'
 alias rbrn='noglob rbrn'
 alias zmv='noglob zmv'
