@@ -1,106 +1,83 @@
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
 
-Style/AndOr:
-  Enabled: false
-Style/Not:
-  Enabled: false
-Style/CommentedKeyword:
-  Enabled: false
-Style/AsciiComments:
-  Enabled: false
-Style/YodaCondition:
-  Enabled: false
-Style/TernaryParentheses:
-  Enabled: false
-Style/RedundantReturn:
-  Enabled: false
-Lint/EmptyWhen:
-  Enabled: false
-Style/EmptyElse:
-  Enabled: false
-Bundler/OrderedGems:
-  Enabled: false
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
-Style/RescueStandardError:
-  Enabled: false
-Lint/UnusedMethodArgument:
-  Enabled: false
-Lint/UnusedBlockArgument:
-  Enabled: false
+require:
+  - 'rubocop-performance'
 
-Layout/SpaceBeforeBlockBraces:
-  Enabled: true
-Layout/SpaceInsideBlockBraces:
-  EnforcedStyle: 'space'
-  EnforcedStyleForEmptyBraces: 'no_space'
-  SpaceBeforeBlockParameters: false
+## メトリクス系
+Metrics/AbcSize:
+  # 下手に守ろうとするとコードが激しく断片化するので無効
+  Enabled: false
+# Metrics/CyclomaticComplexity:
+#   # Max: 10 # default: 6
+# Metrics/PerceivedComplexity:
 
-Style/TrailingCommaInArrayLiteral:
-  Enabled: false
-Style/TrailingCommaInHashLiteral:
-  Enabled: false
-Style/BracesAroundHashParameters:
-  Enabled: false
-
-MethodLength:
-  Enabled: false
+## 長さ系
 Metrics/ClassLength:
-  Enabled: false
-Metrics/LineLength:
-  Enabled: false
+  Max: 200
+Metrics/MethodLength:
+  Max: 20
 Metrics/BlockLength:
-  Enabled: false
+  Max: 20
 Metrics/ParameterLists:
   Enabled: false
-
-Style/IfUnlessModifier:
-  Enabled: false
-  # MaxLineLength: 120
-
-Naming/HeredocDelimiterNaming:
-  Enabled: false
-Style/Documentation:
-  Enabled: false
-PercentLiteralDelimiters:
+Layout/LineLength:
+  # 基本的に長い行の折返しはエディターで対処
   Enabled: false
 
-CaseIndentation:
-  IndentOneStep: false
-  EnforcedStyle: 'case'
-Layout/BlockAlignment:
-  EnforcedStyleAlignWith: 'start_of_block'
-Layout/IndentHash:
-  EnforcedStyle: 'consistent'
+Style/AsciiComments:
+  # 日本語コメントを許可
+  Enabled: false
+
+## ハッシュ系
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
+
+## インデント系
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: 'indented'
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
-Metrics/AbcSize:
-  Enabled: false
-Metrics/CyclomaticComplexity:
-  Enabled: false
-Metrics/PerceivedComplexity:
+## スペース系
+Layout/SpaceInsideBlockBraces:
+  SpaceBeforeBlockParameters: false
+# CaseIndentation:
+#   IndentOneStep: false
+#   EnforcedStyle: 'case'
+# Layout/BlockAlignment:
+#   EnforcedStyleAlignWith: 'start_of_block'
+
+## 名前付け系
+Naming/HeredocDelimiterNaming:
   Enabled: false
 
-Style/ClassAndModuleChildren:
+## misc
+Bundler/OrderedGems:
   Enabled: false
-Naming/UncommunicativeMethodParamName:
+Style/Documentation:
   Enabled: false
-Lint/Debugger:
-  Enabled: false
+Style/BlockDelimiters:
+  EnforcedStyle: 'braces_for_chaining'
 Style/FormatString:
+  EnforcedStyle: 'percent'
+Style/GuardClause:
+  # 過激
   Enabled: false
-Style/TrivialAccessors:
+Style/IfUnlessModifier:
+  # 過激
   Enabled: false
-
-# Documentation:
+Style/RedundantSelf:
+  # selfを明示したいときもある
+  # ただし、selfではプライベートメソッドを呼べないので少し紛らわしくなる
+  Enabled: false
+# Style/RedundantReturn:
 #   Enabled: false
-# Style/ClassAndModuleChildren:
-#   Enabled: false
-# Style/CommentedKeyword:
-#   Enabled: false
-# Style/RedundantBegin:
-#   Enabled: false
+Style/EmptyElse:
+  # elseが空のときのみ警告(nilを明示して欲しい)
+  EnforcedStyle: 'empty'
+Style/TernaryParentheses:
+  # 多少複雑な条件演算子は括弧で囲む
+  EnforcedStyle: 'require_parentheses_when_complex'

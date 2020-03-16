@@ -3,9 +3,9 @@
 git rev-parse --git-dir >&! /dev/null || return
 
 COLOR_RED="#ff6090"
-COLOR_GREEN="#03FF58"
+COLOR_GREEN="#23FF48"
 COLOR_BLUE="#05E1EB"
-COLOR_YELLOW="#DAFF36"
+COLOR_YELLOW="#FFCF26"
 COLOR_MAGENTA="#A75AE8"
 
 # branch name
