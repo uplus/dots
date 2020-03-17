@@ -543,7 +543,7 @@ alias cle='( cd-root && time circleci local execute; notify "CircleCI" "finished
 
 
 # shortening
-alias p=pry
+# alias p=pry
 alias ipy=ipython
 alias py=python
 alias py2=python2

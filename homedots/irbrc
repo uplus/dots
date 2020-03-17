@@ -1,0 +1,11 @@
+class Object
+  # methods without Object methods
+  def methods_wo
+    (self.methods - Object.methods).sort
+  end
+
+  # methods without ancestors methods
+  def methods_wa
+    (self.methods - self.class.ancestors.flat_map(&:instance_methods)).sort
+  end
+end

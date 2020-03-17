@@ -7,18 +7,6 @@ if defined?(PryStackExplorer)
   Pry.commands.alias_command 'bt', 'show-stack'
 end
 
-class Object
-  # methods without Object methods
-  def methods_wo
-    (self.methods - Object.methods).sort
-  end
-
-  # methods without ancestors methods
-  def methods_wa
-    (self.methods - self.class.ancestors.flat_map(&:instance_methods)).sort
-  end
-end
-
 # require 'awesome_print' rescue nil
 # if defined?(AwesomePrint)
 #   AwesomePrint.pry!
