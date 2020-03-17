@@ -80,23 +80,25 @@ prompt-symb-color(){
 }
 # }}}
 
-#History # {{{
-
 # Show options `set -o`
 
+#History # {{{
 setopt share_history
-setopt inc_append_history       #on: 履歴を即座に書き込む
-setopt extended_history         #on: 履歴に時を刻む
-setopt hist_no_store            #on: not add history-command to history.
-setopt hist_no_functions        #on: remove functon definitions from the history list.
-setopt hist_reduce_blanks       #on: reduce unnecessary blanks
-setopt hist_ignore_space        #on: not add to the history if first character of the command is space.
+setopt inc_append_history       # 履歴を即座に書き込む
+setopt extended_history         # 履歴に時を刻む
+setopt hist_no_store            # not add history-command to history.
+setopt hist_no_functions        # remove functon definitions from the history list.
+setopt hist_reduce_blanks       # reduce unnecessary blanks
+setopt hist_ignore_space        # not add to the history if first character of the command is space.
 setopt hist_ignore_dups
-setopt hist_ignore_all_dups     #on: 過去の履歴と重複しても削除しない
-setopt no_hist_verify           #on: history-commandを直接実行せず、まず展開する
-SAVEHIST=300000 #file
-HISTSIZE=20000  #memory
+setopt hist_ignore_all_dups     # 過去の履歴と重複しても削除しない
+setopt no_hist_verify           # history-commandを直接実行せず、まず展開する
+SAVEHIST=300000 # file
+HISTSIZE=20000  # memory
 HISTFILE=~/.zsh/history
+
+# 失敗したコマンドはファイルに書き込まない
+zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 # }}}
 
 #setopt {{{
