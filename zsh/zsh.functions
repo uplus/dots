@@ -862,6 +862,14 @@ ping-mtu() {
   ping -M do -s "${2:?MTU size}" -c 2 "${1:?host or ip}"
 }
 
+cdr-cleanup() {
+  cat "${CHPWD_DIR}" \
+    | sed -E 's/^..|.$//g' \
+    | filter_exists_dir \
+    | sed -e "s/^/\$'/" -e "s/\$/'/" \
+    > "${CHPWD_DIR}"
+}
+
 iss-tag() {
   cd ~iss
   service="${1:? api or ui}"

@@ -257,7 +257,7 @@ install_other(){
 
 install_peco(){
   if in_path go; then
-    go get github.com/peco/peco/cmd/peco
+    go get -u github.com/peco/peco/cmd/peco
   else
     install_peco_wget
   fi
@@ -385,6 +385,7 @@ mini(){
   link_utils_partial
   setup_zsh
   setup_vim
+  install_peco
 }
 
 # TODO making
