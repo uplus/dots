@@ -41,6 +41,13 @@ func main() {
 _EOF_
 }
 
+get_base_ruby() {
+  cat <<_EOF_
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+_EOF_
+}
+
 get_base_rust(){
   cat <<_EOF_
 fn main() {
@@ -61,7 +68,6 @@ make_shebang() {
 
 get_shebang(){
   case "${1}" in
-    ruby|rb)     make_shebang 'ruby' ;;
     shell|sh)    make_shebang 'sh' ;;
     bash)        make_shebang 'bash' ;;
     zsh)         make_shebang 'zsh' ;;
@@ -79,6 +85,7 @@ get_base_body(){
     c) get_base_c ;;
     cpp) get_base_cpp ;;
     go) get_base_go ;;
+    ruby|rb) get_base_ruby ;;
     rust|rs) get_base_rust ;;
     python2|py2) get_base_python 'python2' ;;
     python|python3|py|py3) get_base_python 'python3' ;;
