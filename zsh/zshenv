@@ -108,7 +108,8 @@ if [[ -d $HOME/.rbenv/bin ]]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   in_path rbenv && eval "$(rbenv init - zsh)"
 elif in_path gem; then
-  export PATH="${$(gem environment gempath)%%:*}/bin:$PATH"
+  # ベンチに引っかからないのに重い, 無くてもいい環境が多そう
+  # export PATH="${$(gem environment gempath)%%:*}/bin:$PATH"
 fi
 
 export RUBYLIB="$HOME/.rubylib/:${RUBYLIB}"
@@ -127,8 +128,6 @@ export PATH="${DOT_DIR}/utils:${PATH}:${DOT_DIR}/git-subcommands"
 ## enable high speed compile with compile cache
 export PATH="/usr/lib/ccache/bin:${PATH}"
 # export CCACHE_DISABLE=1
-
-# vim: ft=sh
 
 # export MANPATH="${NPM_PACKAGES}/share/man:$(manpath)"
 

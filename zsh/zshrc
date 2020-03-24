@@ -327,8 +327,7 @@ zstyle ':auto-fu:var' track-keymap-skip opp
 # zle -N zle-line-init
 # zle -N zle-keymap-select auto-fu-zle-keymap-select
 
-
-can_exec zprof && zprof | tee ~/zsh.log
-
 #Load local config
 exists_source "$ZSH_DOT_DIR/zshrc.local"
+
+can_exec zprof && (zprof | tee ~/zsh.log) || :
