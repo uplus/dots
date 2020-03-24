@@ -146,9 +146,10 @@ setopt magic_equal_subst  # --prefix=/usr/など = 以降も補完
 setopt list_rows_first    # 候補を移動するとき横に進む
 setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示しない
 
-if is_parent yakuake || is_parent nvim ; then
-  setopt ignore_eof # 行が空の時にCtrl-Dで終了
-fi
+# is_parentは遅い
+# if is_parent yakuake || is_parent nvim ; then
+#   setopt ignore_eof # 行が空の時にCtrl-Dで終了
+# fi
 
 # auto_list auto_menu bash_auto_list glob_complete hash_list_all list_ambiguous menu_complete rec_exact
 # setopt auto_menu          # TABで候補を選択できるメニュー(2type必要)
