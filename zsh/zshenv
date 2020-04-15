@@ -37,7 +37,11 @@ is_parent() {
   ps --no-header "${PPID}" | grep -q "${1:? parent process name}"
 }
 
-if ! in_tmux && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
+is_interactive() {
+  [[ $- == *i* ]]
+}
+
+if ! in_tmux && is_interactive && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
   exec tmux
 fi
 rm ~/.notmux >&! /dev/null
