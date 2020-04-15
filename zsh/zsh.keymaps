@@ -30,7 +30,7 @@ bindkey "^I" expand-or-complete
 bindkey "^O" accept-line-and-down-history
 bindkey "^Y" yank
 bindkey "^]" insert-last-word
-bindkey "^Z" zle_disown
+bindkey "^Z" zle_background
 
 # \ -
 bindkey "^_" undo
@@ -203,8 +203,8 @@ zle_clip(){
 }
 zle -N zle_clip
 
-zle_disown(){
-  BUFFER='disown'
+zle_background(){
+  BUFFER='bg && disown'
   zle accept-line
 }
-zle -N zle_disown
+zle -N zle_background
