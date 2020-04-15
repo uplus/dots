@@ -30,6 +30,7 @@ bindkey "^I" expand-or-complete
 bindkey "^O" accept-line-and-down-history
 bindkey "^Y" yank
 bindkey "^]" insert-last-word
+bindkey "^Z" zle_disown
 
 # \ -
 bindkey "^_" undo
@@ -191,7 +192,7 @@ zle_filter_cd(){ # {{{
 zle -N zle_filter_cd
 
 zle_pry(){
-  BUFFER=pry
+  BUFFER='pry'
   zle accept-line
 }
 zle -N zle_pry
@@ -201,3 +202,9 @@ zle_clip(){
   notify "Cliped: ${BUFFER}"
 }
 zle -N zle_clip
+
+zle_disown(){
+  BUFFER='disown'
+  zle accept-line
+}
+zle -N zle_disown
