@@ -1,5 +1,6 @@
-.*.sw?
 core
+!core/
+.*.sw?
 tags
 .tags
 .clang_complete
@@ -9,5 +10,4 @@ tags
 .bundle
 .session.vim
 yarn-error.log
-git-worktree-*/
 .git-wt-*/
