@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Stoplight studio
+Exec=stoplight-studio
+Type=Application
+Categories=Settings;
+X-KDE-StartupNotify=false
+StartupNotify=false
