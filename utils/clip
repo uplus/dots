@@ -8,7 +8,7 @@ if in_path xclip; then
     xclip -in -selection clipboard
   else
     # xclip treat "" as filename.
-    xclip -in -selection clipboard "${arg}"
+    xclip -in -selection clipboard "${*}"
   fi
 elif in_path xsel; then
   if [[ $arg = '-o' ]]; then
@@ -16,7 +16,7 @@ elif in_path xsel; then
   elif [[ -z $arg ]]; then
     xsel --clipboard --input
   else
-    echo "${arg}" | xsel --clipboard --input
+    echo "${*}" | xsel --clipboard --input
   fi
 elif in_path pbcopy; then
   if [[ $arg = '-o' ]]; then
@@ -24,7 +24,7 @@ elif in_path pbcopy; then
   elif [[ -z $arg ]]; then
     pbcopy
   else
-    echo "${arg}" | pbcopy
+    echo "${*}" | pbcopy
   fi
 else
   echo "clip: This platform not installed clipboard command(xclip/xsel)." 1>&2
