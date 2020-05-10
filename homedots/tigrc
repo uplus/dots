@@ -52,7 +52,7 @@
 #set #{{{
 set blame-view  = date:default author:full file-name:auto id:yes,color line-number:no,interval=5 text
 set grep-view   = file-name:no line-number:yes,interval=1 text
-set main-view   = line-number:no,interval=5 id:no date:default author:full commit-title:yes,graph,refs,overflow=no
+set main-view   = line-number:no,interval=5 id:yes date:default author:full commit-title:yes,graph,refs,overflow=no
 set refs-view   = line-number:no id:no date:default author:full ref commit-title
 set stash-view  = line-number:no,interval=5 id:no date:default author:full commit-title
 set status-view = line-number:no,interval=5 status:short file-name
@@ -240,6 +240,8 @@ bind generic  e edit              # Open in editor
 bind generic  : prompt            # Open the prompt
 bind generic  <C-L> screen-redraw # Redraw the screen
 bind generic  z stop-loading      # Stop all loading views
+bind generic  Y !clip %(commit)   # Copy commit hash to clipboard
+
 
 
 bind stash  P ?git stash pop %(stash)
