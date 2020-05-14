@@ -837,6 +837,12 @@ default-route() {
   esac
 }
 
+pdf-remove-head() {
+  start="${1:start page}"
+  filename="${2:?filename}"
+  pdftk "${filename}" cat "${start}-end" output "${filename}-new"
+}
+
 os-console() {
   xdg-open $(os console url show -c url -f value ${1:? server name})
 }
