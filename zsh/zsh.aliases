@@ -440,6 +440,7 @@ alias_over sshuttle --pidfile='$(mktemp)'
 alias_exists js nodejs node
 alias_exists python python3
 alias_exists pip pip3
+alias_over lsblk -f
 alias_exists diff -u colordiff
 alias_exists chrome google-chrome-stable
 # alias_exists cat ccat
