@@ -482,6 +482,10 @@ json_format(){
 smart_docker(){
   unfunction "${1}"
 
+  if ! can_exec systemctl ; then
+    return
+  fi
+
   if ! is_active docker.service; then
     echo 'Start docker'
     sudo systemctl start docker.service
