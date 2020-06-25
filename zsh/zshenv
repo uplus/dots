@@ -41,13 +41,13 @@ is_interactive() {
   [[ $- == *i* ]]
 }
 
+export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
+
 if ! in_tmux && is_interactive && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
   exec tmux
 fi
 rm ~/.notmux >&! /dev/null
 
-
-export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 ## Directories
 export ZSH_DOT_DIR="$(dirname "$(readlink $HOME/.zshenv)")"
