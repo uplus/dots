@@ -71,6 +71,7 @@ get_shebang(){
     shell|sh)    make_shebang 'sh' ;;
     bash)        make_shebang 'bash' ;;
     zsh)         make_shebang 'zsh' ;;
+    js)          make_shebang 'node' ;;
   esac
 }
 
