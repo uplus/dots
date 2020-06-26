@@ -11,3 +11,4 @@ tags
 .session.vim
 yarn-error.log
 .git-wt-*/
+.DS_Store

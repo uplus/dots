@@ -7,3 +7,5 @@ path=(
   '/usr/local/Homebrew/bin'
   $path
   )
+
+alias xdg-open='command open'
