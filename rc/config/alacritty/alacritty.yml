@@ -540,7 +540,7 @@ key_bindings:
   # for MacOS
   - { key: S,        mods: Alt,             chars: "\x1bs" }
   - { key: T,        mods: Alt,             chars: "\x1bt" }
-  - { key: Backslash,mods: Control,         chars: "\x1f"  }
+  - { key: Slash,    mods: Control,         chars: "\x1f"  }
 
 #debug:
   # Display the time it takes to redraw each frame.
