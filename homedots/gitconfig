@@ -121,7 +121,7 @@
 	inic = !"git init && git add --all && git s && git com 'First commit.'"
 	ctodo = !"git commit -m \"[ci skip] TODO: temporary commit $(date +%F:%R)\""
 	tmpc = !"git add --all && git ctodo"
-	open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
+	# open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
 	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
 	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
 	pick = cherry-pick
