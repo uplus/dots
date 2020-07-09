@@ -4,8 +4,8 @@ path=(
   '/usr/local/Homebrew/bin'
   '/usr/local/opt/bin'
   '/usr/local/opt/coreutils/libexec/gnubin'
-  '/usr/local/Homebrew/bin'
   $HOME/.gem/ruby/2.6.0/bin
+  $HOME/Library/Python/3.7/bin
   $path
   )
 
