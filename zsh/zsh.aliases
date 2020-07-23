@@ -272,7 +272,7 @@ if in_path apt-get; then
     alias a.uf='sudo apt-get dist-upgrade'
     alias a.i='sudo apt-get install'
     alias a.r='sudo apt-get remove'
-    alias a.s='apt-cache --names-only search'
+    alias a.s='apt-cache search --names-only search'
     alias a.sh='apt-cache show'
   fi
 
