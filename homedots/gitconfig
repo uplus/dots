@@ -125,7 +125,6 @@
 	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
 	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
 	pick = cherry-pick
-	browse = !hub browse
 	foresta = !git-foresta --style=10
 	wta = !"f(){ git worktree add \".git-wt-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
 	grepf = grep --function-context
@@ -134,5 +133,9 @@
 	merge-to = merge-to
 	remote-change = remote-change
 	url-ssh = url-ssh
-	make-pr = !"git push -u && hub compare"
 	rp = reflog --date=human --all
+	# hub
+	make-pr = !"git push -u && hub compare"
+	browse = !hub browse
+	compare = !hub compare
+	pull-request = !hub pull-request
