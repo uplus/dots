@@ -20,6 +20,8 @@
 	renames = true
 	indentHeuristic = true
 	compactionHeuristic = false
+[fetch]
+	parallel = 0
 [pull]
 	# rebase = true
 	ff = only
