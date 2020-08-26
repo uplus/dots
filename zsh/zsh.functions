@@ -880,6 +880,14 @@ cdr-cleanup() {
     > "${CHPWD_DIR}"
 }
 
+pdf-cat-head() {
+  cat_to="${1:?cat to N from head}"
+  filename="$"
+  new_prefix="${2:-cat}"
+
+  pdftk "${filename}" cat "${cat_to}-end" output "${new_prefix}-${filename}"
+}
+
 iss-tag() {
   cd ~iss
   service="${1:? api or ui}"
