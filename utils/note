@@ -143,7 +143,7 @@ class Note # {{{
   end
 
   def self.tree
-    system("tree -C #{@@NOTE_DIR}")
+    system('tree', '-C', @@NOTE_DIR)
   end
 
   def self.note_dir
@@ -215,11 +215,11 @@ class Note # {{{
   end
 
   def less(path)
-    system("less -SRn #{path}")
+    system('less', '-SRn', path)
   end
 
   def edit(path)
-    system("$EDITOR #{path}")
+    system(ENV['EDITOR'], path, exception: true)
   end
 
   def delete(path)
