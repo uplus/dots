@@ -139,5 +139,6 @@
 	# hub
 	make-pr = !"git push -u && hub compare"
 	browse = !hub browse
+	open = browse
 	compare = !hub compare
 	pull-request = !hub pull-request
