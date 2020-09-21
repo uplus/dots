@@ -882,8 +882,8 @@ cdr-cleanup() {
 
 pdf-cat-head() {
   cat_to="${1:?cat to N from head}"
-  filename="$"
   new_prefix="${2:-cat}"
+  filename="${3:-filename}"
 
   pdftk "${filename}" cat "${cat_to}-end" output "${new_prefix}-${filename}"
 }
