@@ -41,9 +41,13 @@ is_interactive() {
   [[ $- == *i* ]]
 }
 
+in_darwin() {
+  [[ $OSTYPE =~ 'darwin' ]]
+}
+
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
-if ! in_tmux && is_interactive && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
+if ! in_tmux && is_interactive && (in_ssh || in_alacritty || in_darwin) && [[ ! -f ~/.notmux ]] && in_path tmux; then
   exec tmux
 fi
 rm ~/.notmux >&! /dev/null
