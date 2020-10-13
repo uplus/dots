@@ -120,7 +120,7 @@ elif in_path gem; then
   # export PATH="${$(gem environment gempath)%%:*}/bin:$PATH"
 fi
 
-export RUBYLIB="$HOME/.rubylib/:${RUBYLIB}"
+# export RUBYLIB="$HOME/.rubylib/:${RUBYLIB}"
 export GOPATH="$HOME/.go"
 export NPM_PACKAGES="$HOME/.npm-packages"
 
