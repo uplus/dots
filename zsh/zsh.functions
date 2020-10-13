@@ -897,8 +897,8 @@ iss-tag() {
   commit="$(git log -1 --oneline | awk '$0=$1')"
   echo
 
-  docker image ls | grep 'score-server' | grep "${service}-develop"
-  src_image_hash="$(docker image ls | grep 'score-server' | grep "${service}-develop" | awk '$0=$3')"
+  docker image ls | grep 'score-server' | grep "\s${service}\s"
+  src_image_hash="$(docker image ls | grep 'score-server' | grep "\s${service}\s" | awk '$0=$3')"
   echo
 
   echo "service:\t${service}"
@@ -920,7 +920,7 @@ iss-tag() {
 
 iss-build-tag() {
   cd ~iss
-  git checkout develop
+  git checkout master
   git pull
 
   service="${1:? api or ui}"
