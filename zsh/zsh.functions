@@ -889,7 +889,6 @@ pdf-cat-head() {
 }
 
 iss-tag() {
-  cd ~iss
   service="${1:? api or ui}"
   echo
 
@@ -919,10 +918,6 @@ iss-tag() {
 }
 
 iss-build-tag() {
-  cd ~iss
-  git checkout master
-  git pull
-
   service="${1:? api or ui}"
   echo
 
