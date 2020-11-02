@@ -888,43 +888,6 @@ pdf-cat-head() {
   pdftk "${filename}" cat "${cat_to}-end" output "${new_prefix}-${filename}"
 }
 
-iss-tag() {
-  service="${1:? api or ui}"
-  echo
-
-  git log -1 --oneline
-  commit="$(git log -1 --oneline | awk '$0=$1')"
-  echo
-
-  docker image ls | grep 'score-server' | grep "\s${service}\s"
-  src_image_hash="$(docker image ls | grep 'score-server' | grep "\s${service}\s" | awk '$0=$3')"
-  echo
-
-  echo "service:\t${service}"
-  echo "commit hash:\t${commit}"
-  echo "src image hash:\t${src_image_hash}"
-
-  echo
-  echo -n 'OK(y/n)? '
-  # if read -q; then
-    echo
-    image_name="upluse10/ictsc-score-server:${service}-${commit}"
-    docker tag "${src_image_hash}" "${image_name}"
-
-    echo "docker push ${image_name}"
-    docker push "${image_name}"
-    echo "${image_name}"
-  # fi
-}
-
-iss-build-tag() {
-  service="${1:? api or ui}"
-  echo
-
-  docker-compose build "${service}"
-  iss-tag "${service}"
-}
-
 # -() {
 # }
 #
