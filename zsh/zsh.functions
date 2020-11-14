@@ -787,7 +787,8 @@ build-qmk() {
       make preonic/rev2:uplus:dfu
       ;;
     helix)
-      make helix:uplus:avrdude
+      qmk compile -kb helix -km uplus
+      qmk flash -kb helix -km uplus
       ;;
     ergodash)
       make ergodash/rev1:uplus:avrdude
