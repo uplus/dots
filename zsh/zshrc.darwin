@@ -1,9 +1,9 @@
 export CPP_COMP_OPT="$(echo $CPP_COMP_OPT | sed s/c++1z/c++14/)"
 
 path=(
+  '/usr/local/opt/coreutils/libexec/gnubin'
   '/usr/local/Homebrew/bin'
   '/usr/local/opt/bin'
-  '/usr/local/opt/coreutils/libexec/gnubin'
   $HOME/.gem/ruby/2.6.0/bin
   $HOME/Library/Python/3.7/bin
   $path
