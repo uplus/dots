@@ -780,6 +780,10 @@ build-qmk() {
   cd ~qmk
 
   case "${name}" in
+    moonlander)
+      qmk compile -kb moonlander -km uplus
+      qmk flash -kb moonlander -km uplus
+      ;;
     ergodox_ez)
       make ergodox_ez:uplus:teensy
       ;;
