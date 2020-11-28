@@ -121,7 +121,7 @@
 	get = clone --depth 1
 	inish = !"f(){ git init && [ $# -ne 0 ] && git add $1; git s && git sh; }; f"
 	inic = !"git init && git add --all && git s && git com 'First commit.'"
-	ctodo = !"git commit -m \"[ci skip] [temporary commit] TODO: $(date +%F:%R)\""
+	ctodo = !"git commit -m \"[ci skip] [temporary commit] NOTE: $(date +%F:%R)\""
 	tmpc = !"git add --all && git ctodo"
 	# open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
 	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
