@@ -141,7 +141,7 @@ pkg_go(){ #{{{
 } #}}}
 
 pkg_python(){ #{{{
-  pkgs=(vim-vint ipython yamllint s-tui pynvim Send2Trash msgpack)
+  pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash msgpack qmk)
 
   for name in ${pkgs[@]}; do
     echo "${name}"
