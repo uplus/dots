@@ -571,3 +571,4 @@ alias umm='udisksctl mount'
 alias umu='udisksctl unmount'
 alias jqch='jq -C | head'
 alias tf=terraform
+alias timer=termdown
