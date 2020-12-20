@@ -3,12 +3,13 @@
   "Prompt": "[peco] ",
   "InitialFilter": "SmartCase",
   "StickySelection": true,
+  "Use256Color": true,
   "Style": {
-    "Query": ["white", "bold"],
-    "Basic": ["on_default", "white"],
-    "Matched": ["on_default", "yellow"],
-    "Selected": ["on_black", "white", "reverse"],
-    "SavedSelection": ["on_cyan", "default"]
+    "Basic": ["on_default", "default"],
+    "SavedSelection": ["reverse"],
+    "Selected": ["underline"],
+    "Query": ["45"],
+    "Matched": ["45"]
   },
   "Action": {
     "selectAllAndFinish": [
