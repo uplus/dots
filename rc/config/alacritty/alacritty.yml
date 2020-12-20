@@ -618,6 +618,7 @@ key_bindings:
   #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
   - { key: Tab,      mods: Control|Shift, chars: "\x1b[1;6I"                 }
   - { key: Tab,      mods: Control,       chars: "\x1b[1;5I"                 }
+  - { key: F11,                           action: ToggleFullscreen           }
 
   # for MacOS
   - { key: S,        mods: Alt,             chars: "\x1bs" }
