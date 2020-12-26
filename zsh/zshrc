@@ -48,7 +48,8 @@ prompt-ssh() {
 
 # vimなど特定のbgコマンドを表示する
 prompt-bg-cmds() {
-  bg_cmds=$(ps -o comm | tail --lines=+2 | grep -E 'vim')
+  # bg_cmds=$(ps -o comm | tail --lines=+2 | grep -E 'vim')
+  bg_cmds=$(jobs | head -1 | awk '$0=$NF')
 
   if [[ -n ${bg_cmds} ]]; then
     out=$(echo "${bg_cmds}" | head -1)
