@@ -187,6 +187,7 @@ pkg_gem() {
     neovim
     gist
     travis
+    rubocop
     solargraph
 
     # console, output
