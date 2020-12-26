@@ -141,7 +141,7 @@ pkg_go(){ #{{{
 } #}}}
 
 pkg_python(){ #{{{
-  pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash msgpack qmk)
+  pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash msgpack qmk pyls)
 
   for name in ${pkgs[@]}; do
     echo "${name}"
@@ -181,7 +181,39 @@ pkg_npm(){
 }
 
 pkg_gem() {
-  gem install $(cat Gemfile | grep '^gem' | sed "s/gem\s//" | tr -d "' " | tr '\n' ' ')
+  pkgs=(
+    yard
+    neovim
+    gist
+    travis
+    solargraph
+
+    # console, output
+    rb-readline
+    color_echo
+    awesome_print
+
+    # Open a library file. gem {edit | open | browse | clone}
+    # https://github.com/tpope/gem-browse
+    gem-browse
+    # gitリポジトリからインストール
+    specific_install
+    # delete published gem
+    # gemcutter
+
+    # TUI filesystem explorer
+    rfd
+    # Simple SQL Linter
+    sqlint
+
+    google-api-client
+    octokit
+
+    nokogiri
+    mechanize
+  )
+
+  gem install ${pkgs[@]}
 }
 
 clone_myrepos_tmp(){ #{{{
