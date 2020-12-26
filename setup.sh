@@ -172,6 +172,7 @@ pkg_npm(){
     write-good
     neovim
     tern
+    javascript-typescript-stdio
     underscore
   )
 
