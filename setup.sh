@@ -4,39 +4,39 @@ set -u
 current="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)"
 
 
-make_dirs_other(){ #{{{
+make_dirs_other(){
   mkdir -vp $HOME/src
   mkdir -vpm 700 $HOME/codes
-} #}}}
+}
 
-make_dirs_mini(){ #{{{
+make_dirs_mini(){
   mkdir -vp $HOME/bin
   mkdir -vpm 700 $HOME/tmp
   mkdir -vpm 700 $HOME/works
   mkdir -vpm 700 $HOME/.ssh
   mkdir -vpm 700 $HOME/.config
   mkdir -vpm 700 $HOME/.cache
-} #}}}
+}
 
-link_files() { #{{{
+link_files() {
   dir=$current/homedots
   for name in $(ls $dir); do
     ln -svi $dir/$name $HOME/.$name
   done
 
   lesskey
-} #}}}
+}
 
-link_utils_partial(){ #{{{
+link_utils_partial(){
   binln $current/utils/chgit.zsh
   binln $current/utils/chrepo.zsh
   binln $current/utils/atoh.rb
   binln $current/utils/htoa.rb
   binln $current/utils/bcho.rb
   binln $current/utils/chpat.rb
-} #}}}
+}
 
-setup_zsh(){ #{{{
+setup_zsh(){
   ln -svi "$current/zsh/zshenv" "$HOME/.zshenv"
   ln -svi "$current/zsh/zshrc" "$HOME/.zshrc"
   mkdir -p $HOME/.zsh
@@ -51,9 +51,9 @@ setup_zsh(){ #{{{
   # zgen
   git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
   zsh -ic 'exit'
-} #}}}
+}
 
-setup_vim(){ #{{{
+setup_vim(){
   git clone https://github.com/uplus/vimrc $HOME/.vim
   install_dein
   mkdir -p $HOME/.vim/tmp
@@ -61,61 +61,9 @@ setup_vim(){ #{{{
   #nvim
   mkdir -p ~/.config
   ln -svi $HOME/.vim $HOME/.config/nvim
-} #}}}
+}
 
-pkg_u(){ # {{{
-  _pkg_u() {
-    add-apt-repository -y ppa:webupd8team/java
-    add-apt-repository -y ppa:git-core/ppa
-    apt-get update
-    apt-get -y upgrade
-
-    apt-get -y sudo install zsh tmux ssh wget curl git git-sh tig \
-      clang clang-doc libclang-dev ruby ruby-dev perl libperl-dev \
-      php5 php5-dev python-dev python3-pip lua5.2 luajit tcl-dev libncurses5-dev libncursesw5-dev \
-      libmysqld-dev libcurl4-openssl-dev build-essential devscripts \
-      vim-gtk exuberant-ctags silversearcher-ag \
-      libxt-dev autoconf automake autotools-dev debhelper dh-make fakeroot lintian pkg-config patch \
-      patchutils pbuilder x11-xfs-utils terminology iotop htop \
-      apt-file gufw gnome-session gwenview xsel rlwrap
-
-  }
-
-  sudo _pkg_u
-} #}}}
-
-pkg_u_utility(){ #{{{
-  _pkg_u_utility() {
-    add-apt-repository -y ppa:neovim-ppa/unstable
-    add-apt-repository -y ppa:ubuntu-desktop/ubuntu-make
-    add-apt-repository -y ppa:numix/ppa
-    add-apt-repository -y ppa:webupd8team/y-ppa-manager
-    apt-add-repository -y ppa:screenlets/ppa
-    apt-get update
-
-    apt-get -y install gpart gparted \
-      qemu-kvm uvtool virtualbox \
-      vlc libdvdread4 \
-      paprefs pavucontrol \
-      ubuntu-make y-ppa-manager ppa-purge \
-      mcomix unar gimp  nautilus-image-converter \
-      unity-tweak-tool dconf-editor \
-      compizconfig-settings-manager compiz-plugins-extra \
-      classicmenu-indicator indicator-multiload \
-      pavucontrol nodejs sqlite sqlitebrowser zenmap easystroke \
-      fontforge python-fontforge open-jtalk espeak \
-      ubuntu-restricted-extras \
-      asunder soundkonverter lame flac wavpack \
-      screenlets screenlets-pack-all
-
-      #interactive
-      apt-get install -y wireshark mysql-server oracle-java8-installer oracle-java9-installer
-  }
-
-  sudo _pkg_u_utility
-} #}}}
-
-pkg_go(){ #{{{
+pkg_go(){
   pkgs=(
     github.com/motemen/gore # REPL
     github.com/peco/peco/cmd/peco
@@ -138,7 +86,7 @@ pkg_go(){ #{{{
   for name in ${pkgs[@]}; do
     go get -v -u "${name}"
   done
-} #}}}
+}
 
 pkg_pip(){
   pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash qmk pyls flake8 autopep8)
@@ -236,10 +184,6 @@ install_echo_sd(){
   chmod +x !$
 }
 
-install_eslint(){
-  npm -g install eslint-config-airbnb eslint-plugin-import eslint-plugin-react eslint-plugin-jsx-a11y eslint-config-airbnb-base eslint
-}
-
 install_ctop() {
   wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O ~/bin/ctop
   chmod +x !$
@@ -247,29 +191,6 @@ install_ctop() {
 
 install_dein(){
   git clone --depth 1 https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
-}
-
-install_peda(){
-  git clone --depth 1 https://github.com/scwuaptx/peda.git ~/src/peda
-  dotln ~/src/peda
-}
-
-install_pwnlib(){
-  mkdir ~/.rubylib
-  git clone --depth 1 https://github.com/owlinux1000/pwnlib ~/src/pwnlib
-  sln ~/src/pwnlib/pwnlib.rb ~/.rubylib/
-}
-
-install_fsalib(){
-  mkdir ~/.rubylib
-  git clone --depth 1 https://github.com/owlinux1000/fsalib ~/src/fsalib
-  sln ~/src/fsalib/fsalib.rb ~/.rubylib/
-}
-
-install_pwntools(){
-  git clone --depth 1 https://github.com/peter50216/pwntools-ruby ~/src/pwntools
-  cd ~/src/pwntools
-  rake install
 }
 
 install_other(){
@@ -307,22 +228,6 @@ install_rbenv() {
   git clone --depth 1 https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
   git clone --depth 1 https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
   ln -svi $current/default-gems $HOME/.rbenv/default-gems
-}
-
-install_ruby_with_rbenv() {
-  local v19 v20 HEAD
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-  # v19=`rbenv install --list | grep -E "\s1\.9\.." | tail -1`
-  # v20=`rbenv install --list | grep -E "\s2\.0\.." | tail -1`
-  HEAD=$(rbenv install --list | grep -e '^\s\+[0-9]\..\..' | grep -Ev "\-(dev|preview|rc)$" | tail -1)
-
-  # rbenv install $v19
-  # rbenv install $v20
-  rbenv install $HEAD
-  rbenv global $HEAD
-  rbenv rehash
-  gem update --system
 }
 
 install_linuxbrew() {
