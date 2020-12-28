@@ -169,8 +169,8 @@ pkg_brew() {
 
   brew install neovim --HEAD
   brew install ${pkgs[@]}
-  brew cask install font-source-code-pro font-source-code-pro-for-powerline
-  # brew cask install vagrant virtualbox
+  brew install --cask font-source-code-pro font-source-code-pro-for-powerline
+  # brew install --cask vagrant virtualbox
 }
 
 clone_myrepos_tmp(){ #{{{
