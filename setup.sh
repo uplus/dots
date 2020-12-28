@@ -161,6 +161,18 @@ pkg_gem() {
   gem install ${pkgs[@]}
 }
 
+pkg_brew() {
+  pkgs=(
+    coreutils iproute2mac luajit pgrep pkill fswatch
+    tig tree wget curl tmux ripgrep circleci pwgen peco jq
+  )
+
+  brew install neovim --HEAD
+  brew install ${pkgs[@]}
+  brew cask install font-source-code-pro font-source-code-pro-for-powerline
+  # brew cask install vagrant virtualbox
+}
+
 clone_myrepos_tmp(){ #{{{
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
