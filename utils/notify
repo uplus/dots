@@ -1,5 +1,10 @@
 #!/usr/bin/env zsh
 
+if in_darwin; then
+  # do nothing
+  return
+fi
+
 if [[ ${1:-} = '--sound' ]]; then
   play /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg >&! /dev/null <&- &!
   shift
