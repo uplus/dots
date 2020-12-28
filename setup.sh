@@ -140,17 +140,12 @@ pkg_go(){ #{{{
   done
 } #}}}
 
-pkg_python(){ #{{{
+pkg_pip(){
   pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash qmk pyls flake8 autopep8)
+  pip3 install --upgrade --user ${pkgs[@]}
+}
 
-
-  for name in ${pkgs[@]}; do
-    echo "${name}"
-    pip install --upgrade --user "${name}"
-  done
-} #}}}
-
-pkg_rust(){
+pkg_cargo(){
   pkgs=(
     tealdeer
     cargo-update
@@ -172,7 +167,6 @@ pkg_npm(){
   pkgs=(
     write-good
     neovim
-    tern
     javascript-typescript-stdio
     underscore
   )
