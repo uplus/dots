@@ -132,9 +132,10 @@ zle -N zle_filter_cdr
 
 zle_filter_select_file(){ # {{{
   zle reset-prompt
+  local word="$(get_buffer_current_word)"
 
   local -a files
-  filter_select_file "$(get_buffer_current_word)" | while read file; do
+  filter_select_file ${word} | while read file; do
     files+="'${file}'"
   done
 
