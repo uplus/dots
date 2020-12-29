@@ -163,7 +163,7 @@ pkg_gem() {
 
 pkg_brew() {
   pkgs=(
-    coreutils iproute2mac luajit pgrep pkill fswatch
+    coreutils findutils iproute2mac luajit pgrep pkill fswatch
     tig tree wget curl tmux ripgrep circleci pwgen peco jq
   )
 
