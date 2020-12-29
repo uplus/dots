@@ -4,9 +4,9 @@ FinderMultiQueryMigemo.dictionary_path = '/usr/share/cmigemo/utf-8/migemo-dict'
 FinderMultiQueryMigemo.minimum_query_length = 2
 
 # Run command file for percol
-percol.view.PROMPT  = r"<bold><cyan>[percol]</cyan>:</bold> %q"
+percol.view.PROMPT = r"<bold><cyan>[percol]</cyan>:</bold> %q"
 percol.view.CANDIDATES_LINE_SELECTED = ("on_green", "black")
-percol.view.CANDIDATES_LINE_QUERY    = ("on_yellow", "black")
+percol.view.CANDIDATES_LINE_QUERY = ("on_yellow", "black")
 
 # Display finder name in RPROMPT
 percol.view.prompt_replacees["F"] = lambda self, **args: self.model.finder.get_name()
