@@ -445,6 +445,7 @@ alias_exists chrome google-chrome-stable
 # alias cat=hat # パイプとかめんどい
 # alias_exists git hub
 alias_rlwrap phpmyadmin-cli
+alias_over termdown -b
 
 if in_darwin; then
   alias_over pgrep -ilL
