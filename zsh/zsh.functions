@@ -870,7 +870,7 @@ wis(){
 endless() {
   while :; do
     eval "${*}"
-    read
+    # read
   done
 }
 
