@@ -1,6 +1,6 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
-Name=Mozc Configuration
+Name=Mozc Settings
 Exec=/usr/lib/mozc/mozc_tool --mode=config_dialog
 Icon=/usr/share/icons/hicolor/128x128/apps/org.fcitx.Fcitx5.fcitx-mozc.png
 Type=Application
