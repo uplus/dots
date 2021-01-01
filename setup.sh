@@ -257,11 +257,6 @@ install_tig(){
   popd $current
 }
 
-install_git_foresta(){
-  git clone https://github.com/takaaki-kasai/git-foresta $HOME/src/git-foresta/
-  binln $HOME/src/git-foresta/git-foresta
-}
-
 install_psysh() {
   [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
 }

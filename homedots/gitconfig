@@ -50,10 +50,9 @@
 	dcw = diff --cached --color-words
 	dw  = diff --color-words
 	ds  = diff --stat
-	l       = !git logline -20
-	lf      = foresta -20
-	lh      = !git logline origin/master..@
-	la      = !git logline
+	l       = !git graph -20
+	lh      = !git graph origin/master..@
+	la      = !git graph
 	lo      = log --graph --decorate --stat --find-renames
 	logline = log --graph --decorate --date=short --pretty='%C(yellow)%h %Cgreen[%cd]%Creset%C(cyan bold)%d%Creset %s'
 	today   = log --graph --decorate --oneline --stat --since='16 hour ago'
@@ -127,7 +126,6 @@
 	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
 	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
 	pick = cherry-pick
-	foresta = !git-foresta --style=10
 	wta = !"f(){ git worktree add \".git-wt-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
 	grepf = grep --function-context
 	log-branch = !"git log --oneline --pretty=format:%D | grep -v '^tag:' | sed \"s|^$(git remote show)/[^ ]*\\s*||g\" | grep -v '^$'"

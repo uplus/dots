@@ -70,17 +70,9 @@ alias gd='git d'
 alias gdc='git dc'
 alias gdw='git dw'
 alias gds='git ds'
-if can_exec git-foresta; then
-  alias gl='git lf'
-else
-  alias gl='git l'
-fi
+alias gl='git l'
 alias gla='git la'
-alias glh='git lh'
-alias glo='git lo'
 alias gs='git s'
-alias gsh='git sh'
-alias gst='git st'
 alias ge='git eda'
 alias ggrep='noglob git grep -P -I --line-number --ignore-case'
 alias gg=ggrep
