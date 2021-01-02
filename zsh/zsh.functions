@@ -870,6 +870,12 @@ wis(){
 endless() {
   while :; do
     eval "${*}"
+  done
+}
+
+endless-read() {
+  while :; do
+    eval "${*}"
     read
   done
 }
