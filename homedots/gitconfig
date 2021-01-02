@@ -140,3 +140,5 @@
 	open = browse
 	compare = !hub compare
 	pull-request = !hub pull-request
+	capdate = !"git add . ; git com update"
+	copdate = !"git com update"
