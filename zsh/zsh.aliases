@@ -270,6 +270,7 @@ if in_path apt-get; then
 
   alias a.u='a.ud && a.ug'
   alias a.c='sudo apt-get autoremove && sudo apt-get autoclean'
+  alias a.sf='dpkg -L'
   alias a.fs='apt-file -i search'
   alias upgradable='apt list --upgradable'
   alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
@@ -283,7 +284,7 @@ elif in_path pacman; then
   alias a.ug='sudo pacman -Su'
   alias a.s='pacman -Ss'
   alias a.sh='pacman -Si'
-  alias a.sl='pacman -Ql'
+  alias a.sf='pacman -Ql'
   alias a.l='pacman -Qqe'
   alias a.orphan='pacman -Qtdq'
   alias a.export='{pacman -Qqen; pacman -Qqm >&2}'
