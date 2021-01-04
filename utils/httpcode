@@ -1,15 +1,29 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require 'net/http/status'
 
-if ARGV.empty?
+code_str = ARGV[0]
+
+case code_str&.size
+when 1, 2, 3
+  keys = Net::HTTP::STATUS_CODES
+    .keys
+    .map(&:to_s)
+    .grep(/\A#{code_str}/)
+    .map(&:to_i)
+
+  Net::HTTP::STATUS_CODES
+    .slice(*keys)
+    .each do |key, value|
+      puts "#{key} #{value}"
+    end
+else
   Net::HTTP::STATUS_CODES.each do |key, value|
     puts "#{key} #{value}"
   end
-
-  exit
 end
 
-puts Net::HTTP::STATUS_CODES[ARGV[0].to_i]
 
 __END__
 require 'yaml'で管理する?
