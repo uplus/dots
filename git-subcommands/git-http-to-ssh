@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'uri'
+
+uri = URI.parse(ARGV.first)
+username, repository = uri.path.split('/')[1..2]
+
+print("git@#{uri.host}:#{username}/#{repository}")

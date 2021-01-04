@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+url="$(git remote -v | awk '$1=="origin"{print $2;exit}')"
+
+if [[ "$url" =~ ^https?:// ]]; then
+    ssh_url=$(git http-to-ssh "${url}")
+    git remote set-url origin "${ssh_url}"
+    echo "Changed!"
+    git remote -v
+else
+    echo "Do nothing"
+    git remote -v
+fi

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# http形式のURLをSSH形式にしてcloneする
+
+http_url="${@:$#:1}"
+ssh_url=$(git http-to-ssh "${http_url}")
+other_args="${@:1:$#-1}"
+
+git clone ${other_args} "${ssh_url}"
