@@ -189,6 +189,8 @@ alias -g ......='../../../../..'
 hash -d bin=$HOME/bin/
 hash -d src=$HOME/src/
 hash -d tmp=$HOME/tmp/
+hash -d codes=$HOME/codes/
+hash -d smp=~codes/smp/
 hash -d works=$HOME/works/
 hash -d config=$HOME/.config
 hash -d cache=$HOME/.cache
@@ -204,33 +206,15 @@ hash -d videos=$HOME/Videos
 hash -d pub=$HOME/Public
 
 hash -d dots=$DOT_DIR/
-hash -d zsh=$ZSH_DOT_DIR/
 hash -d vim=$HOME/.vim/
-hash -d codes=$HOME/codes/
-hash -d smp=~codes/smp/
 hash -d var=~works/@var/
 hash -d utils=~dots/utils
-
 hash -d mnt=$MOUNT
 hash -d vol=~mnt/volume
-hash -d large=~vol/large
-hash -d vm=~vol/vm
 
-hash -d ctf=~codes/ctf/
-hash -d ksnctf=~ctf/ksnctf/
 hash -d dein=$HOME/.cache/dein/repos/github.com
 hash -d cargo=$HOME/.cargo/registry/src/github.com-1ecc6299db9ec823
-hash -d nsni=~dein/uplus/neosnippet-snippets
-hash -d clurin=~dein/uplus/vim-clurin
-hash -d cbook=~ctf/cbook/
-hash -d jprog=~codes/jprog/
-hash -d otaku=~codes/otaku-server
-hash -d judge=~works/KogJudge-judge
-hash -d rbrn=$HOME/codes/rbrn/src
 hash -d qmk=~/src/qmk_firmware
-hash -d qmkmy=~qmk/keyboards/ergodox_ez/keymaps/uplus
-hash -d kuport=~/codes/kuport
-hash -d docker-jail=~codes/docker-jail
 hash -d iss=~codes/ictsc/score-server
 hash -d ictsc=~codes/ictsc
 
