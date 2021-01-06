@@ -847,12 +847,6 @@ default-route() {
   esac
 }
 
-pdf-remove-head() {
-  start="${1:start page}"
-  filename="${2:?filename}"
-  pdftk "${filename}" cat "${start}-end" output "${filename}-new"
-}
-
 os-console() {
   xdg-open $(os console url show -c url -f value ${1:? server name})
 }
@@ -892,7 +886,7 @@ cdr-cleanup() {
     > "${CHPWD_DIR}"
 }
 
-pdf-cat-head() {
+pdf-remove-head() {
   cat_to="${1:?cat to N from head}"
   new_prefix="${2:-cat}"
   filename="${3:-filename}"
