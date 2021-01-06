@@ -124,14 +124,21 @@ zle_filter_cdr(){ # {{{
   local dir="$(cdr -l | sed 's/^.....//' | peco --query "${LBUFFER}")"
 
   if [[ -n $dir ]]; then
-    BUFFER="cd ${dir}"
+    BUFFER=" cd ${dir}"
     zle accept-line
   fi
 } # }}}
 zle -N zle_filter_cdr
 
 zle_filter_select_file(){ # {{{
+  if [[ $HOME = $PWD ]]; then
+    echo 'here is home directory'
+    zle reset-prompt
+    return
+  fi
+
   zle reset-prompt
+
   local word="$(get_buffer_current_word)"
 
   local -a files
@@ -146,6 +153,12 @@ zle_filter_select_file(){ # {{{
 zle -N zle_filter_select_file
 
 zle_filter_open_file(){ # {{{
+  if [[ $HOME = $PWD ]]; then
+    echo 'here is home directory'
+    zle reset-prompt
+    return
+  fi
+
   zle reset-prompt
 
   local -a files
