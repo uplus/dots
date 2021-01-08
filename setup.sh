@@ -164,7 +164,7 @@ pkg_gem() {
 pkg_brew() {
   pkgs=(
     coreutils findutils iproute2mac luajit pgrep pkill fswatch
-    tig tree wget curl tmux ripgrep circleci pwgen peco jq
+    tig tree wget curl tmux ripgrep circleci pwgen peco jq nkf
   )
 
   brew install neovim --HEAD
