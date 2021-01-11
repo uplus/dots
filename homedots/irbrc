@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+%w[yaml json securerandom].each {|gem| require gem }
+
 class Object
   # methods without Object methods
   def methods_wo
