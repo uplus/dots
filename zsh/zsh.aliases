@@ -264,6 +264,7 @@ elif in_path pacman; then
   alias a.c='paccache --remove --uninstalled --keep=2'
   alias a.cc='sudo pacman -Scc'
   alias a.u='sudo pacman -Syyu'
+  alias a.uw='a.u -w --noconfirm'
   alias a.ud='sudo pacman -Syy'
   alias a.ug='sudo pacman -Su'
   alias a.s='pacman -Ss'

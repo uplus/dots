@@ -4487,13 +4487,13 @@ key-stop=
 global-key-jump-extrashort=Ctrl+Alt+Shift+Meta+a
 
 # Very short backwards jump (string)
-key-jump-extrashort=h
+key-jump-extrashort=
 
 # Very short forward jump (string)
 global-key-jump+extrashort=Ctrl+Alt+Shift+Meta+d
 
 # Very short forward jump (string)
-key-jump+extrashort=l
+key-jump+extrashort=
 
 # Short backwards jump (string)
 #global-key-jump-short=
@@ -4607,13 +4607,13 @@ key-nav-activate=
 global-key-vol-up=Ctrl+Alt+Shift+Meta+c
 
 # Volume up (string)
-key-vol-up=k
+key-vol-up=
 
 # Volume down (string)
 global-key-vol-down=Ctrl+Alt+Shift+Meta+b
 
 # Volume down (string)
-key-vol-down=j
+key-vol-down=
 
 # Mute (string)
 #global-key-vol-mute=
@@ -4871,7 +4871,7 @@ key-snapshot=n
 #global-key-loop=
 
 # Normal/Loop/Repeat (string)
-key-loop=
+#key-loop=l
 
 # Shrink the viewpoint field of view (360°) (string)
 #global-key-viewpoint-fov-in=
