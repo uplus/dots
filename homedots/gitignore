@@ -12,3 +12,4 @@ tags
 yarn-error.log
 .git-wt-*/
 .DS_Store
+dip.override.yml
