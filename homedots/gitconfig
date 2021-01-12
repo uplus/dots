@@ -1,6 +1,8 @@
 [user]
 	email = uplus.e10@gmail.com
 	name  = uplus
+[credential]
+	username = uplus
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
@@ -132,7 +134,6 @@
 	parent-branch = !"git log-branch | sed 's|HEAD -> [^ ]\\+\\s*||g' | grep -v '^$' | peco --select-1"
 	merge-to = merge-to
 	remote-change = remote-change
-	url-ssh = url-ssh
 	rp = reflog --date=human --all
 	# hub
 	make-pr = !"git push -u && hub compare"
