@@ -246,6 +246,7 @@ bind generic  Y !clip %(commit)   # Copy commit hash to clipboard
 
 bind stash  P ?git stash pop %(stash)
 bind stash  ! ?git stash drop %(stash)
+bind stash  A ?git stash apply %(stash)
 
 bind refs   C ?git checkout %(branch)
 bind refs   D !git branch -d %(branch)
