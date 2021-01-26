@@ -55,6 +55,10 @@ Layout/SpaceInsideBlockBraces:
 Naming/HeredocDelimiterNaming:
   Enabled: false
 
+## Rails
+Rails/NotNullColumn:
+  Enabled: false
+
 ## misc
 Bundler/OrderedGems:
   Enabled: false
