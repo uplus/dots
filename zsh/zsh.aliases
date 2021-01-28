@@ -173,6 +173,7 @@ alias -g R='| ruby -e'
 alias -g P='| peco'
 alias -g Y='| tyy | clip'
 alias -g LOG=' 2>&1 | tee -a log.txt'
+alias -g T='| tee'
 
 alias -g N='>/dev/null'
 alias -g E='2>/dev/null'
