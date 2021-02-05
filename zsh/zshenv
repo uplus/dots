@@ -84,10 +84,6 @@ export PAGER='less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT'
 export MANPAGER="${PAGER} --chop-long-lines"
 export GIT_PAGER="${PAGER}" # --chop-long-lines --quit-if-one-screen --no-init
 
-# docker exec bashとか用
-export LINES
-export COLUMNS
-
 export WWW_BROWSER=w3m
 export DOWNLOADER='wget -S'
 # export TERM=screen-256color-bce # italicが使えない
