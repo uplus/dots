@@ -449,8 +449,8 @@ fi
 alias suspend='sudo systemctl suspend'
 
 if can_exec exa; then
-  # alias l='exa -F'
-  # alias la='exa -a'
+  alias l='exa -F'
+  alias la='exa -a'
   alias le='exa'
   alias l1='exa -F1'
   alias ll='exa -lhg'
