@@ -150,5 +150,9 @@ export PATH="${HOME}/bin:${PATH}"
 # /etc/zsh/profile -> /etc/profileで爆発しないようプロテクト
 # readonly PATH
 
+# 何故か一度設定してからじゃないとexaが読み取ってくれない
+LINES="${LINES}"
+COLUMNS="${COLUMNS}"
+
 # for recover PATH
 PATH_keep="${PATH}"
