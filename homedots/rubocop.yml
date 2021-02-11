@@ -59,6 +59,7 @@ Naming/HeredocDelimiterNaming:
 Rails/NotNullColumn:
   Enabled: false
 
+
 ## misc
 Bundler/OrderedGems:
   Enabled: false
@@ -86,3 +87,5 @@ Style/EmptyElse:
 Style/TernaryParentheses:
   # 多少複雑な条件演算子は括弧で囲む
   EnforcedStyle: 'require_parentheses_when_complex'
+Style/EmptyMethod:
+  Enabled: false
