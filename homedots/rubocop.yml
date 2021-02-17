@@ -4,6 +4,7 @@ AllCops:
 
 require:
   - 'rubocop-performance'
+  - 'rubocop-rspec'
 
 ## メトリクス系
 Metrics/AbcSize:
@@ -22,20 +23,13 @@ Metrics/BlockLength:
   Max: 20
 Metrics/ParameterLists:
   Enabled: false
+
+# 基本的に長い行の折返しはエディターで対処
 Layout/LineLength:
-  # 基本的に長い行の折返しはエディターで対処
   Enabled: false
 
+# 日本語コメントを許可
 Style/AsciiComments:
-  # 日本語コメントを許可
-  Enabled: false
-
-## ハッシュ系
-Style/HashEachMethods:
-  Enabled: false
-Style/HashTransformKeys:
-  Enabled: false
-Style/HashTransformValues:
   Enabled: false
 
 ## インデント系
@@ -59,33 +53,50 @@ Naming/HeredocDelimiterNaming:
 Rails/NotNullColumn:
   Enabled: false
 
-
 ## misc
 Bundler/OrderedGems:
   Enabled: false
+
 Style/Documentation:
   Enabled: false
+
+# メソッドチェイン時にdo ~ end 形式を禁止する
 Style/BlockDelimiters:
   EnforcedStyle: 'braces_for_chaining'
+
+# "%10s" % [1] 形式を強制する(format,sprintfを禁止)
 Style/FormatString:
   EnforcedStyle: 'percent'
+
+# 過激. Layout/LineLengthすら見てくれないので見づらくなることがある
 Style/GuardClause:
-  # 過激
   Enabled: false
+
+# 過激. Layout/LineLengthを見て判断してくれるが、行の長さによって見た目がばらつくので無効
 Style/IfUnlessModifier:
-  # 過激
   Enabled: false
+
+# selfを明示したいときもある
+# ただし、selfではプライベートメソッドを呼べないので少し紛らわしくなる(ruby2.7まで?)
 Style/RedundantSelf:
-  # selfを明示したいときもある
-  # ただし、selfではプライベートメソッドを呼べないので少し紛らわしくなる
   Enabled: false
+
+# returnの明示を許可
 # Style/RedundantReturn:
 #   Enabled: false
+
+# elseが空のときのみ警告(nilを明示して欲しい)
 Style/EmptyElse:
-  # elseが空のときのみ警告(nilを明示して欲しい)
   EnforcedStyle: 'empty'
+
+# 多少複雑な条件演算子は括弧で囲む
 Style/TernaryParentheses:
-  # 多少複雑な条件演算子は括弧で囲む
   EnforcedStyle: 'require_parentheses_when_complex'
+
+# 開発時は空メソッドがよくできるので無視する
 Style/EmptyMethod:
+  Enabled: false
+
+# Hoge::Fuga 形式のネストした定義を許可する
+Style/ClassAndModuleChildren:
   Enabled: false
