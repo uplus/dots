@@ -127,9 +127,11 @@ startvm(){
 }
 
 mkd(){
-  mkdir -p $@
-  cd "${@:$#}"
+  mkdir -p "${*}"
+  cd "${*}"
 }
+
+alias mkd='noglob mkd'
 
 rmd(){
   if [[ $# -eq 0 ]]; then
