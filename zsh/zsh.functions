@@ -915,6 +915,7 @@ tops(){
   atop      アクティブなプロセスのみ?
   slabtop   メモリ
   jnettop   ホストとポートごとに表示
+  s-tui     電源
 }
 
 stats(){
