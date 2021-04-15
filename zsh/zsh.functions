@@ -873,6 +873,8 @@ endless-read() {
   while :; do
     eval "${*}"
     read
+    echo '---- execute ----'
+    echo "${*}"
   done
 }
 
