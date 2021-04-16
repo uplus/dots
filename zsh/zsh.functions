@@ -871,10 +871,10 @@ endless() {
 
 endless-read() {
   while :; do
+    echo '---- executing ----'
+    echo "${*}"
     eval "${*}"
     read
-    echo '---- execute ----'
-    echo "${*}"
   done
 }
 
