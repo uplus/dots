@@ -154,6 +154,7 @@ pkg_gem() {
     google-api-client
     octokit
 
+    parser
     nokogiri
     mechanize
   )
