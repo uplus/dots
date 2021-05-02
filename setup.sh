@@ -130,8 +130,11 @@ pkg_gem() {
     neovim
     gist
     travis
-    rubocop
     solargraph
+
+    rubocop
+    rubocop-performance
+    rubocop-rspec
 
     # console, output
     rb-readline
@@ -234,15 +237,6 @@ install_peco_wget(){
   mv "${target}/peco" "$HOME/bin" && rm -r "${target}"
 }
 
-install_rbenv() {
-  git clone --depth 1 https://github.com/sstephenson/rbenv.git ~/.rbenv
-  git clone --depth 1 https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-  git clone --depth 1 https://github.com/sstephenson/rbenv-default-gems.git ~/.rbenv/plugins/rbenv-default-gems
-  git clone --depth 1 https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
-  git clone --depth 1 https://github.com/rkh/rbenv-update.git ~/.rbenv/plugins/rbenv-update
-  ln -svi $current/default-gems $HOME/.rbenv/default-gems
-}
-
 install_linuxbrew() {
   git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
 }
@@ -334,15 +328,6 @@ mini(){
 myenv(){
   mini
   make_dirs_other
-}
-
-# TODO tmp
-#TODO: ubuntu centos archに対応させる
-#       rubyやclang,phpなどバージョンがめんどくさいリポジトリがある
-common_apps() {
-  local -a a b
-  a="openssh zsh git tig curl wget tmux tree"
-  b="gcc clang go ruby python python3 php lua luajit"
 }
 
 in_path(){
