@@ -81,6 +81,7 @@ pkg_go(){
     github.com/orisano/rget # parallel download
     github.com/yudai/gotty
     github.com/sacloud/usacloudy
+    github.com/mikefarah/yq/v4 # jq for YAML
   )
 
   for name in ${pkgs[@]}; do
