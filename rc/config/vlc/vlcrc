@@ -4458,7 +4458,7 @@ advanced=1
 #key-leave-fullscreen=Esc
 
 # Play/Pause (string)
-global-key-play-pause=Media Play Pause
+#global-key-play-pause=
 
 # Play/Pause (string)
 #key-play-pause=Space	Media Play Pause
@@ -4467,13 +4467,13 @@ global-key-play-pause=Media Play Pause
 #global-key-pause=
 
 # Pause only (string)
-#key-pause=Browser Stop
+key-pause=
 
 # Play only (string)
 #global-key-play=
 
 # Play only (string)
-#key-play=Browser Refresh
+key-play=
 
 # Faster (string)
 global-key-faster=Ctrl+Alt+Shift+Meta+g
