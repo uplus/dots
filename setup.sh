@@ -132,6 +132,7 @@ pkg_gem() {
     gist
     travis
     solargraph
+    dip
 
     rubocop
     rubocop-performance
