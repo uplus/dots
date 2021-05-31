@@ -184,8 +184,8 @@ bind generic  O maximize      # Maximize the current view
 bind status u status-update            # Stage/unstage changes in file
 bind status ! status-revert            # Revert changes in file
 bind status M status-merge             # Open git-mergetool(1)
-bind status C !git commit -vq
-bind status F !git commit --amend
+bind status C !git cov -q
+bind status F !git fix -q
 # bind status  ??? :toggle status        # Show short or long status labels
 
 bind stage  C !git commit -vq
