@@ -17,8 +17,8 @@
 [diff]
 	tool      = vimdiff
 	# algorithm = histogram
-	# algorithm = minimal
-	algorithm = patience
+	algorithm = minimal
+	# algorithm = patience
 	renames = true
 	indentHeuristic = true
 	compactionHeuristic = false
