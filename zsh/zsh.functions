@@ -871,7 +871,7 @@ endless() {
 
 endless-read() {
   while :; do
-    echo '---- executing ----'
+    echo "---- executing: $(date-now) ----"
     echo "${*}"
     eval "${*}"
     read

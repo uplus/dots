@@ -523,7 +523,6 @@ alias curl-json='curl -H "Content-Type: application/json"'
 
 
 # shortening
-# alias p=pry
 alias ipy=ipython
 alias py=python
 alias py2=python2
@@ -548,3 +547,4 @@ alias umu='udisksctl unmount'
 alias jqch='jq -C | head'
 alias tf=terraform
 alias timer=termdown
+alias date-now="date '+%F %T'"
