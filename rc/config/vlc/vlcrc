@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 3.0.12
+###  vlc 3.0.14
 ###
 
 ###
@@ -1410,7 +1410,7 @@
 #sout-avi-subject=
 
 # Encoder (string)
-#sout-avi-encoder=VLC Media Player - 3.0.12 Vetinari
+#sout-avi-encoder=VLC Media Player - 3.0.14 Vetinari
 
 # Keywords (string)
 #sout-avi-keywords=
@@ -2614,6 +2614,11 @@ sout-x264-tune=film
 # Number of parallel operations (integer)
 #sout-qsv-async-depth=4
 
+[libass] # Subtitle renderers using libass
+
+# Additional fonts directory (string)
+#ssa-fontsdir=
+
 [kate] # Kate overlay decoder
 
 # Formatted Subtitles (boolean)
@@ -3066,7 +3071,7 @@ sout-x264-tune=film
 #equalizer-preset=flat
 
 # Bands gain (string)
-#equalizer-bands=
+equalizer-bands=-5.7 -5.4 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0 -4.5
 
 # Two pass (boolean)
 #equalizer-2pass=0
@@ -3924,7 +3929,7 @@ sout-x264-tune=film
 #role=video
 
 # Audio filters (string)
-#audio-filter=
+audio-filter=equalizer
 
 # Audio visualizations (string)
 #audio-visual=none
