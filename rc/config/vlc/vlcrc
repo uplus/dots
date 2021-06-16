@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 3.0.14
+###  vlc 3.0.15
 ###
 
 ###
@@ -1410,7 +1410,7 @@
 #sout-avi-subject=
 
 # Encoder (string)
-#sout-avi-encoder=VLC Media Player - 3.0.14 Vetinari
+#sout-avi-encoder=VLC Media Player - 3.0.15 Vetinari
 
 # Keywords (string)
 #sout-avi-keywords=
@@ -3071,7 +3071,7 @@ sout-x264-tune=film
 #equalizer-preset=flat
 
 # Bands gain (string)
-equalizer-bands=-5.7 -5.4 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0 -4.5
+equalizer-bands=-5.1 -4.8 -4.8 0.0000000 0.0000000 0.0000000 0.0000000 -4.2 -6.3 -7.2
 
 # Two pass (boolean)
 #equalizer-2pass=0
