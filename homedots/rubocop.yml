@@ -49,10 +49,6 @@ Layout/SpaceInsideBlockBraces:
 Naming/HeredocDelimiterNaming:
   Enabled: false
 
-## Rails
-Rails/NotNullColumn:
-  Enabled: false
-
 ## misc
 Bundler/OrderedGems:
   Enabled: false
@@ -100,3 +96,7 @@ Style/EmptyMethod:
 # Hoge::Fuga 形式のネストした定義を許可する
 Style/ClassAndModuleChildren:
   Enabled: false
+
+# わざわざ zero? negative? を使わなくていい
+Style/NumericPredicate:
+  EnforcedStyle: comparison

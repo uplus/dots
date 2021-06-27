@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 3.0.15
+###  vlc 3.0.16
 ###
 
 ###
@@ -1410,7 +1410,7 @@
 #sout-avi-subject=
 
 # Encoder (string)
-#sout-avi-encoder=VLC Media Player - 3.0.15 Vetinari
+#sout-avi-encoder=VLC Media Player - 3.0.16 Vetinari
 
 # Keywords (string)
 #sout-avi-keywords=
@@ -2911,13 +2911,13 @@ sout-x264-tune=film
 [spatializer] # Audio Spatializer
 
 # Room size (float)
-#spatializer-roomsize=0.850000
+spatializer-roomsize=0.600000
 
 # Room width (float)
-#spatializer-width=1.000000
+spatializer-width=0.500000
 
 # Wet (float)
-#spatializer-wet=0.400000
+spatializer-wet=0.500000
 
 # Dry (float)
 #spatializer-dry=0.500000
@@ -3071,7 +3071,7 @@ sout-x264-tune=film
 #equalizer-preset=flat
 
 # Bands gain (string)
-equalizer-bands=-5.1 -4.8 -4.8 0.0000000 0.0000000 0.0000000 0.0000000 -4.2 -6.3 -7.2
+equalizer-bands=-8.9 -8.7 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 -3.6 -7.2
 
 # Two pass (boolean)
 #equalizer-2pass=0
