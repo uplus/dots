@@ -65,6 +65,7 @@ alias tb='tig blame'
 alias g='git'
 ga(){git a ${@:-.}}
 alias gch='git ch'
+alias gch-='git ch -'
 alias gb='git b'
 alias gd='git d'
 alias gdc='git dc'
