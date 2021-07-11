@@ -593,7 +593,7 @@ list_dirs_files(){
   dir="${${1:-.}:a}"
   shift
 
-  find "${dir}" $@ -type f 2>/dev/null | sed -e  "s|^${dir}/||"
+  find "${dir}" $@ -type f -or -type l 2>/dev/null | sed -e  "s|^${dir}/||"
 }
 
 vim-version(){ # {{{

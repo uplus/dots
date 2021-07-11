@@ -89,10 +89,10 @@ export DOWNLOADER='wget -S'
 # export TERM=screen-256color-bce # italicが使えない
 in_tmux || export TERM='xterm-256color'
 
-export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value -Wno-unused-function -Wno-ignored-qualifiers'
-export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
-export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
-export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector"
+# export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value -Wno-unused-function -Wno-ignored-qualifiers'
+# export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
+# export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
+# export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector"
 # export DOCKER_CONTENT_TRUST=1
 export NMAP_PRIVILEGED="" # set privilege mode to nmap
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
