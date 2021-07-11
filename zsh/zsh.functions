@@ -883,7 +883,10 @@ ping-mtu() {
 }
 
 cdr-cleanup() {
-  cat "${CHPWD_DIR}" \
+  old_path="${CHPWD_DIR}-old"
+
+  cp -f "${CHPWD_DIR}" "${old_path}"
+  cat "${old_path}" \
     | sed -E 's/^..|.$//g' \
     | filter_exists_dir \
     | sed -e "s/^/\$'/" -e "s/\$/'/" \
