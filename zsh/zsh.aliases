@@ -220,6 +220,7 @@ alias z.=zshrc
 alias z.e='zshrc zshenv'
 alias z.r='zshrc zshrc'
 alias z.l='zshrc zshrc.local'
+alias z.d='zshrc zshrc.darwin'
 alias z.a='zshrc zsh.aliases && realias'
 alias z.f='zshrc zsh.functions'
 alias z.c='zshrc zsh.completion'

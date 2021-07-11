@@ -1,6 +1,9 @@
 # export CPP_COMP_OPT="$(echo $CPP_COMP_OPT | sed s/c++1z/c++14/)"
 
 export HOMEBREW_RUBY_PATH='/usr/bin/ruby'
+# export HOMEBREW_PREFIX='/usr/local'
+# export HOMEBREW_CELLAR='' #"${HOMEBREW_PREFIX}/Celler"
+# export HOMEBREW_OPT='' #"${HOMEBREW_PREFIX}/opt"
 
 path=(
   '/usr/local/opt/coreutils/libexec/gnubin'
@@ -15,3 +18,8 @@ path=(
   )
 
 alias xdg-open='command open'
+
+export PATH="/usr/local/opt/llvm/bin:/usr/local/opt/gcc/bin:$PATH"
+# export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
