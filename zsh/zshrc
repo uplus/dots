@@ -99,7 +99,7 @@ HISTSIZE=20000  # memory
 HISTFILE=~/.zsh/history
 
 # 失敗したコマンドはファイルに書き込まない
-zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
+zshaddhistory() { whence -- "${${(z)1}[1]}" >| /dev/null || return 1 }
 # }}}
 
 #setopt {{{
