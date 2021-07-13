@@ -17,7 +17,7 @@ def parse_options
     .transform_keys(&:to_sym)
     .tap do |opts|
       opts[:num] = opts[:num].to_i
-      opts[:dir] = File.expand_path(opts[:dir]) + '/'
+      opts[:dir] = (Dir.pwd.include?('/Music/') ? Dir.pwd : File.expand_path(opts[:dir])) + '/'
     end
 end
 

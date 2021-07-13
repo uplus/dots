@@ -73,7 +73,7 @@ Style/IfUnlessModifier:
   Enabled: false
 
 # selfを明示したいときもある
-# ただし、selfではプライベートメソッドを呼べないので少し紛らわしくなる(ruby2.7まで?)
+# ただし、selfではプライベートメソッドを呼べないので少し紛らわしくなる(ruby2.6まで?)
 Style/RedundantSelf:
   Enabled: false
 
@@ -81,7 +81,7 @@ Style/RedundantSelf:
 # Style/RedundantReturn:
 #   Enabled: false
 
-# elseが空のときのみ警告(nilを明示して欲しい)
+# elseが空のときのみ警告(nilを返すなら明示)
 Style/EmptyElse:
   EnforcedStyle: 'empty'
 
@@ -99,4 +99,9 @@ Style/ClassAndModuleChildren:
 
 # わざわざ zero? negative? を使わなくていい
 Style/NumericPredicate:
-  EnforcedStyle: comparison
+  EnforcedStyle: 'comparison'
+
+# 'Hoge' + fuga のような書き方を許す
+Style/StringConcatenation:
+  Enabled: false
+  # Mode: conservative
