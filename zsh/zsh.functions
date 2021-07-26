@@ -217,6 +217,11 @@ gpush(){
   back git push ';' notify_result "'git pushed ${PWD:t}'"
 }
 
+gpull(){
+  echo 'pulling...'
+  back git pull ';' notify_result "'git pulled ${PWD:t}'"
+}
+
 v.mod() {
   file=$(git-modified-files-rel | peco --select-1 --on-cancel=error)
 
