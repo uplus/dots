@@ -3071,7 +3071,7 @@ spatializer-wet=0.500000
 #equalizer-preset=flat
 
 # Bands gain (string)
-equalizer-bands=-11.5 -4.9 0 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 -3.6 -7.2
+equalizer-bands=-11.5 -4.9 0 0.0000000 0.0000000 0.0000000 0.0000000 0 0 -7.2
 
 # Two pass (boolean)
 #equalizer-2pass=0
