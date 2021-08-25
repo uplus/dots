@@ -64,6 +64,11 @@ Style/BlockDelimiters:
 Style/FormatString:
   EnforcedStyle: 'percent'
 
+# %<hoge>s を共用しない
+Style/FormatStringToken:
+  Enabled: false
+  # MaxUnannotatedPlaceholdersAllowed: 4
+
 # 過激. Layout/LineLengthすら見てくれないので見づらくなることがある
 Style/GuardClause:
   Enabled: false
@@ -109,3 +114,7 @@ Style/StringConcatenation:
 # aliasキーワードよりalias_methodの方が直感的な挙動なため
 Style/Alias:
   EnforcedStyle: 'prefer_alias_method'
+
+# 常に禁止するほどではない
+Style/RescueModifier:
+  Enabled: false
