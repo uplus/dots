@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+play /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg >&! /dev/null <&- &!

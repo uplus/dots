@@ -6,7 +6,7 @@ if in_darwin; then
 fi
 
 if [[ ${1:-} = '--sound' ]]; then
-  play /usr/share/sounds/Oxygen-Sys-Log-In-Short.ogg >&! /dev/null <&- &!
+  sound-alert
   shift
 fi
 
