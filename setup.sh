@@ -103,6 +103,7 @@ pkg_cargo(){
     cargo-script
     # cargo-modules
     fd-find
+    typos-cli
   )
 
   for name in ${pkgs[@]}; do
