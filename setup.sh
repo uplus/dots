@@ -128,6 +128,7 @@ pkg_npm(){
 
 pkg_gem() {
   pkgs=(
+    rdoc
     yard
     neovim
     gist
