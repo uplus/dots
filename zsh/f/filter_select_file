@@ -4,6 +4,8 @@ local -a ignore_dirs ignores
 local dirname file
 
 # ripgrepで作り直したほうが良いかも(rustでtargetを除外する必要があって面倒)
+#   ignoreする版としない版
+# rg --files --color=never --hidden --glob '!.git'
 # rg --files --color=never --hidden --glob '!.git' --no-ignore-vcs
 
 ignore_dirs=(.git __pycache__ node_modules '.git-wt-*' .nuxt .next dist cache .bundle)
