@@ -241,6 +241,13 @@ install_peco_wget(){
   mv "${target}/peco" "$HOME/bin" && rm -r "${target}"
 }
 
+install_ripgrep(){
+  case "$(get_os_type)" in
+    'arch') sudo pacman -S ripgrep ;;
+    'macos') brew install ripgrep ;;
+  esac
+}
+
 install_linuxbrew() {
   git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
 }
@@ -364,9 +371,20 @@ dotln () {
   done
 }
 
+get_linux_type() {
+  grep -Po '(?<=^ID\=).*|(?<=^ID_LIKE\=).*' /etc/os-release | tr -d '\n'
+}
+
+get_os_type() {
+  case "${OSTYPE:-}" in
+    linux*)  get_linux_type ;;
+    darwin*) echo -n 'macos' ;;
+  esac
+}
+
 # TODO making
 get_pkg_manager(){
-  case "$(grep -Po '(?<=^ID\=).*|(?<=^ID_LIKE\=).*' /etc/os-release)" in
+  case "$(get_os_type)" in
     *arch*)
       alias a.i='sudo pacman -S --noconfirm'
       alias a.u='sudo pacman -Syyu --noconfirm'
