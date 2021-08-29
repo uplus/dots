@@ -1,0 +1,10 @@
+#!/usr/bin/zsh
+
+local dir
+
+# 引数を省略した場合はカレントディレクトリ
+# パス展開する(末尾のスラッシュを取り除く)
+dir="${${1:-.}:a}"
+shift
+
+find "${dir}" $@ -type f -or -type l 2>/dev/null | sed -e  "s|^${dir}/||"

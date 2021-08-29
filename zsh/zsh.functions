@@ -24,6 +24,7 @@ autoload -Uz google_translate
 autoload -Uz google
 autoload -Uz rmhere
 autoload -Uz sym_solve
+autoload -Uz list_dirs_files
 autoload -Uz filter_select_file
 autoload -Uz filter_select_file_travel
 
@@ -594,15 +595,6 @@ exec_my_precmd(){
   done
 }
 add-zsh-hook precmd exec_my_precmd
-
-list_dirs_files(){
-  # 引数を省略した場合はカレントディレクトリ
-  # パス展開する(末尾のスラッシュを取り除く)
-  dir="${${1:-.}:a}"
-  shift
-
-  find "${dir}" $@ -type f -or -type l 2>/dev/null | sed -e  "s|^${dir}/||"
-}
 
 vim-version(){ # {{{
   install_dir="${HOME}/works/vim-versions"
