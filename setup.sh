@@ -378,7 +378,7 @@ get_linux_type() {
 get_os_type() {
   case "${OSTYPE:-}" in
     linux*)  get_linux_type ;;
-    darwin*) echo -n 'macos' ;;
+    darwin*) echo 'macos' ;;
   esac
 }
 
