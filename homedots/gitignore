@@ -1,16 +1,26 @@
+.git-wt-*/
+
+# misc
 core
 !core/
+dip.override.yml
+
+# editor
 .*.sw?
-tags
+.nvimlog
+.session.vim
+.DS_Store
+.vimrc.local
 .tags
+tags
+
+# language
+.bundle
 .clang_complete
 .tern-port
-.vimrc.local
-.yardoc
-.bundle
-.session.vim
 yarn-error.log
-.git-wt-*/
-.DS_Store
-dip.override.yml
-.nvimlog
+.yardoc
+
+# credentials
+.env
+.secret
