@@ -40,6 +40,7 @@ alias vh='v .'
 alias vr='v -R'
 alias vl="v -c 'normal \`0' -c 'bwipeout #'"
 alias v.min='v -N -u NONE -U NONE -i NONE --noplugin'
+alias v.rec='v +Recache +q'
 v.one() {
   v.min -e -s /dev/stdin "+normal ${*:?}"  +%p +q!
 }
