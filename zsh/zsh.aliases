@@ -525,7 +525,6 @@ alias curl-json='curl -H "Content-Type: application/json"'
 alias html_unescape="ruby -r cgi -e 'puts CGI.unescapeHTML(ARGF.read)'"
 alias aws-profiles="cat ~/.aws/config | grep -Po '(?<=^\[profile )[^\]]+'"
 alias aws-select-profile='export AWS_PROFILE="$(aws-profiles | peco)"'
-alias aws-dkc='aws-vault exec lf-lowlevel -- docker-compose'
 
 
 # shortening
