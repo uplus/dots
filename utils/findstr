@@ -30,4 +30,4 @@ str=$1
 # echo "opt: $opt"
 # echo "str: $str"
 
-find "${location}" ${opt} -type f -exec grep --color=auto -iIH "${str}" {} \; 2> /dev/null
+find "${location}" ${opt} -type f -exec grep --color=auto -iIH "${str}" {} + 2> /dev/null
