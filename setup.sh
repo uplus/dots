@@ -241,6 +241,10 @@ install_peco_wget(){
   mv "${target}/peco" "$HOME/bin" && rm -r "${target}"
 }
 
+install_tldr() {
+  cargo install tealdeer
+}
+
 install_ripgrep(){
   case "$(get_os_type)" in
     'arch') sudo pacman -S ripgrep ;;
