@@ -332,6 +332,22 @@ kill(){
   fi
 }
 
+pgkill() {
+  pattern="${1:? process grep name}"
+  pgrep -ila "${pattern}"
+
+  if (($? != 0)); then
+    warn 'not matched'
+    return
+  fi
+
+  if read -q '?pkill -9 (y/N) '; then
+    pkill -9 "${pattern}"
+    pgrep -ila "${pattern}"
+    return 0
+  fi
+}
+
 mac-vendor(){
   # TODO: /usr/share/nmap/nmap-mac-prefixes
   if (($# != 0)); then
