@@ -3929,7 +3929,7 @@ equalizer-bands=-9.4 -5.3 0 0.0000000 0.0000000 0.0000000 0.0000000 0 0 -1.8
 #role=video
 
 # Audio filters (string)
-audio-filter=equalizer
+#audio-filter=
 
 # Audio visualizations (string)
 #audio-visual=none
