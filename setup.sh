@@ -144,6 +144,8 @@ pkg_gem() {
     rb-readline
     color_echo
     awesome_print
+    # CLI utils like grep, sed, aws, etc..
+    pru
 
     # Open a library file. gem {edit | open | browse | clone}
     # https://github.com/tpope/gem-browse
