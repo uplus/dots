@@ -298,6 +298,7 @@ bind generic  % :toggle file-filter
 # Note the four leading spaces in the string to match. This is because
 # Git automatically indents commit messages by four spaces.
 
+color "---"                blue    default
 color "diff --"            yellow  default
 color "--- "               yellow  default
 color "+++ "               yellow  default
@@ -316,6 +317,7 @@ color "rename from "       yellow  default
 color "rename to "         yellow  default
 color "similarity "        yellow  default
 color "dissimilarity "     yellow  default
+color "\ No newline at end of file" blue    default
 color "diff-tree "         blue    default
 color "Author: "           cyan    default
 color "Commit: "           magenta default
@@ -334,12 +336,26 @@ color "parent "            blue    default
 color "tree "              blue    default
 color "author "            green   default
 color "committer "         magenta default
-color "    Signed-off-by"  yellow  default
-color "    Acked-by"       yellow  default
-color "    Tested-by"      yellow  default
-color "    Reviewed-by"    yellow  default
+color "    Signed-off-by:" yellow  default
+color "    Acked-by:"      yellow  default
+color "    Reviewed-by:"   yellow  default
+color "    Helped-by:"     yellow  default
+color "    Reported-by:"   yellow  default
+color "    Mentored-by:"   yellow  default
+color "    Suggested-by:"  yellow  default
+color "    Cc:"            yellow  default
+color "    Noticed-by:"    yellow  default
+color "    Tested-by:"     yellow  default
+color "    Improved-by:"   yellow  default
+color "    Thanks-to:"     yellow  default
+color "    Based-on-patch-by:"      yellow  default
+color "    Contributions-by:"       yellow  default
+color "    Co-authored-by:"         yellow  default
+color "    Requested-by:"           yellow  default
+color "    Original-patch-by:"      yellow  default
+color "    Inspired-by:"            yellow  default
 color default              default default normal
-color cursor               black   green   normal
+color cursor               black   cyan   normal
 color status               green   default
 color delimiter            magenta default
 color date                 blue    default
@@ -353,9 +369,10 @@ color file                 default default
 color grep.file            blue    default
 color file-size            default default
 color line-number          cyan    default
-color title-blur           white   blue
-color title-focus          white   blue    bold
+color title-blur           cyan    black
+color title-focus          cyan    black   bold
 color main-commit          default default
+color main-annotated       default default bold
 color main-tag             magenta default bold
 color main-local-tag       magenta default
 color main-remote          yellow  default
@@ -370,6 +387,8 @@ color stat-untracked       magenta default
 color help-group           blue    default
 color help-action          yellow  default
 color diff-stat            blue    default
+color diff-add-highlight   green   default standout
+color diff-del-highlight   red     default standout
 color palette-0            magenta default
 color palette-1            yellow  default
 color palette-2            cyan    default
@@ -385,7 +404,7 @@ color palette-11           default default bold
 color palette-12           white   default bold
 color palette-13           red     default bold
 color graph-commit         blue    default
-# color search-result        black   yellow
+color search-result        black   yellow
 
 # Mappings for colors read from git configuration.
 # Set to "no" to disable.
@@ -403,6 +422,9 @@ set git-colors = \
   diff.old=diff-del \
   diff.new=diff-add \
   \
+  diff-highlight.oldHighlight=diff-del-highlight \
+  diff-highlight.newHighlight=diff-add-highlight \
+  \
   grep.filename=grep.file \
   grep.linenumber=grep.line-number \
   grep.separator=grep.delimiter \
@@ -412,4 +434,5 @@ set git-colors = \
   status.updated=stat-staged \
   status.changed=stat-unstaged \
   status.untracked=stat-untracked
+
 # }}}
