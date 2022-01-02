@@ -187,6 +187,7 @@ bind status M status-merge             # Open git-mergetool(1)
 bind status C !git cov -q
 bind status F !git fix -q
 # bind status  ??? :toggle status        # Show short or long status labels
+bind status Y @clip %(file)
 
 bind stage  C !git commit -vq
 bind stage  u status-update            # Stage/unstage current diff (c)hunk
@@ -196,11 +197,13 @@ bind stage  \ stage-split-chunk        # Split current diff (c)hunk
 bind stage  @ :/^@@                    # Jump to next (c)hunk
 bind stage  [ :toggle diff-context -1  # Decrease the diff context
 bind stage  ] :toggle diff-context +1  # Increase the diff context
+bind stage  Y @clip %(text)
 
 bind diff   @ :/^@@                      # Jump to next (c)hunk
 bind diff   [ :toggle diff-context -1
 bind diff   ] :toggle diff-context +1
 bind diff   R ?git revert %(commit)
+bind diff   Y @clip %(text)
 
 bind main C ?git cherry-pick %(commit)
 bind main B ?git checkout %(commit)
@@ -240,7 +243,7 @@ bind generic  e edit              # Open in editor
 bind generic  : prompt            # Open the prompt
 bind generic  <C-L> screen-redraw # Redraw the screen
 bind generic  z stop-loading      # Stop all loading views
-bind generic  Y !clip %(commit)   # Copy commit hash to clipboard
+bind generic  Y @clip %(commit)   # Copy commit hash to clipboard
 
 
 
