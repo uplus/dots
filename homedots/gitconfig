@@ -99,7 +99,7 @@
 	ch-original = checkout --theirs # 元の方を採用する
 	ch-current = checkout --ours
 	ls = ls-files
-	tags = tag -l -n
+	tags = tag -l -n --sort=v:refname
 	untrack = update-index --skip-worktree
 	push-force = push --force-with-lease
 	remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
