@@ -1,3 +1,4 @@
+# vim: fdm=marker
 # https://github.com/jonas/tig/blob/master/tigrc
 # Please see 'man tigrc' for a complete reference.
 
@@ -149,25 +150,28 @@ set mouse-scroll       = 3      # Number of lines to scroll via the mouse
 #   %(diffargs)   The diff options from `diff-options` or `TIG_DIFF_OPTS`
 #   %(prompt)   Prompt for the argument value.
 
-#View switching
+# View switching
 bind generic  m view-main
 bind generic  d view-diff
 bind generic  l view-log
+bind generic  L view-reflog
 bind generic  t view-tree
 bind generic  f view-blob
 bind generic  b view-blame
 bind generic  r view-refs
 bind generic  p view-pager
+# bind generic  h view-help
+bind generic  H view-help
 bind generic  s view-status
+bind generic  S view-status   # Compat binding to avoid going crazy!
 bind generic  c view-stage
 bind generic  y view-stash
-bind generic  g none
+bind generic  g none          # for gg
 bind generic  g/ view-grep
-bind generic  gg move-first-line
-bind generic  G move-last-line
-bind generic  H view-help
 
 # View manipulation
+bind generic  gg move-first-line
+bind generic  G move-last-line
 bind generic  h view-close    # Close the current view
 bind generic  q quit          # Close all views and quit
 bind generic  <C-N> next
@@ -176,6 +180,7 @@ bind generic  <Enter> enter   # Enter and open selected entry
 bind generic  <F5>  refresh
 bind generic  <C-R> refresh   # Reload and refresh view
 bind generic  <Lt>  back      # Go back to the previous view state
+bind generic  .     back      # Go back to the previous view state
 bind generic  ,     parent    # Move to parent
 bind generic  <Tab> view-next # Move focus to the next view
 bind generic  O maximize      # Maximize the current view
@@ -192,6 +197,7 @@ bind status Y @clip %(file)
 bind stage  C !git commit -vq
 bind stage  u status-update            # Stage/unstage current diff (c)hunk
 bind stage  1 stage-update-line        # Stage/unstage current line
+bind stage  2 stage-update-part        # Stage/unstage part of chunk
 bind stage  ! status-revert            # Revert current diff (c)hunk
 bind stage  \ stage-split-chunk        # Split current diff (c)hunk
 bind stage  @ :/^@@                    # Jump to next (c)hunk
@@ -233,10 +239,14 @@ bind generic  / search
 bind generic  ? search-back
 bind generic  n find-next
 bind generic  N find-prev
-
 # Navigation keys used while searching
+bind search <Down>  find-next
+bind search <C-N> find-next
 bind search <C-J> find-next
+bind search <Up>  find-prev
+bind search <C-P> find-prev
 bind search <C-K> find-prev
+bind search <C-C> view-close
 
 # Misc
 bind generic  e edit              # Open in editor
