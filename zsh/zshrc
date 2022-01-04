@@ -17,8 +17,12 @@ autoload -Uz zmv
 # zmodload zsh/zpty
 
 eval "$(dircolors -b)"
-LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=[^:]\+/ln=38;5;81/g')
-autoload -U colors && colors  # NOTE: call by zplug
+# change ln color
+# LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=[^:]\+/ln=38;5;81/g')
+# bolt to regular
+LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=00;/g')
+# NOTE: call by zplug
+autoload -U colors && colors
 
 # fallback
 [[ "$COLORTERM" == (24bit|truecolor) || "${terminfo[colors]}" -eq '16777216' ]] || zmodload zsh/nearcolor
