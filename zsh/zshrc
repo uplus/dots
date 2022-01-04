@@ -12,6 +12,8 @@ fpath+=($ZSH_DOT_DIR/f)
 disable r # zsh-builtin: 直前のコマンドを実効する
 autoload -Uz zmv
 
+# Show options `set -o`
+
 # 仮想端末でコマンドを実行(パスワードの自動入力とか ダメ絶対)
 # zmodload zsh/zpty
 
@@ -86,8 +88,6 @@ prompt-symb-color(){
   fi
 }
 # }}}
-
-# Show options `set -o`
 
 # History # {{{
 setopt share_history
@@ -208,11 +208,12 @@ source "$ZSH_DOT_DIR/zsh.completion"
 
 # }}}
 
-# title
+# title update {{{
 title-cmd(){ title "${1}" }
 title-dir(){ title "${PWD}" }
 add-zsh-hook preexec title-cmd
 add-zsh-hook chpwd title-dir
+# }}}
 
 # cdr # {{{
 # if is-at-least 4.3.11; then
