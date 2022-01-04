@@ -267,6 +267,7 @@ elif in_path pacman; then
   alias a.s='pacman -Ss'
   alias a.sh='pacman -Si'
   alias a.sf='pacman -Ql'
+  alias a.fs='pacman -F'
   alias a.l='pacman -Qqe'
   alias a.orphan='pacman -Qtdq'
   alias a.export='{pacman -Qqen; pacman -Qqm >&2}'
