@@ -45,7 +45,7 @@
 ; ham-it-up=false
 ; heading=npm
 ; if-present=false
-; ignore-scripts=false
+ignore-scripts=true
 ; init-module=~/.npm-init.js
 ; init-author-name=
 ; init-author-email=
