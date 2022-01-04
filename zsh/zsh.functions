@@ -125,11 +125,6 @@ binln(){
   done
 }
 
-# for completion
-startvm(){
-  back VBoxManage startvm ${@}
-}
-
 mkd(){
   mkdir -p "${*}"
   cd "${*}"
@@ -170,7 +165,6 @@ open(){
   done
 }
 
-vboxresize(){ VBoxManage modifymedium --resize $((1024*$1)) $2 }
 title()  { echo -ne "\033]0;$1\007" }
 binfo()  { which -aps $1 && $1 --version }
 help()   { $1 --help 2>&1 | less }
@@ -749,8 +743,20 @@ textimg(){
   convert -background white -fill black -font "${font}" -pointsize "${fsize}" label:"${text}" "${out}"
 }
 
-show-vm-port(){
-  vboxmanage list vms | grep -oP '(?<=").*(?=")' | xargs -I {} vboxmanage showvminfo --machinereadable {} | grep -e '^name' -e '^Forwarding'
+vbox-startvm(){
+  back VBoxManage startvm ${@}
+}
+
+vbox-show-vm-port(){
+  vbox-list-vms| xargs -I {} vboxmanage showvminfo --machinereadable {} | grep -e '^name' -e '^Forwarding'
+}
+
+vbox-list-vms() {
+  vboxmanage list vms | grep -oP '(?<=").*(?=")'
+}
+
+vbox-resize(){
+  VBoxManage modifymedium --resize $((1024*$1)) ${2}
 }
 
 binskip(){
