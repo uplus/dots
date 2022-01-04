@@ -10,7 +10,6 @@ LC_COLLATE=C # Don't move to zshenv.
 DIRSTACKSIZE=100
 fpath+=($ZSH_DOT_DIR/f)
 disable r # zsh-builtin: 直前のコマンドを実効する
-# autoload -Uz add-zsh-hook # NOTE: call by zplug
 autoload -Uz zmv
 
 # 仮想端末でコマンドを実行(パスワードの自動入力とか ダメ絶対)
@@ -21,7 +20,6 @@ eval "$(dircolors -b)"
 # LS_COLORS=$(echo "$LS_COLORS" | sed 's/ln=[^:]\+/ln=38;5;81/g')
 # bolt to regular
 LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=00;/g')
-# NOTE: call by zplug
 autoload -U colors && colors
 
 # fallback
@@ -194,38 +192,12 @@ fi
 unset zgen_path
 # }}}
 
-#zplug # {{{
-# zplug_path="$HOME/.zplug"
-if [[ ! -d ${zplug_path:-.} ]]; then
-
-  if read -q key'?install zplug?(y/N) '; then
-    echo; git clone https://github.com/b4b4r07/zplug.git "${zplug_path}"
-  fi
-  unset key
-fi
-
-if [[ -d ${zplug_path:-} ]]; then
-  export ZPLUG_LOADFILE="$ZSH_DOT_DIR/zplug.zsh"
-  source "${zplug_path}/init.zsh"
-
-  zplug check --verbose
-  zplug load # TODO: Call compinit again.
-
-  alias zplug-clear='zplug clean; zplug clear; rm ~/.{,zplug/}zcompdump'
-  in_path k && alias k='k -Ah'
-  in_path distribution && alias distribution='distribution --color'
-fi
-unset zplug_path
-# }}}
-
 # NOTE: call by zplug one time.
 #zsh completion system
 # autoload -U compinit
 
 # -u disable security check.
 # compinit -u
-
-# compdef _cdd cdd # NOTE: call by zplug.
 
 # require after compinit
 source "$ZSH_DOT_DIR/zsh.completion"
