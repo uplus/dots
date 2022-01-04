@@ -115,10 +115,8 @@ pkg_cargo(){
 
 pkg_npm(){
   pkgs=(
-    write-good
-    neovim
-    javascript-typescript-stdio
-    underscore
+    pyright
+    typescript
   )
 
   for name in ${pkgs[@]}; do
