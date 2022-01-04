@@ -2906,7 +2906,7 @@ sout-x264-tune=film
 [speex_resampler] # Speex resampler
 
 # Resampling quality (integer)
-#speex-resampler-quality=4
+speex-resampler-quality=10
 
 [spatializer] # Audio Spatializer
 
@@ -2928,7 +2928,7 @@ spatializer-wet=0.500000
 [soxr] # soxr
 
 # Resampling quality (integer)
-#soxr-resampler-quality=2
+soxr-resampler-quality=4
 
 [scaletempo] # Audio tempo scaler synched with rate
 
@@ -2958,7 +2958,7 @@ spatializer-wet=0.500000
 [samplerate] # Secret Rabbit Code (libsamplerate) resampler
 
 # Sample rate converter type (integer)
-#src-converter-type=2
+src-converter-type=0
 
 [remap] # Audio channel remapper
 
@@ -3908,13 +3908,13 @@ equalizer-bands=-9.4 -5.3 0 0.0000000 0.0000000 0.0000000 0.0000000 0 0 -1.8
 #audio-desync=0
 
 # Replay gain mode (string)
-#audio-replay-gain-mode=none
+audio-replay-gain-mode=track
 
 # Replay preamp (float)
 #audio-replay-gain-preamp=0.000000
 
 # Default replay gain (float)
-#audio-replay-gain-default=-7.000000
+audio-replay-gain-default=0.000000
 
 # Peak protection (boolean)
 #audio-replay-gain-peak-protection=1
@@ -3935,7 +3935,7 @@ equalizer-bands=-9.4 -5.3 0 0.0000000 0.0000000 0.0000000 0.0000000 0 0 -1.8
 #audio-visual=none
 
 # Audio resampler (string)
-#audio-resampler=
+audio-resampler=any
 
 # Enable video (boolean)
 #video=1
