@@ -252,30 +252,6 @@ dhmod(){
   ls -F | grep "/" | xargs chmod -R $@
 }
 
-#ud # {{{
-ud(){
-  case "${1:-}" in
-    list)
-      grep '^\.' ~/.cdd | sort -u -t: -k 2,2 | sed -e 's/^\.//' | sed -e 's/:/: /' | sort -n
-      ;;
-    '')
-      dir="$(ud list | peco)"
-      [[ -n $dir ]] && ud "${dir}"
-      ;;
-    *)
-      cdd ".${1:?}"
-      ;;
-  esac
-}
-
-ud-add(){
-  if can_exec cdd && [[ $UID -ne 0 && $PWD != $HOME ]]; then
-    cdd add ".$(gettty)"
-  fi
-}
-add-zsh-hook precmd ud-add
-# }}}
-
 # peco cd # {{{
 pc(){
   if [[ $# -eq 0 ]]; then
