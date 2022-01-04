@@ -234,6 +234,10 @@ v.mod() {
   fi
 }
 
+vw() {
+  "${EDITOR}" ~works/"${1}"
+}
+
 hosts(){
   # -sn -sP
   nmap -sn "${1:-$(ip-sub | head -1)}" | sed -e "s/^\(MAC.*\)$/\1\n/"
