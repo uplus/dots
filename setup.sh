@@ -129,6 +129,9 @@ pkg_gem() {
     rdoc
     yard
     neovim
+    debug
+    irb
+
     gist
     travis
     solargraph
