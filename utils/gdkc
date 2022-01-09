@@ -1,0 +1,142 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'forwardable'
+require 'optparse'
+require 'open3'
+
+# Low layer API
+module Base
+  PREFIX = 'dev--'
+  MOUNT_DST = '/my_src'
+  PS_COMMON = ['ps', '--all', '--no-trunc', "--filter=name=^#{PREFIX}"].freeze
+
+  module_function
+
+  def create(image:, name:, command:, mount:)
+    abort unless name.start_with?(PREFIX)
+    cmd_output('create', '--interactive', "--volume=#{mount}:#{Base::MOUNT_DST}", "--name=#{name}", image, command)
+  end
+
+  def exec(name:, command:)
+    abort unless name.start_with?(PREFIX)
+    cmd_output('start', name) && cmd_output('exec', "--workdir=#{MOUNT_DST}", '-i', '-t', name, command)
+  end
+
+  def rm(*names)
+    abort unless names.all? {|name| name.start_with?(PREFIX) }
+    cmd_output('rm', '--force', *names)
+  end
+
+  def ls
+    cmd_output(*PS_COMMON, '--format=table {{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}\t{{.Mounts}}')
+  end
+
+  def ids
+    o, _s = self.cmd_result(*PS_COMMON, '--format={{.ID}}')
+    o.split("\n")
+  end
+
+  def inspect
+    o, _s = self.cmd_result('inspect', *ids)
+    JSON.parse(o, { symbolize_names: true })
+  end
+
+  # @return [Boolean]
+  def cmd_output(*args)
+    pp args if $DEBUG
+    system('docker', *args)
+  end
+
+  # @return [String, Process::Status]
+  def cmd_result(*args)
+    Open3.capture2('docker', *args)
+  end
+end
+
+module CLI
+  module_function
+
+  def ls
+    Base.ls
+  end
+
+  def rm(args)
+    args.each {|name| puts("- #{name}") }
+    Base.rm(*args) if prompt?('delete these containers?')
+  end
+
+  def create(args)
+    abort 'create subcommand expect 1..4 arguments' unless args.size.between?(1, 4)
+
+    opts = {
+      image: args[0],
+      name: Base::PREFIX + (args[1] || File.basename(Dir.pwd)),
+      command: args[2] || 'bash',
+      mount: args[3] || Dir.pwd
+    }
+
+    opts.each {|k, v| puts "#{k}\t#{v}" }
+
+    Base.create(**opts) if prompt?('create?')
+  end
+
+  def exec(args)
+    # TODO: PWDから再帰的にたどってvolume mountしてる場所を探したい(docker-composeっぽく)
+    abort 'exec [NAME] [COMMAND]' if 2 < args.size
+
+    Base.exec(
+      name: Base::PREFIX + (args[0] || File.basename(Dir.pwd)),
+      command: args[1] || 'bash'
+    )
+  end
+
+  def completion
+    # TODO: 補完作る
+    abort 'unimplemented subcommand'
+  end
+
+  def help
+    cmd_name = File.basename($PROGRAM_NAME)
+    print <<~HELP
+
+      Usage:  #{cmd_name} SUBCOMMAND
+
+      SubCommands:
+        ls
+        start\tIMAGE [NAME] [COMMAND] [MOUNT_SRC]
+        exec\t[NAME] [COMMAND]
+        rm\tNAMES
+        help
+        -h
+        --help
+    HELP
+  end
+
+  def prompt?(str)
+    print "#{str} (y/N) "
+    $stdin.gets.to_s.chomp.match?(/^(Y|YES)$/i)
+  end
+end
+
+if ARGV.empty?
+  CLI.help
+  exit 1
+end
+
+case ARGV.shift
+when 'ls'
+  CLI.ls
+when 'create'
+  CLI.create(ARGV)
+when 'exec'
+  CLI.exec(ARGV)
+when 'rm'
+  CLI.rm(ARGV)
+when 'completion'
+  CLI.completion
+when 'help', '-h', '--help'
+  CLI.help
+else
+  abort 'unimplemented subcommand'
+end
