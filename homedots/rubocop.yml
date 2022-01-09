@@ -118,3 +118,7 @@ Style/Alias:
 # 常に禁止するほどではない
 Style/RescueModifier:
   Enabled: false
+
+# 微妙
+Style/YodaCondition:
+  Enabled: false
