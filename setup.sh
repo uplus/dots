@@ -117,6 +117,7 @@ pkg_npm(){
   pkgs=(
     pyright
     typescript
+    typescript-language-server
   )
 
   for name in ${pkgs[@]}; do

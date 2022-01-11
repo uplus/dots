@@ -4,6 +4,7 @@
 core
 !core/
 dip.override.yml
+.Dockerfile
 
 # editor
 .*.sw?
