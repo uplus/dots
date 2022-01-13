@@ -132,6 +132,7 @@ pkg_gem() {
     neovim
     debug
     irb
+    gemdiff
 
     gist
     travis
