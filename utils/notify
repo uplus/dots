@@ -1,10 +1,5 @@
 #!/usr/bin/env zsh
 
-if in_darwin; then
-  # do nothing
-  return
-fi
-
 if [[ ${1:-} = '--sound' ]]; then
   sound-alert
   shift
@@ -12,4 +7,9 @@ fi
 
 title="${1:?title}"
 body="${2:-}"
-notify-send --urgency=low --icon="${HOME}/.face.icon" --app-name="${title}" "${title}" "${body}"
+
+if in_darwin; then
+  osascript -e "display notification \"${body}\" with title \"${title}\""
+else
+  notify-send --urgency=low --icon="${HOME}/.face.icon" --app-name="${title}" "${title}" "${body}"
+fi
