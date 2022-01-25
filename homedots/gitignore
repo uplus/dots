@@ -21,6 +21,7 @@ tags
 .tern-port
 yarn-error.log
 .yardoc
+node_modules/
 
 # credentials
 .env
