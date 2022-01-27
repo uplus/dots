@@ -157,7 +157,7 @@ showjson(){ cat "${1}" | jq "${2:-.}" }
 alias -g G='2>&1 | egrep -i'
 alias -g GV='2>&1 | egrep -iv'
 alias -g WC='2>&1 | wc'
-alias -g X='2>&1 | xargs -I{}'
+# alias -g X='2>&1 | xargs -I{}'
 alias -g L='2>&1 | less'
 
 # alias -g S='2>&1 | sed'
@@ -167,9 +167,9 @@ alias -g L='2>&1 | less'
 # alias -g C='2>&1 | cut'
 
 alias -g M='--help 2>&1 | less'
-alias -g P='| peco'
+# alias -g P='| peco'
 alias -g Y='| tyy | clip'
-alias -g T='| tee'
+# alias -g T='| tee'
 alias -g LOG=' 2>&1 | tee -a log.txt'
 
 alias -g N='>/dev/null'
