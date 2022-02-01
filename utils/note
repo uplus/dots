@@ -219,7 +219,9 @@ class Note # {{{
   end
 
   def edit(path)
-    system(ENV['EDITOR'], path, exception: true)
+    Dir.chdir(@@NOTE_DIR) do
+      system(ENV['EDITOR'], path, exception: true)
+    end
   end
 
   def delete(path)
