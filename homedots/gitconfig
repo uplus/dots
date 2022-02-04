@@ -128,6 +128,7 @@
 	tmpc = !"git add --all && git ctodo"
 	# open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
 	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+	pull-rebase = !"f(){ git switch ${1} && git switch - && git rebase ${1} ; }; f"
 	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
 	pick = cherry-pick
 	wta = !"f(){ git worktree add \".git-wt-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
