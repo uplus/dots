@@ -12,7 +12,6 @@ path=(
   '/usr/local/opt/luajit-openresty/bin'
   '/usr/local/Homebrew/bin'
   '/usr/local/opt/bin'
-  $HOME/.gem/ruby/2.6.0/bin
   $HOME/Library/Python/3.9/bin
   $path
   )
