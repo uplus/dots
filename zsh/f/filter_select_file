@@ -5,6 +5,7 @@ local dirname file
 
 # ripgrepで作り直したほうが良いかも(rustでtargetを除外する必要があって面倒)
 #   ignoreする版としない版
+#   各ディレクトリに除外しないパスを記述するファイルを置けるようにする?
 # rg --files --color=never --hidden --glob '!.git'
 # rg --files --color=never --hidden --glob '!.git' --no-ignore-vcs
 

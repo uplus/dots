@@ -180,7 +180,6 @@ bind generic  <Enter> enter   # Enter and open selected entry
 bind generic  <F5>  refresh
 bind generic  <C-R> refresh   # Reload and refresh view
 bind generic  <Lt>  back      # Go back to the previous view state
-bind generic  .     back      # Go back to the previous view state
 bind generic  ,     parent    # Move to parent
 bind generic  <Tab> view-next # Move focus to the next view
 bind generic  O maximize      # Maximize the current view

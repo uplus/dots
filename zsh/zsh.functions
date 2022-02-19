@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh -ue
+#!/usr/bin/env zsh -ue --pipefail
 
 # カレントシェルの環境変数を変更するものなど
 autoload -Uz proxy-on
