@@ -65,11 +65,15 @@ setup_vim(){
 
 pkg_go(){
   pkgs=(
-    github.com/motemen/gore # REPL
     github.com/peco/peco/cmd/peco
     github.com/peco/migemogrep
+    github.com/yudai/gotty
+    github.com/mikefarah/yq/v4 # jq for YAML
+    github.com/simeji/jid/cmd/jid # json incremental digger
+    github.com/orisano/rget # parallel download
+    github.com/sacloud/usacloudy
+    github.com/motemen/gore # REPL
     github.com/jingweno/ccat # color cat
-    github.com/nfs/gocode
     github.com/k0kubun/pp
     github.com/jstemmer/gotags
     github.com/golang/lint/golang
@@ -77,11 +81,8 @@ pkg_go(){
     golang.org/x/tools/cmd/goimports
     golang.org/x/tools/cmd/gotype
     github.com/itchyny/bed/cmd/bed # binary editor
+    github.com/ichinaski/pxl # display images in the terminal
     github.com/monochromegane/the_platinum_searcher/cmd/pt
-    github.com/orisano/rget # parallel download
-    github.com/yudai/gotty
-    github.com/sacloud/usacloudy
-    github.com/mikefarah/yq/v4 # jq for YAML
   )
 
   for name in ${pkgs[@]}; do
@@ -216,18 +217,6 @@ install_ctop() {
 
 install_dein(){
   git clone --depth 1 https://github.com/Shougo/dein.vim ~/.cache/dein/repos/github.com/Shougo/dein.vim
-}
-
-install_other(){
-  # json incremental digger
-  go get -v github.com/simeji/jid/cmd/jid
-
-  # display images in the terminal
-  go get -v github.com/ichinaski/pxl
-
-  # go completion
-  go get -v github.com/nsf/gocode
-  gocode set autobuild true
 }
 
 install_peco(){
