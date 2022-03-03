@@ -64,8 +64,14 @@ alias t='tig'
 alias ts='tig status'
 alias tb='tig blame'
 alias g='git'
-ga(){git a ${@:-.}}
 alias gsw='git sw'
+# gsw() {
+#   if [[ $# -eq 0 ]]; then
+#     git switch $(git eda | peco | awk '$0=$1')
+#   else
+#     git switch  "${1}"
+#   fi
+# }
 alias gsw-='git sw -'
 alias gch='git ch'
 alias gch-='git ch -'
