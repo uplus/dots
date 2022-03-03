@@ -64,6 +64,7 @@ alias t='tig'
 alias ts='tig status'
 alias tb='tig blame'
 alias g='git'
+alias ga='git a'
 alias gsw='git sw'
 # gsw() {
 #   if [[ $# -eq 0 ]]; then

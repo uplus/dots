@@ -201,8 +201,12 @@ git-set-pushurl(){
   git config remote.origin.url "$(git config remote.origin.url | tr ':' '/' | sed -e 's|^git@|https://|')"
 }
 
+git-branch() {
+  git branch | peco --select-1 | awk '$0=$NF'
+}
+
 git-hash(){
-  branch="$(git branch | peco --select-1 | awk '$0=$NF')"
+  branch="$(git-branch)"
   [[ -z $branch ]] && return
   git log --oneline --decorate=short "${branch}" | peco | awk '$0=$1' | tr '\n' ' '
 }
