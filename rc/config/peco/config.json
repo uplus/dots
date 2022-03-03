@@ -4,6 +4,7 @@
   "InitialFilter": "SmartCase",
   "StickySelection": true,
   "Use256Color": true,
+  "SelectionPrefix": ">",
   "Style": {
     "Basic": ["on_default", "default"],
     "SavedSelection": ["reverse"],
