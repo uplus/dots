@@ -116,14 +116,7 @@ alias dk-stop='docker stop $(dkp-select)'
 
 
 #C/C++ gdb {{{1
-# alias clang="clang $C_COMP_OPT"
-# alias clang++="clang++ $CPP_COMP_OPT"
-# alias gcc="\gcc $GCC_OPT"
-# alias gccg="\gcc -g $GCC_OPT"
-# alias gcc32="\gcc -m32 $GCC_OPT"
-# alias gccg32="\gcc -g -m32 $GCC_OPT"
 alias gdb='gdb -q'
-# alias gdba='gdb -q a.out'
 alias lldba='lldb a.out'
 alias objdump='objdump -M intel'
 
@@ -336,24 +329,9 @@ fi
 # Folds END {{{1
 # }}}1
 
-#rails
-alias ra=rails
-alias r-mig='rails db:migrate'
-alias r-s='rails server'
-alias r-c='rails console'
-alias r-bi='bundle install --path=.bundle --without=product'
-alias r-bu='bundle update'
-alias r-t='rails test'
-alias r-ti='rails test:integration'
-alias r-tc='rails test:controllers'
-alias r-th='rails test:helpers'
-alias r-tm='rails test:models'
-alias r-tf='rails test:fixtures'
-
 #cargo
 alias c-r='goback-run Cargo.toml cargo run'
 alias c-b='goback-run Cargo.toml cargo build'
-alias diesel='goback-run Cargo.toml diesel'
 
 
 #override
@@ -394,8 +372,7 @@ alias_over rm -v
 alias_over which -p
 alias_over jobs -ld
 alias_over mii-tool -vv
-alias_over ag --smart-case --hidden
-alias_over less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --quit-if-one-screen --no-init
+alias_over less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --chop-long-lines --no-init # --quit-if-one-screen 
 alias_over dmesg --color=always -e \| less # -Hだとless動作が揃わない
 alias_over xtrlock -f
 alias_over source-highlight -f esc -i
@@ -507,7 +484,6 @@ alias \?='where'
 alias keys='watch -t -d -n3 zsh -ic keymaps'
 alias con-cisco='screen /dev/ttyUSB0'
 alias ssh-fingerprint='ssh-keygen -lf'
-alias mysql-ictsc='mysql --host=127.0.0.1 --port=3306 --user=ictsc_score_server --database=ictsc_score_server --password'
 alias journalctl-boot='journalctl -ax -b'
 alias ipa="ip a | block '^\d+:\s+(?!br-|lo).' '^\d+:\s+br-'"
 alias ip-default-route='ip route show default | awk \$0=\$3 | uniq'
