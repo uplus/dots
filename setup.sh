@@ -111,7 +111,7 @@ pkg_cargo(){
     cargo install "${name}"
   done
 
-  tldr --os=linux --update
+  tldr --update
 }
 
 pkg_npm(){
@@ -233,10 +233,6 @@ install_peco_wget(){
   get_url="$(curl -sS "${req_url}" | grep 'browser_download_url' | grep "${target}" | head -1 | awk '$0=$2' | tr -d '"')"
   wget "${get_url}" -O - | tar zxf -
   mv "${target}/peco" "$HOME/bin" && rm -r "${target}"
-}
-
-install_tldr() {
-  cargo install tealdeer
 }
 
 install_ripgrep(){
