@@ -858,20 +858,13 @@ os-console() {
 
 wis(){
   watch -c -n 1 zsh -ic "\"${@} ; exit\""
-  # tempfile="$(mktemp)"
-  # while :; do
-  #   echo "---- executing: $(date-now) ----"
-  #   eval "$@" > "${tempfile}"
-  #   clear
-  #   cat "${tempfile}"
-  #   echo "---- finished: $(date-now) ----"
-  #   sleep 1
-  # done
 }
 
 endless() {
   while :; do
+    echo "---- executing: $(date-now) ----"
     eval "${*}"
+    echo "---- finished: $(date-now) ----"
     sleep 0.5
   done
 }
