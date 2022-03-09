@@ -472,7 +472,8 @@ alias __='sudo $EDITOR'
 alias odh='od -A x -t x1z -v '
 alias vlc-clear='rm -r ~/.cache/vlc/'
 alias tyy='tee $(tty)'
-alias gip='curl --silent --show-error ifconfig.io'
+# alias gip='curl --silent --show-error ifconfig.io'
+alias gip='curl --silent --show-error checkip.amazonaws.com'
 alias pensay='cowsay -f tux'
 alias rmt=trash
 alias grep-href="grep -oP '(?<=href=\")[^\"]*'"
