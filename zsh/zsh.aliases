@@ -316,6 +316,7 @@ alias ri='noglob ri'
 alias yri='noglob yri'
 alias sgrep='noglob sgrep'
 alias curl='noglob curl'
+alias timec='noglob timec'
 
 # systemd
 if in_path systemctl; then

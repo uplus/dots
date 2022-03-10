@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'time'
+
+ARGV
+  .join
+  .delete(' ')
+  .gsub(/\d{1,2}:\d{1,2}/) {|time_str| Time.strptime(time_str, '%M:%S').to_i }
+  .then {|str| eval(str) }
+  .tap {|value| puts format('%02d:%02d', value / 60, value % 60) }
