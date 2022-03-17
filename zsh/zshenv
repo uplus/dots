@@ -8,45 +8,18 @@ ZSHENV_LOADED="loaded"
 ## add unique attr
 typeset -U path PATH MANPATH INFOPATH fpath FPATH MANPATH NODE_PATH # RUBYLIB
 
-in_path(){
-  which $@ &>! /dev/null
-}
-
-can_exec(){
-  type $@ &>! /dev/null
-}
-
-exists_source(){
-  [[ ! -f "$1" ]] && return 0
-  source "${1}"
-}
-
-in_ssh(){
-  [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]]
-}
-
-in_tmux(){
-  [[ -n "${TMUX:-}" ]]
-}
-
-in_alacritty() {
-  [[ $- == *i* ]] && [[ -n "${ALACRITTY_LOG:-}" ]]
-}
-
-is_parent() {
-  ps --no-header "${PPID}" | grep -q "${1:? parent process name}"
-}
-
-is_interactive() {
-  [[ $- == *i* ]]
-}
-
-in_darwin() {
-  [[ $OSTYPE =~ 'darwin' ]]
-}
+in_path(){ which $@ &>! /dev/null }
+can_exec(){ type $@ &>! /dev/null }
+in_ssh(){ [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]] }
+in_tmux(){ [[ -n "${TMUX:-}" ]] }
+in_alacritty() { [[ $- == *i* ]] && [[ -n "${ALACRITTY_LOG:-}" ]] }
+is_parent() { ps --no-header "${PPID}" | grep -q "${1:? parent process name}" }
+is_interactive() { [[ $- == *i* ]] }
+in_darwin() { [[ $OSTYPE =~ 'darwin' ]] }
 
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
+## tmux
 if ! in_tmux && is_interactive && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
   exec tmux
 fi
@@ -86,27 +59,18 @@ export GIT_PAGER="${PAGER}" # --chop-long-lines --quit-if-one-screen --no-init
 
 export WWW_BROWSER=w3m
 export DOWNLOADER='wget -S'
-# export TERM=screen-256color-bce # italicが使えない
 in_tmux || export TERM='xterm-256color'
-
-# export C_CPP_WALL_OPT='-Wall -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-value -Wno-unused-function -Wno-ignored-qualifiers'
-# export C_COMP_OPT="$C_CPP_WALL_OPT -lm -std=c11"
-# export CPP_COMP_OPT="$C_CPP_WALL_OPT -std=c++1z"
-# export GCC_OPT="$C_COMP_OPT -O0 -fno-stack-protector"
 # export DOCKER_CONTENT_TRUST=1
+export COMPOSE_HTTP_TIMEOUT=1200
 export NMAP_PRIVILEGED="" # set privilege mode to nmap
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
-# export RUBYOPT='-w'
-
 export CHPWD_DIR="${HOME}/.zsh/dirs"
-
-## Neovim
-# prefix
-export NVIM_PYTHON_LOG_FILE="$HOME/.vim/tmp/log"
-export NVIM_PYTHON_LOG_LEVEL=INFO
-
 # export LC_ALL=en_US.UTF-8 # LC_COLLATE is not working, evil /etc/profile
 # export LC_COLLATE=C
+
+## Neovim
+export NVIM_PYTHON_LOG_FILE="$HOME/.vim/tmp/log"
+export NVIM_PYTHON_LOG_LEVEL=INFO
 
 if [[ -d $HOME/.rbenv/bin ]]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
@@ -116,24 +80,22 @@ elif in_path gem; then
   # export PATH="${$(gem environment gempath)%%:*}/bin:$PATH"
 fi
 
+## Languages
 # export RUBYLIB="$HOME/.rubylib/:${RUBYLIB}"
 export GOPATH="$HOME/.go"
 export NPM_PACKAGES="$HOME/.npm-packages"
+export NODE_PATH="${NPM_PACKAGES}/lib/node_modules:${NODE_PATH}"
 
 export PATH="$GOPATH/bin:${PATH}"
 ## rusutpを使ってると無いほうが良い?
 export PATH="${HOME}/.cargo/bin:${PATH}"
 export PATH="${HOME}/.cabal/bin:${PATH}"
 export PATH="${NPM_PACKAGES}/bin:${PATH}"
-export NODE_PATH="${NPM_PACKAGES}/lib/node_modules:${NODE_PATH}"
-
 export PATH="${DOT_DIR}/utils:${PATH}:${DOT_DIR}/git-subcommands"
 
 ## enable high speed compile with compile cache
 export PATH="/usr/lib/ccache/bin:${PATH}"
 # export CCACHE_DISABLE=1
-
-# export MANPATH="${NPM_PACKAGES}/share/man:$(manpath)"
 
 if [[ -z $USER ]]; then
   export USER="$(whoami)"
@@ -143,7 +105,8 @@ fi
 #   xmodmap ~/.xmodmap
 # fi
 
-[[ $- == *i* ]] && stty -ixon -ixoff >&! /dev/null
+# ctrl-sによる停止を無効化
+is_interactive && stty -ixon -ixoff >&! /dev/null
 
 export PATH="${HOME}/bin:${PATH}"
 

@@ -275,6 +275,11 @@ zstyle ':auto-fu:var' track-keymap-skip opp
 # }}}
 
 #Load local config
+exists_source(){
+  [[ ! -f "$1" ]] && return 0
+  source "${1}"
+}
+
 exists_source "$ZSH_DOT_DIR/zshrc.local"
 
 can_exec zprof && (zprof | tee ~/zsh.log) || :
