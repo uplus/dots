@@ -9,7 +9,8 @@ COLOR_YELLOW="#FFCF26"
 COLOR_MAGENTA="#A75AE8"
 
 # branch name
-branch_name="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+# branch_name="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+branch_name="$(git branch --show-current 2>/dev/null)"
 state_base="$(git status --short --branch 2>/dev/null)"
 
 state="$(echo "${state_base}" | tail --lines=+2 | grep -o '^..')"
