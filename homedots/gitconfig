@@ -136,8 +136,9 @@
 	grepf = grep --function-context
 	# log-branch = !"git log --oneline --pretty=format:%D | grep -v '^tag:' | sed \"s|^$(git remote show)/[^ ]*\\s*||g\" | grep -v '^$'"
 	# parent-branch = !"git log-branch | sed 's|HEAD -> [^ ]\\+\\s*||g' | grep -v '^$' | peco --select-1"
-	log-branch = !"git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | awk -F'[]~^[]' '{print $2}' | uniq"
-	parent-branch = !"git log-branch | peco --select-1"
+	# awkで順序を維持したまま重複排除
+	log-branch = !"git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | awk -F'[]~^[]' '{print $2}' | awk 'a[$0]++ == 0'"
+	parent-branch = !"git log-branch | peco --on-cancel=error --select-1"
 	merge-to = merge-to
 	remote-change = remote-change
 	rp = reflog --date=human --all
