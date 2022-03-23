@@ -11,8 +11,11 @@ COLOR_MAGENTA="#A75AE8"
 # branch name
 # branch_name="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
 branch_name="$(git branch --show-current 2>/dev/null)"
-state_base="$(git status --short --branch 2>/dev/null)"
+if [[ -z "${branch_name}" ]]; then
+  branch_name="$(git rev-parse --short HEAD)"
+fi
 
+state_base="$(git status --short --branch 2>/dev/null)"
 state="$(echo "${state_base}" | tail --lines=+2 | grep -o '^..')"
 
 if [[ $state =~ U ]]; then

@@ -52,6 +52,7 @@
 	dcw = diff --cached --color-words
 	dw  = diff --color-words
 	ds  = diff --stat
+	do  = !"git diff $(git remote-branch)"
 	l       = !git graph -20
 	lh      = !git graph origin/master..@
 	la      = !git graph
@@ -105,9 +106,9 @@
 	push-force = push --force-with-lease
 	remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
 	rprune = !"f(){ git remote prune ${1:-origin}; }; f"
-	# rei      = !"f(){ git rebase -pi ${1:-$(git parent-branch)}; }; f"
-	rei = rebase -i
-	# reoh     = !"f(){ git rebase -i $(git remote-branch); }; f"
+	rei    = !"f(){ git rebase -i ${1:-$(git parent-branch)}; }; f"
+	# rei    = rebase -i
+	# reoh   = !"f(){ git rebase -i $(git remote-branch); }; f"
 	continue = rebase --continue
 	abort    = rebase --abort
 	skip     = rebase --skip
@@ -133,8 +134,10 @@
 	pick = cherry-pick
 	wta = !"f(){ git worktree add \".git-wt-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
 	grepf = grep --function-context
-	log-branch = !"git log --oneline --pretty=format:%D | grep -v '^tag:' | sed \"s|^$(git remote show)/[^ ]*\\s*||g\" | grep -v '^$'"
-	parent-branch = !"git log-branch | sed 's|HEAD -> [^ ]\\+\\s*||g' | grep -v '^$' | peco --select-1"
+	# log-branch = !"git log --oneline --pretty=format:%D | grep -v '^tag:' | sed \"s|^$(git remote show)/[^ ]*\\s*||g\" | grep -v '^$'"
+	# parent-branch = !"git log-branch | sed 's|HEAD -> [^ ]\\+\\s*||g' | grep -v '^$' | peco --select-1"
+	log-branch = !"git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | awk -F'[]~^[]' '{print $2}' | uniq"
+	parent-branch = !"git log-branch | peco --select-1"
 	merge-to = merge-to
 	remote-change = remote-change
 	rp = reflog --date=human --all
