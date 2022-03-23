@@ -64,5 +64,7 @@ compctl -K _pip_completion pip3
 # compdef _pip_completion pip pip2 pip2.7 pip3 pip3.4
 # }}}
 
+# docker
+# curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker -o $ZSH_DOT_DIR/f/_docker
 # docker-compose
 # curl -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/zsh/_docker-compose -o $ZSH_DOT_DIR/f/_docker-compose
