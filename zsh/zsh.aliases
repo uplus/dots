@@ -54,8 +54,6 @@ alias rm-swap='rm /home/uplus/.local/share/nvim/swap/*'
 alias vim-power='git ls-files | grep -vE "^(colors|snippets|doc)/" | xargs -I{} cat "{}" | grep -vE "^$|^\s*\"" | wc -l'
 
 ## vim applications
-alias gcal="v +Calendar +'nnoremap <buffer><silent>q :quit<cr>'"
-alias vcal=gcal
 alias gista="v +'Gista list'"
 
 
