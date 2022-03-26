@@ -902,6 +902,12 @@ pdf-remove-head() {
   pdftk "${filename}" cat "${cat_to}-end" output "${new_prefix}-${filename}"
 }
 
+unars() {
+  for filepath in $@; do
+    unar --force-rename -- "${filepath}"
+  done
+}
+
 # -() {
 # }
 #
