@@ -45,9 +45,9 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  padding:
-    x: 1
-    y: 1
+  #padding:
+  #  x: 0
+  #  y: 0
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -125,7 +125,7 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    #style: Bold
 
   # Italic font face
   #italic:
@@ -139,7 +139,7 @@ font:
     #style: Italic
 
   # Bold italic font face
-  bold_italic:
+  #bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
@@ -147,7 +147,7 @@ font:
     #family: monospace
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    #style: Bold Italic
 
   # Point size
   size: 9.0
@@ -171,6 +171,13 @@ font:
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
+
+  # Use built-in font for box drawing characters.
+  #
+  # If `true`, Alacritty will use a custom built-in font for box drawing
+  # characters (Unicode points 2500 - 259f).
+  #
+  #builtin_box_drawing: true
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
@@ -197,9 +204,9 @@ colors:
   #
   # Allowed values are CellForeground/CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
-  cursor:
-    text:       '#ffffff'
-    cursor:     '#62a2e2'
+  #cursor:
+  #  text: CellBackground
+  #  cursor: CellForeground
 
   # Vi mode cursor colors
   #
@@ -312,6 +319,13 @@ colors:
   #
   #indexed_colors: []
 
+  # Transparent cell backgrounds
+  #
+  # Whether or not `window.opacity` applies to all cell backgrounds or only to
+  # the default background. When set to `true` all cells will be transparent
+  # regardless of their background color.
+  #transparent_background_colors: false
+
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
@@ -352,12 +366,6 @@ colors:
   #     args: ["Hello, World!"]
   #
   #command: None
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
 
 selection:
   # This string contains all characters that are used as separators for
@@ -419,10 +427,10 @@ selection:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
- program: /bin/zsh
- args:
-   - --login
+#shell:
+#  program: /bin/bash
+#  args:
+#    - --login
 
 # Startup directory
 #
@@ -432,6 +440,9 @@ shell:
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
+
+# Offer IPC using `alacritty msg` (unix only)
+#ipc_socket: true
 
 #mouse:
   # Click settings
@@ -507,7 +518,12 @@ shell:
 #   - Right
 #   - Numeric identifier such as `5`
 #
-# - `action` (see key bindings)
+# - `action` (see key bindings for actions not exclusive to mouse mode)
+#
+# - Mouse exclusive actions:
+#
+#   - ExpandSelection
+#       Expand the selection to the current mouse cursor location.
 #
 # And optionally:
 #
@@ -582,6 +598,8 @@ mouse_bindings:
 #   - ToggleFullscreen
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
+#   - CreateNewWindow
+#       Create a new Alacritty window from the current process.
 #   - ClearLogNotice
 #       Clear Alacritty's UI warning and error notice.
 #   - ClearSelection
