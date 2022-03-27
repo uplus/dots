@@ -12,15 +12,15 @@ in_path(){ which $@ &>! /dev/null }
 can_exec(){ type $@ &>! /dev/null }
 in_ssh(){ [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]] }
 in_tmux(){ [[ -n "${TMUX:-}" ]] }
-in_alacritty() { [[ $- == *i* ]] && [[ -n "${ALACRITTY_LOG:-}" ]] }
-is_parent() { ps --no-header "${PPID}" | grep -q "${1:? parent process name}" }
-is_interactive() { [[ $- == *i* ]] }
+in_interactive() { [[ $- == *i* ]] }
 in_darwin() { [[ $OSTYPE =~ 'darwin' ]] }
+in_alacritty() { [[ -n "${ALACRITTY_LOG:-}" ]] }
+is_parent() { ps --no-header "${PPID}" | grep -q "${1:? parent process name}" }
 
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 ## tmux
-if ! in_tmux && is_interactive && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
+if ! in_tmux && in_interactive && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
   exec tmux
 fi
 rm ~/.notmux >&! /dev/null
@@ -106,7 +106,7 @@ fi
 # fi
 
 # ctrl-sによる停止を無効化
-is_interactive && stty -ixon -ixoff >&! /dev/null
+in_interactive && stty -ixon -ixoff >&! /dev/null
 
 export PATH="${HOME}/bin:${PATH}"
 
