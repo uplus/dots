@@ -62,6 +62,7 @@ export DOWNLOADER='wget -S'
 in_tmux || export TERM='xterm-256color'
 # export DOCKER_CONTENT_TRUST=1
 export COMPOSE_HTTP_TIMEOUT=1200
+export MOCWORD_DATA="${HOME}/.cache/mocword.sqlite"
 export NMAP_PRIVILEGED="" # set privilege mode to nmap
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
 export CHPWD_DIR="${HOME}/.zsh/dirs"
