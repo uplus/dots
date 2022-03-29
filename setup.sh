@@ -1,21 +1,76 @@
 #!/usr/bin/env bash
-set -u
+# vim: fdm=marker
+set -eu -o pipefail
+
 # TODO: 絶対パスに変える?
 current="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)"
 
-make_dirs_mini(){
+## Utils {{{
+
+in_path(){
+  which $@ >/dev/null 2>&1
+}
+
+binln(){
+  local name rpath bname
+  [[ ! -d $HOME/bin ]] && mkdir $HOME/bin
+
+  for name in $@; do
+    rpath="$(readlink -f "${name}")"
+    bname="$(basename "${name}")"
+    ln -svi "${rpath}" "${HOME}/bin/${bname%.*}"
+  done
+}
+
+sln(){
+  abs_src="$(readlink -f "${1:?src}")"
+  abs_dest="$(readlink -f "${2:?dest}")"
+  ln -svin ${abs_src} ${abs_dest}
+}
+
+dotln(){
+  local name
+  mkdir -p $HOME/bin
+
+  for name in $@; do
+    ln -svin "${name:a}" "$HOME/.${name:t:r}"
+  done
+}
+
+get_linux_type(){
+  grep -Po '(?<=^ID\=).*|(?<=^ID_LIKE\=).*' /etc/os-release | tr -d '\n'
+}
+
+get_os_type(){
+  case "${OSTYPE:-}" in
+    linux*)  get_linux_type ;;
+    darwin*) echo 'macos' ;;
+  esac
+}
+
+# }}}
+
+mini(){
+  setup_dirs
+  setup_config_files
+  setup_zsh
+  setup_vim
+  install_peco
+}
+
+setup_dirs(){
   mkdir -vpm 700 $HOME/bin
+  mkdir -vpm 700 $HOME/.ssh
+  mkdir -vpm 700 $HOME/.config
+  mkdir -vpm 700 $HOME/.cache
+
   mkdir -vpm 700 $HOME/tmp
   mkdir -vpm 700 $HOME/works
   mkdir -vpm 700 $HOME/src
   mkdir -vpm 700 $HOME/codes
-
-  mkdir -vpm 700 $HOME/.ssh
-  mkdir -vpm 700 $HOME/.config
-  mkdir -vpm 700 $HOME/.cache
 }
 
-link_config_files() {
+setup_config_files(){
   dir="${current}/rc/dots"
   for name in $(ls "${dir}"); do
     ln -svi "${dir}/${name}" "${HOME}/.$name"
@@ -59,6 +114,25 @@ setup_vim(){
   mkdir -p $HOME/.vim/tmp
   install_dein
 }
+
+clone_myrepos_tmp(){
+  local ssh my_repo
+  echo -n " have you ssh-key of git?(y/N)"
+  read -n 1 ssh
+  echo
+  if [[ $ssh =~ [yY] ]]; then
+    my_repo='git@github.com:uplus'
+  else
+    my_repo='https://github.com/uplus'
+  fi
+
+  git clone $my_repo/vimrc.git $HOME/.vim/
+  install_dein
+
+  git clone $my_repo/rbrn.git $HOME/codes/rbrn
+}
+
+# pkg_ {{{
 
 pkg_go(){
   pkgs=(
@@ -123,7 +197,7 @@ pkg_npm(){
   done
 }
 
-pkg_gem() {
+pkg_gem(){
   pkgs=(
     rdoc
     yard
@@ -172,7 +246,7 @@ pkg_gem() {
   gem install ${pkgs[@]}
 }
 
-pkg_brew() {
+pkg_brew(){
   pkgs=(
     coreutils findutils iproute2mac luajit pgrep pkill fswatch
     tig tree wget curl tmux ripgrep circleci pwgen peco jq nkf watch
@@ -184,30 +258,16 @@ pkg_brew() {
   # brew install --cask vagrant virtualbox
 }
 
-clone_myrepos_tmp(){ #{{{
-  local ssh my_repo
-  echo -n " have you ssh-key of git?(y/N)"
-  read -n 1 ssh
-  echo
-  if [[ $ssh =~ [yY] ]]; then
-    my_repo='git@github.com:uplus'
-  else
-    my_repo='https://github.com/uplus'
-  fi
 
-  git clone $my_repo/vimrc.git $HOME/.vim/
-  install_dein
+# }}}
 
-  git clone $my_repo/rbrn.git $HOME/codes/rbrn
-} #}}}
-
-# install apps: {{{
+# install_ {{{
 install_echo_sd(){
   wget https://raw.githubusercontent.com/fumiyas/home-commands/master/echo-sd -O ~/bin/echo-sd
   chmod +x !$
 }
 
-install_ctop() {
+install_ctop(){
   wget https://github.com/bcicen/ctop/releases/download/v0.7.2/ctop-0.7.2-linux-amd64 -O ~/bin/ctop
   chmod +x !$
 }
@@ -268,11 +328,6 @@ export XMODIFIERS="@im=fcitx"
 END
 }
 
-vlc_dvd(){
-  sudo apt-get install vlc libdvdread4
-  sudo /usr/share/doc/libdvdread4/install-css.sh
-}
-
 set_dark_theme(){
   local gtk_config="$HOME/.config/gtk-3.0"
   [[ -d $gtk_config ]] && mkdir -p "$gtk_config"
@@ -296,56 +351,8 @@ change_keymap(){
   dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps', 'u10:happy', 'u10:tenkey']"
   # $ setxkbmap -option ctrl:nocaps -option u10:happy -option u10:tenkey
 }
+
 #}}}
-
-mini(){
-  make_dirs_mini
-  link_config_files
-  setup_zsh
-  setup_vim
-  install_peco
-}
-
-in_path(){
-  which $@ >/dev/null 2>&1
-}
-
-binln () {
-  local name rpath bname
-  [[ ! -d $HOME/bin ]] && mkdir $HOME/bin
-  for name in $@
-  do
-    rpath="$(readlink -f "${name}")"
-    bname="$(basename "${name}")"
-    ln -svi "${rpath}" "${HOME}/bin/${bname%.*}"
-  done
-}
-
-sln () {
-  abs_src="$(readlink -f "${1:?src}")"
-  abs_dest="$(readlink -f "${2:?dest}")"
-  ln -svin ${abs_src} ${abs_dest}
-}
-
-dotln () {
-  local name
-  mkdir -p $HOME/bin
-  for name in $@
-  do
-    ln -svin "${name:a}" "$HOME/.${name:t:r}"
-  done
-}
-
-get_linux_type() {
-  grep -Po '(?<=^ID\=).*|(?<=^ID_LIKE\=).*' /etc/os-release | tr -d '\n'
-}
-
-get_os_type() {
-  case "${OSTYPE:-}" in
-    linux*)  get_linux_type ;;
-    darwin*) echo 'macos' ;;
-  esac
-}
 
 # TODO: つくる
 get_pkg_manager(){
@@ -385,5 +392,3 @@ if [ $# -eq 0 ]; then
 else
   $1
 fi
-
-# vim: fdm=marker
