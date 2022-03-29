@@ -242,25 +242,6 @@ install_ripgrep(){
   esac
 }
 
-install_linuxbrew() {
-  git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
-}
-
-install_tig(){
-  git clone https://github.com/jonas/tig ~/src/tig/
-  pushd ~/src/tig
-  make configure
-  ./configure --with-ncursesw
-  make prefix=/usr/local
-  sudo make install prefix=/usr/local
-  # sudo make install-doc prefix=/usr/local
-  popd $current
-}
-
-install_psysh() {
-  [ ! -e $HOME/bin/psysh ] && wget psysh.org/psysh -O $HOME/bin/psysh
-}
-
 install_qmk(){
   pacman -S --no-confirm avr-gcc avr-libc dfu-util
   yaourt -S --no-confirm dfu-programmer teensy-loader-cli

@@ -17,6 +17,8 @@ in_darwin() { [[ $OSTYPE =~ 'darwin' ]] }
 in_alacritty() { [[ -n "${ALACRITTY_LOG:-}" ]] }
 is_parent() { ps --no-header "${PPID}" | grep -q "${1:? parent process name}" }
 
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 ## tmux
@@ -62,7 +64,7 @@ export DOWNLOADER='wget -S'
 in_tmux || export TERM='xterm-256color'
 # export DOCKER_CONTENT_TRUST=1
 export COMPOSE_HTTP_TIMEOUT=1200
-export MOCWORD_DATA="${HOME}/.cache/mocword.sqlite"
+export MOCWORD_DATA="${XDG_CACHE_HOME}/mocword.sqlite"
 export NMAP_PRIVILEGED="" # set privilege mode to nmap
 export RUSTFLAGS='-A dead_code -A unused_imports -A  unused_variables -A unused_macros'
 export CHPWD_DIR="${HOME}/.zsh/dirs"
@@ -82,7 +84,6 @@ elif in_path gem; then
 fi
 
 ## Languages
-# export RUBYLIB="$HOME/.rubylib/:${RUBYLIB}"
 export GOPATH="$HOME/.go"
 export NPM_PACKAGES="$HOME/.npm-packages"
 export NODE_PATH="${NPM_PACKAGES}/lib/node_modules:${NODE_PATH}"
