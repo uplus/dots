@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
 set -u
-# TODO change to absolute
+# TODO: 絶対パスに変える?
 current="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)"
 
-
-make_dirs_other(){
-  mkdir -vp $HOME/src
-  mkdir -vpm 700 $HOME/codes
-}
-
 make_dirs_mini(){
-  mkdir -vp $HOME/bin
+  mkdir -vpm 700 $HOME/bin
   mkdir -vpm 700 $HOME/tmp
   mkdir -vpm 700 $HOME/works
+  mkdir -vpm 700 $HOME/src
+  mkdir -vpm 700 $HOME/codes
+
   mkdir -vpm 700 $HOME/.ssh
   mkdir -vpm 700 $HOME/.config
   mkdir -vpm 700 $HOME/.cache
@@ -33,11 +30,14 @@ link_config_files() {
 }
 
 setup_zsh(){
+  # link configs
   ln -svi "$current/zsh/zshenv" "$HOME/.zshenv"
   ln -svi "$current/zsh/zshrc" "$HOME/.zshrc"
+
   mkdir -p $HOME/.zsh
-  zshlocal="${current}/zsh/zshrc.local"
-  [[ ! -e $zshlocal ]] && touch "${zshlocal}"
+
+  # create zshrc.local
+  touch "${current}/zsh/zshrc.local"
 
   if [[ ! ${SHELL:-} =~ '/zsh' ]]; then
     echo 'Set zsh as default shell'
@@ -51,12 +51,13 @@ setup_zsh(){
 
 setup_vim(){
   git clone https://github.com/uplus/vimrc $HOME/.vim
-  install_dein
-  mkdir -p $HOME/.vim/tmp
 
-  #nvim
+  # neovim
   mkdir -p ~/.config
   ln -svi $HOME/.vim $HOME/.config/nvim
+
+  mkdir -p $HOME/.vim/tmp
+  install_dein
 }
 
 pkg_go(){
@@ -200,7 +201,7 @@ clone_myrepos_tmp(){ #{{{
   git clone $my_repo/rbrn.git $HOME/codes/rbrn
 } #}}}
 
-# installs {{{
+# install apps: {{{
 install_echo_sd(){
   wget https://raw.githubusercontent.com/fumiyas/home-commands/master/echo-sd -O ~/bin/echo-sd
   chmod +x !$
@@ -305,12 +306,6 @@ mini(){
   install_peco
 }
 
-# TODO making
-myenv(){
-  mini
-  make_dirs_other
-}
-
 in_path(){
   which $@ >/dev/null 2>&1
 }
@@ -352,7 +347,7 @@ get_os_type() {
   esac
 }
 
-# TODO making
+# TODO: つくる
 get_pkg_manager(){
   case "$(get_os_type)" in
     *arch*)
