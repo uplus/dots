@@ -18,22 +18,18 @@ make_dirs_mini(){
   mkdir -vpm 700 $HOME/.cache
 }
 
-link_files() {
-  dir=$current/homedots
-  for name in $(ls $dir); do
-    ln -svi $dir/$name $HOME/.$name
+link_config_files() {
+  dir="${current}/rc/dots"
+  for name in $(ls "${dir}"); do
+    ln -svi "${dir}/${name}" "${HOME}/.$name"
+  done
+
+  dir="${current}/rc/config"
+  for name in $(ls "${dir}"); do
+    ln -svi "${dir}/${name}" "${HOME}/.config/"
   done
 
   lesskey
-}
-
-link_utils_partial(){
-  binln $current/utils/chgit.zsh
-  binln $current/utils/chrepo.zsh
-  binln $current/utils/atoh.rb
-  binln $current/utils/htoa.rb
-  binln $current/utils/bcho.rb
-  binln $current/utils/chpat.rb
 }
 
 setup_zsh(){
@@ -303,8 +299,7 @@ change_keymap(){
 
 mini(){
   make_dirs_mini
-  link_files
-  link_utils_partial
+  link_config_files
   setup_zsh
   setup_vim
   install_peco
