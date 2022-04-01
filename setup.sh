@@ -168,6 +168,7 @@ pkg_pip(){
 pkg_cargo(){
   pkgs=(
     tealdeer
+    tree-sitter-cli
     cargo-update
     cargo-tree
     cargo-asm # クレート::関数でディスアセンブル
