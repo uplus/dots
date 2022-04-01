@@ -141,12 +141,11 @@ pkg_go(){
     github.com/yudai/gotty
     github.com/mikefarah/yq/v4 # jq for YAML
     github.com/simeji/jid/cmd/jid # json incremental digger
-    github.com/orisano/rget # parallel download
-    github.com/sacloud/usacloudy
-    github.com/motemen/gore # REPL
-    github.com/jingweno/ccat # color cat
+    # github.com/orisano/rget # parallel download
+    # github.com/motemen/gore # REPL
+    # github.com/jingweno/ccat # color cat
     github.com/k0kubun/pp
-    github.com/jstemmer/gotags
+    # github.com/jstemmer/gotags
     github.com/golang/lint/golang
     golang.org/x/tools/cmd/gorename
     golang.org/x/tools/cmd/goimports
