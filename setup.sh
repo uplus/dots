@@ -81,7 +81,7 @@ setup_config_files(){
     ln -svi "${dir}/${name}" "${HOME}/.config/"
   done
 
-  lesskey
+  # lesskey
 }
 
 setup_zsh(){
@@ -94,14 +94,14 @@ setup_zsh(){
   # create zshrc.local
   touch "${current}/zsh/zshrc.local"
 
+    # zgen
+  git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+  zsh -ic 'exit'
+
   if [[ ! ${SHELL:-} =~ '/zsh' ]]; then
     echo 'Set zsh as default shell'
     chsh -s "$(grep -m 1 zsh /etc/shells)"
   fi
-
-  # zgen
-  git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-  zsh -ic 'exit'
 }
 
 setup_vim(){
@@ -248,13 +248,15 @@ pkg_gem(){
 
 pkg_brew(){
   pkgs=(
-    coreutils findutils iproute2mac luajit pgrep pkill fswatch
-    tig tree wget curl tmux ripgrep circleci pwgen peco jq nkf watch
+    coreutils findutils iproute2mac luajit grep pgrep pkill watch fswatch
+    tig tree wget curl tmux ripgrep pwgen peco jq nkf deno libtool pkg-config gettext
+    automake cmake ctop direnv gcc go graphviz llvm ninja openssl@3 proctools qmk/qmk/qmk rust sshuttle yarn
   )
 
-  brew install neovim --HEAD
   brew install ${pkgs[@]}
-  brew install --cask font-source-code-pro font-source-code-pro-for-powerline
+
+  brew install --cask font-source-code-pro font-source-code-pro-for-powerline alacritty alt-tab gimp
+  # brew install neovim --HEAD
   # brew install --cask vagrant virtualbox
 }
 

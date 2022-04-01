@@ -7,19 +7,19 @@ export HOMEBREW_RUBY_PATH='/usr/bin/ruby'
 
 path=(
   '/usr/local/share/zsh/site-functions'
+  '/usr/local/opt/llvm/bin'
+  '/usr/local/opt/gcc/bin:$PATH'
   '/usr/local/opt/coreutils/libexec/gnubin'
   '/usr/local/opt/findutils/libexec/gnubin'
   '/usr/local/opt/grep/libexec/gnubin'
   '/usr/local/opt/luajit-openresty/bin'
+  '/usr/local/opt/openssl@3/bin/openssl'
   '/usr/local/Homebrew/bin'
-  '/usr/local/opt/bin'
-  "$HOME/Library/Python/3.9/bin"
   $path
   )
 
 alias xdg-open='command open'
 
-export PATH="/usr/local/opt/llvm/bin:/usr/local/opt/gcc/bin:$PATH"
 # export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
