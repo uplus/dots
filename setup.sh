@@ -248,14 +248,14 @@ pkg_gem(){
 
 pkg_brew(){
   pkgs=(
-    coreutils findutils iproute2mac luajit grep pgrep pkill watch fswatch
+    coreutils findutils iproute2mac luajit grep pgrep pkill watch fswatch svn
     tig tree wget curl tmux ripgrep pwgen peco jq nkf deno libtool pkg-config gettext
     automake cmake ctop direnv gcc go graphviz llvm ninja openssl@3 proctools qmk/qmk/qmk rust sshuttle yarn
   )
 
   brew install ${pkgs[@]}
 
-  brew install --cask font-source-code-pro font-source-code-pro-for-powerline alacritty alt-tab gimp
+  brew install --cask alacritty alt-tab gimp homebrew/cask-fonts/font-source-code-pro homebrew/cask-fonts/font-source-code-pro-for-powerline
   # brew install neovim --HEAD
   # brew install --cask vagrant virtualbox
 }
