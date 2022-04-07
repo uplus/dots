@@ -7,7 +7,8 @@
 # from bash completion
 if [[ -n ${ZSH_VERSION-} ]]; then
   autoload -U +X bashcompinit && bashcompinit
-  complete -o nospace -C /home/uplus/bin/terraform terraform
+  complete -o nospace -C terraform terraform
+  complete -C aws_completer aws
 fi
 
 in_path ruby && in_path note && eval "$(note --complete)"
