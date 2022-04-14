@@ -212,7 +212,7 @@ hash -d vol=~mnt/volume
 hash -d dein=$HOME/.cache/dein/repos/github.com
 hash -d cargo=$HOME/.cargo/registry/src/github.com-1ecc6299db9ec823
 hash -d qmk=~/src/qmk_firmware
-hash -d iss=~codes/ictsc/score-server
+hash -d iss=~codes/ictsc-score-server
 hash -d ictsc=~codes/ictsc
 
 #shell {{{1
