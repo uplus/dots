@@ -24,9 +24,11 @@ percol.import_keymap({
     "C-k": lambda percol: percol.command.kill_end_of_line(),
 
     # "C-y": lambda percol: percol.command.yank(),
-    "C-y": lambda percol: percol.command.mark_all(),
-    "C-v": lambda percol: percol.command.select_next_page(),
-    "M-v": lambda percol: percol.command.select_previous_page(),
+    "C-y": lambda percol: percol.command.toggle_mark_all(),
+    "C-v": lambda percol: percol.command.toggle_mark_and_next(),
+
+    # "C-v": lambda percol: percol.command.select_next_page(),
+    # "M-v": lambda percol: percol.command.select_previous_page(),
     "M-<": lambda percol: percol.command.select_top(),
     "M->": lambda percol: percol.command.select_bottom(),
 
