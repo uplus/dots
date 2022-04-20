@@ -141,14 +141,12 @@ pkg_go(){
     github.com/yudai/gotty
     github.com/mikefarah/yq/v4 # jq for YAML
     github.com/simeji/jid/cmd/jid # json incremental digger
-    # github.com/orisano/rget # parallel download
     # github.com/motemen/gore # REPL
-    # github.com/jingweno/ccat # color cat
     github.com/k0kubun/pp
     # github.com/jstemmer/gotags
     github.com/golang/lint/golang
     golang.org/x/tools/cmd/gorename
-    golang.org/x/tools/cmd/goimports
+    golang.org/x/tools/cmd/goimports@latest
     golang.org/x/tools/cmd/gotype
     github.com/itchyny/bed/cmd/bed # binary editor
     github.com/ichinaski/pxl # display images in the terminal
@@ -156,7 +154,7 @@ pkg_go(){
   )
 
   for name in ${pkgs[@]}; do
-    go get -v -u "${name}"
+    go install -v -u "${name}"
   done
 }
 
