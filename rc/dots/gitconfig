@@ -24,8 +24,8 @@
 	compactionHeuristic = false
 [fetch]
 	parallel = 0
-[blame]
-	ignoreRevsFile = .git-blame-ignore-revs
+# [blame]
+	# ignoreRevsFile = .git-blame-ignore-revs
 [pull]
 	# rebase = true
 	ff = only
