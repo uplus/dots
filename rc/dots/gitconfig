@@ -143,12 +143,10 @@
 	parent-branch = !"git log-branch | peco --on-cancel=error --select-1"
 	merge-to = merge-to
 	remote-change = remote-change
-	rp = reflog --date=human --all
-	# hub
-	make-pr = !"git push -u && hub compare"
-	browse = !hub browse
-	open = browse
-	compare = !hub compare
-	pull-request = !hub pull-request
 	capdate = !"git add . ; git com update"
 	copdate = !"git com update"
+	rp = reflog --date=human --all
+	browse = !gh browse
+	open = browse
+	create-pr = !gh pr create -w
+	push-create-pr = !"git push -u && gh pr create -w"
