@@ -148,5 +148,6 @@
 	rp = reflog --date=human --all
 	browse = !gh browse
 	open = browse
-	create-pr = !gh pr create -w
-	push-create-pr = !"git push -u && gh pr create -w"
+	pr-create = !gh pr create --web
+	pr-create-push = !"git push -u && git pr-create"
+	pr-open = !gh pr view --web

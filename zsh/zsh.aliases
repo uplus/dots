@@ -33,6 +33,7 @@ alias 8.='cd ../../../../../../../..'
 alias v.='vimrc'
 alias v="${EDITOR}"
 alias vh='v .'
+alias vs='v -S .session.vim'
 # alias vb='v -c Vinarise'
 # alias gv='gvim'
 # alias vp='v -p'
