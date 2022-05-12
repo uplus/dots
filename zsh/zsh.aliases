@@ -539,3 +539,4 @@ alias jqch='jq -C | head'
 alias tf=terraform
 alias timer=termdown
 alias date-now="date '+%F %T'"
+alias date-day='date +%F'
