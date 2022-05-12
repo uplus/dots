@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# login interactiveで実行される
 
 # recover PATH
 if [[ ${PATH} != ${PATH_keep:=} ]]; then
@@ -39,7 +38,7 @@ setopt prompt_cr            # show prompt in new line, when after command finish
 setopt no_transient_rprompt # on: remove old rprompt when after execute a command.
 
 export PROMPT='$(prompt-return-value)$(prompt-ssh)$(prompt-git)$(prompt-bg-cmds)
-%F{0}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%# %f%k%F{$(prompt-color)}%f%k '
+%F{232}%K{$(prompt-color)}$(prompt-dir) %F{$(prompt-symb-color)}%# %f%k%F{$(prompt-color)}%f%k '
 # 
 export PROMPT_COLOR_SSH='#FFF38F'
 export PROMPT_COLOR_ERROR='#FF6A84'
@@ -263,7 +262,7 @@ setopt automenu
 source "$ZSH_DOT_DIR/zsh.keymaps"
 
 # auto-fu {{{
-# キーマップの干渉がひどい
+# キーマップの干渉が色々干渉して厳しい
 zstyle ':auto-fu:highlight' input bold
 zstyle ':auto-fu:highlight' completion fg=black,bold
 zstyle ':auto-fu:highlight' completion/one fg=white,bold,underline
