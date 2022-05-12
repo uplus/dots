@@ -26,14 +26,12 @@ bindkey "^G" send-break
 bindkey "^Q" push-line
 bindkey "^V" quoted-insert
 
-bindkey "^I" expand-or-complete
-bindkey "^O" accept-line-and-down-history
-bindkey "^Y" yank
 bindkey "^]" insert-last-word
 bindkey "^Z" zle_background
 
 # \ -
-bindkey "^_" undo
+bindkey "^_" undo # <c-x><c-u>
+# bindkey "z" undo
 # insert
 bindkey "[2~" overwrite-mode
 # delete

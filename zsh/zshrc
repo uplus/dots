@@ -158,11 +158,6 @@ setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示し�
 #   setopt ignore_eof # 行が空の時にCtrl-Dで終了
 # fi
 
-# auto_list auto_menu bash_auto_list glob_complete hash_list_all list_ambiguous menu_complete rec_exact
-# setopt auto_menu          # TABで候補を選択できるメニュー(2type必要)
-# setopt auto_list          # 補完候補一覧をPAGER的なもので表示する
-# setopt no_menu_complete   #
-
 # }}}
 
 # zgen # {{{
@@ -237,7 +232,7 @@ zstyle ':completion:*:values' verbose true
 zstyle ':completion:*' menu select=1 # 現在の補完候補をハイライト
 zstyle ':completion:*' list-separator '~~>'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt '%S%F{197}   Hey Hey! %p   %f%s'
+zstyle ':completion:*' list-prompt '%S%F{197}   Long %p   %f%s'
 zstyle ':completion:*' select-prompt '%S%F{208}  ε=ε=ε=ε=＼(;´□ `)/ %p  %f%s'
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
@@ -253,10 +248,11 @@ zstyle ':completion:*:*:kill:*' command 'ps --no-headers -u "${USER}" -o pid,%cp
 zstyle ':completion:*:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters   # complete array index.
 
+# bash_auto_list glob_complete hash_list_all list_ambiguous rec_exact
 # setopt noautolist
-setopt no_menu_complete
-setopt autolist
-setopt automenu
+setopt menu_complete # 補完開始と同時に最初の要素をを選択
+setopt auto_list # 補完候補一覧をPAGER的なもので表示する
+setopt auto_menu # TABで候補を選択できるメニュー(2type必要)
 # }}}
 
 source "$ZSH_DOT_DIR/zsh.keymaps"
