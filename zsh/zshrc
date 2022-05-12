@@ -229,7 +229,9 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:options' verbose true
 zstyle ':completion:*:values' verbose true
-zstyle ':completion:*' menu select=1 # 現在の補完候補をハイライト
+zstyle ':completion:*' menu select # 現在の補完候補をハイライト
+# zstyle ':completion:*' menu select interactive
+# zstyle ':completion:*' menu select search # CRやC-Hの挙動がコントロールできない
 zstyle ':completion:*' list-separator '~~>'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt '%S%F{197}   Long %p   %f%s'
