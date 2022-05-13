@@ -27,6 +27,7 @@ autoload -Uz sym_solve
 autoload -Uz list_dirs_files
 autoload -Uz filter_select_file
 autoload -Uz filter_select_file_travel
+autoload -Uz filter_select_dir
 
 is_num(){ expr "${1}" + 1 >&! /dev/null }
 is_elf(){ file ${1} | awk '$0=$2' | grep -q ELF }
@@ -273,6 +274,16 @@ pa(){
 pd(){ pa "$1" -type d }
 # cd to file dir
 pf(){ pa "$1" -type f }
+
+pd_recursive() {
+  local str=' '
+  while [[ -n $str && $str != '.' ]]; do
+    str="$(find -maxdepth 1 -type d | sed 's|^./||'| peco)"
+    cd "${str}" >/dev/null
+  done
+
+  pwd
+}
 # }}}
 
 # improved tree

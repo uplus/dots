@@ -208,12 +208,8 @@ zle_filter_commands(){
 zle -N zle_filter_commands
 
 zle_filter_cd(){ # {{{
-  local str=' '
-  while [[ -n $str && $str != '.' ]]; do
-    str="$(find -maxdepth 1 -type d | sed 's|^./||'| peco)"
-    cd "${str}"
-  done
-  BUFFER="cd $(pwd)"
+  # BUFFER="cd $(pd_recursive)"
+  BUFFER="cd $(filter_select_dir)"
   zle accept-line
 } # }}}
 zle -N zle_filter_cd
