@@ -320,7 +320,8 @@ kill(){
 
 pgkill() {
   pattern="${1:? process grep name}"
-  pgrep -ila "${pattern}"
+  # brewのpgrepだと -a が使えない
+  pgrep -il "${pattern}"
 
   if (($? != 0)); then
     warn 'not matched'
@@ -329,7 +330,7 @@ pgkill() {
 
   if read -q '?pkill -9 (y/N) '; then
     pkill -9 "${pattern}"
-    pgrep -ila "${pattern}"
+    pgrep -il "${pattern}"
     return 0
   fi
 }
