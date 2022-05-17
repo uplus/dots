@@ -80,9 +80,9 @@ in_path peco && bindkey '' zle_filter_cdr
 bindkey '' zle_filter_select_file
 
 # Ctrl /
-# bindkey '' zle_filter_open_file
+bindkey '' zle_filter_open_file
 # bindkey '' zle_filter_cd
-bindkey '' zle_filter_open_file
+# bindkey '' zle_filter_open_file
 
 bindkey 'gh' zle_git_hash
 bindkey 'gh' zle_git_hash
