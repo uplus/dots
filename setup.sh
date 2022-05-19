@@ -154,7 +154,7 @@ pkg_go(){
   )
 
   for name in ${pkgs[@]}; do
-    go install -v -u "${name}"
+    go install -v "${name}"
   done
 }
 
