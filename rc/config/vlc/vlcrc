@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 3.0.17.3
+###  vlc 3.0.17.4
 ###
 
 ###
@@ -1405,7 +1405,7 @@
 #sout-avi-subject=
 
 # Encoder (string)
-#sout-avi-encoder=VLC Media Player - 3.0.17.3 Vetinari
+#sout-avi-encoder=VLC Media Player - 3.0.17.4 Vetinari
 
 # Keywords (string)
 #sout-avi-keywords=
