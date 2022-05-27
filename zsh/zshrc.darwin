@@ -14,6 +14,9 @@ path=(
   '/usr/local/opt/grep/libexec/gnubin'
   '/usr/local/opt/luajit-openresty/bin'
   '/usr/local/opt/openssl@3/bin/openssl'
+  '/usr/local/opt/avr-gcc@8/bin'
+  '/usr/local/opt/arm-gcc-bin@8/bin'
+  '/usr/local/opt/mysql-client/bin'
   '/usr/local/Homebrew/bin'
   $path
   )
