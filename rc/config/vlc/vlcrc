@@ -2683,14 +2683,6 @@ sout-x264-tune=film
 # DTS dynamic range compression (boolean)
 #dts-dynrng=1
 
-[dav1d] # Dav1d video decoder
-
-# Frames Threads (integer)
-#dav1d-thread-frames=0
-
-# Tiles Threads (integer)
-#dav1d-thread-tiles=0
-
 [cc] # Closed Captions decoder
 
 # Opacity (boolean)
