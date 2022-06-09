@@ -2,7 +2,7 @@
 
 local -a ignore_dirs ignores
 
-ignore_dirs=(.git __pycache__ node_modules '.git-wt-*' .nuxt .next dist cache .bundle)
+ignore_dirs=(.git __pycache__ node_modules '.git-wt-*' .nuxt .next dist cache .bundle .build)
 for dirname in ${ignore_dirs}; do
   ignores+=(-type d -name "${dirname}" -prune -o)
 done
