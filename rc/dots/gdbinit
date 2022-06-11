@@ -49,6 +49,6 @@ define cnt
   end
 end
 
-source ~/.peda/peda.py
+# source ~/.peda/peda.py
 pset option count 12
 pset option autosave off
