@@ -259,6 +259,7 @@ if in_path apt-get; then
   alias installed='dpkg --get-selections | grep -v "deinstall" | sed -e "s/[[:space:]]*install$//"'
 elif in_path pacman; then
   alias a.i='sudo pacman -S --needed'
+  alias a.in='sudo pacman -S --noconfirm'
   alias a.r='sudo pacman -R'
   alias a.c='paccache --remove --uninstalled --keep=2'
   alias a.cc='sudo pacman -Scc'
@@ -271,6 +272,7 @@ elif in_path pacman; then
   alias a.sf='pacman -Ql'
   alias a.fs='pacman -F'
   alias a.l='pacman -Qq'
+  alias a.fc='pacman -Qkk'
   alias a.orphan='pacman -Qtdq'
   alias a.export='{pacman -Qqen; pacman -Qqm >&2}'
 
