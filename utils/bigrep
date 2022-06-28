@@ -12,5 +12,5 @@ if [[ $# -eq 0 ]]; then
   git grep "${text}"
 else
   exclude_patterns=$(export IFS='|'; echo "${*}")
-  git grep "${text}" | grep -Ev "^(${exclude_patterns})"
+  git -P grep "${text}" | grep -Ev "^(${exclude_patterns})"
 fi
