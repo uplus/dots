@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+# NOTE: git 呼び出し1回あたりオーバーヘッドが0.060sぐらいある
 git rev-parse --git-dir >&! /dev/null || return
 
 COLOR_RED="#ff6090"
@@ -35,8 +36,8 @@ brace=$(echo "${state_base}" | head -1 | grep -oe '\[.*]$')
 ahead=$(echo "${brace}" | grep -oe 'ahead [0-9]\+' | awk '{print $2}')
 behind=$(echo "${brace}" | grep -oe 'behind [0-9]\+' | awk '{print $2}')
 # stash=$(git stash list 2>/dev/null | wc -l | sed -e 's/^0$//g')
-[[ -n $ahead ]] && ahead=" %F{${COLOR_GREEN}}${ahead}%f"
-[[ -n $behind ]] && behind=" %F{${COLOR_RED}}${behind}%f"
-[[ -n $stash ]] && stash=" %F{${COLOR_YELLOW}}$stash%f"
+[[ -n ${ahead} ]] && ahead=" %F{${COLOR_GREEN}}${ahead}%f"
+[[ -n ${behind} ]] && behind=" %F{${COLOR_RED}}${behind}%f"
+[[ -n ${stash} ]] && stash=" %F{${COLOR_YELLOW}}${stash}%f"
 
 echo "[%F{${color}}${branch_name}%f${ahead}${behind}${stash}] "
