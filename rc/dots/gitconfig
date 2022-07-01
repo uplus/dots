@@ -5,15 +5,18 @@
 	username = uplus
 [core]
 	excludesfile = ~/.gitignore
-	pager = less -i --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
 	quotepath = false
 	encodig = utf-8
+	# pager = less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT
+	pager = delta
 [color]
 	ui = true
 [web]
 	browser = xdg-open
 [push]
 	default = current
+[interactive]
+	diffFilter = delta --color-only
 [diff]
 	tool      = vimdiff
 	# algorithm = histogram
@@ -22,6 +25,7 @@
 	renames = true
 	indentHeuristic = true
 	compactionHeuristic = false
+	colorMoved = default
 [fetch]
 	parallel = 0
 # [blame]
@@ -34,16 +38,21 @@
 	tool = vimdiff
 [rebase]
 	autostash = true
+# 3rd
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	# light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+# URL
 [url "https://github.com/"]
 	insteadof = g:
 [url "git@github.com:uplus/"]
 	insteadof = ggu:
 [url "https://github.com/uplus/"]
 	insteadof = ghu:
-[url "https://bitbucket.org/"]
-	insteadof = b:
-[url "git@bitbucket.org:u10e10/"]
-	insteadof = bgu:
+# [url "https://bitbucket.org/"]
+	# insteadof = b:
+# [url "git@bitbucket.org:u10e10/"]
+	# insteadof = bgu:
 [http "https://gopkg.in"]
 	followRedirects = true
 [alias]
