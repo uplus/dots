@@ -9,6 +9,8 @@
 	encodig = utf-8
 	# pager = less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT
 	pager = delta
+[pager]
+	grep =
 [color]
 	ui = true
 [web]
