@@ -290,7 +290,7 @@ elif in_path brew; then
   alias a.sh='brew info'
   alias a.c='brew cleanup'
   alias a.u='brew upgrade'
-  alias a.uw='brew update'
+  alias a.ud='brew update'
 elif in_path dnf; then
   alias a.u='sudo dnf upgrade'
   alias a.ud='sudo dnf check-update'

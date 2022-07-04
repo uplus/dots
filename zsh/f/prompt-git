@@ -1,15 +1,17 @@
 #!/usr/bin/env zsh
 
-# NOTE: git 呼び出し1回あたりオーバーヘッドが0.060sぐらいある
-git rev-parse --git-dir >&! /dev/null || return
-
 COLOR_RED="#ff6090"
 COLOR_GREEN="#23FF48"
 COLOR_BLUE="#05E1EB"
 COLOR_YELLOW="#FFCF26"
 COLOR_MAGENTA="#A75AE8"
 
-# branch name
+# timeout 1s command
+# GIT_OPTIONAL_LOCKS=
+
+# NOTE: git 呼び出し1回あたりオーバーヘッドが0.060sぐらいある
+git rev-parse --git-dir >&! /dev/null || return
+
 # branch_name="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
 branch_name="$(git branch --show-current 2>/dev/null)"
 if [[ -z "${branch_name}" ]]; then

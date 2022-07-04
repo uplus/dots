@@ -246,6 +246,8 @@ pkg_gem(){
 
 pkg_brew(){
   pkgs=(
+    # 標準のgitはなんか重い
+    git
     coreutils findutils iproute2mac luajit grep pgrep pkill watch fswatch svn
     tig tree wget curl tmux ripgrep pwgen peco jq nkf deno libtool pkg-config gettext
     automake cmake ctop direnv gcc go graphviz llvm ninja openssl@3 proctools qmk/qmk/qmk rust sshuttle yarn git-secrets

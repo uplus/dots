@@ -49,8 +49,8 @@ compdef _vbox-startvm vbox-startvm
 
 # ---- 手動更新 ----
 
-# genereated by 'note --complete'
 # in_path ruby && in_path note && eval "$(note --complete)"
+# genereated by 'note --complete'
 _note(){
   _files -W `note --dir` && return 0
 }
