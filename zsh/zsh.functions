@@ -496,7 +496,7 @@ json_format(){
 smart_docker(){
   unfunction "${1}"
 
-  if ! can_exec systemctl ; then
+  if ! is_executable systemctl ; then
     return
   fi
 

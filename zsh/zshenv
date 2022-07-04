@@ -9,7 +9,7 @@ ZSHENV_LOADED="loaded"
 typeset -U path PATH MANPATH INFOPATH fpath FPATH MANPATH NODE_PATH # RUBYLIB
 
 in_path(){ which $@ &>! /dev/null }
-can_exec(){ type $@ &>! /dev/null }
+is_executable(){ type $@ &>! /dev/null }
 in_ssh(){ [[ -n "${REMOTEHOST:-}${SSH_CONNECTION:-}" ]] }
 in_tmux(){ [[ -n "${TMUX:-}" ]] }
 in_interactive() { [[ $- == *i* ]] }

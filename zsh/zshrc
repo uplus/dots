@@ -305,4 +305,4 @@ exists_source(){
 
 exists_source "$ZSH_DOT_DIR/zshrc.local"
 
-can_exec zprof && (zprof | tee ~/zsh.log) || :
+is_executable zprof && (zprof | tee ~/zsh.log) || :

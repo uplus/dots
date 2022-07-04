@@ -424,12 +424,12 @@ else
   alias_over pgrep -ila
 fi
 
-if can_exec systemctl; then
-  if ! can_exec reboot; then
+if is_executable systemctl; then
+  if ! is_executable reboot; then
     alias reboot='sudo systemctl reboot'
   fi
 
-  if ! can_exec poweroff; then
+  if ! is_executable poweroff; then
     alias poweroff='sudo systemctl poweroff'
   fi
 fi
@@ -440,7 +440,7 @@ if in_ssh; then
 fi
 alias suspend='sudo systemctl suspend'
 
-if can_exec exa; then
+if is_executable exa; then
   alias l='exa -F'
   alias la='exa -a'
   alias le='exa'
