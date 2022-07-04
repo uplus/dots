@@ -105,7 +105,21 @@ HISTFILE=~/.zsh/history
 
 # 失敗したコマンドはファイルに書き込まない
 # whenceの引数をクオートすると動かなくなる
-zshaddhistory() { whence -- ${${(z)1}[1]} >| /dev/null || return 1 }
+zshaddhistory() {
+  local line=${1%%$'\n'}
+  local cmd=${line%% *}
+
+  # 存在しないコマンドなどを実行したら記録しない
+  # TODO: HOGE=10 ls   などの形式も落ちる
+  # TODO: HOGE=10      などの変数定義を記録できない
+  whence -- ${${(z)1}[1]} >| /dev/null || return 1
+
+  # 最後の改行を削除して記録して1を返す(複数行コマンド対応)
+  # https://zsh.sourceforge.io/Doc/Release/Functions.html
+  #   -s 出力を履歴に記録する
+  print -sr "${1%%$'\n'##}"
+  return 1
+}
 # }}}
 
 # Options {{{
