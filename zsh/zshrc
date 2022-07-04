@@ -106,13 +106,25 @@ HISTFILE=~/.zsh/history
 # 失敗したコマンドはファイルに書き込まない
 # whenceの引数をクオートすると動かなくなる
 zshaddhistory() {
-  local line=${1%%$'\n'}
-  local cmd=${line%% *}
+  # 先頭の環境変数を除いてコマンドを取得する
+  local cmd=""
+  for token in ${(z)1}; do
+    # HOGE=123 形式ではないならコマンドと判断してbreak
+    if [[ ! "${token}" =~ "^[^ ]+=" ]]; then
+      cmd="${token}"
+      break
+    fi
+  done
+
+  # ${(z)1} の最後の要素は ; になる
+  # cmd が ; なら環境変数定義のみと判断して終了
+  if [[ ${cmd} = ";" ]]; then
+    return 0
+  fi
 
   # 存在しないコマンドなどを実行したら記録しない
-  # TODO: HOGE=10 ls   などの形式も落ちる
-  # TODO: HOGE=10      などの変数定義を記録できない
-  whence -- ${${(z)1}[1]} >| /dev/null || return 1
+  # whence -- ${${(z)1}[1]} >| /dev/null || return 1
+  whence -- ${cmd} >| /dev/null || return 1
 
   # 最後の改行を削除して記録して1を返す(複数行コマンド対応)
   # https://zsh.sourceforge.io/Doc/Release/Functions.html
