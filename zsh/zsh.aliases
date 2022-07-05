@@ -288,6 +288,7 @@ elif in_path brew; then
   alias a.r='brew uninstall'
   alias a.s='brew search'
   alias a.sh='brew info'
+  alias a.l='brew list'
   alias a.c='brew cleanup'
   alias a.u='brew upgrade'
   alias a.ud='brew update'
