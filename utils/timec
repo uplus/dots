@@ -3,9 +3,12 @@
 
 require 'time'
 
+# strptimeは相対時間なので、00:00を引いて絶対時間にする
+BASE_TIME = Time.strptime('00:00', '%M:%S').to_i
+
 ARGV
   .join
   .delete(' ')
-  .gsub(/\d{1,2}:\d{1,2}/) {|time_str| Time.strptime(time_str, '%M:%S').to_i }
+  .gsub(/\d{1,2}:\d{1,2}/) {|time_str| Time.strptime(time_str, '%M:%S').to_i - BASE_TIME }
   .then {|str| eval(str) }
   .tap {|value| puts format('%02d:%02d', value / 60, value % 60) }
