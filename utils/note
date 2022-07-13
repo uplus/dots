@@ -4,17 +4,16 @@ require 'find'
 require 'fileutils'
 Version = 2.0
 
-# zsh complete # {{{
+# zsh complete
 if ARGV[0] == '--complete'
-  puts <<-'EOB'
-_note(){
-  _files -W `note --dir` && return 0
-}
-compdef _note note
+  puts <<~'EOB'
+    _note(){
+      _files -W `note --dir` && return 0
+    }
+    compdef _note note
   EOB
   exit
 end
-# }}}
 
 # add methods to builtin classes # {{{
 class String
