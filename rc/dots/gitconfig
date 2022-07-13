@@ -17,6 +17,7 @@
 	browser = xdg-open
 [push]
 	default = current
+	autoSetupRemote = true
 [interactive]
 	diffFilter = delta --color-only
 [diff]
