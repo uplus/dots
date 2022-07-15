@@ -22,6 +22,7 @@ tags
 yarn-error.log
 .yardoc
 node_modules/
+.metals
 
 # credentials
 .env
