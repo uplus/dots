@@ -9,13 +9,18 @@ local dirname file
 # rg --files --color=never --hidden --glob '!.git'
 # rg --files --color=never --hidden --glob '!.git' --no-ignore-vcs
 
-ignore_dirs=(.git __pycache__ node_modules '.git-wt-*' .nuxt .next dist cache .bundle .build)
-for dirname in ${ignore_dirs}; do
-  ignores+=(-type d -name "${dirname}" -prune -o)
-done
-
 target_dir="$(relative "${1:-.}")"
 
-list_dirs_files "${target_dir}" ${ignores} | sort -n | peco | while read file; do
+# シンボリックリンクが解決できないとエラーになるけど --ignore-messages つけなくても平気そう
+rg --files --follow --color=never --hidden --glob '!.git' | sort -n | peco | while read file; do
   echo "$(relative "${target_dir}/${file}")"
 done
+
+# ignore_dirs=(.git __pycache__ node_modules '.git-wt-*' .nuxt .next dist cache .bundle .build .bloop)
+# for dirname in ${ignore_dirs}; do
+#   ignores+=(-type d -name "${dirname}" -prune -o)
+# done
+#
+# list_dirs_files "${target_dir}" ${ignores} | sort -n | peco | while read file; do
+#   echo "$(relative "${target_dir}/${file}")"
+# done

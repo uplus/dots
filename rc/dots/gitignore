@@ -5,12 +5,12 @@ core
 !core/
 dip.override.yml
 .Dockerfile
+.DS_Store
 
 # editor
 .*.sw?
 .nvimlog
 .session.vim
-.DS_Store
 .vimrc.local
 .tags
 tags
