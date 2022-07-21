@@ -11,8 +11,8 @@ local dirname file
 
 target_dir="$(relative "${1:-.}")"
 
-# シンボリックリンクが解決できないとエラーになるけど --ignore-messages つけなくても平気そう
-rg --files --follow --color=never --hidden --glob '!.git' | sort -n | peco | while read file; do
+# symblic linkでループしたときstderrが出るため --no-messages で抑制
+rg --files --follow  --no-messages --color=never --hidden --glob '!.git' | sort -n | peco | while read file; do
   echo "$(relative "${target_dir}/${file}")"
 done
 
