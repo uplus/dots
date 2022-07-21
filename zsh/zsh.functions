@@ -110,7 +110,14 @@ keymaps() { awk '/\/\*\s*Keymap/,/\*\//' ~qmkmy/keymap.c | sed -E 's|^\s*/?\*/?\
 timer-alert() { command termdown ${@} && sound-alert }
 
 autols(){
-  [[ ${AUTOLS_DIR:-$PWD} != $PWD ]] && ls -F --color=always -v
+  if [[ ${AUTOLS_DIR:-$PWD} != $PWD ]]; then
+    if is_executable exa; then
+      COLUMNS=$(clamp $COLUMNS 0 220) exa -F
+    else
+      ls -F -v
+    fi
+  fi
+
   AUTOLS_DIR="${PWD}"
 }
 add-zsh-hook precmd autols
