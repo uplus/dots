@@ -11,11 +11,9 @@ alias l='ls -F'
 alias l1='ls -F1'
 alias la='ls -A'
 alias ll='ls -lh'
-alias li='ls -i'
-alias lld='ls -ld'
-alias lla='ls -lAh'
-alias lli='ls -li'
-alias lai='ls -lAhi'
+alias lld='ll -d'
+alias lla='ll -A'
+alias lli='ll -i'
 
 #cd {{{1
 alias c='cd'
@@ -443,16 +441,11 @@ fi
 alias suspend='sudo systemctl suspend'
 
 if is_executable exa; then
-  alias l='exa -F'
+  alias ls='COLUMNS=$(clamp $COLUMNS 0 220) exa'
+  # 互換性の無いaliasのみ再定義する
   alias la='exa -a'
-  alias le='exa'
-  alias l1='exa -F1'
   alias ll='exa -lhg'
-  alias li='exa -i'
-  alias lld='ll -d'
   alias lla='ll -a'
-  alias lli='ll -i'
-  alias lai='lla -i'
 fi
 
 

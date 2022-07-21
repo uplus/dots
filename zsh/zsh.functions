@@ -59,6 +59,20 @@ hide(){
   } &!
 }
 
+clamp() {
+  if [[ $# -lt 3 ]]; then
+    return 1
+  fi
+
+  if [[ ${1} -lt ${2} ]]; then
+    echo -n ${2}
+  elif [[ ${1} -gt ${3} ]]; then
+    echo -n ${3}
+  else
+    echo -n ${1}
+  fi
+}
+
 notify_result(){
   result=${?}
   success_msg="${1:? success message}"
