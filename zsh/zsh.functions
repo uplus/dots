@@ -333,7 +333,7 @@ lsize(){
 
 kill(){
   if (($# != 0)); then
-    command kill --verbose $@
+    command kill $@
   else
     ps --no-headers -u "${USER}" -o pid,cmd | peco | awk '$0=$1' | xargs kill -KILL --verbose
   fi
