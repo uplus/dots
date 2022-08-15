@@ -35,6 +35,7 @@ is_active(){ systemctl status "${1:?service}" | grep -Po '(?<=Active:).*' | grep
 in_group(){ groups "${USER}" | grep -q "${1:?group name}" }
 
 rand() { ruby -e "puts Random.new.rand(${1:? range})" }
+randstr() { openssl rand -base64 100 | tr -d '+/=\n' | cut -c "-${1:?length}"}
 getuuid(){ ruby -r securerandom -e 'print SecureRandom.uuid' }
 gettty(){ echo "$TTY" | sed -e 's/[^0-9]//g' }
 relative(){
@@ -502,6 +503,12 @@ wgetc(){
   else
     wget -O "${1:?filename}" "$(clip -o)"
   fi
+}
+
+wget-image() {
+  height="${1:?height}"
+  width="${2:?width}"
+  wget https"://picsum.photos/${height}/${width}" -O "${height}-${width}-$(randstr 8).jpg"
 }
 
 gif-optimize(){
