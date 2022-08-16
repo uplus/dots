@@ -50,7 +50,7 @@ alias vim.opt='vim --version | \grep -E "^\+|^-"'
 alias ls-swap='ls -l1 /home/uplus/.local/share/nvim/swap'
 alias cd-swap='cd /home/uplus/.local/share/nvim/swap'
 alias rm-swap='rm /home/uplus/.local/share/nvim/swap/*'
-alias vim-power='git ls-files | grep -vE "^(colors|snippets|doc)/" | xargs -I{} cat "{}" | grep -vE "^$|^\s*\"" | wc -l'
+alias vim-power='git ls-files | grep -vE "^(colors|snippets|doc)/" | xargs -I{} cat "{}" | grep -vE "^$|^\s*(\"|#|--)" | wc -l'
 
 ## vim applications
 alias gista="v +'Gista list'"
