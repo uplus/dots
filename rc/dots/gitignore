@@ -23,6 +23,7 @@ yarn-error.log
 .yardoc
 node_modules/
 .metals
+metals.sbt
 
 # credentials
 .env
