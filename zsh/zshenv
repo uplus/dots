@@ -17,6 +17,9 @@ in_darwin() { [[ $OSTYPE =~ 'darwin' ]] }
 in_alacritty() { [[ -n "${ALACRITTY_LOG:-}" ]] }
 is_parent() { ps --no-header "${PPID}" | grep -q "${1:? parent process name}" }
 
+# ctrl-sによる停止を無効化
+in_interactive && stty -ixon -ixoff >&! /dev/null
+
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
@@ -91,8 +94,10 @@ export PATH="$GOPATH/bin:${PATH}"
 ## rusutpを使ってると無いほうが良い?
 export PATH="${HOME}/.cargo/bin:${PATH}"
 export PATH="${HOME}/.cabal/bin:${PATH}"
+export PATH="${HOME}/.local/share/coursier/bin:${PATH}"
 export PATH="${NPM_PACKAGES}/bin:${PATH}"
 export PATH="${DOT_DIR}/utils:${PATH}:${DOT_DIR}/git-subcommands"
+export PATH="${HOME}/bin:${PATH}"
 
 ## enable high speed compile with compile cache
 export PATH="/usr/lib/ccache/bin:${PATH}"
@@ -105,11 +110,6 @@ fi
 # if [[ -n "${WINDOWID:-}" && -f $HOME/.xmodmap ]]; then
 #   xmodmap ~/.xmodmap
 # fi
-
-# ctrl-sによる停止を無効化
-in_interactive && stty -ixon -ixoff >&! /dev/null
-
-export PATH="${HOME}/bin:${PATH}"
 
 # /etc/zsh/profile -> /etc/profileで爆発しないようプロテクト
 # readonly PATH
