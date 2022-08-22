@@ -168,16 +168,16 @@ setopt mark_dirs              # Add "/" when glob.
 # setopt numeric_glob_sort  #数値が含まれたとき数字順にソートする
 
 #complete
-setopt always_lastprompt  #補完で行を移動しない
+setopt always_lastprompt  # 補完で行を移動しない
 setopt list_types         # List like "ls -F"
 setopt list_packed        # 補完リストをなるべく少ない量にする
-setopt auto_param_keys    #自動補完される余分なカンマなどを適宜削除してスムーズに入力できるようにする
-setopt auto_param_slash   #ディレクトリ名の補完で末尾の/を自動的に付加し、次の補完に備える
-setopt auto_remove_slash  #スラッシュが補完された後、;やスペースを入力したら自動的にそのスラッシュを消す
+setopt auto_param_keys    # 自動補完される余分なカンマなどを適宜削除してスムーズに入力できるようにする
+setopt auto_param_slash   # ディレクトリ名の補完で末尾の/を自動的に付加し、次の補完に備える
+setopt auto_remove_slash  # スラッシュが補完された後、;やスペースを入力したら自動的にそのスラッシュを消す
 setopt magic_equal_subst  # --prefix=/usr/など = 以降も補完
 
 setopt list_rows_first    # 候補を移動するとき横に進む
-setopt no_list_ambiguous  #on: 共通部分を補完してリストは表示しない
+setopt no_list_ambiguous  # on: 共通部分を補完してリストは表示しない
 
 # is_parentは遅い
 # if is_parent yakuake || is_parent nvim ; then
@@ -278,7 +278,7 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters   # complete
 
 # bash_auto_list glob_complete hash_list_all list_ambiguous rec_exact
 # setopt noautolist
-setopt menu_complete # 補完開始と同時に最初の要素をを選択
+setopt no_menu_complete # 補完開始と同時に最初の要素をを選択
 setopt auto_list # 補完候補一覧をPAGER的なもので表示する
 setopt auto_menu # TABで候補を選択できるメニュー(2type必要)
 # }}}
