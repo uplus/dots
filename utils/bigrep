@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ $# -eq 0 ]]; then
-  echo "bisect-grep TEXT [IGNORE_FILE_PATTERNS...]"
+  echo "bigrep TEXT [IGNORE_FILE_PATTERNS...]"
   exit 255
 fi
 
