@@ -419,7 +419,8 @@ alias_rlwrap phpmyadmin-cli
 alias_over termdown -b
 
 if in_darwin; then
-  alias_over pgrep -ilL
+  alias_over pgrep -filL
+  alias_over pkill -i
 else
   alias_over pgrep -ila
 fi

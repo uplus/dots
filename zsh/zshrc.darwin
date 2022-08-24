@@ -22,7 +22,6 @@ path=(
   )
 
 alias xdg-open='command open'
-alias pkill='pkill -i'
 
 # export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
