@@ -1,12 +1,19 @@
 #!/usr/bin/env zsh
 
+set -eu
+
 if [[ ${1:-} = '--sound' ]]; then
   sound-alert
   shift
 fi
 
-title="${1:?title}"
-body="${2:-}"
+if [[ $# -eq 1 ]]; then
+  title="Terminal"
+  body="${1}"
+elif [[ $# -eq 2 ]]; then
+  title="${1}"
+  body="${2}"
+fi
 
 if in_darwin; then
   osascript -e "display notification \"${body}\" with title \"${title}\""

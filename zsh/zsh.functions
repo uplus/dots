@@ -108,7 +108,7 @@ echo-true(){
 }
 
 keymaps() { awk '/\/\*\s*Keymap/,/\*\//' ~qmkmy/keymap.c | sed -E 's|^\s*/?\*/?\s?||' }
-timer-alert() { command termdown ${@} && sound-alert }
+timer-alert() { command termdown ${@} && notify 'Timer' 'time is up' }
 
 autols(){
   if [[ ${AUTOLS_DIR:-$PWD} != $PWD ]]; then
