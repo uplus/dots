@@ -251,7 +251,7 @@ pkg_brew(){
     git
     exa ripgrep peco
     gcc go rust
-    shellcheck
+    shellcheck lua-language-server
     coreutils findutils iproute2mac luajit grep pgrep pkill watch
     fswatch svn tig tree wget curl tmux pwgen jq nkf deno libtool pkg-config gettext
     automake cmake ctop direnv graphviz llvm ninja openssl@3 proctools qmk/qmk/qmk sshuttle yarn git-secrets 
