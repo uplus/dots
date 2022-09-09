@@ -6,6 +6,8 @@ rules:
   line-length: disable
   document-start: disable
   colons: disable
+  comments:
+    min-spaces-from-content: 1
   empty-lines:
     max: 1
   braces:
