@@ -478,7 +478,9 @@ alias _='sudo'
 alias __='sudo $EDITOR'
 alias odh='od -A x -t x1z -v '
 alias vlc-clear='rm -r ~/.cache/vlc/'
+# functionにするとttyが見つからなくなる
 alias tyy='tee $(tty)'
+alias phc="peco | awk '\$0=\$1' | tr -d '\\n' | tyy | clip"
 # alias gip='curl --silent --show-error ifconfig.io'
 alias gip='curl --silent --show-error checkip.amazonaws.com'
 alias pensay='cowsay -f tux'
