@@ -848,6 +848,21 @@ build-qmk() {
   cd -
 }
 
+kc-pf() {
+  pod_name=${1:?pod_name}
+  port_map=${2:?port_map}
+  shift 2
+
+  pod_ip="$(kubectl get pods "${pod_name}" -o jsonpath="{.status.podIP}")"
+  echo "${pod_ip}" | clip
+
+  if ! ifconfig lo0 | grep -wq "${pod_ip}"; then
+    sudo ifconfig lo0 alias "${pod_ip}"
+  fi
+
+  kubectl port-forward ${@} --address="${pod_ip}" "${pod_name}" "${port_map}"
+}
+
 socks() {
   port="${1:? port}"
   user_host="${2:? user@host}"
