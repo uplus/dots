@@ -853,8 +853,8 @@ kc-pf() {
   port_map=${2:?port_map}
   shift 2
 
-  pod_ip="$(kubectl get pods "${pod_name}" -o jsonpath="{.status.podIP}")"
-  echo "${pod_ip}" | clip
+  pod_ip="$(kubectl get pods "${pod_name}" -o jsonpath="{.status.podIP}" ${@})"
+  echo -n "${pod_ip}" | clip
 
   if ! ifconfig lo0 | grep -wq "${pod_ip}"; then
     sudo ifconfig lo0 alias "${pod_ip}"
