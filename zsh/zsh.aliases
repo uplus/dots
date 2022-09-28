@@ -136,14 +136,14 @@ alias -s c='runc'
 alias -s cpp='runcpp'
 alias -s rs='runrust'
 alias -s js='js'
-alias -s zsh='zsh'
-alias -s bash='bash'
-alias -s sh='sh'
+# alias -s zsh='zsh'
+# alias -s bash='bash'
+# alias -s sh='sh'
 alias -s zip=zipinfo
 alias -s {tgz,gz}="zcat -dc"
 alias -s {tbz,bz2}=bzcat
 alias -s json=showjson
-alias -s db=sqlite3
+# alias -s db=sqlite3
 alias -s java=runjava
 runcpp() { clang++ "${1}" -o "${1%.*}" && time "./${1%.*}" "${@:2}" }
 runc()   { clang   "${1}" -o "${1%.*}" && time "./${1%.*}" "${@:2}" }
