@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [[ -n $(ls -A) ]]; then
+if [[ -n $(command ls -A) ]]; then
   warn "Here directory is not empty."
   return 1
 fi
