@@ -159,6 +159,15 @@ pkg_go(){
   done
 }
 
+pkg_scala() {
+  pkgs=(
+    scalafix
+    metals
+  )
+
+  cs install "${pkgs[@]}"
+}
+
 pkg_pip(){
   pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash qmk pyls flake8 autopep8)
   pip3 install --upgrade --user ${pkgs[@]}
