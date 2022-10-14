@@ -72,12 +72,12 @@ setup_dirs(){
 
 setup_config_files(){
   dir="${current}/rc/dots"
-  for name in $(ls "${dir}"); do
+  find "${dir}" | while read -r name; do
     ln -svi "${dir}/${name}" "${HOME}/.$name"
   done
 
   dir="${current}/rc/config"
-  for name in $(ls "${dir}"); do
+  find "${dir}" | while read -r name; do
     ln -svi "${dir}/${name}" "${HOME}/.config/"
   done
 
@@ -118,7 +118,7 @@ setup_vim(){
 clone_myrepos_tmp(){
   local ssh my_repo
   echo -n " have you ssh-key of git?(y/N)"
-  read -n 1 ssh
+  read -rn 1 ssh
   echo
   if [[ $ssh =~ [yY] ]]; then
     my_repo='git@github.com:uplus'
@@ -154,7 +154,7 @@ pkg_go(){
     github.com/monochromegane/the_platinum_searcher/cmd/pt
   )
 
-  for name in ${pkgs[@]}; do
+  for name in "${pkgs[@]}"; do
     go install -v "${name}"
   done
 }
@@ -170,7 +170,7 @@ pkg_scala() {
 
 pkg_pip(){
   pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash qmk pyls flake8 autopep8)
-  pip3 install --upgrade --user ${pkgs[@]}
+  pip3 install --upgrade --user "${pkgs[@]}"
 }
 
 pkg_cargo(){
@@ -186,7 +186,7 @@ pkg_cargo(){
     typos-cli
   )
 
-  for name in ${pkgs[@]}; do
+  for name in "${pkgs[@]}"; do
     cargo install "${name}"
   done
 
@@ -200,7 +200,7 @@ pkg_npm(){
     typescript-language-server
   )
 
-  for name in ${pkgs[@]}; do
+  for name in "${pkgs[@]}"; do
     npm install -g "${name}"
   done
 }
@@ -251,7 +251,7 @@ pkg_gem(){
     mechanize
   )
 
-  gem install ${pkgs[@]}
+  gem install "${pkgs[@]}"
 }
 
 pkg_brew(){
@@ -266,7 +266,7 @@ pkg_brew(){
     automake cmake ctop direnv graphviz llvm ninja openssl@3 proctools qmk/qmk/qmk sshuttle yarn git-secrets 
   )
 
-  brew install ${pkgs[@]}
+  brew install "${pkgs[@]}"
 
   brew install --cask alacritty alt-tab gimp homebrew/cask-fonts/font-source-code-pro homebrew/cask-fonts/font-source-code-pro-for-powerline
   # brew install neovim --HEAD
