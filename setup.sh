@@ -8,14 +8,14 @@ current="$(cd -- "$(dirname -- "${BASH_SOURCE:-$0}")" && pwd)"
 ## Utils {{{
 
 in_path(){
-  which $@ >/dev/null 2>&1
+  which "${@}" >/dev/null 2>&1
 }
 
 binln(){
   local name rpath bname
-  [[ ! -d $HOME/bin ]] && mkdir $HOME/bin
+  [[ ! -d "${HOME}/bin" ]] && mkdir "${HOME}/bin"
 
-  for name in $@; do
+  for name in "${@}"; do
     rpath="$(readlink -f "${name}")"
     bname="$(basename "${name}")"
     ln -svi "${rpath}" "${HOME}/bin/${bname%.*}"
@@ -25,15 +25,15 @@ binln(){
 sln(){
   abs_src="$(readlink -f "${1:?src}")"
   abs_dest="$(readlink -f "${2:?dest}")"
-  ln -svin ${abs_src} ${abs_dest}
+  ln -svin "${abs_src}" "${abs_dest}"
 }
 
 dotln(){
   local name
-  mkdir -p $HOME/bin
+  mkdir -p "${HOME}/bin"
 
-  for name in $@; do
-    ln -svin "${name:a}" "$HOME/.${name:t:r}"
+  for name in "${@}"; do
+    ln -svin "${name:a}" "${HOME}/.${name:t:r}"
   done
 }
 
@@ -59,15 +59,15 @@ mini(){
 }
 
 setup_dirs(){
-  mkdir -vpm 700 $HOME/bin
-  mkdir -vpm 700 $HOME/.ssh
-  mkdir -vpm 700 $HOME/.config
-  mkdir -vpm 700 $HOME/.cache
+  mkdir -vpm 700 "${HOME}/bin"
+  mkdir -vpm 700 "${HOME}/.ssh"
+  mkdir -vpm 700 "${HOME}/.config"
+  mkdir -vpm 700 "${HOME}/.cache"
 
-  mkdir -vpm 700 $HOME/tmp
-  mkdir -vpm 700 $HOME/works
-  mkdir -vpm 700 $HOME/src
-  mkdir -vpm 700 $HOME/codes
+  mkdir -vpm 700 "${HOME}/tmp"
+  mkdir -vpm 700 "${HOME}/works"
+  mkdir -vpm 700 "${HOME}/src"
+  mkdir -vpm 700 "${HOME}/codes"
 }
 
 setup_config_files(){
@@ -86,10 +86,10 @@ setup_config_files(){
 
 setup_zsh(){
   # link configs
-  ln -svi "$current/zsh/zshenv" "$HOME/.zshenv"
-  ln -svi "$current/zsh/zshrc" "$HOME/.zshrc"
+  ln -svi "${current}/zsh/zshenv" "${HOME}/.zshenv"
+  ln -svi "${current}/zsh/zshrc" "${HOME}/.zshrc"
 
-  mkdir -p $HOME/.zsh
+  mkdir -p "${HOME}/.zsh"
 
   # create zshrc.local
   touch "${current}/zsh/zshrc.local"
@@ -105,13 +105,13 @@ setup_zsh(){
 }
 
 setup_vim(){
-  git clone https://github.com/uplus/vimrc $HOME/.vim
+  git clone https://github.com/uplus/vimrc "${HOME}/.vim"
 
   # neovim
   mkdir -p ~/.config
-  ln -svi $HOME/.vim $HOME/.config/nvim
+  ln -svi "${HOME}/.vim" "${HOME}/.config/nvim"
 
-  mkdir -p $HOME/.vim/tmp
+  mkdir -p "${HOME}/.vim/tmp"
   install_dein
 }
 
@@ -126,10 +126,10 @@ clone_myrepos_tmp(){
     my_repo='https://github.com/uplus'
   fi
 
-  git clone $my_repo/vimrc.git $HOME/.vim/
+  git clone "${my_repo}/vimrc.git" "${HOME}/.vim/"
   install_dein
 
-  git clone $my_repo/rbrn.git $HOME/codes/rbrn
+  git clone "${my_repo}/rbrn.git" "${HOME}/codes/rbrn"
 }
 
 # pkg_ {{{
@@ -295,7 +295,7 @@ install_peco_wget(){
   target='peco_linux_amd64'
   get_url="$(curl -sS "${req_url}" | grep 'browser_download_url' | grep "${target}" | head -1 | awk '$0=$2' | tr -d '"')"
   wget "${get_url}" -O - | tar zxf -
-  mv "${target}/peco" "$HOME/bin" && rm -r "${target}"
+  mv "${target}/peco" "${HOME}/bin" && rm -r "${target}"
 }
 
 install_ripgrep(){
@@ -334,19 +334,12 @@ export XMODIFIERS="@im=fcitx"
 END
 }
 
-set_dark_theme(){
-  local gtk_config="$HOME/.config/gtk-3.0"
-  [[ -d $gtk_config ]] && mkdir -p "$gtk_config"
-  ln -svi $current/gtk3.css $gtk_config/gtk3.css
-  echo '@import url("gtk3.css");'>> "$gtk_config/gtk.css"
-}
-
 disable_settings_daemon_keyboard(){
   dconf write /org/gnome/settings-daemon/plugins/keyboard/active false
 }
 
 change_keymap(){
-  sudo ln -s $current/u10.xkb /usr/share/X11/xkb/symbols/u10
+  sudo ln -s "${current}/u10.xkb" /usr/share/X11/xkb/symbols/u10
   sudo rm /var/lib/xkb/*
 
   echo "
