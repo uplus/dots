@@ -246,7 +246,7 @@ gpull(){
 
 ignore() {
   if [[ $# -eq 0 ]]; then
-    command ls -A1 | peco >>! .gitignore
+    ls -A1 | peco >>! .gitignore
   else
     echo "$*" >>! .gitignore
   fi
