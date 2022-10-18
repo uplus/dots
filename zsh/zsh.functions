@@ -856,6 +856,12 @@ build-qmk() {
   cd -
 }
 
+build-neovim() {
+  nvim --version | head -1 >> "${HOME}/.neovim-versions"
+  make CMAKE_BUILD_TYPE=Release -j $(($(nproc) / 2))
+  # 'make distclean clean && make CMAKE_BUILD_TYPE=RelWithDebInfo # -j $(nproc --ignore 1)'
+}
+
 kc-pf() {
   pod_name=${1:?pod_name}
   port_map=${2:?port_map}
