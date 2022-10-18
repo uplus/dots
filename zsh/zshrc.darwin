@@ -21,8 +21,7 @@ path=(
   $path
   )
 
-alias xdg-open='command open'
+export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib ${LDFLAGS}"
+export CPPFLAGS="-I/usr/local/opt/llvm/include ${CPPFLAGS}"
 
-# export LDFLAGS="-L/usr/local/opt/llvm/lib"
-export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
-export CPPFLAGS="-I/usr/local/opt/llvm/include"
+alias xdg-open='command open'
