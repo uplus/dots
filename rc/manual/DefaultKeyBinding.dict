@@ -1,9 +1,7 @@
 {
 /* Keybindings for emacs emulation.  Compiled by Jacob Rus.
  *
- * This is a pretty good set, especially considering that many emacs bindings
- * such as C-o, C-a, C-e, C-k, C-y, C-v, C-f, C-b, C-p, C-n, C-t, and
- * perhaps a few more, are already built into the system.
+ * This is a pretty good set, especially considering that many emacs bindings such as C-o, C-a, C-e, C-k, C-y, C-v, C-f, C-b, C-p, C-n, C-t, and perhaps a few more, are already built into the system.
  *
  * BEWARE:
  * This file uses the Option key as a meta key.  This has the side-effect
@@ -76,21 +74,17 @@
 
 /***** HOME-END KEYS *****/
 
-    "\UF729"    = "moveToBeginningOfLine:";         /* home         Beginning of line */
-    "\UF72B"    = "moveToEndOfLine:";               /* end          End of line */
+    "\UF729"    = "moveToLeftEndOfLine:";           /* home */
+    "\UF72B"    = "moveToRightEndOfLine:";          /* end  */
 
-    "$\UF729"   = "moveToBeginningOfLineAndModifySelection:";
-                                                    /* Shft-home    Select to beginning of line */
-    "$\UF72B"   = "moveToEndOfLineAndModifySelection:";
-                                                    /* Shft-end     Select to end of line */
+    "$\UF729"   = "moveToLeftEndOfLineAndModifySelection:";  /* Shft-home */
+    "$\UF72B"   = "moveToRightEndOfLineAndModifySelection:"; /* Shft-end  */
 
     "^\UF729"   = "moveToBeginningOfDocument:";     /* C-home       Beginning of document */
     "^\UF72B"   = "moveToEndOfDocument:";           /* C-end        End of document */
     
-    "^$\UF729"  = "moveToBeginningOfDocumentAndModifySelection:";
-                                                    /* C-Shft-home  Select to beginning of document */
-    "^$\UF72B"  = "moveToEndOfDocumentAndModifySelection:";
-                                                    /* C-Shft-end   Select to end of document */
+    "^$\UF729"  = "moveToBeginningOfDocumentAndModifySelection:"; /* C-Shft-home  Select to beginning of document */
+    "^$\UF72B"  = "moveToEndOfDocumentAndModifySelection:";       /* C-Shft-end   Select to end of document */
 
 /***** PAGE UP-PAGE DOWN KEYS *****/
 
