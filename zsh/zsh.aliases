@@ -512,7 +512,7 @@ alias ssh-config='v ~/.ssh/config'
 alias ssh-tmp='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias cle='( cd-root && time circleci local execute; notify "CircleCI" "finished in \"${PWD}\"" )'
 alias curl-json='curl -H "Content-Type: application/json"'
-alias curl-status="curl -w '\\n%{http_code}, %{time_total}'"
+alias curl-status="curl -w '\\n%{http_code}, %{time_total}' "
 alias html_unescape="ruby -r cgi -e 'puts CGI.unescapeHTML(ARGF.read)'"
 alias aws-profiles="cat ~/.aws/config | grep -Po '(?<=^\[profile )[^\]]+'"
 alias aws-select-profile='export AWS_PROFILE="$(aws-profiles | peco)"'
