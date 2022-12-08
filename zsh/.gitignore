@@ -1,1 +1,6 @@
 zshrc.local
+
+f/_docker
+f/_docker-compose
+f/_helm
+f/_stern
