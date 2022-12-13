@@ -160,7 +160,7 @@
 	remote-change = remote-change
 	capdate = !"git add . ; git com update"
 	copdate = !"git com update"
-	rp = reflog --date=human --all
+	refloga = reflog --date=human --all
 	browse = !gh browse
 	open = browse
 	pr-create = !gh pr create --web
