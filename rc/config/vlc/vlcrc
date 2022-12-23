@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 3.0.17.4
+###  vlc 3.0.18
 ###
 
 ###
@@ -1405,7 +1405,7 @@
 #sout-avi-subject=
 
 # Encoder (string)
-#sout-avi-encoder=VLC Media Player - 3.0.17.4 Vetinari
+#sout-avi-encoder=VLC Media Player - 3.0.18 Vetinari
 
 # Keywords (string)
 #sout-avi-keywords=
@@ -3781,12 +3781,6 @@ equalizer-bands=-5.7 -5.3 0.3 0.9 1.2 1.2 0.9 0 -1.8 -3.9
 # Musicbrainz Server (string)
 #musicbrainz-server=musicbrainz.org
 
-# CDDB Server (string)
-#cddb-server=freedb.videolan.org
-
-# CDDB port (integer)
-#cddb-port=80
-
 [avio] # libavformat AVIO access
 
 # Advanced options (string)
@@ -4320,7 +4314,7 @@ snapshot-path=/home/uplus/Pictures
 #mux=
 
 # Access output module (string)
-#access_output=
+access_output=any
 
 # Hop limit (TTL) (integer)
 #ttl=-1
@@ -4332,7 +4326,7 @@ snapshot-path=/home/uplus/Pictures
 #dscp=0
 
 # Preferred packetizer list (string)
-#packetizer=
+packetizer=any
 
 # VoD server module (string)
 vod-server=any
