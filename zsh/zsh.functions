@@ -691,7 +691,8 @@ get-active-connections(){
 }
 
 gitkraken(){
-  back command gitkraken --path="${1:-./}"
+  repo_path="$(realpath -z "${1:-./}")"
+  back command gitkraken --path="${repo_path}"
 }
 
 click(){
