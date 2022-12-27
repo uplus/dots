@@ -568,7 +568,7 @@ dkp-select() {
 
 dkc-rm() {
   docker-compose stop -t1 ${@}
-  docker-compose rm -f ${@}
+  docker-compose rm --volumes -f ${@}
 }
 
 sec(){
