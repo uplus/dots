@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'yaml'
+
+COLOR_NAMES = %w[black red green yellow blue magenta cyan white].freeze
+NVIM_COLOR_PREFIX = 'let g:terminal_color_'
+FILE_PATH = File.expand_path('~/.config/alacritty/alacritty.yml')
+ALACRITTY_COLORS = YAML.safe_load(File.read(FILE_PATH)).fetch('colors')
+
+def gen_color_config(key, index_start)
+  COLOR_NAMES.map.with_index(index_start) do |name, i|
+    color = ALACRITTY_COLORS.fetch(key).fetch(name)
+    "#{NVIM_COLOR_PREFIX}#{i} = '#{color}'"
+  end
+end
+
+puts gen_color_config('normal', 0)
+puts gen_color_config('bright', 8)
