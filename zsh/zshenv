@@ -25,7 +25,7 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export PATH="${HOME}/.local/bin:/usr/local/bin:${PATH}"
 
 ## tmux
-if ! in_tmux && in_interactive && (in_ssh || in_alacritty) && [[ ! -f ~/.notmux ]] && in_path tmux; then
+if ! in_tmux && in_interactive && in_ssh && [[ ! -f ~/.notmux ]] && in_path tmux; then
   exec tmux
 fi
 rm ~/.notmux >&! /dev/null
