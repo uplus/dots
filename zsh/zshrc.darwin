@@ -9,7 +9,7 @@ path=(
   '/usr/local/sbin'
   '/usr/local/share/zsh/site-functions'
   '/usr/local/opt/llvm/bin'
-  '/usr/local/opt/gcc/bin:$PATH'
+  '/usr/local/opt/gcc/bin'
   '/usr/local/opt/coreutils/libexec/gnubin'
   '/usr/local/opt/findutils/libexec/gnubin'
   '/usr/local/opt/grep/libexec/gnubin'
@@ -18,6 +18,8 @@ path=(
   '/usr/local/opt/avr-gcc@8/bin'
   '/usr/local/opt/arm-gcc-bin@8/bin'
   '/usr/local/opt/mysql-client/bin'
+  '/usr/local/opt/curl/bin/curl'
+  '/usr/local/opt/unzip/bin'
   '/usr/local/Homebrew/bin'
   $path
   )

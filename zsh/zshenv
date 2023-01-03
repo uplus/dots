@@ -36,11 +36,6 @@ export ZSH_DOT_DIR="$(dirname "$(readlink $HOME/.zshenv)")"
 export DOT_DIR="$(dirname "${ZSH_DOT_DIR}")"
 export MOUNT='/run/media/uplus'
 
-case "${OSTYPE:-}" in
-  linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
-  darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
-esac
-
 export skip_global_compinit=1
 
 # export LANGUAGE=en # don't need?
@@ -118,6 +113,11 @@ fi
 # 何故か一度設定してからじゃないとexaが読み取ってくれない
 LINES="${LINES}"
 COLUMNS="${COLUMNS}"
+
+case "${OSTYPE:-}" in
+  linux*)  source "$ZSH_DOT_DIR/zshrc.linux" ;;
+  darwin*) source "$ZSH_DOT_DIR/zshrc.darwin" ;;
+esac
 
 # for recover PATH
 PATH_keep="${PATH}"

@@ -262,7 +262,7 @@ pkg_brew(){
     gcc go rust
     shellcheck lua-language-server
     coreutils findutils iproute2mac luajit grep pgrep pkill watch
-    fswatch svn tig tree wget curl tmux pwgen jq nkf deno libtool pkg-config gettext
+    fswatch svn tig tree wget curl unzip tmux pwgen jq nkf deno libtool pkg-config gettext
     automake cmake ctop direnv graphviz llvm ninja openssl@3 proctools qmk/qmk/qmk sshuttle yarn git-secrets 
   )
 
