@@ -31,6 +31,7 @@
 	colorMoved = default # detect moved blocks of code and style them differently from the usual removed/added lines
 [fetch]
 	parallel = 0
+	prune = true
 # [blame]
 	# ignoreRevsFile = .git-blame-ignore-revs
 [pull]
@@ -105,7 +106,7 @@
 	b     = branch
 	eda   = branch -avv
 	del   = branch -d
-	ss    = stash save --include-untracked --keep-index
+	ss    = stash save --include-untracked --keep-index --message
 	save  = stash save --include-untracked
 	spop  = stash pop
 	sdrop = stash drop
