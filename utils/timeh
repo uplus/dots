@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+if ARGV.empty?
+  while line = $stdin.gets
+    puts Time.at(Integer(line))
+  end
+else
+  ARGV.each do |line|
+    puts Time.at(Integer(line))
+  end
+end
