@@ -396,7 +396,7 @@ alias_over xtrlock -f
 alias_over source-highlight -f esc -i
 alias_over gzip -v9N
 alias_over gist -c -p
-alias_over killall -i -I --verbose
+# alias_over killall -i -I --verbose
 alias_over python2 -B
 alias_over python3 -B
 alias_over irb --simple-prompt
