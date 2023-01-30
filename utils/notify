@@ -16,6 +16,9 @@ elif [[ $# -eq 2 ]]; then
 fi
 
 if in_darwin; then
+  # escape double-quote
+  title="$(echo "${title}" | sed 's/"/\\"/g')"
+  body="$(echo "${body}" | sed 's/"/\\"/g')"
   osascript -e "display notification \"${body}\" with title \"${title}\""
 else
   notify-send --urgency=low --icon="${HOME}/.face.icon" --app-name="${title}" "${title}" "${body}"
