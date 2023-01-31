@@ -243,12 +243,12 @@ pkg_gem(){
     # Simple SQL Linter
     sqlint
 
-    google-api-client
-    octokit
+    # google-api-client
+    # octokit
 
-    parser
-    nokogiri
-    mechanize
+    # parser
+    # nokogiri
+    # mechanize
   )
 
   gem install "${pkgs[@]}"
