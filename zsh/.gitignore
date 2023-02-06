@@ -4,3 +4,4 @@ f/_docker
 f/_docker-compose
 f/_helm
 f/_stern
+f/_kubectl
