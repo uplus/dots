@@ -13,6 +13,9 @@
 	grep =
 [color]
 	ui = true
+[color "diff"]
+	oldMoved = black red
+	newMoved = black green
 [web]
 	browser = xdg-open
 [push]
