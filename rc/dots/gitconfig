@@ -168,9 +168,12 @@
 	pr-create-push = !"git push -u && git pr-create"
 	pr-open = !gh pr view --web
 
+# delta --list-syntax-themes
 [delta "mantis-shrimp"]
 	dark = true
 	side-by-side = true
+	zero-style = syntax
+	syntax-theme = Coldark-Dark
 	navigate = true
 	keep-plus-minus-markers = false
 	hyperlinks = true
@@ -181,8 +184,6 @@
 	file-modified-label = [*]
 	file-removed-label = [-]
 	file-renamed-label = [->]
-	zero-style = syntax
-	syntax-theme = Monokai Extended
 	commit-decoration-style ="#11ce16" box
 	commit-style = "#ffd21a" bold italic
 	# hunk-header-decoration-style = "#1688f0" box ul
