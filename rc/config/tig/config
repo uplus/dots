@@ -210,6 +210,7 @@ bind diff   ] :toggle diff-context +1
 bind diff   R ?git revert %(commit)
 bind diff   Y @clip %(text)
 
+bind main G move-last-line # なぜか generic の設定が上書きされるので明示
 bind main C ?git cherry-pick %(commit)
 bind main B ?git checkout %(commit)
 bind main R ?git revert %(commit)
@@ -365,7 +366,7 @@ color "    Original-patch-by:"      yellow  default
 color "    Inspired-by:"            yellow  default
 color default              default default normal
 color cursor               black   cyan   normal
-color status               green   default
+color status               default default
 color delimiter            magenta default
 color date                 blue    default
 color mode                 cyan    default
