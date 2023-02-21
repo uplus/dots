@@ -45,6 +45,8 @@
 	tool = vimdiff
 [rebase]
 	autostash = true
+[help]
+	autocorrect = 1
 # 3rd
 [delta]
 	navigate = true  # use n and N to move between diff sections
