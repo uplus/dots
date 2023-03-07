@@ -107,6 +107,15 @@ echo-true(){
   echo -e "\x1b[38;2;${red};${green};${blue}m${*}\x1b[0m"
 }
 
+each-dir() {
+  find . -mindepth 1 -maxdepth 1 -type d -print0 | while read -d '' -r dir; do
+    (
+     cd "${dir}"
+     eval ${@}
+    )
+  done
+}
+
 keymaps() { awk '/\/\*\s*Keymap/,/\*\//' ~qmkmy/keymap.c | sed -E 's|^\s*/?\*/?\s?||' }
 timer-alert() { command termdown ${@} && notify 'Timer' 'time is up' }
 
