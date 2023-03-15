@@ -169,7 +169,7 @@ pkg_scala() {
 }
 
 pkg_pip(){
-  pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash qmk pyls flake8 autopep8)
+  pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash qmk pyls flake8 autopep8 termdown)
   pip3 install --upgrade --user "${pkgs[@]}"
 }
 
