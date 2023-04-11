@@ -2,3 +2,4 @@ formatter:
   type: basic
   retain_line_breaks: true
   scan_folded_as_literal: true
+  max_line_length: 0
