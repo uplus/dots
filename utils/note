@@ -138,8 +138,8 @@ class Note # {{{
     end
   end # }}}
 
-  def self.ls(dir = nil)
-    system('ls', '-F', '--color=auto', File.join(@@NOTE_DIR, dir.to_s))
+  def self.list(dir = nil)
+    system('ls', '-F', '-1', '--color=auto', File.join(@@NOTE_DIR, dir.to_s))
   end
 
   def self.tree
@@ -291,7 +291,7 @@ OptionParser.new do |opt|
     exit
   end
   opt.on('-L', '--list   [DIR]') do |dir|
-    Note.ls(dir)
+    Note.list(dir)
     exit
   end
   opt.on('-T', '--tree') do
