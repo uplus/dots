@@ -111,7 +111,7 @@ class Note # {{{
   end
 
   def self.solve_alias(name)
-    @@NOTE_DIR.join(@@aliases[name]) if @@aliases.has_key?(name)
+    @@NOTE_DIR.join(@@aliases[name]) if @@aliases.key?(name)
   end
 
   # return the first matched path in @@NOTE_DIR and @@abbreviate_dirs.
