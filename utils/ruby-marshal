@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+method_name = ('-d' == ARGV.fetch(0, '')) ? :restore : :dump
+s = $stdin.readlines.join
+pp Marshal.send(method_name, s)

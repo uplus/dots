@@ -1,12 +1,16 @@
 #!/usr/bin/env ruby
-require 'erb'
+# frozen_string_literal: true
 
-def url_encode(str)
-  ERB::Util.url_encode(str)
+require 'cgi'
+
+method_name = ('-d' == ARGV.fetch(0, '')) ? :unescape : :escape
+
+while s = $stdin.gets
+  puts CGI.send(method_name, s)
 end
 
-if File.pipe?(STDIN)
-  puts url_encode(STDIN.readlines.join)
-elsif not ARGV.empty?
-  puts url_encode(ARGV.join(' '))
-end
+# if File.pipe?(STDIN)
+#   puts url_encode(STDIN.readlines.join)
+# elsif not ARGV.empty?
+#   puts url_encode(ARGV.join(' '))
+# end
