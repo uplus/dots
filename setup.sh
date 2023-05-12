@@ -152,6 +152,7 @@ pkg_go(){
     github.com/itchyny/bed/cmd/bed # binary editor
     github.com/ichinaski/pxl # display images in the terminal
     github.com/monochromegane/the_platinum_searcher/cmd/pt
+    github.com/rhysd/actionlint/cmd/actionlint@latest
   )
 
   for name in "${pkgs[@]}"; do
