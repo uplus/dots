@@ -505,7 +505,7 @@ alias con-cisco='screen /dev/ttyUSB0'
 alias ssh-fingerprint='ssh-keygen -lf'
 alias journalctl-boot='journalctl -ax -b'
 alias ipa="ip a | block '^\d+:\s+(?!br-|lo).' '^\d+:\s+br-'"
-alias ip-default-route='ip route show default | awk \$0=\$3 | uniq'
+alias ip-default-route='ip route get default | awk \$0=\$3 | uniq'
 alias ping-def='ping $(ip-default-route | peco --select-1)'
 alias acpi-supports='dmesg | grep -i acpi | grep -i supports'
 # alias wis='watch --no-title is' # heavy
