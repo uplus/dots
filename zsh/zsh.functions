@@ -74,7 +74,7 @@ clamp() {
   fi
 }
 
-notify_result(){
+notify-result(){
   result=${?}
   success_msg="${1:? success message}"
   failed_msg="${2:-failed: ${success_msg}}"
