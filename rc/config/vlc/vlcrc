@@ -4497,13 +4497,13 @@ global-key-slower=Ctrl+Alt+Shift+Meta+f
 #global-key-rate-faster-fine=
 
 # Faster (fine) (string)
-#key-rate-faster-fine=]
+key-rate-faster-fine=
 
 # Slower (fine) (string)
 #global-key-rate-slower-fine=
 
 # Slower (fine) (string)
-#key-rate-slower-fine=[
+key-rate-slower-fine=
 
 # Next (string)
 #global-key-next=
