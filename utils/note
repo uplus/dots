@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require 'optparse'
 require 'find'
 require 'fileutils'
@@ -276,11 +278,11 @@ end
 # main routine # {{{
 OptionParser.new do |opt|
   opt.banner = 'Usage: note [option] [NAME]'
-  opt.on('-a', '--append NAME') {|name| Note.new({ mode: :append, name: }) }
-  opt.on('-r', '--read   NAME') {|name| Note.new({ mode: :read,   name: }) }
-  opt.on('-l', '--less   NAME') {|name| Note.new({ mode: :less,   name: }) }
-  opt.on('-e', '--edit   NAME') {|name| Note.new({ mode: :edit,   name: }) }
-  opt.on('-d', '--delete NAME') {|name| Note.new({ mode: :delete, name: }) }
+  opt.on('-a', '--append NAME') {|name| Note.new({ mode: :append, name: name }) }
+  opt.on('-r', '--read   NAME') {|name| Note.new({ mode: :read,   name: name }) }
+  opt.on('-l', '--less   NAME') {|name| Note.new({ mode: :less,   name: name }) }
+  opt.on('-e', '--edit   NAME') {|name| Note.new({ mode: :edit,   name: name }) }
+  opt.on('-d', '--delete NAME') {|name| Note.new({ mode: :delete, name: name }) }
   opt.on('-g', '--git    [CMD]') {|cmd| goodbye Note.git(cmd) }
   opt.on('-c', '--commit') do
     Note.commit
