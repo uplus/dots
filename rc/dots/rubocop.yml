@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.1
   NewCops: enable
 
 require:
@@ -75,6 +75,9 @@ Style/GuardClause:
 
 # 過激. Layout/LineLengthを見て判断してくれるが、行の長さによって見た目がばらつくので無効
 Style/IfUnlessModifier:
+  Enabled: false
+
+Style/NegatedIf:
   Enabled: false
 
 # selfを明示したいときもある
