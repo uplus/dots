@@ -199,6 +199,7 @@ pkg_npm(){
     pyright
     typescript
     typescript-language-server
+    js-beautify
   )
 
   for name in "${pkgs[@]}"; do
