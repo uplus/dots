@@ -949,4 +949,13 @@ enable_network_share(){
 # iptables -A FORWARD -i net0 -o internet0 -j ACCEPT
 }
 
+recovery-arch(){
+  echo 'This is a recovery process of a broken pacman packages'
+
+  targets="$(mktemp --suffix='.paccheck.log')"
+  sudo paccheck --md5sum --quiet --recursive | tee "${targets}"
+  sudo pacman  -S $(cat "${targets}" | awk '$0=$1' | tr -d ':' | sort -u)
+}
+alias recovery-pacman=recovery-arch
+
 # end TODO
