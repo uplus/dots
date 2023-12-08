@@ -169,9 +169,11 @@
 	refloga = reflog --date=human --all
 	browse = !gh browse
 	open = browse
+	pr = !gh pr
 	pr-create = !gh pr create --web
 	pr-create-push = !"git push -u && git pr-create"
 	pr-open = !gh pr view --web
+	prc = !gh pr checkout
 
 # delta --list-syntax-themes
 [delta "mantis-shrimp"]
