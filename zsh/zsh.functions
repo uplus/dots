@@ -862,7 +862,7 @@ wis(){
 
 endless() {
   while :; do
-    echo "---- executing: $(date-now) ----"
+    echo "#### start: $(date#now) ####"
     eval "${*}"
     echo "---- finished: $(date-now) ----"
     sleep 0.5
@@ -871,7 +871,7 @@ endless() {
 
 endless-read() {
   while :; do
-    echo "---- executing: $(date-now) ----"
+    echo "#### start: $(date-now) ####"
     echo "${*}"
     eval "${*}"
     echo "---- finished: $(date-now) ----"
