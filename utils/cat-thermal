@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-cat-thermal(){
+linux-thermal(){
   # cat /sys/class/thermal/thermal_zone*/temp
   find /sys/class/thermal/ -name 'thermal_zone*' | while read filepath; do
     {
@@ -11,4 +11,11 @@ cat-thermal(){
   done | sort -n -r -k2
 }
 
-cat-thermal $@
+mac-thermal() {
+  sudo powermetrics --samplers smc --sample-count 1
+}
+
+case "${OSTYPE:-}" in
+  linux*)  linux-thermal ;;
+  darwin*) mac-thermal ;;
+esac
