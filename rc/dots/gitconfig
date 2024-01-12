@@ -35,7 +35,9 @@
 [fetch]
 	parallel = 0
 	prune = true
-# [blame]
+[blame]
+	markIgnoredLines = true
+	# 該当ファイルが存在しないとblameが見えなくなる
 	# ignoreRevsFile = .git-blame-ignore-revs
 [pull]
 	# rebase = true
