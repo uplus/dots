@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+target_path="${1:?.[].[]}"
+target_key="${2:?.sec}"
+
+jq "${target_path} | if ${target_key} != null then ${target_key} = (${target_key} / 36 | round / 100 | tostring + \" Hour\") end"
