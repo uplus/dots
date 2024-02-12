@@ -1,0 +1,76 @@
+[colors.bright]
+black = "#666666"
+blue = "#6699ff"
+cyan = "#54ced6"
+green = "#9ec400"
+magenta = "#b77ee0"
+red = "#ff3334"
+white = "#ffffff"
+yellow = "#e7c547"
+
+[colors.normal]
+black = "#2c2c2c"
+blue = "#5ab6ef"
+cyan = "#1bb8b8"
+green = "#c9ea5a"
+magenta = "#c397d8"
+red = "#ff6666"
+white = "#ebebeb"
+yellow = "#ffd30a"
+
+[colors.primary]
+background = "#131516"
+foreground = "#c0c3c1"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 9.0
+
+[font.normal]
+family = "Source Code Pro"
+
+[[keyboard.bindings]]
+chars = "\u001B[1;6I"
+key = "Tab"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[1;5I"
+key = "Tab"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F11"
+
+[[keyboard.bindings]]
+chars = "\u001Bs"
+key = "S"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bt"
+key = "T"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001F"
+key = "Slash"
+mods = "Control"
+
+[[mouse.bindings]]
+action = "None"
+mouse = "Middle"
+
+[selection]
+save_to_clipboard = true
+
+[shell]
+args = ["tmux"]
+program = "/usr/bin/env"
+
+[window.dimensions]
+columns = 140
+lines = 40

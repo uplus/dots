@@ -958,6 +958,8 @@ recovery-arch(){
 
   targets="$(mktemp --suffix='.paccheck.log')"
   sudo paccheck --md5sum --quiet --recursive | tee "${targets}"
+  echo 'cancel -> ctrl-c'
+  read
   sudo pacman  -S $(cat "${targets}" | awk '$0=$1' | tr -d ':' | sort -u)
 }
 alias recovery-pacman=recovery-arch
