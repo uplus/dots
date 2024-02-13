@@ -863,7 +863,7 @@ wis(){
 endless() {
   while :; do
     echo
-    echo "#-#-# [start] $(date_now) #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#"
+    echo "#-#-# [start] $(date-now) #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#"
     eval "${*}"
     echo "---- [finished] $(date-now) ----"
     echo
@@ -874,7 +874,7 @@ endless() {
 endless-read() {
   while :; do
     echo
-    echo "#-#-# [start] $(date_now) #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#"
+    echo "#-#-# [start] $(date-now) #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#"
     echo "${*}"
     eval "${*}"
     echo "---- [finished] $(date-now) ----"
