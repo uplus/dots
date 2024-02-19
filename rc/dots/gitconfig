@@ -133,6 +133,7 @@
 	rprune = !"f(){ git remote prune ${1:-origin}; }; f"
 	rei    = !"f(){ git rebase -i ${1:-$(git parent-branch)}; }; f"
 	rebase-ignore-date = rebase --ignore-date
+	rebase-reset-author-date = rebase --reset-author-date
 	# rei    = rebase -i
 	# reoh   = !"f(){ git rebase -i $(git remote-branch); }; f"
 	continue = rebase --continue
