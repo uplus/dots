@@ -13,6 +13,7 @@ dip.override.yml
 .session.vim
 .vimrc.local
 .nvimrc
+.exrc
 .tags
 tags
 
