@@ -171,7 +171,7 @@ pkg_scala() {
 
 pkg_pip(){
   pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash qmk pyls flake8 autopep8 termdown datadog)
-  pip3 install --upgrade --user "${pkgs[@]}"
+  pip3 install --upgrade --user --break-system-packages "${pkgs[@]}"
 }
 
 pkg_cargo(){
@@ -209,15 +209,14 @@ pkg_npm(){
 
 pkg_gem(){
   pkgs=(
-    rdoc
+    # rdoc
     yard
-    neovim
     debug
     irb
-    gemdiff
+    # neovim
 
-    gist
-    travis
+    # gist
+    # travis
     solargraph
     dip
 
@@ -227,11 +226,12 @@ pkg_gem(){
 
     # console, output
     rb-readline
-    color_echo
-    awesome_print
+    # color_echo
+    # awesome_print
     # CLI utils like grep, sed, aws, etc..
     pru
 
+    gemdiff
     # Open a library file. gem {edit | open | browse | clone}
     # https://github.com/tpope/gem-browse
     gem-browse
@@ -400,5 +400,5 @@ help(){
 if [ $# -eq 0 ]; then
   help
 else
-  $1
+  $1 ;
 fi
