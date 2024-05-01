@@ -113,6 +113,7 @@
 	b     = branch
 	eda   = branch -avv
 	del   = branch -d
+	delff = branch -D
 	ss    = stash save --include-untracked --keep-index --message
 	save  = stash save --include-untracked
 	spop  = stash pop

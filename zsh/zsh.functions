@@ -111,6 +111,8 @@ each-dir() {
   find . -mindepth 1 -maxdepth 1 -type d -print0 | while read -d '' -r dir; do
     (
      cd "${dir}"
+     echo '--------------------------------------------------------------------------------'
+     echo "${dir}"
      eval ${@}
     )
   done
