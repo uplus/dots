@@ -7,7 +7,12 @@ fi
 
 LC_COLLATE=C # Don't move to zshenv.
 DIRSTACKSIZE=100
-fpath+=($ZSH_DOT_DIR/f)
+
+fpath=(
+  "$ZSH_DOT_DIR/f"
+  ${fpath}
+)
+
 disable r # zsh-builtin: 直前のコマンドを実効する
 autoload -Uz zmv
 
@@ -256,10 +261,17 @@ source "$ZSH_DOT_DIR/zsh.aliases"
 
 # zstyle completion {{{
 # zstyle ':completion:*:*:CMD:*:TAG' STYLE
-zstyle ':completion:*' group-name ''
+
+# 補完候補のグルーピング. 空文字列なら無効
+# zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*' use-cache on
+# zstyle ':completion:*' cache-path ~/.zsh/cache # デフォルトでは ~/.zcompcache
+
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:options' verbose true
 zstyle ':completion:*:values' verbose true
+
 zstyle ':completion:*' menu select # 現在の補完候補をハイライト
 # zstyle ':completion:*' menu select interactive
 # zstyle ':completion:*' menu select search # CRやC-Hの挙動がコントロールできない

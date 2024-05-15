@@ -78,4 +78,7 @@ update-completions() {
 
   curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker -o "${ZSH_DOT_DIR}/f/_docker"
   curl -L https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose -o "${ZSH_DOT_DIR}/f/_docker-compose"
+  curl -L https://raw.githubusercontent.com/gradle/gradle-completion/master/_gradle -o "${ZSH_DOT_DIR}/f/_gradle"
+
+  rm -r "${HOME}/.zcompdump" "${HOME}/.zcompcache/"
 }

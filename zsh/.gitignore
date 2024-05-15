@@ -5,3 +5,4 @@ f/_docker-compose
 f/_helm
 f/_stern
 f/_kubectl
+f/_gradle
