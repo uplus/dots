@@ -146,7 +146,7 @@
 	merged  = !git branch --merged | grep -v master | grep -v '*'
 	edit    = config --edit --local
 	editg   = config --edit --global
-	back   = !"f(){ git reset HEAD~${1}; }; f"
+	back   = !"f(){ git log -n ${1} --pretty=format:%H%n%s%n%n%b; git reset HEAD~${1}; }; f"
 	current-branch = rev-parse --abbrev-ref HEAD
 	# fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
 	souji = clean -fd
