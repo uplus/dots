@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+const readline = require('readline');
+const vm = require('vm');
+
+// JSONPのコールバック関数名
+const callbackName = process.argv[2];
+if (!callbackName) {
+  console.error('Usage: jsonp-parser <callbackName>');
+  process.exit(1);
+}
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false,
+});
+
+// stdinからJSONPデータを読み込む
+let jsonpData = '';
+rl.on('line', (line) => {
+  jsonpData += line;
+});
+
+rl.on('close', () => {
+  // JSONPのコールバック関数を定義
+  const context = {
+    // 適当に両方定義しておく
+    window: {
+      [callbackName]: (data) => {
+        console.log(JSON.stringify(data, null, 2));
+      },
+    },
+    [callbackName]: (data) => {
+      console.log(JSON.stringify(data, null, 2));
+    },
+  };
+
+  // JSONPスクリプトを実行
+  vm.createContext(context);
+  vm.runInContext(jsonpData, context);
+});
