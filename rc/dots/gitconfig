@@ -81,6 +81,7 @@
 	l       = !git graph -20
 	lh      = !git graph origin/master..@
 	la      = !git graph
+	logmsg  = log --pretty=format:%H%n%s%n%n%b
 	lo      = log --graph --decorate --stat --find-renames
 	logline = log --graph --decorate --date=short --pretty='%C(yellow)%h %Cgreen[%cd]%Creset%C(cyan bold)%d%Creset %s'
 	today   = log --graph --decorate --oneline --stat --since='16 hour ago'
@@ -146,7 +147,7 @@
 	merged  = !git branch --merged | grep -v master | grep -v '*'
 	edit    = config --edit --local
 	editg   = config --edit --global
-	back   = !"f(){ git log -n ${1} --pretty=format:%H%n%s%n%n%b; git reset HEAD~${1}; }; f"
+	back   = !"f(){ git logmsg -n ${1:-1}; git reset HEAD~${1}; }; f"
 	current-branch = rev-parse --abbrev-ref HEAD
 	# fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
 	souji = clean -fd
