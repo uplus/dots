@@ -48,7 +48,8 @@
 [rebase]
 	autostash = true
 [help]
-	autocorrect = 1
+	# 普通に危ない
+	autocorrect = 0
 # 3rd
 [delta]
 	navigate = true  # use n and N to move between diff sections
@@ -91,6 +92,7 @@
 	sw   = switch
 	ch   = checkout
 	new  = checkout -b
+	newf = !"f(){ git new feature/$* ; }; f"
 	co   = commit
 	coa  = commit -a
 	cov  = commit -v
