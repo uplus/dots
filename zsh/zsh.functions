@@ -504,8 +504,8 @@ docker(){
 }
 
 docker-compose(){
-  smart_docker docker-compose
-  docker-compose ${@}
+  smart_docker docker compose
+  docker compose ${@}
 }
 
 docker-images-update(){
@@ -519,9 +519,9 @@ dkp-select() {
 
 
 dkc-rm() {
-  # docker-compose stop -t1 ${@}
-  # docker-compose rm --volumes -f ${@}
-  docker-compose rm --stop --force --volumes "${@}"
+  # docker compose stop -t1 ${@}
+  # docker compose rm --volumes -f ${@}
+  docker compose rm --stop --force --volumes "${@}"
 }
 
 sec(){
