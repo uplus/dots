@@ -122,9 +122,6 @@
 	spop  = stash pop
 	sdrop = stash drop
 	slist = stash list --stat --oneline
-	all    = add --all
-	update = add --update
-	patch  = add --patch
 	ours   = checkout --ours
 	theirs = checkout --theirs
 	ch-original = checkout --theirs # 元の方を採用する
