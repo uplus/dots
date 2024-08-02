@@ -31,3 +31,4 @@ metals.sbt
 # credentials
 .env
 .secret
+*.pem
