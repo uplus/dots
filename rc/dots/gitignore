@@ -28,6 +28,7 @@ yarn-error.log
 node_modules/
 .metals
 metals.sbt
+.v8flags-*.json
 
 # credentials
 .env
