@@ -498,6 +498,8 @@ alias teensy-uplus='echo "make ergodox_ez:uplus:teensy"'
 alias show-path='echo $PATH | tr : \\n'
 alias Kill='kill --verbose -KILL'
 alias \?='where'
+alias \?\?='where-cat'
+where-cat() { cat $(where ${*}) }
 alias keys='watch -t -d -n3 zsh -ic keymaps'
 alias con-cisco='screen /dev/ttyUSB0'
 alias ssh-fingerprint='ssh-keygen -lf'
