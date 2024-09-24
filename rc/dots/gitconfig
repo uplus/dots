@@ -127,6 +127,7 @@
 	ch-original = checkout --theirs # 元の方を採用する
 	ch-current = checkout --ours
 	ls = ls-files --exclude-standard -c -o
+	ls-untracked = ls-files --ignored --directory --exclude-standard --others 
 	tags = tag -l -n --sort=v:refname
 	untrack = update-index --skip-worktree
 	push-force = push --force-with-lease
