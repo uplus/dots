@@ -8,7 +8,7 @@ alias fgrep='fgrep --color=auto'
 
 #ls {{{1
 alias l='ls -F'
-alias l1='ls -F1'
+alias l1='ls -1F'
 alias la='ls -A'
 alias ll='ls -lh'
 alias lld='ll -d'
@@ -21,14 +21,6 @@ alias bigs='ls -A | xargs -I{} du -sm "{}" 2>/dev/null | awk "{if(9 < \$1) print
 #cd {{{1
 alias c='cd'
 alias cb='cd -'
-alias 1.='cd ..'
-alias 2.='cd ../..'
-alias 3.='cd ../../..'
-alias 4.='cd ../../../..'
-alias 5.='cd ../../../../..'
-alias 6.='cd ../../../../../..'
-alias 7.='cd ../../../../../../..'
-alias 8.='cd ../../../../../../../..'
 
 #vim {{{1
 alias v.='vimrc'
@@ -290,7 +282,7 @@ elif in_path brew; then
   alias a.sh='brew info'
   alias a.l='brew list'
   alias a.c='brew cleanup'
-  alias a.u='brew upgrade'
+  alias a.ug='brew upgrade'
   alias a.ud='brew update'
   alias a.outdated='brew outdated'
 elif in_path dnf; then
