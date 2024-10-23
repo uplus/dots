@@ -14,6 +14,9 @@ alias ll='ls -lh'
 alias lld='ll -d'
 alias lla='ll -A'
 alias lli='ll -i'
+alias older='ls -Alrt'
+alias here='ls -ld $PWD'
+alias bigs='ls -A | xargs -I{} du -sm "{}" 2>/dev/null | awk "{if(9 < \$1) print}" | distribution'
 
 #cd {{{1
 alias c='cd'
@@ -440,14 +443,13 @@ if in_ssh; then
 fi
 alias suspend='sudo systemctl suspend'
 
-if is_executable exa; then
-  alias ls='exa'
+if is_executable eza; then
+  alias ls='eza'
   # COLUMNSを指定するとなぜか、 -1や--colorの自動判定が効かなくなる
-  # alias ls='COLUMNS=$(clamp $COLUMNS 0 220) exa'
+  # alias ls='COLUMNS=$(clamp $COLUMNS 0 220) eza'
+
   # 互換性の無いaliasのみ再定義する
-  alias la='exa -a'
-  alias ll='exa -lhg'
-  alias lla='ll -a'
+  alias older='eza -Alr -s modified'
 fi
 
 
@@ -460,7 +462,6 @@ alias ehis='history -n -1000 | $EDITOR - +'
 alias ehisall='history -n 1 | $EDITOR - +'
 alias sysv-rc-conf-on='sysv-rc-conf --list | grep :on | sed "s/.:off/     /g"'
 alias guirestart='sudo service lightdm restart'
-alias older='ls -Altr'
 alias netstat-tcp='netstat -apet --numeric-ports'
 alias netstat-ports='netstat -anvp tcp | awk "NR<3 || /LISTEN/"'
 alias ss-tcp='ss --all --processes --extended --numeric --tcp'
@@ -469,8 +470,6 @@ alias whichis='which -aps'
 alias pip3-outdated='pip3 list --outdated --local --user'
 alias pip3-update='pip3-outdated --format=json | jq -r ".[] | .name" |  xargs -I{} -- pip3 install --user -U "{}"'
 alias dirsize='du -sh'
-alias here='ls -ld $PWD'
-alias bigs='ls -A | xargs -I{} du -sm "{}" 2>/dev/null | awk "{if(9 < \$1) print}" | distribution'
 alias ::='echo $PWD && gs E'
 alias mounted="mount -l | grep '^/dev/' | sort"
 alias devinfo="sudo fdisk --color=always -l /dev/sd? | sed -e '/^$/d' -e 's/Disk \//\nDisk /g'"

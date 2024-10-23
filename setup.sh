@@ -176,6 +176,7 @@ pkg_pip(){
 
 pkg_cargo(){
   pkgs=(
+    eza
     tealdeer
     tree-sitter-cli
     cargo-update
@@ -260,7 +261,7 @@ pkg_brew(){
   pkgs=(
     # 標準のgitはなんか重い
     git
-    exa ripgrep peco
+    ripgrep peco
     gcc go rust
     shellcheck lua-language-server
     coreutils findutils iproute2mac luajit grep pgrep pkill watch

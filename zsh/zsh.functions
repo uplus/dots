@@ -123,8 +123,8 @@ timer-alert() { command termdown ${@} && notify 'Timer' 'time is up' }
 
 autols(){
   if [[ ${AUTOLS_DIR:-$PWD} != $PWD ]]; then
-    if is_executable exa; then
-      COLUMNS=$(clamp $COLUMNS 0 220) exa -F
+    if is_executable eza; then
+      eza -F --width="$(clamp $COLUMNS 0 220)"
     else
       ls -F -v
     fi
