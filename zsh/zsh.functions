@@ -961,4 +961,10 @@ recovery-arch(){
 }
 alias recovery-pacman=recovery-arch
 
+jq-ambi() {
+  while read line; do
+    echo "${line}" | jq '.' 2>/dev/null || echo -e "${line}"
+  done
+}
+
 # end TODO
