@@ -790,7 +790,11 @@ build-qmk() {
 }
 
 build-neovim() {
-  nvim --version | head -1 >> "${HOME}/.neovim-versions"
+  {
+    date '+%F %T'
+    nvim --version | head -1
+  } >> "${HOME}/.neovim-versions"
+
   make CMAKE_BUILD_TYPE=Release -j $(($(nproc) / 2))
   # 'make distclean clean && make CMAKE_BUILD_TYPE=RelWithDebInfo # -j $(nproc --ignore 1)'
 }
