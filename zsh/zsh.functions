@@ -954,6 +954,8 @@ enable_network_share(){
 # iptables -A FORWARD -i net0 -o internet0 -j ACCEPT
 }
 
+# end TODO
+
 recovery-arch(){
   echo 'This is a recovery process of a broken pacman packages'
 
@@ -970,5 +972,3 @@ jq-ambi() {
     echo "${line}" | jq '.' 2>/dev/null || echo -e "${line}"
   done
 }
-
-# end TODO
