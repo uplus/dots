@@ -54,6 +54,9 @@ save_to_clipboard = true
 args = ["tmux"]
 program = "/usr/bin/env"
 
+[window]
+option_as_alt = "Both"
+
 [window.dimensions]
 columns = 180
 lines = 50
