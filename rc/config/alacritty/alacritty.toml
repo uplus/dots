@@ -26,10 +26,27 @@ foreground = "#c0c3c1"
 TERM = "xterm-256color"
 
 [font]
-size = 9.0
+size = 12.0
 
 [font.normal]
 family = "Source Code Pro"
+
+[[mouse.bindings]]
+action = "None"
+mouse = "Middle"
+
+[selection]
+save_to_clipboard = true
+
+[terminal]
+
+[terminal.shell]
+args = ["tmux"]
+program = "/usr/bin/env"
+
+[window.dimensions]
+columns = 140
+lines = 40
 
 [[keyboard.bindings]]
 chars = "\u001B[1;6I"
@@ -60,17 +77,3 @@ chars = "\u001F"
 key = "Slash"
 mods = "Control"
 
-[[mouse.bindings]]
-action = "None"
-mouse = "Middle"
-
-[selection]
-save_to_clipboard = true
-
-[shell]
-args = ["tmux"]
-program = "/usr/bin/env"
-
-[window.dimensions]
-columns = 140
-lines = 40
