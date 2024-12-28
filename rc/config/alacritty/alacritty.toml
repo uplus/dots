@@ -1,3 +1,5 @@
+# https://alacritty.org/config-alacritty.html
+
 [colors.bright]
 black = "#666666"
 blue = "#6699ff"
@@ -45,35 +47,39 @@ args = ["tmux"]
 program = "/usr/bin/env"
 
 [window.dimensions]
-columns = 140
-lines = 40
+columns = 180
+lines = 50
 
 [[keyboard.bindings]]
-chars = "\u001B[1;6I"
 key = "Tab"
 mods = "Control|Shift"
+chars = "\u001B[1;6I"
 
 [[keyboard.bindings]]
-chars = "\u001B[1;5I"
 key = "Tab"
 mods = "Control"
+chars = "\u001B[1;5I"
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"
 key = "F11"
 
 [[keyboard.bindings]]
-chars = "\u001Bs"
 key = "S"
 mods = "Alt"
+chars = "\u001Bs"
 
 [[keyboard.bindings]]
-chars = "\u001Bt"
 key = "T"
 mods = "Alt"
+chars = "\u001Bt"
 
 [[keyboard.bindings]]
-chars = "\u001F"
 key = "Slash"
 mods = "Control"
+chars = "\u001F"
 
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
