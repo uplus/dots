@@ -33,9 +33,17 @@ size = 12.0
 [font.normal]
 family = "Source Code Pro"
 
-[[mouse.bindings]]
-action = "None"
-mouse = "Middle"
+[font.bold]
+family = "Source Code Pro"
+style = "Bold"
+
+[font.italic]
+family = "Source Code Pro"
+style = "Italic"
+
+[font.bold_italic]
+family = "Source Code Pro"
+style = "Bold Italic"
 
 [selection]
 save_to_clipboard = true
@@ -49,6 +57,10 @@ program = "/usr/bin/env"
 [window.dimensions]
 columns = 180
 lines = 50
+
+[[mouse.bindings]]
+action = "None"
+mouse = "Middle"
 
 [[keyboard.bindings]]
 key = "Tab"
