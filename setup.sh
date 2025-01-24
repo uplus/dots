@@ -231,6 +231,7 @@ pkg_gem(){
     # awesome_print
     # CLI utils like grep, sed, aws, etc..
     pru
+    webrick
 
     gemdiff
     # Open a library file. gem {edit | open | browse | clone}
