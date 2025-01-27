@@ -98,3 +98,8 @@ chars = "\u001F"
 key = "V"
 mods = "Control|Shift"
 action = "Paste"
+
+# macのJISキーボードでbackslashを入力すると円マークが入力されてしまうのでマッピング
+[[keyboard.bindings]]
+key = "¥"
+chars = "\\"
