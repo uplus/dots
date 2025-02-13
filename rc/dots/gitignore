@@ -4,6 +4,7 @@
 core
 !core/
 dip.override.yml
+docker-compose.override.yml
 .Dockerfile
 .DS_Store
 
@@ -26,6 +27,7 @@ npm-debug.log
 yarn-error.log
 .yardoc
 node_modules/
+.bloop/
 .metals
 metals.sbt
 .v8flags-*.json
