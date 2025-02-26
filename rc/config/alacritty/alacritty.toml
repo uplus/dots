@@ -51,8 +51,14 @@ save_to_clipboard = true
 [terminal]
 
 [terminal.shell]
-args = ["tmux"]
 program = "/usr/bin/env"
+args = ["tmux"]
+# args = ["tmux", "new", "/bin/zsh"]
+# args = ["arch", "-arm64", "/bin/zsh"]
+# program = "/bin/zsh"
+# /usr/bin/arch -arm64 /bin/zsh
+# program = "/usr/bin/arch"
+# args = ["-arm64", "/bin/zsh"]
 
 [window]
 option_as_alt = "Both"

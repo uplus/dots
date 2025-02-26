@@ -4,7 +4,6 @@
 [credential]
 	username = uplus
 [core]
-	excludesfile = ~/.gitignore
 	quotepath = false
 	encodig = utf-8
 	# pager = less --ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT
