@@ -86,8 +86,8 @@ Style/RedundantSelf:
   Enabled: false
 
 # returnの明示を許可
-# Style/RedundantReturn:
-#   Enabled: false
+Style/RedundantReturn:
+  Enabled: false
 
 # elseが空のときのみ警告(nilを返すなら明示)
 Style/EmptyElse:

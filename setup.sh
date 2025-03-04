@@ -219,6 +219,7 @@ pkg_gem(){
     # gist
     # travis
     solargraph
+    ruby-lsp
     dip
 
     rubocop
