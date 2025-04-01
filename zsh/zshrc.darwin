@@ -12,6 +12,7 @@ path=(
   '/usr/local/opt/gcc/bin'
   '/usr/local/opt/coreutils/libexec/gnubin'
   '/usr/local/opt/findutils/libexec/gnubin'
+  '/usr/local/opt/gnu-sed/libexec/gnubin'
   '/usr/local/opt/grep/libexec/gnubin'
   '/usr/local/opt/luajit-openresty/bin'
   '/usr/local/opt/openssl@3/bin/openssl'
