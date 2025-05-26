@@ -104,12 +104,6 @@
 	fixa = commit --amend -va
 	fixm = commit --amend -C HEAD
 	fixam = commit --amend -a -C HEAD
-	f     = flow
-	ff    = flow feature
-	ffs   = flow feature start
-	ffc   = flow feature checkout
-	frs   = flow release start
-	fhs   = flow hotfix start
 	wt    = worktree
 	empty = commit --allow-empty -m
 	b     = branch

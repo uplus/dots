@@ -140,7 +140,7 @@ pkg_go(){
     github.com/peco/migemogrep
     github.com/yudai/gotty
     github.com/mikefarah/yq/v4 # jq for YAML
-    github.com/simeji/jid/cmd/jid # json incremental digger
+    github.com/simeji/jid/cmd/jid@latest # json incremental digger
     github.com/google/yamlfmt/cmd/yamlfmt@latest
     # github.com/motemen/gore # REPL
     github.com/k0kubun/pp
