@@ -36,3 +36,5 @@ metals.sbt
 .env
 .secret
 *.pem
+
+**/.claude/settings.local.json

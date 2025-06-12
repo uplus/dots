@@ -125,3 +125,19 @@ Style/RescueModifier:
 # 微妙
 Style/YodaCondition:
   Enabled: false
+
+# わざわざ統一しなくていい
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+# 好みが分かれるし差分が激しい
+Layout/HashAlignment:
+  Enabled: false
+
+# 無理に合わせるのは微妙
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+# 無理に合わせるのは微妙
+Style/StringLiterals:
+  Enabled: false

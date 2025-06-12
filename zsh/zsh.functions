@@ -498,15 +498,15 @@ smart_docker(){
   fi
 }
 
-docker(){
-  smart_docker docker
-  docker ${@}
-}
+# docker(){
+#   smart_docker docker
+#   docker ${@}
+# }
 
-docker-compose(){
-  smart_docker docker compose
-  docker compose ${@}
-}
+# docker-compose(){
+#   smart_docker docker compose
+#   docker compose ${@}
+# }
 
 docker-images-update(){
   sudo docker images | awk 'NR>1 && $0=$1' | sort -u | egrep -v '^(<none>)$' | xargs -P0 -L1 -I@ sudo docker pull @
