@@ -1,4 +1,5 @@
 .git-wt-*/
+.gitwt-*/
 
 # misc
 core
@@ -38,3 +39,4 @@ metals.sbt
 *.pem
 
 **/.claude/settings.local.json
+**/CLAUDE.local.md

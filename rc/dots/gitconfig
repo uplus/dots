@@ -154,7 +154,8 @@
 	pullre = !"f(){ git switch ${1} && git pull && git switch - && git rebase ${1} ; }; f"
 	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
 	pick = cherry-pick
-	wta = !"f(){ git worktree add \".git-wt-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
+	wta = !"f(){ git worktree add \".gitwt-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
+	wtab = !"f(){ git worktree add \".gitwt-$(echo ${1} | tr '/' '-')\" -b \"${1}\"; }; f"
 	grepf = grep --function-context
 	# log-branch = !"git log --oneline --pretty=format:%D | grep -v '^tag:' | sed \"s|^$(git remote show)/[^ ]*\\s*||g\" | grep -v '^$'"
 	# parent-branch = !"git log-branch | sed 's|HEAD -> [^ ]\\+\\s*||g' | grep -v '^$' | peco --select-1"

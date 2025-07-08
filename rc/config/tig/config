@@ -91,6 +91,7 @@ set commit-order          = auto  # Enum: auto, default, topo, date, reverse (ma
 set status-show-untracked-dirs = yes   # Show files in untracked directories? (status)
 set ignore-space          = no    # Enum: no, all, some, at-eol (diff)
 set show-notes            = yes   # When non-bool passed as `--show-notes=...` (diff)
+# set diff-options = -C  --word-diff=porcelain
 # set diff-context          = 3     # Number of lines to show around diff changes (diff)
 # set diff-options          = -C    # User-defined options for `tig show` (git-diff)
 # set blame-options         = -C -C -C  # User-defined options for `tig blame` (git-blame)
@@ -168,6 +169,7 @@ bind generic  c view-stage
 bind generic  y view-stash
 bind generic  g none          # for gg
 bind generic  g/ view-grep
+bind generic  D :toggle word-diff
 
 # View manipulation
 bind generic  gg move-first-line
