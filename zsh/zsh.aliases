@@ -513,6 +513,7 @@ alias aws-profiles="cat ~/.aws/config | grep -Po '(?<=^\[profile )[^\]]+'"
 alias aws-select-profile='export AWS_PROFILE="$(aws-profiles | peco)"'
 alias calc-aspect-ratio="ruby -e 'a,b=ARGV.map &:to_i;n=a.gcd b;puts [a/n,b/n]*?:'"
 alias count-each-dir='git ls-files | cut -d/ -f1 | sort | uniq -c'
+alias cl=claude
 
 # shortening
 alias ipy=ipython
