@@ -143,15 +143,15 @@ pkg_go(){
     github.com/simeji/jid/cmd/jid@latest # json incremental digger
     github.com/google/yamlfmt/cmd/yamlfmt@latest
     # github.com/motemen/gore # REPL
-    github.com/k0kubun/pp
+    github.com/k0kubun/pp@latest
     # github.com/jstemmer/gotags
     github.com/golang/lint/golang
-    golang.org/x/tools/cmd/gorename
+    golang.org/x/tools/cmd/gorename@latest
     golang.org/x/tools/cmd/goimports@latest
-    golang.org/x/tools/cmd/gotype
-    github.com/itchyny/bed/cmd/bed # binary editor
+    golang.org/x/tools/cmd/gotype@latest
+    # github.com/itchyny/bed/cmd/bed # binary editor
     github.com/ichinaski/pxl # display images in the terminal
-    github.com/monochromegane/the_platinum_searcher/cmd/pt
+    # github.com/monochromegane/the_platinum_searcher/cmd/pt
     github.com/rhysd/actionlint/cmd/actionlint@latest
   )
 
