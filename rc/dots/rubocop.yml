@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.4
   NewCops: enable
 
 require:
@@ -128,6 +128,11 @@ Style/YodaCondition:
 
 # わざわざ統一しなくていい
 Style/PercentLiteralDelimiters:
+  Enabled: false
+
+# 理由がここに書いてあるが、ブロックコメント禁止する妥当性を感じない
+# https://rubystyle.guide/#no-block-comments
+Style/BlockComments:
   Enabled: false
 
 # 好みが分かれるし差分が激しい
