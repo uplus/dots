@@ -57,16 +57,15 @@
 	# light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 	features = "mantis-shrimp"
 # URL
+
+[url "git@github.com:"]
+	pushInsteadOfb = https://github.com/
 [url "https://github.com/"]
 	insteadof = g:
 [url "git@github.com:uplus/"]
 	insteadof = ggu:
 [url "https://github.com/uplus/"]
 	insteadof = ghu:
-# [url "https://bitbucket.org/"]
-	# insteadof = b:
-# [url "git@bitbucket.org:u10e10/"]
-	# insteadof = bgu:
 [http "https://gopkg.in"]
 	followRedirects = true
 [alias]

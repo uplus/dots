@@ -414,9 +414,9 @@ alias_over termdown -b
 
 if in_darwin; then
   alias_over pgrep -filL
-  alias_over pkill -lfi
 else
   alias_over pgrep -ila
+  alias_over pkill -lfi
 fi
 
 if is_executable systemctl; then
