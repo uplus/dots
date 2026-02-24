@@ -149,6 +149,7 @@
 	inic = !"git init && git add --all && git s && git com 'First commit.'"
 	ctodo = !"git commit -n -m \"[ci skip] [tmp] [$(date +'%F %R')]\""
 	tmpc = !"git add --all && git ctodo"
+	touch = !"f(){ touch ${*} && git add ${*} && git ctodo; }; f"
 	# open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
 	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
 	pullre = !"f(){ git switch ${1} && git pull && git switch - && git rebase ${1} ; }; f"
