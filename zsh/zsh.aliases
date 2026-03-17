@@ -414,6 +414,7 @@ alias_over termdown -b
 
 if in_darwin; then
   alias_over pgrep -filL
+  alias_over pkill -fi
 else
   alias_over pgrep -ila
   alias_over pkill -lfi
