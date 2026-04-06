@@ -191,10 +191,6 @@ cats(){
 
 open(){
   for i in ${@:-.}; do
-    if [[ ! -e ${i:-.} ]]; then
-      warn "${i:-.} is not exists"
-      return 1
-    fi
     xdg-open ${i:-.} >/dev/null 2>&1
   done
 }
