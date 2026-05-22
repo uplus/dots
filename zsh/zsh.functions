@@ -963,8 +963,12 @@ recovery-arch(){
 }
 alias recovery-pacman=recovery-arch
 
+strip-ansi() {
+  perl -pe 's/\e\[[0-?]*[ -\/]*[@-~]//g'
+}
+
 jq-ambi() {
   while read line; do
-    echo "${line}" | jq '.' 2>/dev/null || echo -e "${line}"
+    echo "${line}" | jq ${@} 2>/dev/null || echo -e "${line}"
   done
 }
