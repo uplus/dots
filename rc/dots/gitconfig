@@ -152,7 +152,7 @@
 	touch = !"f(){ touch ${*} && git add ${*} && git commit -n -m \"[tmp] add ${*}\"; }; f"
 	# open = !"xdg-open $(git remote show origin -n | grep -m1 -oP '(?<=URL: ).*')"
 	pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
-	pullre = !"f(){ git switch ${1} && git pull && git switch - && git rebase ${1} ; }; f"
+	pullre = !"f(){ git fetch -a && git rebase origin/${1} ; }; f"
 	rename-to-new-alias = !"sed -i -e 's|https://github\\.com/u10e10/|ghu:|' -e 's|git@github\\.com:u10e10/|ggu:|' .git/config"
 	pick = cherry-pick
 	wta = !"f(){ git worktree add \".gitwt-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"

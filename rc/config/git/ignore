@@ -38,6 +38,9 @@ metals.sbt
 .secret
 *.pem
 
+# LLM
 **/.claude/settings.local.json
 **/CLAUDE.local.md
 .playwright-mcp/ 
+.serena/
+tmp/aiwork/
