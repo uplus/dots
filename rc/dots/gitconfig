@@ -127,6 +127,8 @@
 	remote-branch = !"f(){ git status --branch | grep '^Your' | grep -Po \"'[^']*'\" | tr -d \"'\"; }; f"
 	rprune = !"f(){ git remote prune ${1:-origin}; }; f"
 	rei    = !"f(){ git rebase -i ${1:-$(git parent-branch)}; }; f"
+	rem    = !"git rebase origin/$(git branch-master-or-main)"
+	rep    = !"git rebase origin/$(git parent-branch)"
 	rebase-ignore-date = rebase --ignore-date
 	rebase-reset-author-date = rebase --reset-author-date
 	# rei    = rebase -i
@@ -163,6 +165,7 @@
 	# awkで順序を維持したまま重複排除
 	log-branch = !"git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | awk -F'[]~^[]' '{print $2}' | awk 'a[$0]++ == 0'"
 	parent-branch = !"git log-branch | peco --on-cancel=error --select-1"
+	branch-master-or-main = !"git show-ref --verify -q refs/remotes/origin/main && echo main || echo master"
 	merge-to = merge-to
 	remote-change = remote-change
 	capdate = !"git add . ; git com update"

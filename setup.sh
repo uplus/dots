@@ -171,21 +171,21 @@ pkg_scala() {
 
 pkg_pip(){
   pkgs=(vim-vint ipython yamllint s-tui pynvim percol Send2Trash qmk pyls flake8 autopep8 termdown datadog)
-  pip3 install --upgrade --user --break-system-packages "${pkgs[@]}"
+  python3 -m pip install --user --upgrade --break-system-packages "${pkgs[@]}"
 }
 
 pkg_cargo(){
   pkgs=(
     eza
     tealdeer
+    fd-find
+    typos-cli
     tree-sitter-cli
     cargo-update
     cargo-tree
-    cargo-asm # クレート::関数でディスアセンブル
+    # cargo-asm # クレート::関数でディスアセンブル
     cargo-script
     # cargo-modules
-    fd-find
-    typos-cli
   )
 
   for name in "${pkgs[@]}"; do
