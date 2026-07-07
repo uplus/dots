@@ -119,24 +119,13 @@ alias lldba='lldb a.out'
 alias objdump='objdump -M intel'
 
 #suffix {{{1
-# alias -s py='python3'
-alias -s go='go run'
-alias -s rb='ruby'
-alias -s php='php -f'
 alias -s {gif,jpg,jpeg,png,bmp}='display'
-alias -s {html,htm,xhtml}='opera-beta'
 alias -s c='runc'
 alias -s cpp='runcpp'
-alias -s rs='runrust'
-alias -s js='js'
-# alias -s zsh='zsh'
-# alias -s bash='bash'
-# alias -s sh='sh'
 alias -s zip=zipinfo
 alias -s {tgz,gz}="zcat -dc"
 alias -s {tbz,bz2}=bzcat
 alias -s json=showjson
-# alias -s db=sqlite3
 alias -s java=runjava
 runcpp() { clang++ "${1}" -o "${1%.*}" && time "./${1%.*}" "${@:2}" }
 runc()   { clang   "${1}" -o "${1%.*}" && time "./${1%.*}" "${@:2}" }
@@ -150,12 +139,6 @@ alias -g GV='2>&1 | egrep -iv'
 alias -g WC='2>&1 | wc'
 # alias -g X='2>&1 | xargs -I{}'
 alias -g L='2>&1 | less'
-
-# alias -g S='2>&1 | sed'
-# alias -g H='2>&1 | head'
-# alias -g T='2>&1 | tail'
-# alias -g A='2>&1 | awk'
-# alias -g C='2>&1 | cut'
 
 alias -g M='--help 2>&1 | less'
 alias -g V='2>&1 | v'
