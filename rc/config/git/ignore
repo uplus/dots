@@ -45,3 +45,4 @@ metals.sbt
 .playwright-mcp/ 
 .serena/
 tmp/aiwork/
+**/.claude/.cc-writes/
