@@ -321,6 +321,16 @@ pd_recursive() {
 
   pwd
 }
+
+pdw() {
+  local list root selected
+  list=$(git worktree list) || return
+  root=${list%% *}
+  selected=$(sed "s|^$root/\{0,1\}|/|" <<<"$list" | peco --query "$1")
+  [[ -n $selected ]] || return
+  cd -- "$root/${${selected%% *}#/}"
+}
+
 # }}}
 
 # improved tree
