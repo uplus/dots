@@ -18,7 +18,7 @@ rev_parse_lines=("${(@f)rev_parse}")
 # メイン worktree のルートでは両方が相対パス ".git" になるため :A で正規化して比較する
 worktree=''
 if [[ "${rev_parse_lines[1]:A}" != "${rev_parse_lines[2]:A}" ]]; then
-  worktree="[${${rev_parse_lines[3]:t}//\%/%%}] "
+  worktree="[%F{#85D8FD}${${rev_parse_lines[3]:t}//\%/%%}%f] "
 fi
 
 # branch_name="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
