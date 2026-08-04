@@ -10,7 +10,16 @@ COLOR_MAGENTA="#A75AE8"
 # GIT_OPTIONAL_LOCKS=
 
 # NOTE: git 呼び出し1回あたりオーバーヘッドが0.060sぐらいある
-git rev-parse --git-dir >&! /dev/null || return
+rev_parse="$(git rev-parse --git-dir --git-common-dir --show-toplevel 2>/dev/null)"
+[[ -z "${rev_parse}" ]] && return
+rev_parse_lines=("${(@f)rev_parse}")
+
+# git-dir が共通の .git と異なるのは linked worktree のときだけ
+# メイン worktree のルートでは両方が相対パス ".git" になるため :A で正規化して比較する
+worktree=''
+if [[ "${rev_parse_lines[1]:A}" != "${rev_parse_lines[2]:A}" ]]; then
+  worktree="[${${rev_parse_lines[3]:t}//\%/%%}] "
+fi
 
 # branch_name="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
 branch_name="$(git branch --show-current 2>/dev/null)"
@@ -42,4 +51,4 @@ behind=$(echo "${brace}" | grep -oe 'behind [0-9]\+' | awk '{print $2}')
 [[ -n ${behind} ]] && behind=" %F{${COLOR_RED}}${behind}%f"
 [[ -n ${stash} ]] && stash=" %F{${COLOR_YELLOW}}${stash}%f"
 
-echo "[%F{${color}}${branch_name}%f${ahead}${behind}${stash}] "
+echo "[%F{${color}}${branch_name}%f${ahead}${behind}${stash}] ${worktree}"
