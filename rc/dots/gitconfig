@@ -110,6 +110,7 @@
 	eda   = branch -avv
 	del   = branch -d
 	delff = branch -D
+	del-origin = !git push origin ":$(git current-branch)"
 	ss    = stash save --include-untracked --keep-index --message
 	save  = stash save --include-untracked
 	spop  = stash pop
@@ -142,7 +143,7 @@
 	merged  = !git branch --merged | grep -v master | grep -v '*'
 	edit    = config --edit --local
 	editg   = config --edit --global
-	back   = !"f(){ git logmsg -n ${1:-1}; git reset HEAD~${1}; }; f"
+	back   = !"f(){ git logmsg -n ${1:-1}; git reset HEAD~${1}; git l; }; f"
 	current-branch = rev-parse --abbrev-ref HEAD
 	# fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
 	souji = clean -fd
@@ -160,11 +161,7 @@
 	wta = !"f(){ git worktree add \".gitwt-$(echo ${1} | tr '/' '-')\" \"${1}\"; }; f"
 	wtab = !"f(){ git worktree add \".gitwt-$(echo ${1} | tr '/' '-')\" -b \"${1}\"; }; f"
 	grepf = grep --function-context
-	# log-branch = !"git log --oneline --pretty=format:%D | grep -v '^tag:' | sed \"s|^$(git remote show)/[^ ]*\\s*||g\" | grep -v '^$'"
-	# parent-branch = !"git log-branch | sed 's|HEAD -> [^ ]\\+\\s*||g' | grep -v '^$' | peco --select-1"
-	# awkで順序を維持したまま重複排除
-	log-branch = !"git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | awk -F'[]~^[]' '{print $2}' | awk 'a[$0]++ == 0'"
-	parent-branch = !"git log-branch | peco --on-cancel=error --select-1"
+	parent-branch = !"git parent-branch-candidates | peco --on-cancel=error --select-1"
 	branch-master-or-main = !"git show-ref --verify -q refs/remotes/origin/main && echo main || echo master"
 	merge-to = merge-to
 	remote-change = remote-change

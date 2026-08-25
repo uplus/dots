@@ -1,0 +1,10 @@
+[install]
+
+# 7 days
+minimumReleaseAge = 604800
+
+# Disable lifecycle scripts, including trusted dependencies.
+ignoreScripts = true
+
+# Do not modify bun.lock implicitly.
+frozenLockfile = true

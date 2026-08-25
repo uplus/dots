@@ -1,0 +1,18 @@
+#!/bin/sh -eu
+
+current="$(git branch --show-current)"
+
+git for-each-ref --format="%(refname:short)" refs/heads |
+  while read -r branch; do
+    if [ "${branch}" = "${current}" ]; then
+      continue
+    fi
+
+    # 歴史が繋がっていないブランチは候補にならない
+    base="$(git merge-base HEAD "${branch}")" || continue
+
+    # 分岐点から HEAD までのコミット数が少ないほど親の可能性が高いので、その距離をソートキーにする
+    echo "$(git rev-list --count "${base}"..HEAD) ${branch}"
+  done |
+  sort -k1,1n -k2,2 |
+  cut -d" " -f2-

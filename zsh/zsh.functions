@@ -238,7 +238,7 @@ git-branch() {
 git-hash(){
   branch="$(git-branch)"
   [[ -z $branch ]] && return
-  git log --oneline --decorate=short "${branch}" | peco | awk '$0=$1' | tr '\n' ' '
+  git log --oneline --decorate=short "master..${branch}" | peco | awk '$0=$1' | tr '\n' ' '
 }
 
 gpush(){

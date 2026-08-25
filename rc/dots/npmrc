@@ -1,3 +1,12 @@
 ignore-scripts=true
 min-release-age=7
 prefix=~/.npm-packages
+
+# Prevent git dependencies
+allow-git=none
+
+# Prevent local directory dependencies
+allow-directory=none
+
+# Prevent local tarball dependencies
+allow-file=none
