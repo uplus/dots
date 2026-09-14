@@ -134,6 +134,8 @@
 	rebase-reset-author-date = rebase --reset-author-date
 	# rei    = rebase -i
 	# reoh   = !"f(){ git rebase -i $(git remote-branch); }; f"
+	ours     = checkout --ours
+	theirs	 = checkout --theirs
 	continue = rebase --continue
 	abort    = rebase --abort
 	skip     = rebase --skip
@@ -143,8 +145,9 @@
 	merged  = !git branch --merged | grep -v master | grep -v '*'
 	edit    = config --edit --local
 	editg   = config --edit --global
-	back   = !"f(){ git logmsg -n ${1:-1}; git reset HEAD~${1}; git l; }; f"
+	back   = !"f(){ git logmsg -n ${1:-1}; git reset HEAD~${1}; echo; git l; }; f"
 	current-branch = rev-parse --abbrev-ref HEAD
+	update-master = !git fetch origin master:master && git rprune && gh poi
 	# fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
 	souji = clean -fd
 	get = clone --depth 1
