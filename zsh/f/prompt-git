@@ -9,7 +9,7 @@ COLOR_MAGENTA="#A75AE8"
 # timeout 1s command
 # GIT_OPTIONAL_LOCKS=
 
-# NOTE: git 呼び出し1回あたりオーバーヘッドが0.060sぐらいある
+# NOTE: git 呼び出し1回あたりオーバーヘッドが0.040sぐらいある
 rev_parse="$(git rev-parse --git-dir --git-common-dir --show-toplevel 2>/dev/null)"
 [[ -z "${rev_parse}" ]] && return
 rev_parse_lines=("${(@f)rev_parse}")
